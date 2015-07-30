@@ -43,7 +43,7 @@ opt_feat::features_all_videos( )
       std::stringstream save_feat_video_i;
       std::stringstream save_labels_video_i;
       
-      save_folder << "./ucs_sports-features_dim" << dim <<  "/scale" << scale_factor << "-shift"<< shift ;
+      save_folder << "./features_dim" << dim <<  "/scale" << scale_factor << "-shift"<< shift ;
       
       save_feat_video_i   << save_folder.str() << "/"     << actions(act)  << "_" << list_folders(i) << "_dim" << dim  << ".h5";
       save_labels_video_i << save_folder.str() << "/lab_" << actions(act)  << "_" << list_folders(i) << "_dim" << dim  << ".h5";
@@ -81,7 +81,7 @@ opt_feat::features_all_videos( )
     
     feature_video( folder_path, my_Struct_feat_lab );
     //getchar();
-    /*
+    
     mat mat_features_video_i;
     vec lab_video_i;
     
@@ -113,7 +113,7 @@ opt_feat::features_all_videos( )
     mat_features_video_i.save( save_feat_video_i, hdf5_binary );
     lab_video_i.save( save_labels_video_i, hdf5_binary );
     }
-    */
+    
   }
   
   
