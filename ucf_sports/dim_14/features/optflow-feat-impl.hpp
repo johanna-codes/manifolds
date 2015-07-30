@@ -160,7 +160,7 @@ opt_feat::feature_video( std::string folder_path, Struct_feat_lab &my_Struct_fea
     
     
     std::stringstream name_frame_fr;
-    name_frame_fr << folder_path << "jpeg/" << list_frames(fr);
+    name_frame_fr << folder_path << "/jpeg/" << list_frames(fr);
     
     //cout << fr << " " ;
     frame = cv::imread( name_frame_fr.str().c_str(), 1 );
