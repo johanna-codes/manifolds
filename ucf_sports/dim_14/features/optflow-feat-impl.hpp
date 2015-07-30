@@ -1,14 +1,11 @@
 inline
 opt_feat::opt_feat(const std::string in_path,
 		   const std::string in_actionNames,  
-		   const int in_col, 
-		   const int in_row,
 		   const int in_scale_factor, 
 		   const int in_shift,
-		   const int in_scene, //only for kth
 		   const int in_dim
 )
-:path(in_path), actionNames(in_actionNames), col(in_col), row(in_row), scale_factor(in_scale_factor), shift(in_shift), total_scene(in_scene), dim(in_dim)
+:path(in_path), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), dim(in_dim)
 {
   
   actions.load( actionNames );  
@@ -18,32 +15,40 @@ opt_feat::opt_feat(const std::string in_path,
 
 inline
 void
-opt_feat::features_all_videos( field<string> all_people ) 
+opt_feat::features_all_videos( ) 
 {
   int n_actions = actions.n_rows;
-  int n_peo =  all_people.n_rows;
-  //all_people.print("people");
   
-  field <std::string> load_save_names (n_peo*n_actions,3); 
-  int sc = total_scene; //Solo estoy usando 1 
+  field <std::string> load_save_names (150,3);  ///From the sataset description
   int k =0;
   
-  for (int pe = 0; pe< n_peo; ++pe)
-  {
+
     for (int act=0; act<n_actions; ++act)
     {
-      std::stringstream ss_video_name;
-      ss_video_name << path << actions (act) << "/" << all_people (pe) << "_" << actions (act) << "_d" << sc << "_uncomp.avi";
+      
+      std::stringstream  ss_folders;
+      ss_folders << path << actions (act) << "/list_folders.txt";
+      
+      field <std::string> list_folders;
+      list_folders.load( ss_folders.str() );
+      int n_folders = list_folders.n_rows;
+      
+      for (int i=0; i< n_folders; ++i)
+      {
+      
+      std::stringstream ss_frames_folder;
+      ss_frames_folder << path << actions(act) << "/"  << list_folders(i);
       
       std::stringstream save_folder;
       std::stringstream save_feat_video_i;
       std::stringstream save_labels_video_i;
       
-      save_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
-      save_feat_video_i   << save_folder.str() << "/" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
-      save_labels_video_i << save_folder.str() << "/lab_" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
+      save_folder << "./ucs_sports-features_dim" << dim <<  "/scale" << scale_factor << "-shift"<< shift ;
       
-      load_save_names(k,0) = ss_video_name.str();
+      save_feat_video_i   << save_folder.str() << "/"     << actions(act)  << "_" << list_folders(i) << "_dim" << dim  << ".h5";
+      save_labels_video_i << save_folder.str() << "/lab_" << actions(act)  << "_" << list_folders(i) << "_dim" << dim  << ".h5";
+      
+      load_save_names(k,0) = ss_frames_folder.str();
       load_save_names(k,1) = save_feat_video_i.str();
       load_save_names(k,2) = save_labels_video_i.str();
       k++;
@@ -58,25 +63,25 @@ opt_feat::features_all_videos( field<string> all_people )
   
   wall_clock timer;
   timer.tic();
-  omp_set_num_threads(1); //Use only 8 processors
+  omp_set_num_threads(1); //Use only 1 processors
   
   #pragma omp parallel for 
+  
   for (int i = 0; i<load_save_names.n_rows; ++i)
   {
     
-    std::string one_video = load_save_names(i,0);
+    std::string folder_path= load_save_names(i,0);
     int tid=omp_get_thread_num();
     
     #pragma omp critical
-    cout<< "Processor " << tid <<" doing "<< one_video << endl;
+    cout<< "Processor " << tid <<" doing "<< folder_path << endl;
     
     
     Struct_feat_lab my_Struct_feat_lab;
     
-    feature_video( one_video, my_Struct_feat_lab );
-    
-    
-    
+    feature_video( folder_path, my_Struct_feat_lab );
+    //getchar();
+    /*
     mat mat_features_video_i;
     vec lab_video_i;
     
@@ -108,7 +113,9 @@ opt_feat::features_all_videos( field<string> all_people )
     mat_features_video_i.save( save_feat_video_i, hdf5_binary );
     lab_video_i.save( save_labels_video_i, hdf5_binary );
     }
+    */
   }
+  
   
   double n = timer.toc();
   cout << "number of seconds in parallel : " << n << endl;
@@ -121,26 +128,25 @@ opt_feat::features_all_videos( field<string> all_people )
 
 inline 
 void
-opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_lab )
+opt_feat::feature_video( std::string folder_path, Struct_feat_lab &my_Struct_feat_lab )
 {
   
   
+  std::stringstream one_video_frames;
+  one_video_frames << folder_path << "jpeg/frames.txt";
+  
+  
+  field <std::string> list_frames;
+  list_frames.load( one_video_frames.str() );
   
   my_Struct_feat_lab.features_video_i.clear();
   my_Struct_feat_lab.labels_video_i.clear();
   
-  int new_row = row;
-  int new_col = col;
+
+
   
-  cv::VideoCapture capVideo(one_video);
-  int n_frames = capVideo.get(CV_CAP_PROP_FRAME_COUNT);
-  
-  
-  if( !capVideo.isOpened() )
-  {
-    cout << "Video couldn't be opened" << endl;
-    return;
-  }
+  int n_frames = list_frames.n_rows;
+
   
   cv::Mat prevgray, gray, flow, cflow, frame, prevflow;
   cv::Mat ixMat, iyMat, ixxMat, iyyMat;
@@ -152,34 +158,41 @@ opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_
   
   for(int fr=0; fr<n_frames; fr++){
     
+    
+    std::stringstream name_frame_fr;
+    name_frame_fr << folder_path << "jpeg/" << list_frames(fr);
+    
     //cout << fr << " " ;
+    frame = cv::imread( name_frame_fr.str().c_str(), 1 );
     
-    bool bSuccess = capVideo.read(frame); // read a new frame from video
     
-    if (!bSuccess) //if not success, break loop
-    {
-      cout << "Cannot read the frame from video file" << endl;
-      break;
-    }
+    int row = frame.rows;
+    int col = frame.cols;
+    
+    
+    
+    
+    int new_row = row;
+    int new_col = col;
+  
     
     
     if (shift!=0)
     {
-      
       int shif_x = floor(col*shift/100);
       int shif_y = floor(row*shift/100);
-      
       frame = Shift_Image( frame, shif_x, shif_y);
       
     }
     
     
       if (scale_factor!=1)
-    {
-      new_row = row*scale_factor;
-      new_col = col*scale_factor;
-      cv::resize( frame, frame, cv::Size(new_row, new_col) );
-    }
+      {
+	new_row = row*scale_factor;
+	new_col = col*scale_factor;
+	cv::resize( frame, frame, cv::Size(new_row, new_col) );
+	
+      }
     
     
     
@@ -288,12 +301,12 @@ opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_
 	    
 	    
 	    
-	    if (dim ==12)
-	    {
-	      features_one_pixel  << x       << y       << fr   << gm  << u    << v 
-	      << abs(ut) << abs(vt) << Div  << Vor << Gten << Sten;
-	    }
-	    
+// 	    if (dim ==12)
+// 	    {
+// 	      features_one_pixel  << x       << y       << fr   << gm  << u    << v 
+// 	      << abs(ut) << abs(vt) << Div  << Vor << Gten << Sten;
+// 	    }
+// 	    
 	    if (dim ==14)
 	    {
 	      
@@ -335,9 +348,9 @@ opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_
     
     std::swap(prevgray, gray);
     std::swap(prevflow, flow);
-    
+   
     //cv::imshow("color", frame);
-    //cv::waitKey();
+    //cv::waitKey(1);
     
     
   }
