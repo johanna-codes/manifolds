@@ -133,7 +133,7 @@ opt_feat::feature_video( std::string folder_path, Struct_feat_lab &my_Struct_fea
   
   
   std::stringstream one_video_frames;
-  one_video_frames << folder_path << "jpeg/frames.txt";
+  one_video_frames << folder_path << "/jpeg/frames.txt";
   
   
   field <std::string> list_frames;
