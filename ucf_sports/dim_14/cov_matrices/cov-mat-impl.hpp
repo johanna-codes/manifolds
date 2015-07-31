@@ -1,11 +1,12 @@
 inline
 cov_mat::cov_mat( const std::string in_path,
+		  const std::string in_path_dataset,
 			  const std::string in_actionNames,  
 			  const int in_scale_factor, 
 			  const int in_shift,
 			  const int in_dim
 )
-:path(in_path), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), dim(in_dim)
+:path(in_path), in_path_dataset (path_dataset), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), dim(in_dim)
 {
   actions.load( actionNames );  
 }
@@ -28,7 +29,7 @@ cov_mat::calculate_one_per_video( )
     {
       
       std::stringstream  ss_folders;
-      ss_folders << path << actions (act) << "/list_folders.txt";
+      ss_folders << path_dataset << actions (act) << "/list_folders.txt";
       
       field <std::string> list_folders;
       list_folders.load( ss_folders.str() );

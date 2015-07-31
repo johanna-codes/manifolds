@@ -17,6 +17,8 @@ using namespace arma;
 
 //NICTA
 const std::string path = "/home/johanna/codes/codes-git/manifolds/trunk/ucf_sports/";
+const std::string path_dataset = "/home/johanna/codes/datasets_codes/my_ucf_sports_actions/";
+
 
 
 
@@ -50,7 +52,7 @@ main(int argc, char** argv)
     
     //int shift = vec_shift(i);
     cout << "Cov for " << shift << endl;
-    cov_mat get_cov_seg(path, actionNames, scale_factor, shift, dim);
+    cov_mat get_cov_seg(path, path_dataset, actionNames, scale_factor, shift, dim);
     get_cov_seg.calculate_one_per_video(  );
     
   }

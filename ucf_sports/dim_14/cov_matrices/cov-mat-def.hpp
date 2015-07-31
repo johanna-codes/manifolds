@@ -2,6 +2,7 @@ class cov_mat
 {
 public:  
     inline cov_mat(const std::string in_path,
+		   const std::string in_path_dataset,
 		       const std::string in_actionNames,  
 		       const int in_scale_factor, 
 		       const int in_shift,
@@ -14,6 +15,7 @@ public:
 
 
 const std::string path;
+const std::string path_dataset;
 const std::string actionNames;
 
 const int scale_factor;
