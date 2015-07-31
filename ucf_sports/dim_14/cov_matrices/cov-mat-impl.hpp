@@ -63,7 +63,7 @@ cov_mat::calculate_one_per_video( )
 //       cout << parallel_names(k,2) << endl;
 //       cout << parallel_names(k,3) << endl;
 //       getchar();
-//       k++;
+       k++;
     }
   }
    
