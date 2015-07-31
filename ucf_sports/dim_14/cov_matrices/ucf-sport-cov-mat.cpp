@@ -51,7 +51,7 @@ main(int argc, char** argv)
   {
     
     //int shift = vec_shift(i);
-    cout << "Cov for " << shift << endl;
+    cout << "Cov for shift " << shift << endl;
     cov_mat get_cov_seg(path, path_dataset, actionNames, scale_factor, shift, dim);
     get_cov_seg.calculate_one_per_video(  );
     
