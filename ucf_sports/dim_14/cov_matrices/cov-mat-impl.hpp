@@ -58,26 +58,28 @@ cov_mat::calculate_one_per_video( )
       parallel_names(k,2) = list_folders(i);
       parallel_names(k,3) = actions(act);
       
-      cout << parallel_names(k,0) << endl;
-      cout << parallel_names(k,1) << endl;
-      cout << parallel_names(k,2) << endl;
-      cout << parallel_names(k,3) << endl;
-      getchar();
-      k++;
+//       cout << parallel_names(k,0) << endl;
+//       cout << parallel_names(k,1) << endl;
+//       cout << parallel_names(k,2) << endl;
+//       cout << parallel_names(k,3) << endl;
+//       getchar();
+//       k++;
     }
   }
    
 
 //   #pragma omp parallel for 
-//     for (int k = 0; k< parallel_names.n_rows; ++k)
-//     {
-//       std::string load_feat_video_i   = parallel_names(k,0);
-//       std::string load_labels_video_i = parallel_names(k,1);
-//       std::string folder_n = parallel_names(k,2);
-//       std::string action_name= parallel_names(k,3);
-//       
-//       one_video_one_cov(load_feat_video_i, load_labels_video_i, folder_n, action_name );
-//     }
+     for (int k = 0; k< parallel_names.n_rows; ++k)
+     {
+       std::string load_feat_video_i   = parallel_names(k,0);
+       std::string load_labels_video_i = parallel_names(k,1);
+       std::string folder_n = parallel_names(k,2);
+       std::string action_name= parallel_names(k,3);
+       
+       one_video_one_cov(load_feat_video_i, load_labels_video_i, folder_n, action_name );
+       
+       getchar();
+     }
 
 }
 
