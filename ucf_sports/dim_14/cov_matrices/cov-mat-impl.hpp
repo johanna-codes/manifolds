@@ -6,7 +6,7 @@ cov_mat::cov_mat( const std::string in_path,
 			  const int in_shift,
 			  const int in_dim
 )
-:path(in_path), in_path_dataset (path_dataset), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), dim(in_dim)
+:path(in_path), path_dataset(in_path_dataset), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), dim(in_dim)
 {
   actions.load( actionNames );  
 }
