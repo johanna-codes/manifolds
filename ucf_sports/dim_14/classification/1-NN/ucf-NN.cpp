@@ -50,7 +50,7 @@ main(int argc, char** argv)
   
   //Cross Validation
     cv_classify_NN CV_onesegment(path, path_dataset, actionNames, scale_factor, shift,  dim);
-//     CV_onesegment.logEucl();
+    CV_onesegment.logEucl();
 //     CV_onesegment.SteinDiv();
 //     CV_onesegment.proj_grass(p);
 
