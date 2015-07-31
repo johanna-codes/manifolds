@@ -57,11 +57,13 @@ cov_mat::calculate_one_per_video( )
       parallel_names(k,1) = load_labels_video_i.str();
       parallel_names(k,2) = list_folders(i);
       parallel_names(k,3) = actions(act);
-      k++;
+      
       cout << parallel_names(k,0) << endl;
       cout << parallel_names(k,1) << endl;
       cout << parallel_names(k,2) << endl;
       cout << parallel_names(k,3) << endl;
+      getchar();
+      k++;
     }
   }
    
