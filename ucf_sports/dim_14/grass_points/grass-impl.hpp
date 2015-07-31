@@ -100,6 +100,11 @@ grass_points::one_video_one_point( std::string load_feat_video_i, std::string fo
   
   mat_features_video_i.load( load_feat_video_i, hdf5_binary );
   
+  
+  //Hay priblemas con:
+  ///Run-Side_001_dim14 p =8
+  // mat size: 14 & 7
+  //
   if (mat_features_video_i.n_cols > 100)
   {  
     
