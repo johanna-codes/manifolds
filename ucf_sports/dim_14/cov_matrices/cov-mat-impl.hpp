@@ -78,16 +78,13 @@ inline
 void
 cov_mat::one_video_one_cov( std::string load_feat_video_i, std::string load_labels_video_i, std::string folder_n, std::string action_name )
 {
-  //#pragma omp critical
-  //cout << load_feat_video_i << endl;
-  
+
   mat mat_features_video_i;
   
   mat_features_video_i.load( load_feat_video_i, hdf5_binary );
 
   int n_vec = mat_features_video_i.n_cols;
 
-  ///crear carpeta en wanda
   std::stringstream save_folder;
   save_folder << "./one-cov-mat/scale" << scale_factor << "-shift"<< shift ;
   
@@ -102,11 +99,9 @@ cov_mat::one_video_one_cov( std::string load_feat_video_i, std::string load_labe
   }
 
 
-  ///cambiar:
     std::stringstream save_cov_seg;
     save_cov_seg << save_folder.str() << "/cov_" << action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
     
-    ///cambiar:
     std::stringstream save_LogMcov_seg;
     save_LogMcov_seg << save_folder.str() << "/LogMcov_"  << action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
       
