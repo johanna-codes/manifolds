@@ -22,7 +22,7 @@ cov_mat::calculate_one_per_video( )
    int n_actions = actions.n_rows;
   
   field <std::string> parallel_names (150,4);  ///From the sataset description
-  int k =0;
+  int k = 0;
   
 
     for (int act=0; act<n_actions; ++act)
@@ -34,8 +34,9 @@ cov_mat::calculate_one_per_video( )
       field <std::string> list_folders;
       list_folders.load( ss_folders.str() );
       int n_folders = list_folders.n_rows;
-      list_folders.print();
-      getchar();
+      cout << list_folders << endl;
+      //list_folders.print();
+      //getchar();
       
       for (int i=0; i< n_folders; ++i)
       {
