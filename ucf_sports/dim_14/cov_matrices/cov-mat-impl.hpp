@@ -78,7 +78,7 @@ cov_mat::calculate_one_per_video( )
        
        one_video_one_cov(load_feat_video_i, load_labels_video_i, folder_n, action_name );
        
-       getchar();
+       //getchar();
      }
 
 }
