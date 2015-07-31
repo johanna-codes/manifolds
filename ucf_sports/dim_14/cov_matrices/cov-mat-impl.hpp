@@ -68,7 +68,7 @@ cov_mat::calculate_one_per_video( )
   }
    
 
-   #pragma omp parallel for 
+   //#pragma omp parallel for 
      for (int k = 0; k< parallel_names.n_rows; ++k)
      {
        std::string load_feat_video_i   = parallel_names(k,0);
@@ -90,7 +90,7 @@ cov_mat::one_video_one_cov( std::string load_feat_video_i, std::string load_labe
 {
 
   mat mat_features_video_i;
-  
+  cout << "Doing for " << load_feat_video_i << endl;
   mat_features_video_i.load( load_feat_video_i, hdf5_binary );
 
   int n_vec = mat_features_video_i.n_cols;
