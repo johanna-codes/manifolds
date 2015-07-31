@@ -34,7 +34,8 @@ cov_mat::calculate_one_per_video( )
       field <std::string> list_folders;
       list_folders.load( ss_folders.str() );
       int n_folders = list_folders.n_rows;
-      
+      list_folders.print();
+      getchar();
       
       for (int i=0; i< n_folders; ++i)
       {
