@@ -71,7 +71,7 @@ grass_points::calculate_onepervideo( )
  
   //omp_set_num_threads(4); //Use only 8 processors
   
-  #pragma omp parallel for 
+  //#pragma omp parallel for 
   for (int k = 0; k< parallel_names.n_rows; ++k)
   {
 
@@ -95,7 +95,7 @@ inline
 void
 grass_points::one_video_one_point( std::string load_feat_video_i, std::string folder_n, std::string action_name )
 {
-  //cout << load_feat_video_i << endl;
+  cout << load_feat_video_i << endl;
   mat mat_features_video_i;
   
   mat_features_video_i.load( load_feat_video_i, hdf5_binary );
@@ -128,9 +128,9 @@ grass_points::one_video_one_point( std::string load_feat_video_i, std::string fo
   std::stringstream save_Gnp;
   //cout << save_folder.str() << endl;
   save_Gnp << save_folder.str() << "/grass_pt_" << action_name << "_" <<  folder_n << "_dim" << dim << "_p" << p << ".h5";
-  //cout << save_Gnp.str() << endl;
+  cout << save_Gnp.str() << endl;
   
-  #pragma omp critical
+  //#pragma omp critical
   Gnp.save( save_Gnp.str(), hdf5_binary ); 
 
 
