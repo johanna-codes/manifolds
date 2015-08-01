@@ -13,7 +13,7 @@ class cv_classify_NN //KTH Cross validation
     inline void logEucl();
     inline void SteinDiv();
     inline float proj_grass(int p);
-//     inline float BC_grass(int p);
+    inline float BC_grass(int p);
 
     
     
@@ -36,14 +36,7 @@ class cv_classify_NN //KTH Cross validation
     inline uword logEucl_one_video (field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_cov );
     inline uword SteinDiv_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_cov);
     inline uword ProjectionMetric_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_Gnp);
-//     inline uword BinetCauchyMetric_one_video(int pe_test, std::string load_sub_path, std::string load_Gnp);
-
-   
-    
-    //inline uword ProjectionMetric_one_seg_est_lab(int pe_test, std::string load_sub_path, std::string segm_name, int p);
-    //inline uword BinetCauchyMetric_one_seg_est_lab(int pe_test, std::string load_sub_path, std::string segm_name);
-    
-
+    inline uword BinetCauchyMetric_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_Gnp);
     
     
 };
