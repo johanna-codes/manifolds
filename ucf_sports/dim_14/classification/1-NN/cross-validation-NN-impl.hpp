@@ -64,7 +64,7 @@ cv_classify_NN::logEucl()
   
   
   std::stringstream load_sub_path;
-  load_sub_path  << path << "/dim" << dim << "/cov_matrices/one-cov-mat/scale" << scale_factor << "-shift"<< shift ;
+  load_sub_path  << path << "dim" << dim << "/cov_matrices/one-cov-mat/scale" << scale_factor << "-shift"<< shift ;
   
   //omp_set_num_threads(8); //Use only 8 processors
   //#pragma omp parallel for 
