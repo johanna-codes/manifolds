@@ -35,7 +35,7 @@ class cv_classify_NN //KTH Cross validation
   private:
     inline uword logEucl_one_video (field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_cov );
     inline uword SteinDiv_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_cov);
-//     inline uword ProjectionMetric_one_video(int pe_test, std::string load_sub_path, std::string load_Gnp, int p);
+    inline uword ProjectionMetric_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_Gnp);
 //     inline uword BinetCauchyMetric_one_video(int pe_test, std::string load_sub_path, std::string load_Gnp);
 
    

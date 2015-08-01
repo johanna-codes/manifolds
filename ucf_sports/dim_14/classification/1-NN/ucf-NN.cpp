@@ -51,23 +51,23 @@ main(int argc, char** argv)
   //Cross Validation
     cv_classify_NN CV_onesegment(path, path_dataset, actionNames, scale_factor, shift,  dim);
     //CV_onesegment.logEucl();
-    CV_onesegment.SteinDiv();
-//     CV_onesegment.proj_grass(p);
+    //CV_onesegment.SteinDiv();
+    CV_onesegment.proj_grass(p);
 
    
     
 //   vec vec_bc = zeros(dim);
-//   vec vec_pm = zeros(dim);
-//   for (int p=1; p<= dim; ++p)
-//   {
-//     cout << "p= " << p << endl;
-//     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-//     vec_pm(p-1) = kth_CV_omp_onesegment.proj_grass(p);
-//     vec_bc(p-1) = kth_CV_omp_onesegment.BC_grass(p);
-//   }
-//   
-//   vec_pm.t().print("Projection Metric");
-//   vec_bc.t().print("Binet-Cauchy");
+   vec vec_pm = zeros(dim);
+   for (int p=1; p<= dim; ++p)
+   {
+     cout << "p= " << p << endl;
+     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+     vec_pm(p-1) = kth_CV_omp_onesegment.proj_grass(p);
+     //vec_bc(p-1) = kth_CV_omp_onesegment.BC_grass(p);
+   }
+   
+   vec_pm.t().print("Projection Metric");
+   //vec_bc.t().print("Binet-Cauchy");
 //   
 //   
   
