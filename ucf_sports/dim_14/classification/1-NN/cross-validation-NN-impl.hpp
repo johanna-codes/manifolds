@@ -68,6 +68,7 @@ cv_classify_NN::logEucl()
   
   //omp_set_num_threads(8); //Use only 8 processors
   //#pragma omp parallel for 
+  int c=0;
   for (int test_i = 0; test_i< action_seq_names.n_rows; ++test_i)
   {
     
@@ -92,8 +93,9 @@ cv_classify_NN::logEucl()
     
     est_label_video_i = logEucl_one_video( action_seq_names, test_i, load_sub_path.str(), load_cov.str() );
     
-    real_labels(test_i)=act;
-    est_labels(test_i)=est_label_video_i;
+    real_labels(c)=act;
+    est_labels(c)=est_label_video_i;
+    c++;
     
     
     //#pragma omp critical
