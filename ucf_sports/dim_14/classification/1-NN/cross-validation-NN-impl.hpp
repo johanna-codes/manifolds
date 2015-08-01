@@ -66,7 +66,7 @@ cv_classify_NN::logEucl()
   load_sub_path  << path << "/dim" << dim << "/cov_matrices/one-cov-mat/scale" << scale_factor << "-shift"<< shift ;
   
   //omp_set_num_threads(8); //Use only 8 processors
-  #pragma omp parallel for 
+  //#pragma omp parallel for 
   for (int test_i = 0; test_i< action_seq_names.n_rows; ++test_i)
   {
     
@@ -85,6 +85,7 @@ cv_classify_NN::logEucl()
     std::stringstream load_cov;
     load_cov << load_sub_path.str() << "/LogMcov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
     
+    cout <<  action_name << "_" <<  folder_n << endl;
     //#pragma omp critical
     //cout << load_cov_seg.str() << endl;
     
@@ -94,7 +95,7 @@ cv_classify_NN::logEucl()
     est_labels(test_i)=est_label_video_i;
     
     
-    #pragma omp critical
+    //#pragma omp critical
     {
       if (est_label_video_i == act)
       {acc++;  }
