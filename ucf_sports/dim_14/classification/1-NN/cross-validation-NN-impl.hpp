@@ -95,7 +95,7 @@ cv_classify_NN::logEucl()
     
     real_labels(c)=act;
     est_labels(c)=est_label_video_i;
-    test_video_list = load_cov.str();
+    test_video_list(c) = load_cov.str();
     c++;
     
     
