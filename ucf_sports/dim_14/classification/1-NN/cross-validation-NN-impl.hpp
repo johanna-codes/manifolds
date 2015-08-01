@@ -280,7 +280,7 @@ cv_classify_NN::SteinDiv_one_video(field <std::string> action_seq_names, int tes
   
   
   
-  double dist, tmp_dist;
+  double dist_stein, tmp_dist;
   tmp_dist = datum::inf;
   
   double est_lab;
