@@ -47,8 +47,8 @@ cv_classify_NN::logEucl()
     field <std::string> list_folders;
     list_folders.load( ss_folders.str() );
     int n_folders = list_folders.n_rows;
-    cout <<  actions (act) << endl;
-    list_folders.print();
+    //cout <<  actions (act) << endl;
+    //list_folders.print();
     for (int i=0; i< n_folders; ++i)
     {
       
@@ -57,7 +57,7 @@ cv_classify_NN::logEucl()
       
       action_seq_names(k,0) = actions(act); //Action
       action_seq_names(k,1) = list_folders(i); //Video Sequence
-      action_seq_names(k,3) = ss_action.str();; //Action index
+      action_seq_names(k,2) = ss_action.str();; //Action index
       k++;
     }
   }
@@ -73,7 +73,7 @@ cv_classify_NN::logEucl()
     
     std::string action_name = action_seq_names(test_i,0);   
     std::string folder_n    = action_seq_names(test_i,1);
-    int act  = atoi( action_seq_names(test_i,3).c_str() );
+    int act  = atoi( action_seq_names(test_i,2).c_str() );
     
     if (action_name!="Run-Side" && folder_n!="001")
     {
