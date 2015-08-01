@@ -56,7 +56,7 @@ main(int argc, char** argv)
 
    
     
-//   vec vec_bc = zeros(dim);
+   vec vec_bc = zeros(dim);
    vec vec_pm = zeros(dim);
    for (int p=1; p<= dim; ++p)
    {
