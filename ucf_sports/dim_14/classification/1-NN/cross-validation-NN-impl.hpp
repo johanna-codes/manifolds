@@ -47,7 +47,7 @@ cv_classify_NN::logEucl()
     field <std::string> list_folders;
     list_folders.load( ss_folders.str() );
     int n_folders = list_folders.n_rows;
-    
+    cout <<  actions (act) << endl;
     for (int i=0; i< n_folders; ++i)
     {
       
