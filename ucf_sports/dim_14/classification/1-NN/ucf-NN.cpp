@@ -49,10 +49,10 @@ main(int argc, char** argv)
 
   
   //Cross Validation
-    cv_classify_NN CV_onesegment(path, path_dataset, actionNames, scale_factor, shift,  dim);
+    //cv_classify_NN CV_onesegment(path, path_dataset, actionNames, scale_factor, shift,  dim);
     //CV_onesegment.logEucl();
     //CV_onesegment.SteinDiv();
-    CV_onesegment.proj_grass(p);
+    //CV_onesegment.proj_grass(p);
 
    
     
@@ -61,8 +61,8 @@ main(int argc, char** argv)
    for (int p=1; p<= dim; ++p)
    {
      cout << "p= " << p << endl;
-     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-     vec_pm(p-1) = kth_CV_omp_onesegment.proj_grass(p);
+     cv_classify_NN CV_onesegment(path, path_dataset, actionNames, scale_factor, shift,  dim);
+     vec_pm(p-1) = CV_onesegment.proj_grass(p);
      //vec_bc(p-1) = kth_CV_omp_onesegment.BC_grass(p);
    }
    
