@@ -95,6 +95,7 @@ cv_classify_NN::logEucl()
     
     real_labels(c)=act;
     est_labels(c)=est_label_video_i;
+    test_video_list = load_cov.str();
     c++;
     
     
@@ -107,9 +108,9 @@ cv_classify_NN::logEucl()
     
   }
   
-  real_labels.save("./results_onesegment/Log_Eucl_real_labels.dat", raw_ascii);
-  est_labels.save("./results_onesegment/Log_Eucl_est_labels.dat", raw_ascii);
-  test_video_list.save("./results_onesegment/Log_Eucl_test_video_list.dat", raw_ascii);
+  real_labels.save("nn_Log_Eucl_real_labels.dat", raw_ascii);
+  est_labels.save("nn_Log_Eucl_est_labels.dat", raw_ascii);
+  test_video_list.save("nn_Log_Eucl_test_video_list.dat", raw_ascii);
   cout << "Performance: " << acc*100/n_test << " %" << endl;
   
 }
