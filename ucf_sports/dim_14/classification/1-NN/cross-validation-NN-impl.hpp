@@ -309,7 +309,7 @@ cv_classify_NN::SteinDiv_one_video(field <std::string> action_seq_names, int tes
       
       if (dist_stein < tmp_dist)
       {
-	tmp_dist = dist;
+	tmp_dist = dist_stein;
 	est_lab = act;
       }
       
