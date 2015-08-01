@@ -133,7 +133,7 @@ cv_classify_NN::logEucl_one_video(field <std::string> action_seq_names, int test
   for (int train_i = 0; train_i< action_seq_names.n_rows; ++train_i)
   {
     
-    int act  = atoi( action_seq_names(train_i,3).c_str() );
+    int act  = atoi( action_seq_names(train_i,2).c_str() );
     if (train_i!= test_i)
     {	     
       
