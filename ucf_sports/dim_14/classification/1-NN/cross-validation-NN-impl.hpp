@@ -467,7 +467,7 @@ cv_classify_NN::ProjectionMetric_one_video(field <std::string> action_seq_names,
       std::string folder_n    = action_seq_names(train_i,1);
       
       std::stringstream load_Gnp_tr;
-      load_Gnp_tr << load_sub_path.str() << "/grass_pt_" << action_name << "_" <<  folder_n << "_dim" << dim << "_p" << p << ".h5";
+      load_Gnp_tr << load_sub_path << "/grass_pt_" << action_name << "_" <<  folder_n << "_dim" << dim << "_p" << p << ".h5";
    
       mat grass_point_train;
       grass_point_train.load( load_Gnp_tr.str() );
