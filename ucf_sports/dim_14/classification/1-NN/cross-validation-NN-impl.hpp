@@ -75,7 +75,7 @@ cv_classify_NN::logEucl()
     std::string folder_n    = action_seq_names(test_i,1);
     int act  = atoi( action_seq_names(test_i,2).c_str() );
     
-    if (action_name!="Run-Side" && folder_n!="001")
+    if (!(action_name=="Run-Side" && folder_n=="001"))
     {
     
     
