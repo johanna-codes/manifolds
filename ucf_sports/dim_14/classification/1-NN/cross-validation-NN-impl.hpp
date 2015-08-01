@@ -243,7 +243,7 @@ cv_classify_NN::SteinDiv()
       //#pragma omp critical
       //cout << load_cov_seg.str() << endl;
       
-      est_label_video_i = logEucl_one_video( action_seq_names, test_i, load_sub_path.str(), load_cov.str() );
+      est_label_video_i = SteinDiv_one_video( action_seq_names, test_i, load_sub_path.str(), load_cov.str() );
       
       real_labels(c)=act;
       est_labels(c)=est_label_video_i;
