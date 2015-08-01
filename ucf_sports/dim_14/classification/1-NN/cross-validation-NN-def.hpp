@@ -12,7 +12,7 @@ class cv_classify_NN //KTH Cross validation
 			 );
     inline void logEucl();
     inline void SteinDiv();
-//     inline float proj_grass(int p);
+    inline float proj_grass(int p);
 //     inline float BC_grass(int p);
 
     
