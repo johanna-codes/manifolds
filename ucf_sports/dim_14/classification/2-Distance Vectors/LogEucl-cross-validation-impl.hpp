@@ -28,7 +28,7 @@ inline
 void
 cv_dist_vector_LogEucl::svm_train()
 {
-
+  
   
   int n_actions = actions.n_rows;
   
@@ -64,7 +64,7 @@ cv_dist_vector_LogEucl::svm_train()
   
   
   //****************************************
-  fvec dist_vector;
+  #pragma omp parallel for 
   for (int seq_ts=0; seq_ts<action_seq_names.n_rows; ++seq_ts) 
   {
     std::string action_name_ts = action_seq_names(seq_ts,0);   
@@ -87,56 +87,57 @@ cv_dist_vector_LogEucl::svm_train()
 	
 	if (!(action_name_tr=="Run-Side" && folder_n_tr=="001"))
 	{
+	  fvec dist_vector;
 	  std::stringstream load_vec_dist;
 	  load_vec_dist << "./logEucl/dist_vector_" << action_name_tr << "_" <<  folder_n_tr << "_dim" << dim  << ".h5";
 	  dist_vector.load( load_vec_dist.str() );
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act_tr;
 	  ++k;
-	  
+
 	}
 	
-      }
-      
-      
-      //Training the model with OpenCV
-      cout << "Using SVM to train run " << seq_ts+1 << endl;
-      //cout << "Preparing data to train the data" << endl;
-      cv::Mat cvMatTraining(n_test, n_dim, CV_32FC1);
-      float fl_labels[n_test] ;
-      
-      
-      for (uword m=0; m<n_test; ++m)
-      {
-	for (uword d=0; d<n_dim; ++d)
+	//Training the model with OpenCV
+	#pragma omp critical
+	cout << "Using SVM to train run " << seq_ts+1 << endl;
+	//cout << "Preparing data to train the data" << endl;
+	cv::Mat cvMatTraining(n_test, n_dim, CV_32FC1);
+	float fl_labels[n_test] ;
+	
+	
+	for (uword m=0; m<n_test; ++m)
 	{
-	  cvMatTraining.at<float>(m,d) = training_data(d,m); 
-	  //cout << " OpenCV: " << cvMatTraining.at<float>(m,d) << " - Arma: " <<training_data(d,m); 
+	  for (uword d=0; d<n_dim; ++d)
+	  {
+	    cvMatTraining.at<float>(m,d) = training_data(d,m); 
+	    //cout << " OpenCV: " << cvMatTraining.at<float>(m,d) << " - Arma: " <<training_data(d,m); 
+	  }
+	  fl_labels[m] = lab(m);
+	  //cout <<" OpenCVLabel: " <<  fl_labels[m] << " ArmaLabel: " << labels(m) << endl;
 	}
-	fl_labels[m] = lab(m);
-	//cout <<" OpenCVLabel: " <<  fl_labels[m] << " ArmaLabel: " << labels(m) << endl;
+	
+	cv::Mat cvMatLabels(n_test, 1, CV_32FC1,fl_labels );
+	
+	//cout << "Setting parameters" << endl;
+	CvSVMParams params;
+	params.svm_type    = CvSVM::C_SVC;
+	params.kernel_type = CvSVM::LINEAR; 
+	//params.gamma = 1;
+	params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER,  (int)1e7, 1e-6);
+	//params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 100, 1e-6);
+	
+	// Train the SVM
+	//cout << "Training" << endl;
+	CvSVM SVM;
+	SVM.train( cvMatTraining , cvMatLabels, cv::Mat(), cv::Mat(), params);
+	
+	 #pragma omp critical
+	{
+	std::stringstream save_svm_model;
+	save_svm_model << "./svm_models/logEucl_run_" << seq_ts+1;
+	SVM.save( save_svm_model.str().c_str() );
+	}
       }
-      
-      cv::Mat cvMatLabels(n_test, 1, CV_32FC1,fl_labels );
-      
-      //cout << "Setting parameters" << endl;
-      CvSVMParams params;
-      params.svm_type    = CvSVM::C_SVC;
-      params.kernel_type = CvSVM::LINEAR; 
-      //params.gamma = 1;
-      params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER,  (int)1e7, 1e-6);
-      //params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 100, 1e-6);
-      
-      // Train the SVM
-      //cout << "Training" << endl;
-      CvSVM SVM;
-      SVM.train( cvMatTraining , cvMatLabels, cv::Mat(), cv::Mat(), params);
-      
-      
-      std::stringstream save_svm_model;
-      save_svm_model << "./svm_models/logEucl_run_" << seq_ts+1;
-      SVM.save( save_svm_model.str().c_str() );
-      
     }
   }
 }
@@ -350,7 +351,7 @@ inline
 vec
 cv_dist_vector_LogEucl::dist_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_cov)
 {
-
+  
   mat logMtest_cov;
   logMtest_cov.load(load_cov);
   
