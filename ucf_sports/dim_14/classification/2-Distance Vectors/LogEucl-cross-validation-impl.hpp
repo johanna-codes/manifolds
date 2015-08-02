@@ -65,7 +65,7 @@ cv_dist_vector_LogEucl::svm_train()
   
   //****************************************
   fvec dist_vector;
-  for (int seq_ts=0; seq_ts<150; ++seq_ts) 
+  for (int seq_ts=0; seq_ts<action_seq_names.n_rows; ++seq_ts) 
   {
     std::string action_name_ts = action_seq_names(seq_ts,0);   
     std::string folder_n_ts    = action_seq_names(seq_ts,1);
@@ -79,7 +79,7 @@ cv_dist_vector_LogEucl::svm_train()
       lab.zeros(n_test);
       int k = 0;
       
-      for (int seq_tr=0; seq_tr<150-1; ++seq_tr) //Problem with Run-Side_001_dim14 
+      for (int seq_tr=0; seq_tr<action_seq_names.n_rows; ++seq_tr) //Problem with Run-Side_001_dim14 
       {
 	std::string action_name_tr = action_seq_names(seq_tr,0);   
 	std::string folder_n_tr    = action_seq_names(seq_tr,1);
@@ -312,7 +312,7 @@ cv_dist_vector_LogEucl::distances(int scale_factor, int shift)
   load_sub_path  << path << "dim_" << dim << "/cov_matrices/one-cov-mat/scale" << scale_factor << "-shift"<< shift ;
   
   #pragma omp parallel for 
-  for (int test_i = 0; test_i< n_test; ++test_i)
+  for (int test_i = 0; test_i< action_seq_names.n_rows; ++test_i)
   {
     std::string action_name = action_seq_names(test_i,0);   
     std::string folder_n    = action_seq_names(test_i,1);
@@ -387,6 +387,7 @@ cv_dist_vector_LogEucl::dist_one_video(field <std::string> action_seq_names, int
       }
     }
   }
+  
   return dist;
 }
 
