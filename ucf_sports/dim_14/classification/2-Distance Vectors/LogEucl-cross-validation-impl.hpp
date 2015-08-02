@@ -311,15 +311,15 @@ cv_dist_vector_LogEucl::distances(int scale_factor, int shift)
   std::stringstream load_sub_path;
   load_sub_path  << path << "dim_" << dim << "/cov_matrices/one-cov-mat/scale" << scale_factor << "-shift"<< shift ;
   
-  //#pragma omp parallel for 
+  #pragma omp parallel for 
   for (int test_i = 0; test_i< n_test; ++test_i)
   {
     std::string action_name = action_seq_names(test_i,0);   
     std::string folder_n    = action_seq_names(test_i,1);
     int act  = atoi( action_seq_names(test_i,2).c_str() );
     
-    cout << action_name << " " << folder_n << endl;
-    getchar();
+    //cout << action_name << " " << folder_n << endl;
+    //getchar();
     
     if (!(action_name=="Run-Side" && folder_n=="001"))
     {
@@ -339,7 +339,7 @@ cv_dist_vector_LogEucl::distances(int scale_factor, int shift)
       std::stringstream save_vec_dist;
       save_vec_dist << "./logEucl/dist_vector_" << action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
       
-      //#pragma omp critical
+      #pragma omp critical
       dist_video_i.save(save_vec_dist.str(), hdf5_binary);
     }
   }
