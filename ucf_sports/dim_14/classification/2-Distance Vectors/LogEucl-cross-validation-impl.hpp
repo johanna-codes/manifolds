@@ -62,6 +62,7 @@ cv_dist_vector_LogEucl::svm_train()
   //#pragma omp parallel for 
   for (int seq_ts=action_seq_names.n_rows-1; seq_ts<action_seq_names.n_rows; ++seq_ts) 
   {
+    cout << seq_ts << endl;
     std::string action_name_ts = action_seq_names(seq_ts,0);   
     std::string folder_n_ts    = action_seq_names(seq_ts,1);
     
