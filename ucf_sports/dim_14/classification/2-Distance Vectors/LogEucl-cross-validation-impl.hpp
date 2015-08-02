@@ -253,8 +253,9 @@ cv_dist_vector_LogEucl::test(int ts_scale, int ts_shift)
       test_video_list.save(save3.str(), raw_ascii); 
       
     }
-    cout << "Performance for Log_Euclidean Distance: " << acc*100/(n_test) << " %" << endl;
+    
   }
+  cout << "Performance for Log_Euclidean Distance: " << acc*100/(n_test) << " %" << endl;
 }
 
 
