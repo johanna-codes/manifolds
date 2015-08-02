@@ -212,7 +212,7 @@ cv_dist_vector_LogEucl::test(int ts_scale, int ts_shift)
      
       test_dist = dist_one_video( action_seq_names, test_i, load_sub_path.str(), load_cov.str() );
       
-      
+      //test_dist.print("");
       
       cv::Mat cvMatTesting_onevideo(1, n_dim, CV_32FC1);
       
@@ -234,6 +234,7 @@ cv_dist_vector_LogEucl::test(int ts_scale, int ts_shift)
       test_video_list(j) = test_video_name.str();
       j++;
       
+      cout << act_ts << " " << response << endl;
       if (response == act_ts)  {
 	acc++;
       }
@@ -329,8 +330,7 @@ cv_dist_vector_LogEucl::distances(int scale_factor, int shift)
       //cout << load_cov_seg.str() << endl;
       
       dist_video_i = dist_one_video( action_seq_names, test_i, load_sub_path.str(), load_cov.str() );
-      dist_video_i.t().print();
-      
+       
       std::stringstream save_vec_dist;
       save_vec_dist << "./logEucl/dist_vector_" << action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
       
