@@ -19,8 +19,8 @@ using namespace arma;
 #include "LogEucl-cross-validation-def.hpp"
 #include "LogEucl-cross-validation-impl.hpp"
 
-#include "SteinDiv-svm-cross-validation-def.hpp"
-#include "SteinDiv-svm-cross-validation-impl.hpp"
+#include "SteinDiv-cross-validation-def.hpp"
+#include "SteinDiv-cross-validation-impl.hpp"
 
 
 // #include "kth-GrassPM-svm-cross-validation-def.hpp"
