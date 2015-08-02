@@ -64,7 +64,6 @@ cv_dist_vector_LogEucl::svm_train()
   
   
   //****************************************
-  #pragma omp parallel for 
   for (int seq_ts=0; seq_ts<action_seq_names.n_rows; ++seq_ts) 
   {
     std::string action_name_ts = action_seq_names(seq_ts,0);   
@@ -98,7 +97,6 @@ cv_dist_vector_LogEucl::svm_train()
 	}
 	
 	//Training the model with OpenCV
-	#pragma omp critical
 	cout << "Using SVM to train run " << seq_ts+1 << endl;
 	//cout << "Preparing data to train the data" << endl;
 	cv::Mat cvMatTraining(n_test, n_dim, CV_32FC1);
@@ -131,12 +129,10 @@ cv_dist_vector_LogEucl::svm_train()
 	CvSVM SVM;
 	SVM.train( cvMatTraining , cvMatLabels, cv::Mat(), cv::Mat(), params);
 	
-	 #pragma omp critical
-	{
 	std::stringstream save_svm_model;
 	save_svm_model << "./svm_models/logEucl_run_" << seq_ts+1;
 	SVM.save( save_svm_model.str().c_str() );
-	}
+
       }
     }
   }
