@@ -29,17 +29,12 @@ void
 cv_dist_vector_LogEucl::svm_train()
 {
   
-  
   int n_actions = actions.n_rows;
-  
   int n_test = 150 - 1;  //Problem with Run-Side_001_dim14 
   int n_dim = n_test -1;
-  
   int k = 0;
   
-  
   field <std::string> action_seq_names (150,3);  ///From the dataset description (150)
-  
   
   for (int act=0; act<n_actions; ++act)
   {
@@ -93,6 +88,8 @@ cv_dist_vector_LogEucl::svm_train()
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act_tr;
 	  ++k;
+	}
+      }
 
 
 	
@@ -132,11 +129,11 @@ cv_dist_vector_LogEucl::svm_train()
 	std::stringstream save_svm_model;
 	save_svm_model << "./svm_models/logEucl_run_" << seq_ts+1;
 	SVM.save( save_svm_model.str().c_str() );
-	}
+
       }
     }
   }
-}
+
 
 
 inline
