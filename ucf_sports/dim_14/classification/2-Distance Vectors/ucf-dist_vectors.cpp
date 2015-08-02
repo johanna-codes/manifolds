@@ -19,9 +19,10 @@ using namespace arma;
 #include "LogEucl-cross-validation-def.hpp"
 #include "LogEucl-cross-validation-impl.hpp"
 
-// #include "kth-SteinDiv-svm-cross-validation-def.hpp"
-// #include "kth-SteinDiv-svm-cross-validation-impl.hpp"
-// 
+#include "SteinDiv-svm-cross-validation-def.hpp"
+#include "SteinDiv-svm-cross-validation-impl.hpp"
+
+
 // #include "kth-GrassPM-svm-cross-validation-def.hpp"
 // #include "kth-GrassPM-svm-cross-validation-impl.hpp"
 // 
@@ -51,9 +52,15 @@ main(int argc, char** argv)
   int shift = 0; 
   //Cross Validation LogEuclidean
   cout << "Training Log-Euclidean Distance" << endl;
-  cv_dist_vector_LogEucl run_cv(path, path_dataset, actionNames, dim);
-  run_cv.train(scale_factor, shift);
-  run_cv.test(scale_factor, shift);
+  cv_dist_vector_LogEucl run_cvLE(path, path_dataset, actionNames, dim);
+  run_cvLE.train(scale_factor, shift);
+  run_cvLE.test(scale_factor, shift);
+  
+  
+  cv_dist_vector_SteinDiv run_cvSD(path, path_dataset, actionNames, dim);
+  run_cvSD.train(scale_factor, shift);
+  run_cvSD.test(scale_factor, shift);
+  
   
   //          //Cross Validation Stein Divergence
   //         cout << "Training Stein Divergence" << endl;
