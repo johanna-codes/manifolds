@@ -28,12 +28,12 @@ inline
 void
 cv_dist_vector_LogEucl::svm_train()
 {
-  
+
   
   int n_actions = actions.n_rows;
   
   int n_test = 150 - 1;  //Problem with Run-Side_001_dim14 
-  int n_dim = n_test;
+  int n_dim = n_test -1;
   
   int k = 0;
   
