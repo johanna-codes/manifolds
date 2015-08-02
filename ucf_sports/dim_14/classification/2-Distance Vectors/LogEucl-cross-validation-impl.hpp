@@ -131,6 +131,7 @@ cv_dist_vector_LogEucl::svm_train()
 	{
 	std::stringstream save_svm_model;
 	save_svm_model << "./svm_models/logEucl_run_" << seq_ts+1;
+	cout << "Saving" << endl;
 	SVM.save( save_svm_model.str().c_str() );
 	}
       }
