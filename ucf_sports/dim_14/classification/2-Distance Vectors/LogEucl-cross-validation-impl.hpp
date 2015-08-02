@@ -173,7 +173,7 @@ cv_dist_vector_LogEucl::test(int ts_scale, int ts_shift)
   
   
   int n_test = 150 - 1;  //Problem with Run-Side_001_dim14 
-  int n_dim = n_test;
+  int n_dim = n_test -1;
   fvec dist_vector;
   
   float acc=0;
@@ -209,9 +209,7 @@ cv_dist_vector_LogEucl::test(int ts_scale, int ts_shift)
       std::stringstream load_cov;
       load_cov << load_sub_path.str() << "/LogMcov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
       
-      //#pragma omp critical
-      //cout << load_cov_seg.str() << endl;
-      
+     
       test_dist = dist_one_video( action_seq_names, test_i, load_sub_path.str(), load_cov.str() );
       
       

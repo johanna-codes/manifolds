@@ -51,11 +51,10 @@ main(int argc, char** argv)
   int scale_factor = 1;
   int shift = 0; 
   //Cross Validation LogEuclidean
-  cout << "Training Log-Euclidean Distance" << endl;
+  //cout << "Training Log-Euclidean Distance" << endl;
   cv_dist_vector_LogEucl run_cvLE(path, path_dataset, actionNames, dim);
-  run_cvLE.train(scale_factor, shift);
+  //run_cvLE.train(scale_factor, shift);
   cout << "Testing Log-Euclidean Distance" << endl;
-
   run_cvLE.test(scale_factor, shift);
   
   
