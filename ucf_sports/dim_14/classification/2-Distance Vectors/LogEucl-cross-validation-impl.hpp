@@ -59,8 +59,8 @@ cv_dist_vector_LogEucl::svm_train()
   
   
   //****************************************
-    #pragma omp parallel for 
-  for (int seq_ts=0; seq_ts<action_seq_names.n_rows; ++seq_ts) 
+  //#pragma omp parallel for 
+  for (int seq_ts=action_seq_names.n_rows-1; seq_ts<action_seq_names.n_rows; ++seq_ts) 
   {
     std::string action_name_ts = action_seq_names(seq_ts,0);   
     std::string folder_n_ts    = action_seq_names(seq_ts,1);
@@ -100,7 +100,7 @@ cv_dist_vector_LogEucl::svm_train()
 	cv::Mat cvMatTraining(n_test, n_dim, CV_32FC1);
 	float fl_labels[n_test] ;
 	
-	
+	cout << "Preparing data" << endl;
 	for (uword m=0; m<n_test; ++m)
 	{
 	  for (uword d=0; d<n_dim; ++d)
@@ -123,10 +123,10 @@ cv_dist_vector_LogEucl::svm_train()
 	//params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 100, 1e-6);
 	
 	// Train the SVM
-	//cout << "Training" << endl;
+	cout << "...Training" << endl;
 	CvSVM SVM;
 	SVM.train( cvMatTraining , cvMatLabels, cv::Mat(), cv::Mat(), params);
-	#pragma omp critical
+	//#pragma omp critical
 	{
 	std::stringstream save_svm_model;
 	save_svm_model << "./svm_models/logEucl_run_" << seq_ts+1;
