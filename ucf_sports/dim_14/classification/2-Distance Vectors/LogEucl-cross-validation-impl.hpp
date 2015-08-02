@@ -94,7 +94,7 @@ cv_dist_vector_LogEucl::svm_train()
 	  lab(k) = act_tr;
 	  ++k;
 
-	}
+
 	
 	//Training the model with OpenCV
 	cout << "Using SVM to train run " << seq_ts+1 << endl;
@@ -132,7 +132,7 @@ cv_dist_vector_LogEucl::svm_train()
 	std::stringstream save_svm_model;
 	save_svm_model << "./svm_models/logEucl_run_" << seq_ts+1;
 	SVM.save( save_svm_model.str().c_str() );
-
+	}
       }
     }
   }
