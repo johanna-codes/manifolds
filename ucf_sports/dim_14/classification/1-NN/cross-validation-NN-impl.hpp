@@ -141,18 +141,21 @@ cv_classify_NN::logEucl_one_video(field <std::string> action_seq_names, int test
       std::string action_name = action_seq_names(train_i,0);   
       std::string folder_n    = action_seq_names(train_i,1);
       
-      std::stringstream load_cov_tr;
-      load_cov_tr << load_sub_path << "/LogMcov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
-      
-      mat logMtrain_cov;
-      logMtrain_cov.load( load_cov_tr.str() );
-      
-      dist = norm( logMtest_cov - logMtrain_cov, "fro");
-      
-      if (dist < tmp_dist)
+      if (!(action_name=="Run-Side" && folder_n=="001"))
       {
-	tmp_dist = dist;
-	est_lab = act;
+	std::stringstream load_cov_tr;
+	load_cov_tr << load_sub_path << "/LogMcov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
+	
+	mat logMtrain_cov;
+	logMtrain_cov.load( load_cov_tr.str() );
+	
+	dist = norm( logMtest_cov - logMtrain_cov, "fro");
+	
+	if (dist < tmp_dist)
+	{
+	  tmp_dist = dist;
+	  est_lab = act;
+	}
       }
       
     }
@@ -295,24 +298,26 @@ cv_classify_NN::SteinDiv_one_video(field <std::string> action_seq_names, int tes
       std::string action_name = action_seq_names(train_i,0);   
       std::string folder_n    = action_seq_names(train_i,1);
       
-      std::stringstream load_cov_tr;
-      load_cov_tr << load_sub_path << "/cov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
-      
-      mat train_cov;
-      train_cov.load( load_cov_tr.str() );
-      
-      double det_op1 = det( diagmat( (test_cov + train_cov)/2 ) );
-      double det_op2 = det( diagmat( ( test_cov%train_cov ) ) );
-      dist_stein =  log( det_op1 ) - 0.5*log( det_op2 ) ;
-      
-      
-      
-      if (dist_stein < tmp_dist)
+      if (!(action_name=="Run-Side" && folder_n=="001"))
       {
-	tmp_dist = dist_stein;
-	est_lab = act;
+	std::stringstream load_cov_tr;
+	load_cov_tr << load_sub_path << "/cov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
+	
+	mat train_cov;
+	train_cov.load( load_cov_tr.str() );
+	
+	double det_op1 = det( diagmat( (test_cov + train_cov)/2 ) );
+	double det_op2 = det( diagmat( ( test_cov%train_cov ) ) );
+	dist_stein =  log( det_op1 ) - 0.5*log( det_op2 ) ;
+	
+	
+	
+	if (dist_stein < tmp_dist)
+	{
+	  tmp_dist = dist_stein;
+	  est_lab = act;
+	}
       }
-      
     }
   }
   
@@ -494,12 +499,12 @@ cv_classify_NN::ProjectionMetric_one_video(field <std::string> action_seq_names,
   
 }
 
- ///  Binet-Cauchy Metric
- inline
- float
- cv_classify_NN::BC_grass(int in_p)
- {
-    p = in_p;
+///  Binet-Cauchy Metric
+inline
+float
+cv_classify_NN::BC_grass(int in_p)
+{
+  p = in_p;
   
   int n_actions = actions.n_rows;
   
@@ -594,13 +599,13 @@ cv_classify_NN::ProjectionMetric_one_video(field <std::string> action_seq_names,
   cout << "Performance  for Binet-Cauchy p " << p << ": " << acc*100/n_test << " %" << endl;
   acc =   acc*100/n_test;
   return acc;
-   
- }
- 
- 
- inline
- uword
- cv_classify_NN::BinetCauchyMetric_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_Gnp)
+  
+}
+
+
+inline
+uword
+cv_classify_NN::BinetCauchyMetric_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_Gnp)
 {
   
   grass_metric grass_dist;
@@ -646,8 +651,7 @@ cv_classify_NN::ProjectionMetric_one_video(field <std::string> action_seq_names,
   
   
   return est_lab;
-
+  
 }
 
- 
- 
+

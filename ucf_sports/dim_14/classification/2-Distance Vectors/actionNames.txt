@@ -1,0 +1,10 @@
+Diving-Side
+Golf-Swing
+Kicking
+Lifting
+Riding-Horse
+Run-Side
+SkateBoarding-Front
+Swing-Bench
+Swing-SideAngle
+Walk-Front
