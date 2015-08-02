@@ -329,7 +329,7 @@ cv_dist_vector_LogEucl::distances(int scale_factor, int shift)
       //cout << load_cov_seg.str() << endl;
       
       dist_video_i = dist_one_video( action_seq_names, test_i, load_sub_path.str(), load_cov.str() );
-      
+      dist_video_i.t().print();
       
       std::stringstream save_vec_dist;
       save_vec_dist << "./logEucl/dist_vector_" << action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
@@ -354,7 +354,6 @@ cv_dist_vector_LogEucl::dist_one_video(field <std::string> action_seq_names, int
   int num_dist = action_seq_names.n_rows - 1; 
   num_dist = num_dist - 1; // Problem with Run-Side_001_dim14 
   dist.zeros(num_dist);
-  tmp_dist = datum::inf;
   
   double est_lab;
   int k = 0;
