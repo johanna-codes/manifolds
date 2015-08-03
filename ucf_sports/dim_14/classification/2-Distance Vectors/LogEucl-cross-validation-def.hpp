@@ -1,4 +1,4 @@
-class cv_dist_vector_LogEucl //KTH Cross validation
+class cv_dist_vector_LogEucl 
 {
   
   public:

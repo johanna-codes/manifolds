@@ -95,7 +95,7 @@ cv_dist_vector_SteinDiv::svm_train()
       
       //Training the model with OpenCV
       #pragma omp critical
-      cout << "Using SVM to train run " << seq_ts+1 << endl;
+      cout << " " << seq_ts+1;
       //cout << "Preparing data to train the data" << endl;
       cv::Mat cvMatTraining(n_test, n_dim, CV_32FC1);
       float fl_labels[n_test] ;
@@ -134,6 +134,7 @@ cv_dist_vector_SteinDiv::svm_train()
 	}
     }
   }
+  cout << endl;
 }
 
 inline

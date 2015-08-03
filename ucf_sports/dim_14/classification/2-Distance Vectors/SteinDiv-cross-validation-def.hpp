@@ -1,4 +1,4 @@
-class cv_dist_vector_SteinDiv //KTH Cross validation
+class cv_dist_vector_SteinDiv 
 {
   
   public:
