@@ -243,7 +243,7 @@ cv_dist_vector_GrassPM::test(int ts_scale, int ts_shift)
       }
       
       std::stringstream main_save;
-      main_save << "./svm_resultsGrassPM_scale" <<  ts_scale << "-shift"<< ts_shift << "-p" << p;
+      main_save << "./svm_results/GrassPM_scale" <<  ts_scale << "-shift"<< ts_shift << "-p" << p;
       
       
       std::stringstream save1, save2,save3;
