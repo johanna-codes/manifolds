@@ -4,8 +4,9 @@ inline
 cv_dist_vector_GrassPM::cv_dist_vector_GrassPM(const std::string in_path,
 					       const std::string in_path_dataset,
 					       const std::string in_actionNames,  
-					       const int in_dim 
-):path(in_path), path_dataset(in_path_dataset), actionNames(in_actionNames), dim(in_dim)
+					       const int in_dim,
+					       const int in_p
+):path(in_path), path_dataset(in_path_dataset), actionNames(in_actionNames), dim(in_dim), p(in_p)
 {
   actions.load( actionNames );  
   
@@ -305,8 +306,9 @@ cv_dist_vector_GrassPM::distances(int scale_factor, int shift)
   }
   
   std::stringstream load_sub_path;
-  load_sub_path  << path << "dim_" << dim << "/cov_matrices/one-cov-mat/scale" << scale_factor << "-shift"<< shift ;
+  load_sub_path  << path << "dim_" << dim << "/grass_points/one-grass-point/scale" << scale_factor << "-shift"<< shift ;
   
+    
   #pragma omp parallel for 
   for (int test_i = 0; test_i< action_seq_names.n_rows; ++test_i)
   {
@@ -323,16 +325,14 @@ cv_dist_vector_GrassPM::distances(int scale_factor, int shift)
       vec dist_video_i;
       
       
-      std::stringstream load_cov;
-      load_cov << load_sub_path.str() << "/LogMcov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
+      std::stringstream load_Gnp;
+      load_Gnp << load_sub_path.str() << "/grass_pt_" << action_name << "_" <<  folder_n << "_dim" << dim << "_p" << p << ".h5";
       
-      //#pragma omp critical
-      //cout << load_cov_seg.str() << endl;
       
-      dist_video_i = dist_one_video( action_seq_names, test_i, load_sub_path.str(), load_cov.str() );
+      dist_video_i = dist_one_video( action_seq_names, test_i, load_sub_path.str(), load_Gnp.str() );
        
       std::stringstream save_vec_dist;
-      save_vec_dist << "./logEucl/dist_vector_" << action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
+      save_vec_dist << "./GrassPM/dist_vector_" << action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
       
       #pragma omp critical
       dist_video_i.save(save_vec_dist.str(), hdf5_binary);
@@ -343,11 +343,13 @@ cv_dist_vector_GrassPM::distances(int scale_factor, int shift)
 
 inline
 vec
-cv_dist_vector_GrassPM::dist_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_cov)
+cv_dist_vector_GrassPM::dist_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_Gnp)
 {
+  grass_metric grass_dist;
   
-  mat logMtest_cov;
-  logMtest_cov.load(load_cov);
+  mat grass_point_test;
+  grass_point_test.load(load_Gnp);
+
   
   double tmp_dist;
   vec dist;
@@ -369,13 +371,15 @@ cv_dist_vector_GrassPM::dist_one_video(field <std::string> action_seq_names, int
       
       if (!(action_name=="Run-Side" && folder_n=="001"))
       {
-	std::stringstream load_cov_tr;
-	load_cov_tr << load_sub_path << "/LogMcov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
 	
-	mat logMtrain_cov;
-	logMtrain_cov.load( load_cov_tr.str() );
+	std::stringstream load_Gnp_tr;
+	load_Gnp_tr << load_sub_path.str() << "/grass_pt_" << action_name << "_" <<  folder_n << "_dim" << dim << "_p" << p << ".h5";
 	
-	tmp_dist = norm( logMtest_cov - logMtrain_cov, "fro");
+	mat grass_point_train;
+	grass_point_train.load( load_Gnp_tr.str() );
+      
+	
+	tmp_dist = grass_dist.proj_metric(grass_point_test,grass_point_train, p);
 	dist(k) = tmp_dist;
 	++k;
       }

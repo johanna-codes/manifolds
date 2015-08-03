@@ -6,7 +6,8 @@ class cv_dist_vector_GrassPM//KTH Cross validation
     inline cv_dist_vector_GrassPM(const std::string in_path,
 			  const std::string in_path_dataset,
 			  const std::string in_actionNames,  
-			  const int in_dim 
+			  const int in_dim,
+			  const int in_p
  		);   
     
     inline void train(int tr_scale, int tr_shift);
@@ -16,6 +17,7 @@ class cv_dist_vector_GrassPM//KTH Cross validation
     const std::string path_dataset;
     const std::string actionNames;
     const int dim;
+    const int p;
 
     
     field<std::string> actions;
