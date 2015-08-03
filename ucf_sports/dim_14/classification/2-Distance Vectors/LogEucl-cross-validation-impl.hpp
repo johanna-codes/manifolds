@@ -312,7 +312,7 @@ cv_dist_vector_LogEucl::distances(int scale_factor, int shift)
   {
     std::string action_name = action_seq_names(test_i,0);   
     std::string folder_n    = action_seq_names(test_i,1);
-    int act  = atoi( action_seq_names(test_i,2).c_str() );
+    //int act  = atoi( action_seq_names(test_i,2).c_str() );
     
     //cout << action_name << " " << folder_n << endl;
     //getchar();

@@ -3,7 +3,7 @@ class cv_dist_vector_GrassBC
   
   public:
     
-    inline cv_dist_vector_GrassPM(const std::string in_path,
+    inline cv_dist_vector_GrassBC(const std::string in_path,
 			  const std::string in_path_dataset,
 			  const std::string in_actionNames,  
 			  const int in_dim,

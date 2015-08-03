@@ -85,7 +85,7 @@ cv_dist_vector_GrassBC::svm_train()
 	{
 	  fvec dist_vector;
 	  std::stringstream load_vec_dist;
-	  load_vec_dist << "./GrassBC/dist_vector_" << action_name << "_" <<  folder_n << "_dim" << dim  << "_p" << p  << ".h5";
+	  load_vec_dist << "./GrassBC/dist_vector_" << action_name_ts << "_" <<  folder_n_tr << "_dim" << dim  << "_p" << p  << ".h5";
 	  dist_vector.load( load_vec_dist.str() );
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act_tr;
@@ -188,7 +188,7 @@ cv_dist_vector_GrassBC::test(int ts_scale, int ts_shift)
   int j =0;
   
   std::stringstream load_sub_path;
-  load_sub_path  << path << "dim_" << dim << "/grass_points/one-grass-point/scale" << scale_factor << "-shift"<< shift ;
+  load_sub_path  << path << "dim_" << dim << "/grass_points/one-grass-point/scale" << ts_scale << "-shift"<< ts_shift ;
   
   
   
@@ -378,13 +378,13 @@ cv_dist_vector_GrassBC::dist_one_video(field <std::string> action_seq_names, int
       {
 	
 	std::stringstream load_Gnp_tr;
-	load_Gnp_tr << load_sub_path.str() << "/grass_pt_" << action_name << "_" <<  folder_n << "_dim" << dim << "_p" << p << ".h5";
+	load_Gnp_tr << load_sub_path << "/grass_pt_" << action_name << "_" <<  folder_n << "_dim" << dim << "_p" << p << ".h5";
 	
 	mat grass_point_train;
 	grass_point_train.load( load_Gnp_tr.str() );
       
 	
-	tmp_dist = grass_dist.BC_metric(grass_point_test,grass_point_train, p);
+	tmp_dist = grass_dist.BC_metric(grass_point_test,grass_point_train);
 	dist(k) = tmp_dist;
 	++k;
       }
