@@ -83,7 +83,7 @@ cv_dist_vector_SteinDiv::svm_train()
 	{
 	  fvec dist_vector;
 	  std::stringstream load_vec_dist;
-	  load_vec_dist << "./Eucl/dist_vector_" << action_name_tr << "_" <<  folder_n_tr << "_dim" << dim  << ".h5";
+	  load_vec_dist << "./SteinDiv/dist_vector_" << action_name_tr << "_" <<  folder_n_tr << "_dim" << dim  << ".h5";
 	  dist_vector.load( load_vec_dist.str() );
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act_tr;
