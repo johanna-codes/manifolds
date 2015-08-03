@@ -1,33 +1,24 @@
-class kth_cv_svm_Grass_BC //KTH Cross validation
+class cv_dist_vector_GrassBC
 {
   
   public:
     
-    inline kth_cv_svm_Grass_BC(const std::string in_path,
-		const std::string in_actionNames,  
-		const field<std::string> in_all_people,
-		const int in_scene, //only for kth
-		const int in_dim 
+    inline cv_dist_vector_GrassPM(const std::string in_path,
+			  const std::string in_path_dataset,
+			  const std::string in_actionNames,  
+			  const int in_dim,
+			  const int in_p
  		);   
     
-    inline void  train(int p, int tr_scale, int tr_shift);
-    inline float test(int p, int ts_scale, int ts_shift);
+    inline void train(int tr_scale, int tr_shift);
+    inline float  test(int ts_scale, int ts_shift);
 
-    
-    //inline void SteinDiv();
-    //inline void proj_grass(int p);
-    //inline void BC_grass();
-
-    
-    
     const std::string path;
+    const std::string path_dataset;
     const std::string actionNames;
-    field<std::string> all_people;
-    
-    const int total_scenes;
     const int dim;
-    int p;
-    
+    const int p;
+
     
     field<std::string> actions;
     
@@ -37,10 +28,7 @@ class kth_cv_svm_Grass_BC //KTH Cross validation
     
     inline void distances(int scale_factor, int shift);
     inline void svm_train();
-    inline vec dist_one_video(int pe_test, std::string load_sub_path, std::string load_cov);
+    inline vec dist_one_video(field <std::string> action_seq_names, int test_i, std::string load_sub_path, std::string load_cov);
     
-    
-   
-    
-    
+       
 };

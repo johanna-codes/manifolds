@@ -23,12 +23,12 @@ using namespace arma;
 #include "SteinDiv-cross-validation-impl.hpp"
 
 
-// #include "kth-GrassPM-svm-cross-validation-def.hpp"
-// #include "kth-GrassPM-svm-cross-validation-impl.hpp"
-// 
-// 
-// #include "kth-GrassBC-svm-cross-validation-def.hpp"
-// #include "kth-GrassBC-svm-cross-validation-impl.hpp"
+#include "GrassPM-cross-validation-def.hpp"
+#include "GrassPM-cross-validation-impl.hpp"
+ 
+ 
+ #include "GrassBC-cross-validation-def.hpp"
+ #include "GrassBC-cross-validation-impl.hpp"
 
 
 
@@ -58,47 +58,41 @@ main(int argc, char** argv)
   //run_cvLE.test(scale_factor, shift);
   
   
-  cv_dist_vector_SteinDiv run_cvSD(path, path_dataset, actionNames, dim);
-  cout << "Training Stein Divergence" << endl;
-  run_cvSD.train(scale_factor, shift);
-  cout << "Testing  Stein Divergence" << endl;
-  run_cvSD.test(scale_factor, shift);
+//   cv_dist_vector_SteinDiv run_cvSD(path, path_dataset, actionNames, dim);
+//   cout << "Training Stein Divergence" << endl;
+//   run_cvSD.train(scale_factor, shift);
+//   cout << "Testing  Stein Divergence" << endl;
+//   run_cvSD.test(scale_factor, shift);
   
   
-  //          //Cross Validation Stein Divergence
-  //         cout << "Training Stein Divergence" << endl;
-  //         kth_cv_svm_Stein run_kth_cv_svm_SD(path, actionNames, all_people, total_scenes,  dim);
-  //         run_kth_cv_svm_SD.train(scale_factor, shift);
+  
+  vec vec_bc = zeros(dim);
+  vec vec_pm = zeros(dim);
   
   
-  //vec vec_bc = zeros(dim);
-  //vec vec_pm = zeros(dim);
+  for (int p=1; p<=dim; ++p )
+     {
+       //Cross Validation Grassmann Projection Metric
+       cout << "Training for Grassmann PM, p=  " << p << endl;
+       cv_dist_vector_GrassPM run_cvPM(path, path_dataset, actionNames, dim, p);
+       run_cvPM.train(scale_factor, shift);
+       cout << "Testing" << endl;
+       vec_pm(p-1) = run_cvPM.test(scale_factor, shift);
+       
+        //Cross Validation Grassmann Binet-Cauchy Metric
+       cout << "Training for Grassmann PM, p=  " << p << endl;
+       cv_dist_vector_GrassBC run_cvBC(path, path_dataset, actionNames, dim, p);
+       run_cvBC.train(scale_factor, shift);
+       cout << "Testing" << endl;
+       vec_bc(p-1) = run_cvBC.test(scale_factor, shift);
+     }
   
-  //OJO: los dist_vec no se guardan de acuerdo a p!!!!!!!!!!!!!!!!!!!!!!
+  vec_pm.t().print("Projection Metric");
+  vec_bc.t().print("Binet-Cauchy");
   
-  //for (int p=1; p<=dim; ++p )
-  //   {
-  //     //Cross Validation Grassmann Projection Metric
-  //     //int best_p_PM  = 8;
-  //     cout << "Training for Grassmann PM, p=  " << p << endl;
-  //     kth_cv_svm_Grass_PM run_kth_cv_svm_PM(path, actionNames, all_people, total_scenes,  dim);
-  //     run_kth_cv_svm_PM.train(best_p_PM, scale_factor, shift);
-  //     vec_pm(p-1) = run_kth_cv_svm_PM.test(best_p_PM, scale_factor, shift);
-  //     
-  //      //Cross Validation Grassmann Binet-Cauchy Metric
-  //     //best_p_BC = 9;
-  //     cout << "Training Grassmann with Binet-Cauchy metric, p= " << 9 << endl;
-  //     kth_cv_svm_Grass_BC run_kth_cv_svm_BC(path, actionNames, all_people, total_scenes,  dim);
-  //     run_kth_cv_svm_BC.train(best_p_BC, scale_factor, shift); 
-  //     vec_bc(p-1) = run_kth_cv_svm_BC.test(best_p_BC, scale_factor, shift);
-  //   }
-  
-  //vec_pm.t().print("Projection Metric");
-  //vec_bc.t().print("Binet-Cauchy");
-  
-  //********************************************************************************
-  // ******************************Testing****************************************** 
-  //********************************************************************************
+//********************************************************************************
+// ******************************Testing****************************************** 
+//********************************************************************************
   
 //   int best_p_PM = 8;
 //   int best_p_BC = 9;

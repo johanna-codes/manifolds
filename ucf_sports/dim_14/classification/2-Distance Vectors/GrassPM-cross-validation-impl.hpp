@@ -14,7 +14,6 @@ cv_dist_vector_GrassPM::cv_dist_vector_GrassPM(const std::string in_path,
 }
 
 
-// Log-Euclidean Distance
 
 inline
 void
@@ -86,7 +85,7 @@ cv_dist_vector_GrassPM::svm_train()
 	{
 	  fvec dist_vector;
 	  std::stringstream load_vec_dist;
-	  load_vec_dist << "./logEucl/dist_vector_" << action_name_tr << "_" <<  folder_n_tr << "_dim" << dim  << ".h5";
+	  load_vec_dist << "./GrassPM/dist_vector_" << action_name << "_" <<  folder_n << "_dim" << dim  << "_p" << p  << ".h5";
 	  dist_vector.load( load_vec_dist.str() );
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act_tr;
@@ -132,7 +131,7 @@ cv_dist_vector_GrassPM::svm_train()
 	#pragma omp critical
 	{
 	std::stringstream save_svm_model;
-	save_svm_model << "./svm_models/logEucl_run_" << seq_ts+1;
+	save_svm_model << "./svm_models/GrassPM_run_" << seq_ts+1;
 	//cout << "Saving" << endl;
 	SVM.save( save_svm_model.str().c_str() );
 	}
@@ -141,7 +140,7 @@ cv_dist_vector_GrassPM::svm_train()
   }
 
 inline
-void
+float
 cv_dist_vector_GrassPM::test(int ts_scale, int ts_shift)
 {
   
@@ -189,7 +188,10 @@ cv_dist_vector_GrassPM::test(int ts_scale, int ts_shift)
   int j =0;
   
   std::stringstream load_sub_path;
-  load_sub_path  << path << "dim_" << dim << "/cov_matrices/one-cov-mat/scale" << ts_scale << "-shift"<< ts_shift ;
+  load_sub_path  << path << "dim_" << dim << "/grass_points/one-grass-point/scale" << scale_factor << "-shift"<< shift ;
+  
+  
+  
   
   for (int test_i = 0; test_i< action_seq_names.n_rows; ++test_i)
   {
@@ -202,16 +204,16 @@ cv_dist_vector_GrassPM::test(int ts_scale, int ts_shift)
     {
       CvSVM SVM;
       std::stringstream load_svm_model;
-      load_svm_model << "./svm_models/logEucl_run_" << test_i+1;
+      load_svm_model << "./svm_models/GrassPM_run_" << test_i+1;
       SVM.load( load_svm_model.str().c_str() );
       
       vec test_dist;
       
-      std::stringstream load_cov;
-      load_cov << load_sub_path.str() << "/LogMcov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
-      
+      std::stringstream load_Gnp;
+      load_Gnp << load_sub_path.str() << "/grass_pt_" << action_name << "_" <<  folder_n << "_dim" << dim << "_p" << p << ".h5";
      
-      test_dist = dist_one_video( action_seq_names, test_i, load_sub_path.str(), load_cov.str() );
+      
+      test_dist = dist_one_video( action_seq_names, test_i, load_sub_path.str(), load_Gnp.str() );
       
       //test_dist.print("");
       
@@ -241,7 +243,7 @@ cv_dist_vector_GrassPM::test(int ts_scale, int ts_shift)
       }
       
       std::stringstream main_save;
-      main_save << "./svm_results/LogEucl_scale" <<  ts_scale << "-shift"<< ts_shift;
+      main_save << "./svm_resultsGrassPM_scale" <<  ts_scale << "-shift"<< ts_shift << "-p" << p;
       
       
       std::stringstream save1, save2,save3;
@@ -257,7 +259,10 @@ cv_dist_vector_GrassPM::test(int ts_scale, int ts_shift)
     }
     
   }
-  cout << "Performance for Log_Euclidean Distance: " << acc*100/(n_test) << " %" << endl;
+  acc =acc*100/(n_test);
+  cout << "Performance for Grassmann Projection Metric: " <<  acc  << " %" << endl;
+  
+  return acc;
 }
 
 
@@ -332,7 +337,7 @@ cv_dist_vector_GrassPM::distances(int scale_factor, int shift)
       dist_video_i = dist_one_video( action_seq_names, test_i, load_sub_path.str(), load_Gnp.str() );
        
       std::stringstream save_vec_dist;
-      save_vec_dist << "./GrassPM/dist_vector_" << action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
+      save_vec_dist << "./GrassPM/dist_vector_" << action_name << "_" <<  folder_n << "_dim" << dim  << "_p" << p  << ".h5";
       
       #pragma omp critical
       dist_video_i.save(save_vec_dist.str(), hdf5_binary);

@@ -1,4 +1,4 @@
-class cv_dist_vector_GrassPM//KTH Cross validation
+class cv_dist_vector_GrassPM
 {
   
   public:
@@ -11,7 +11,7 @@ class cv_dist_vector_GrassPM//KTH Cross validation
  		);   
     
     inline void train(int tr_scale, int tr_shift);
-    inline void  test(int ts_scale, int ts_shift);
+    inline float  test(int ts_scale, int ts_shift);
 
     const std::string path;
     const std::string path_dataset;
