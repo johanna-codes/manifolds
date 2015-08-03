@@ -85,7 +85,7 @@ cv_dist_vector_GrassBC::svm_train()
 	{
 	  fvec dist_vector;
 	  std::stringstream load_vec_dist;
-	  load_vec_dist << "./GrassBC/dist_vector_" << action_name_tr << "_" <<  action_name_tr << "_dim" << dim  << "_p" << p  << ".h5";
+	  load_vec_dist << "./GrassBC/dist_vector_" << action_name_tr << "_" <<  folder_n_tr << "_dim" << dim  << "_p" << p  << ".h5";
 	  dist_vector.load( load_vec_dist.str() );
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act_tr;
