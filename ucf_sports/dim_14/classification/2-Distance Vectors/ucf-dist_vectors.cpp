@@ -80,7 +80,7 @@ main(int argc, char** argv)
        vec_pm(p-1) = run_cvPM.test(scale_factor, shift);
        
         //Cross Validation Grassmann Binet-Cauchy Metric
-       cout << "Training for Grassmann PM, p=  " << p << endl;
+       cout << "Training for Grassmann BC, p=  " << p << endl;
        cv_dist_vector_GrassBC run_cvBC(path, path_dataset, actionNames, dim, p);
        run_cvBC.train(scale_factor, shift);
        cout << "Testing" << endl;

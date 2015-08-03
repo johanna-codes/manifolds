@@ -96,8 +96,8 @@ cv_dist_vector_GrassPM::svm_train()
 
 	
 	//Training the model with OpenCV
-	#pragma omp critical
-	cout << "Using SVM to train run " << seq_ts+1 << endl;
+	//#pragma omp critical
+	//cout << "Using SVM to train run " << seq_ts+1 << endl;
 	//cout << "Preparing data to train the data" << endl;
 	cv::Mat cvMatTraining(n_test, n_dim, CV_32FC1);
 	float fl_labels[n_test] ;
@@ -237,7 +237,7 @@ cv_dist_vector_GrassPM::test(int ts_scale, int ts_shift)
       test_video_list(j) = test_video_name.str();
       j++;
       
-      cout << act_ts << " " << response << endl;
+      //cout << act_ts << " " << response << endl;
       if (response == act_ts)  {
 	acc++;
       }
