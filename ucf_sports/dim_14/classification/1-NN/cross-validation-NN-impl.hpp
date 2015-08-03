@@ -108,8 +108,8 @@ cv_classify_NN::logEucl()
     
   }
   
-  real_labels.save("nn_Log_Eucl_real_labels.dat", raw_ascii);
-  est_labels.save("nn_Log_Eucl_est_labels.dat", raw_ascii);
+  real_labels.save("./results/nn_Log_Eucl_real_labels.dat", raw_ascii);
+  est_labels.save("./results/nn_Log_Eucl_est_labels.dat", raw_ascii);
   test_video_list.save("nn_Log_Eucl_test_video_list.dat", raw_ascii);
   cout << "Performance: " << acc*100/n_test << " %" << endl;
   
@@ -263,9 +263,9 @@ cv_classify_NN::SteinDiv()
     
   }
   
-  real_labels.save("nn_Stein_div_real_labels.dat", raw_ascii);
-  est_labels.save("nn_Stein_div_est_labels.dat", raw_ascii);
-  test_video_list.save("nn_Stein_div_test_video_list.dat", raw_ascii);
+  real_labels.save("./results/nn_Stein_div_real_labels.dat", raw_ascii);
+  est_labels.save("./results/nn_Stein_div_est_labels.dat", raw_ascii);
+  test_video_list.save("./results/nn_Stein_div_test_video_list.dat", raw_ascii);
   cout << "Performance for SteinDiv " << acc*100/n_test << " %" << endl;
   
   
@@ -430,7 +430,7 @@ cv_classify_NN::proj_grass(int in_p)
   
   
   std::ostringstream save_PM;
-  save_PM << "grass_PM_est_labels_p" << p;
+  save_PM << "./results/grass_PM_est_labels_p" << p << ".dat";
   est_labels.save(save_PM.str());  
   cout << "Performance for Projection Metric p " << p << ": " << acc*100/n_test << " %" << endl;
   acc =   acc*100/n_test;
@@ -594,7 +594,7 @@ cv_classify_NN::BC_grass(int in_p)
   
   
   std::ostringstream save_BC;
-  save_BC << "grass_BC_est_labels_p" << p;
+  save_BC << "./results/grass_BC_est_labels_p" << p << ".dat";;
   est_labels.save(save_BC.str());  
   cout << "Performance  for Binet-Cauchy p " << p << ": " << acc*100/n_test << " %" << endl;
   acc =   acc*100/n_test;
@@ -645,12 +645,10 @@ cv_classify_NN::BinetCauchyMetric_one_video(field <std::string> action_seq_names
 	  
 	}  
       }
-      
     }
   }
   
-  
-  return est_lab;
+    return est_lab;
   
 }
 
