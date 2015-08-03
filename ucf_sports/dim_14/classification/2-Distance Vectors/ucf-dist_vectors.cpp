@@ -52,15 +52,18 @@ main(int argc, char** argv)
   int shift = 0; 
   //Cross Validation LogEuclidean
   //cout << "Training Log-Euclidean Distance" << endl;
-  cv_dist_vector_LogEucl run_cvLE(path, path_dataset, actionNames, dim);
+  //cv_dist_vector_LogEucl run_cvLE(path, path_dataset, actionNames, dim);
   //run_cvLE.train(scale_factor, shift);
-  cout << "Testing Log-Euclidean Distance" << endl;
-  run_cvLE.test(scale_factor, shift);
+  //cout << "Testing Log-Euclidean Distance" << endl;
+  //run_cvLE.test(scale_factor, shift);
   
   
-  //cv_dist_vector_SteinDiv run_cvSD(path, path_dataset, actionNames, dim);
-  //run_cvSD.train(scale_factor, shift);
-  //run_cvSD.test(scale_factor, shift);
+  cv_dist_vector_SteinDiv run_cvSD(path, path_dataset, actionNames, dim);
+  cout << "Training Stein Divergence" << endl;
+  run_cvSD.train(scale_factor, shift);
+  cout << "Testing  Stein Divergence" << endl;
+  run_cvSD.train(scale_factor, shift);
+  run_cvSD.test(scale_factor, shift);
   
   
   //          //Cross Validation Stein Divergence
