@@ -431,7 +431,7 @@ cv_classify_NN::proj_grass(int in_p)
   
   std::ostringstream save_PM;
   save_PM << "./results/grass_PM_est_labels_p" << p << ".dat";
-  est_labels.save(save_PM.str());  
+  est_labels.save(save_PM.str(), raw_ascii);  
   cout << "Performance for Projection Metric p " << p << ": " << acc*100/n_test << " %" << endl;
   acc =   acc*100/n_test;
   
@@ -595,7 +595,7 @@ cv_classify_NN::BC_grass(int in_p)
   
   std::ostringstream save_BC;
   save_BC << "./results/grass_BC_est_labels_p" << p << ".dat";;
-  est_labels.save(save_BC.str());  
+  est_labels.save(save_BC.str(), raw_ascii);  
   cout << "Performance  for Binet-Cauchy p " << p << ": " << acc*100/n_test << " %" << endl;
   acc =   acc*100/n_test;
   return acc;
