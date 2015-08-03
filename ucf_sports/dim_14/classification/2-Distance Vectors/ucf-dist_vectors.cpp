@@ -62,7 +62,6 @@ main(int argc, char** argv)
   cout << "Training Stein Divergence" << endl;
   run_cvSD.train(scale_factor, shift);
   cout << "Testing  Stein Divergence" << endl;
-  run_cvSD.train(scale_factor, shift);
   run_cvSD.test(scale_factor, shift);
   
   
