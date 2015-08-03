@@ -73,11 +73,11 @@ main(int argc, char** argv)
   for (int p=1; p<=dim; ++p )
      {
        //Cross Validation Grassmann Projection Metric
-//        cout << "Training for Grassmann PM, p=  " << p << endl;
-//        cv_dist_vector_GrassPM run_cvPM(path, path_dataset, actionNames, dim, p);
-//        run_cvPM.train(scale_factor, shift);
-//        cout << "Testing" << endl;
-//        vec_pm(p-1) = run_cvPM.test(scale_factor, shift);
+       cout << "Training for Grassmann PM, p=  " << p << endl;
+       cv_dist_vector_GrassPM run_cvPM(path, path_dataset, actionNames, dim, p);
+       run_cvPM.train(scale_factor, shift);
+       cout << "Testing" << endl;
+       vec_pm(p-1) = run_cvPM.test(scale_factor, shift);
        
         //Cross Validation Grassmann Binet-Cauchy Metric
        cout << "Training for Grassmann BC, p=  " << p << endl;

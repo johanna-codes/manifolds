@@ -59,10 +59,10 @@ cv_dist_vector_GrassBC::svm_train()
   
   
   //****************************************
-  //#pragma omp parallel for 
+  #pragma omp parallel for 
   for (int seq_ts=0; seq_ts<action_seq_names.n_rows; ++seq_ts) 
   {
-    cout << seq_ts << endl;
+    //cout << seq_ts << endl;
     std::string action_name_ts = action_seq_names(seq_ts,0);   
     std::string folder_n_ts    = action_seq_names(seq_ts,1);
     
@@ -128,7 +128,7 @@ cv_dist_vector_GrassBC::svm_train()
 	//cout << "...Training" << endl;
 	CvSVM SVM;
 	SVM.train( cvMatTraining , cvMatLabels, cv::Mat(), cv::Mat(), params);
-	//#pragma omp critical
+	#pragma omp critical
 	{
 	std::stringstream save_svm_model;
 	save_svm_model << "./svm_models/GrassBC_run_" << seq_ts+1;
