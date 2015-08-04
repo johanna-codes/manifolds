@@ -23,18 +23,19 @@ for video_ts= 1: n_videos
     if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
         
         for video_tr=1: n_videos
-            action_name_tr = action_seq_names(video_ts,1);
-            folder_n_tr    = action_seq_names(video_ts,2);
-            act_tr  =  str2double( action_seq_names(video_ts,3) );
-            if (~(strcmp(action_name_tr, 'Run-Side') && strcmp(folder_n_tr,'001')))
-                name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '.h5');
-                hinfo = hdf5info( char(name_load_cov) );
-                one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-                X_train(:,:,k) = one_video;
-                labels_train(k) = act_tr;
-                k=k+1;
+            if (video_tr~=video_ts)
+                action_name_tr = action_seq_names(video_tr,1);
+                folder_n_tr    = action_seq_names(video_tr,2);
+                act_tr  =  str2double( action_seq_names(video_tr,3) );
+                if (~(strcmp(action_name_tr, 'Run-Side') && strcmp(folder_n_tr,'001')))
+                    name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '.h5');
+                    hinfo = hdf5info( char(name_load_cov) );
+                    one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
+                    X_train(:,:,k) = one_video;
+                    labels_train(k) = act_tr;
+                    k=k+1;
+                end
             end
-            
         end
     end
 end
@@ -47,7 +48,7 @@ model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
 %display(accuracy');
 
 acc = [acc accuracy(1)];
-save_svm_model =strcat( './svm_models/logEucl_svm_run_', int2str(pe_ts), '_Sigma', num2str(sigma),'.mat');
+save_svm_model =strcat( './svm_models/logEucl_run_', int2str(pe_ts), '_Sigma', num2str(sigma),'.mat');
 save(save_svm_model, 'model', 'X_train');
 
 
