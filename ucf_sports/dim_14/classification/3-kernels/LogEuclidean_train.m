@@ -22,7 +22,7 @@ for video_ts= 1: n_videos
     %ts = [action_name,'_',folder_n];
     
     if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-        %disp(ts);
+        disp(ts);
         for video_tr=1: n_videos
             if (video_tr~=video_ts)
                 action_name_tr = action_seq_names(video_tr,1);
@@ -34,6 +34,7 @@ for video_ts= 1: n_videos
                     name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '.h5');
                     hinfo = hdf5info( char(name_load_cov) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
+                    disp(one_video);
                     X_train(:,:,k) = one_video;
                     labels_train(k) = act_tr;
                     k=k+1;
