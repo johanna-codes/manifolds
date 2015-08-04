@@ -20,13 +20,13 @@ for video_ts= 1: n_videos
     action_name = action_seq_names(video_ts,1);
     folder_n    = action_seq_names(video_ts,2);
     
-    if (~(strcmpa(action_name,'Run-Side') && strcmpa(folder_n,'001')))
+    if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
         
         for video_tr=1: n_videos
             action_name_tr = action_seq_names(video_ts,1);
             folder_n_tr    = action_seq_names(video_ts,2);
             act_tr  =  str2double( action_seq_names(video_ts,3) );
-            if (~(strcmpa(action_name_tr, 'Run-Side') && strcmpa(folder_n_tr,'001')))
+            if (~(strcmp(action_name_tr, 'Run-Side') && strcmp(folder_n_tr,'001')))
                 name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '.h5');
                 hinfo = hdf5info( char(name_load_cov) );
                 one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
