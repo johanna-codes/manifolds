@@ -21,82 +21,81 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %% LogEuclidean
 %It was taken from another paper
 %dbstop in LogEuclidean_train at 46
- display('Training svm + Kernel Log-Euclidean Distance');
- sigma = 0.1:0.1:2;
- ACC_train = zeros(length(sigma),25);
- parfor i=1:length(sigma)
-    acc =  LogEuclidean_train(path, action_seq_names, sigma(i), dim, num_videos);
-    ACC_train(i,:) = acc;
-     
- end
- 
-  display('Testing svm + Kernel Log-Euclidean Distance');
-  sigma = 0.1:0.1:2;
-  test_acc = zeros(length(sigma),1);
-  scale = 1;
-  shift = 0;
-  
-  for i=1:length(sigma)
-     acc = LogEuclidean_test(path, action_seq_names, scale, shift, sigma(i), dim, num_videos);
-     test_acc(i) = acc;     
-  end
-  
-  save_results =strcat( 'LogEucl_all_sigma_performance.mat');
-  save(save_results, 'test_acc', 'sigma', 'dim', 'scale', 'shift');
+%  display('Training svm + Kernel Log-Euclidean Distance');
+%  sigma = 0.1:0.1:2;
+%  ACC_train = zeros(length(sigma),25);
+%  parfor i=1:length(sigma)
+%     acc =  LogEuclidean_train(path, action_seq_names, sigma(i), dim, num_videos);
+%     ACC_train(i,:) = acc;
+%      
+%  end
+%  
+%   display('Testing svm + Kernel Log-Euclidean Distance');
+%   sigma = 0.1:0.1:2;
+%   test_acc = zeros(length(sigma),1);
+%   scale = 1;
+%   shift = 0;
+%   
+%   for i=1:length(sigma)
+%      acc = LogEuclidean_test(path, action_seq_names, scale, shift, sigma(i), dim, num_videos);
+%      test_acc(i) = acc;     
+%   end
+%   
+%   save_results =strcat( 'LogEucl_all_sigma_performance.mat');
+%   save(save_results, 'test_acc', 'sigma', 'dim', 'scale', 'shift');
 
 %% Kernel LED-RBF
 
-% display('Training svm + Kernel LED-RBF');
-% delta = -10:1:9;
-% ACC_train = zeros(length(delta),25);
-% parfor i=1:length(delta)
-%    acc = kth_train_LED_RBF(path, dim, delta(i));
-%    ACC_train(i,:) = acc;
-%     
-% end
+ display('Training svm + Kernel LED-RBF');
+ delta = -10:1:9;
+ ACC_train = zeros(length(delta),25);
+ parfor i=1:length(delta)
+    acc = LED_RBF_train(path, action_seq_names, dim, delta(i), num_videos );
+    ACC_train(i,:) = acc;
+ end
 
-%  display('Testing svm + Kernel LED-RBF');
-%  delta = -10:1:9;
-%  test_acc = zeros(length(delta),1);
-%  scale = 1;
-%  shift = 0;
-%  
-%  parfor i=1:length(delta)
-%     acc = kth_test_LED_RBF(path,scale, shift, dim, delta(i));
-%     test_acc(i) = acc;     
-%  end
-%  
-%  save_results =strcat( 'LED_RBF_all_delta_performance.mat');
-%  save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
+   display('Testing svm + Kernel LED-RBF');
+   delta = -10:1:9;
+   test_acc = zeros(length(delta),1);
+   scale = 1;
+   shift = 0;
+   
+   parfor i=1:length(delta)
+      acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, delta(i), num_videos);
+      test_acc(i) = acc;     
+   end
+   
+   save_results =strcat( 'LED_RBF_all_delta_performance.mat');
+   save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
  
  %% Kernel LED-Poly
 
-% display('Training svm + Kernel LED-POLY');
-% %n=1:dim;
-% n=1:20;
-% %ACC_train = zeros(length(n),25);
-% 
-% for i=15:length(n)
-%     acc = kth_train_LED_POLY(path, dim, n(i));
-%     %ACC_train(i,:) = acc;
-% end
-% 
-%  display('Testing svm + Kernel LED-POLY');
-%  %n=1:dim;
-%  n=1:20;
-%  test_acc = zeros(length(n),1);
-%  scale = 1;
-%  shift = 0;
-%  
-%  for i=1:length(n)
-%      %if (i~=2)
-%     acc = kth_test_LED_POLY(path,scale, shift, dim, n(i));
-%     test_acc(i) = acc;  
-%      %end
-%  end
-%  
-%  save_results =strcat( 'LED_POLY_all_n_performance.mat');
-%  save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
+ display('Training svm + Kernel LED-POLY');
+ %n=1:dim;
+ n=1:20;
+ %ACC_train = zeros(length(n),25);
+ 
+ for i=15:length(n)
+     acc = LED_POLY_train(path, action_seq_names, dim, n(i));
+     %ACC_train(i,:) = acc;
+ end
+ 
+  display('Testing svm + Kernel LED-POLY');
+  %n=1:dim;
+  n=1:20;
+  test_acc = zeros(length(n),1);
+  scale = 1;
+  shift = 0;
+  
+  for i=1:length(n)
+      %if (i~=2)
+     acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, n(i));
+     test_acc(i) = acc;  
+      %end
+  end
+  
+  save_results =strcat( 'LED_POLY_all_n_performance.mat');
+  save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 
  
  %%%%%%%%%%%%%%%%%%%%   Grassmann Kernels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
