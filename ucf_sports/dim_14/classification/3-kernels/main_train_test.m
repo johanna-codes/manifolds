@@ -20,7 +20,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %% LogEuclidean
 %It was taken from another paper
-
+dbstop in LogEuclidean_train at 46
  display('Training svm + Kernel Log-Euclidean Distance');
  sigma = 1:0.1:2;
  ACC_train = zeros(length(sigma),25);
