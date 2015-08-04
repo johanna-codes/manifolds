@@ -21,28 +21,28 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %% LogEuclidean
 %It was taken from another paper
 %dbstop in LogEuclidean_train at 46
-%  display('Training svm + Kernel Log-Euclidean Distance');
-%  sigma = 0.1:0.1:2;
-%  ACC_train = zeros(length(sigma),25);
-%  parfor i=1:length(sigma)
-%     acc =  LogEuclidean_train(path, action_seq_names, sigma(i), dim, num_videos);
-%     ACC_train(i,:) = acc;
-%      
-%  end
-%  
-%   display('Testing svm + Kernel Log-Euclidean Distance');
-%   sigma = 0.1:0.1:2;
-%   test_acc = zeros(length(sigma),1);
-%   scale = 1;
-%   shift = 0;
-%   
-%   for i=1:length(sigma)
-%      acc = LogEuclidean_test(path, action_seq_names, scale, shift, sigma(i), dim, num_videos);
-%      test_acc(i) = acc;     
-%   end
-%   
-%   save_results =strcat( 'LogEucl_all_sigma_performance.mat');
-%   save(save_results, 'test_acc', 'sigma', 'dim', 'scale', 'shift');
+  display('Training svm + Kernel Log-Euclidean Distance');
+  sigma = 0.1:0.1:2;
+  ACC_train = zeros(length(sigma),25);
+  parfor i=1:length(sigma)
+     acc =  LogEuclidean_train(path, action_seq_names, sigma(i), dim, num_videos);
+     ACC_train(i,:) = acc;
+      
+  end
+  
+   display('Testing svm + Kernel Log-Euclidean Distance');
+   sigma = 0.1:0.1:2;
+   test_acc = zeros(length(sigma),1);
+   scale = 1;
+   shift = 0;
+   
+   for i=1:length(sigma)
+      acc = LogEuclidean_test(path, action_seq_names, scale, shift, sigma(i), dim, num_videos);
+      test_acc(i) = acc;     
+   end
+   
+   save_results =strcat( 'LogEucl_all_sigma_performance.mat');
+   save(save_results, 'test_acc', 'sigma', 'dim', 'scale', 'shift');
 
 %% Kernel LED-RBF
 
