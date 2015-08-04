@@ -29,6 +29,8 @@ for video_ts= 1: n_videos
                 folder_n_tr    = action_seq_names(video_tr,2);
                 act_tr  =  str2double( action_seq_names(video_tr,3) );
                 if (~(strcmp(action_name_tr, 'Run-Side') && strcmp(folder_n_tr,'001')))
+                    tr = [action_name_tr,'_',folder_n_tr];
+                    disp(tr);
                     name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '.h5');
                     hinfo = hdf5info( char(name_load_cov) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
