@@ -35,7 +35,7 @@ for video_ts= 1: n_videos
                     name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '.h5');
                     hinfo = hdf5info( char(name_load_cov) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-                    disp(one_video);
+                    %disp(one_video);
                     X_train(:,:,k) = one_video;
                     labels_train(k) = act_tr;
                     k=k+1;
@@ -44,7 +44,7 @@ for video_ts= 1: n_videos
         end
         
         
-        
+        size(K_train)
         K_train = compute_kernel_svm(X_train,X_train, RIEMANNIAN_KERNEL, sigma);
         model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
         %Borrame Funciona Bien
