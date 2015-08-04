@@ -24,7 +24,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
  display('Training svm + Kernel Log-Euclidean Distance');
  sigma = 0.1:0.1:2;
  ACC_train = zeros(length(sigma),25);
- for i=1:length(sigma)
+ parfor i=1:length(sigma)
     acc =  LogEuclidean_train(path, action_seq_names, sigma(i), dim, num_videos);
     ACC_train(i,:) = acc;
      
@@ -37,7 +37,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
   shift = 0;
   
   for i=1:length(sigma)
-     acc = LogEuclidean_test(path,action_seq_names, scale, shift, sigma(i), dim);
+     acc = LogEuclidean_test(path, action_seq_names, scale, shift, sigma(i), dim, num_videos);
      test_acc(i) = acc;     
   end
   

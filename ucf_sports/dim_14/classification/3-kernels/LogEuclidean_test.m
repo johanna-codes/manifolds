@@ -1,40 +1,30 @@
-function acc = LogEuclidean_test(path, action_seq_names, scale_factor, shift, sigma, dim)
-% clear all
-% scale_factor =1;
-% shift =0;
-% sigma =1;
+function acc = LogEuclidean_test(path, action_seq_names, scale_factor, shift, sigma, dim, num_videos)
+
+
 
 
 RIEMANNIAN_KERNEL = @(X,Y,sigma) exp( -( dist_LogEuclidean(X,Y) )^2/(2*sigma^2) );
 
-actions = importdata('actionNames.txt');
-all_people = importdata('people_list.txt');
-
-
-n_actions = size(actions,1);
-n_peo =  size(all_people,1);
-sc = 1;
-
-%display('Testing svm + Kernel Log-Euclidean Distance');
-
 acc = 0;
-real_labels = zeros(n_peo*n_actions);
-est_labels  = zeros(n_peo*n_actions);
+real_labels = zeros(num_videos - 1);%Problem with Run-Side_001_dim14
+est_labels  = zeros(num_videos - 1);
   
 
-load_sub_path =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
 j=1;
-  for pe_ts= 1: n_peo
+  for video_ts= 1: n_videos
+      action_name = action_seq_names(video_ts,1);
+      folder_n    = action_seq_names(video_ts,2);
+      act_ts  =  str2double( action_seq_names(video_tr,3) );
       
-      load_svm_model =strcat( './svm_models/logEucl_svm_run_', int2str(pe_ts), '_Sigma', num2str(sigma), '.mat');
-      load(load_svm_model); %loading model and X_train
-
-      for act_ts = 1:n_actions
-          
+      if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
+          load_svm_model = strcat( './svm_models/logEucl_run_', int2str(video_ts), '_Sigma', num2str(sigma),'.mat');
+          load(load_svm_model); %loading model and X_train
+      
           real_labels(j) = act_ts;
-          name_load_cov = strcat( load_sub_path, '/cov_', all_people(pe_ts), '_', actions(act_ts), '_dim', int2str(dim), '.h5');
-          %char(name_load_cov)         
+          
+          name_load_cov = strcat( load_sub_path, '/cov_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5');
           hinfo = hdf5info( char(name_load_cov) );
           one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
           X_test(:,:,1) = one_video;
