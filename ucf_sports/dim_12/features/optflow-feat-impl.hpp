@@ -1,4 +1,4 @@
-zinline
+inline
 opt_feat::opt_feat(const std::string in_path,
 		   const std::string in_actionNames,  
 		   const int in_scale_factor, 
