@@ -44,7 +44,7 @@ main(int argc, char** argv)
 //   vec_shift << -25 << -20 << -15 << -10 << -5 << 5 << 10 << 15 << 20 << 25 << endr;
 //   int scale_factor =1;
   
-  int dim = 14; 
+  int dim = 12; 
   
   //for (int i=0; i< vec_shift.n_elem; ++i)
   {
