@@ -44,14 +44,8 @@ main(int argc, char** argv)
   
   int scale_factor = atoi( argv[1] );
   int shift = atoi( argv[2] );
-  int dim = 14; 
+  int dim = 12; 
   
-
-  
-  //Cross Validation
-    //cv_classify_NN CV_onesegment(path, path_dataset, actionNames, scale_factor, shift,  dim);
-    //CV_onesegment.logEucl();
-    //CV_onesegment.SteinDiv();
     
    
     
