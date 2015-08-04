@@ -36,7 +36,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
    scale = 1;
    shift = 0;
    
-   for i=1:length(sigma)
+   parfor i=1:length(sigma)
       acc = LogEuclidean_test(path, action_seq_names, scale, shift, sigma(i), dim, num_videos);
       test_acc(i) = acc;     
    end
@@ -75,7 +75,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
  n=1:20;
  %ACC_train = zeros(length(n),25);
  
- for i=15:length(n)
+ parfor i=1:length(n)
      acc = LED_POLY_train(path, action_seq_names, dim, n(i));
      %ACC_train(i,:) = acc;
  end
@@ -87,7 +87,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
   scale = 1;
   shift = 0;
   
-  for i=1:length(n)
+  parfor i=1:length(n)
       %if (i~=2)
      acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, n(i));
      test_acc(i) = acc;  
