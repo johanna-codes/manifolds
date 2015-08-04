@@ -41,7 +41,7 @@ set(gca,'FontSize',20);
 xlim([1 dim])
 
 %Home
-print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/images/varying_p_NN_dim14','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/varying_p_NN_dim14','-dpng','-r300');
 
 
 
@@ -63,6 +63,6 @@ ylabel('Recognition Accuracy (%)')
 %xlabel('Metric Employed')
 
 %Home
-print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/images/NN_all_dim14','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/NN_all_dim14','-dpng','-r300');
 
 

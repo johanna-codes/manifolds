@@ -41,7 +41,7 @@ set(gca,'FontSize',20);
 xlim([1 dim])
 
 %Home
-print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/images/varying_p_NN_dim14','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/varying_p_dist_vect_dim14','-dpng','-r300');
 
 
 
@@ -55,14 +55,14 @@ ACC = [acc_logEucl acc_SteinDiv acc_PM acc_BC];
 figure
 labels = {'Log_Eucl';'Stein_Div';'Projection';'Binet-Cauchy'};
 xname = strtrim(cellstr(num2str(ACC'))') 
-bar(ACC, 'b')
+bar(ACC, 'g')
 text(1:numel(ACC),ACC,xname,'horizontalalignment','center','verticalalignment','bottom') 
-ylim([0 90])
+ylim([0 110])
 set(gca,'XTickLabel',labels,'FontSize',15 );
 ylabel('Recognition Accuracy (%)')
 %xlabel('Metric Employed')
 
 %Home
-print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/images/NN_all_dim14','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/dist_vect_all_dim14','-dpng','-r300');
 
 
