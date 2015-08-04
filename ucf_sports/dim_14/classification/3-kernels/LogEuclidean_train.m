@@ -19,9 +19,10 @@ for video_ts= 1: n_videos
     
     action_name = action_seq_names(video_ts,1);
     folder_n    = action_seq_names(video_ts,2);
-    %ts = [action_name,'_',folder_n];
+    
     
     if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
+        ts = [action_name,'_',folder_n];
         disp(ts);
         for video_tr=1: n_videos
             if (video_tr~=video_ts)
