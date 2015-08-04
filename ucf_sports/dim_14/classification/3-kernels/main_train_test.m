@@ -6,7 +6,7 @@ clc
 addpath('/home/johanna/toolbox/libsvm-3.20/matlab');% --> Wanda
 
 
-path  = '~/codes/codes-git/manifolds/trunk/ucf_sports/dim_14/';
+path  = '~/codes/codes-git/manifolds/trunk/ucf_sports/';
 dataset_path  = '~/codes/datasets_codes/my_ucf_sports_actions/';
 
 %home
