@@ -41,7 +41,6 @@ for video_ts= 1: n_videos
     end
 end
 
-k
 K_train = compute_kernel_svm(X_train,X_train, RIEMANNIAN_KERNEL, sigma);
 model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
 %Borrame Funciona Bien
