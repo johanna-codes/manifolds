@@ -12,7 +12,7 @@ dataset_path  = '~/codes/datasets_codes/my_ucf_sports_actions/';
 %home
 %path_dataset = '/media/johanna/HD1T/codes/datasets_codes/my_ucf_sports_actions/';
 
-action_seq_names = list_video_sequences(path_dataset);
+action_seq_names = list_video_sequences(dataset_path);
 
 dim =14;
 num_videos = 150; %From the dataset description (150). Problem with Run-Side_001_dim14 
