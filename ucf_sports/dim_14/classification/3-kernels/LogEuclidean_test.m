@@ -1,4 +1,4 @@
-function acc = kth_test_LogEuclidean(path,scale_factor, shift, sigma, dim)
+function acc = LogEuclidean_test(path, action_seq_names, scale_factor, shift, sigma, dim)
 % clear all
 % scale_factor =1;
 % shift =0;
