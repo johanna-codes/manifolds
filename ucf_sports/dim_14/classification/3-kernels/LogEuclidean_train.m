@@ -22,8 +22,8 @@ for video_ts= 1: n_videos
     
     
     if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-        ts = [action_name,'_',folder_n];
-        disp(ts);
+        %ts = [action_name,'_',folder_n];
+        %disp(ts);
         for video_tr=1: n_videos
             if (video_tr~=video_ts)
                 action_name_tr = action_seq_names(video_tr,1);
@@ -43,8 +43,6 @@ for video_ts= 1: n_videos
             end
         end
         
-        k
-        size(X_train)
         K_train = compute_kernel_svm(X_train,X_train, RIEMANNIAN_KERNEL, sigma);
         model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
         %Borrame Funciona Bien
