@@ -19,18 +19,18 @@ for video_ts= 1: n_videos
     
     action_name = action_seq_names(video_ts,1);
     folder_n    = action_seq_names(video_ts,2);
-    ts = [action_name,'_',folder_n];
+    %ts = [action_name,'_',folder_n];
     
     if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-        disp(ts);
+        %disp(ts);
         for video_tr=1: n_videos
             if (video_tr~=video_ts)
                 action_name_tr = action_seq_names(video_tr,1);
                 folder_n_tr    = action_seq_names(video_tr,2);
                 act_tr  =  str2double( action_seq_names(video_tr,3) );
                 if (~(strcmp(action_name_tr, 'Run-Side') && strcmp(folder_n_tr,'001')))
-                    tr = [action_name_tr,'_',folder_n_tr];
-                    disp(tr);
+                    %tr = [action_name_tr,'_',folder_n_tr];
+                    %disp(tr);
                     name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '.h5');
                     hinfo = hdf5info( char(name_load_cov) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
@@ -40,18 +40,20 @@ for video_ts= 1: n_videos
                 end
             end
         end
+        
+        
+        
+        K_train = compute_kernel_svm(X_train,X_train, RIEMANNIAN_KERNEL, sigma);
+        model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
+        %Borrame Funciona Bien
+        [predict_label, accuracy, dec_values] = svmpredict(labels_train,[[1:size(K_train,1)]' K_train], model);
+        %display(accuracy');
+        
+        acc = [acc accuracy(1)];
+        save_svm_model =strcat( './svm_models/logEucl_run_', int2str(pe_ts), '_Sigma', num2str(sigma),'.mat');
+        save(save_svm_model, 'model', 'X_train');
     end
 end
-
-K_train = compute_kernel_svm(X_train,X_train, RIEMANNIAN_KERNEL, sigma);
-model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
-%Borrame Funciona Bien
-[predict_label, accuracy, dec_values] = svmpredict(labels_train,[[1:size(K_train,1)]' K_train], model);
-%display(accuracy');
-
-acc = [acc accuracy(1)];
-save_svm_model =strcat( './svm_models/logEucl_run_', int2str(pe_ts), '_Sigma', num2str(sigma),'.mat');
-save(save_svm_model, 'model', 'X_train');
 
 
 end
