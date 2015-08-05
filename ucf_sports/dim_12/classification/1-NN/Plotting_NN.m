@@ -3,18 +3,10 @@ clear all
 close all
 clc
 
-dim =14;
-%% Log Euclidean distance 
-logEucl_est  =load('./results/nn_Log_Eucl_est_labels.dat');
-real =load('./results/nn_Log_Eucl_real_labels.dat');
 
-acc_logEucl = length(find(logEucl_est==real))/length(logEucl_est)*100;
+dim =12;
 
-%% Stein Divergence 
-SteinDiv_est  =load('./results/nn_Stein_div_est_labels.dat');
-
-acc_SteinDiv = length(find(SteinDiv_est==real))/length(SteinDiv_est)*100;
-
+real = load( './results/real_labels.dat');
 
 %% Grassmann Projection Metric & Binnet-Cauchy
 p=1:dim;
@@ -31,9 +23,9 @@ for i=1:dim
   all_BC_est(i) = acc_BC;
    
 end
-plot(p,all_PM_est, '-cd', 'LineWidth',3,'MarkerSize',5);
+plot(p,all_PM_est, '-bd', 'LineWidth',3,'MarkerSize',5);
 hold on
-plot(p,all_BC_est, '-mo', 'LineWidth',3,'MarkerSize',5);
+plot(p,all_BC_est, '-go', 'LineWidth',3,'MarkerSize',5);
 legend('Projection Metric','Binet-Cauchy','Location', 'southwest');
 ylabel('(%)','FontSize',20)
 xlabel('subspace order','FontSize',20)
@@ -41,7 +33,7 @@ set(gca,'FontSize',20);
 xlim([1 dim])
 
 %Home
-%print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/varying_p_NN_dim14','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/varying_p_NN_dim12','-dpng','-r300');
 
 
 
@@ -51,15 +43,15 @@ acc_BC = max(all_BC_est);
 
 %% BAR with all performance 
 
-ACC = [acc_logEucl acc_SteinDiv acc_PM acc_BC];
-figure
-labels = {'Log_Eucl';'Stein_Div';'Projection';'Binet-Cauchy'};
-xname = strtrim(cellstr(num2str(ACC'))') 
-bar(ACC, 'b')
-text(1:numel(ACC),ACC,xname,'horizontalalignment','center','verticalalignment','bottom') 
-ylim([0 90])
-set(gca,'XTickLabel',labels,'FontSize',15 );
-ylabel('Recognition Accuracy (%)')
+% ACC = [acc_logEucl acc_SteinDiv acc_PM acc_BC];
+% figure
+% labels = {'Log_Eucl';'Stein_Div';'Projection';'Binet-Cauchy'};
+% xname = strtrim(cellstr(num2str(ACC'))') 
+% bar(ACC, 'b')
+% text(1:numel(ACC),ACC,xname,'horizontalalignment','center','verticalalignment','bottom') 
+% ylim([0 90])
+% set(gca,'XTickLabel',labels,'FontSize',15 );
+% ylabel('Recognition Accuracy (%)')
 %xlabel('Metric Employed')
 
 %Home

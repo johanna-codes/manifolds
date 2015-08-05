@@ -3,18 +3,8 @@ clear all
 close all
 clc
 
-dim =14;
-%% Log Euclidean distance 
-logEucl_est  =load('./svm_results/LogEucl_scale1-shift0_est_labels.dat');
-real =load('./svm_results/LogEucl_scale1-shift0_real_labels.dat');
-
-acc_logEucl = length(find(logEucl_est==real))/length(logEucl_est)*100;
-
-%% Log Euclidean distance 
-SteinDiv_est  = load('./svm_results/SteinDiv_scale1-shift0_est_labels.dat');
-
-acc_SteinDiv = length(find(SteinDiv_est==real))/length(SteinDiv_est)*100;
-
+dim =12;
+real = load( './svm_results/real_labels.dat');
 
 %% Grassmann Projection Metric & Binnet-Cauchy
 p=1:dim;
@@ -41,7 +31,7 @@ set(gca,'FontSize',20);
 xlim([1 dim])
 
 %Home
-print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/varying_p_dist_vect_dim14','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/varying_p_dist_vect_dim12','-dpng','-r300');
 
 
 
@@ -51,18 +41,18 @@ acc_BC = max(all_BC_est);
 
 %% BAR with all performance 
 
-ACC = [acc_logEucl acc_SteinDiv acc_PM acc_BC];
-figure
-labels = {'Log_Eucl';'Stein_Div';'Projection';'Binet-Cauchy'};
-xname = strtrim(cellstr(num2str(ACC'))') 
-bar(ACC, 'g')
-text(1:numel(ACC),ACC,xname,'horizontalalignment','center','verticalalignment','bottom') 
-ylim([0 110])
-set(gca,'XTickLabel',labels,'FontSize',15 );
-ylabel('Recognition Accuracy (%)')
-%xlabel('Metric Employed')
-
-%Home
-print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/dist_vect_all_dim14','-dpng','-r300');
-
-
+% ACC = [acc_PM acc_BC];
+% figure
+% labels = {'Log_Eucl';'Stein_Div';'Projection';'Binet-Cauchy'};
+% xname = strtrim(cellstr(num2str(ACC'))') 
+% bar(ACC, 'g')
+% text(1:numel(ACC),ACC,xname,'horizontalalignment','center','verticalalignment','bottom') 
+% ylim([0 110])
+% set(gca,'XTickLabel',labels,'FontSize',15 );
+% ylabel('Recognition Accuracy (%)')
+% %xlabel('Metric Employed')
+% 
+% %Home
+% print('/media/johanna/HD1T/latex-svn/study-paper-report/ucf/v1/images/dist_vect_all_dim14','-dpng','-r300');
+% 
+% 
