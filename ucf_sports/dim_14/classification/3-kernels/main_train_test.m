@@ -49,7 +49,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
  display('Training svm + Kernel LED-RBF');
  delta = -10:1:9;
  ACC_train = zeros(length(delta),25);
- parfor i=1:length(delta)
+ for i=1:length(delta)
     acc = LED_RBF_train(path, action_seq_names, dim, delta(i), num_videos );
     ACC_train(i,:) = acc;
  end
@@ -60,7 +60,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
    scale = 1;
    shift = 0;
    
-   parfor i=1:length(delta)
+ parfor i=1:length(delta)
       acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, delta(i), num_videos);
       test_acc(i) = acc;     
    end
