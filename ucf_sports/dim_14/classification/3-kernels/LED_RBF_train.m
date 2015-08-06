@@ -13,6 +13,7 @@ RIEMANNIAN_KERNEL = @(X,Y,gamma) exp( -gamma*( norm(logm(X) - logm(Y),'fro') )^2
 
 load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
+parpool(5);
 for video_ts= 1: n_videos
     X_train = zeros(dim,dim,n_test);
     labels_train = zeros(n_test,1);
@@ -51,8 +52,9 @@ for video_ts= 1: n_videos
         %display(accuracy');
         
         acc = [acc accuracy(1)];
-        save_svm_model =strcat( './svm_models/LED_RBF_run_', int2str(video_ts), '_delta', num2str(delta),'.mat');
-        save(save_svm_model, 'model', 'X_train');
+        save_svm_model =strcat( './svm_models_LED_RBF/LED_RBF_run_', int2str(video_ts), '_delta', num2str(delta),'.mat');
+        parfor_save(save_svm_model, model, X_train);
+        %save(save_svm_model, 'model', 'X_train');
     end
 end
 

@@ -46,27 +46,27 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %% Kernel LED-RBF
 
-%  display('Training svm + Kernel LED-RBF');
-%  delta = -10:1:9;
-%  ACC_train = zeros(length(delta),25);
-%  parfor i=1:length(delta)
-%     acc = LED_RBF_train(path, action_seq_names, dim, delta(i), num_videos );
-%     ACC_train(i,:) = acc;
-%  end
-% 
-%    display('Testing svm + Kernel LED-RBF');
-%    delta = -10:1:9;
-%    test_acc = zeros(length(delta),1);
-%    scale = 1;
-%    shift = 0;
-%    
-%    parfor i=1:length(delta)
-%       acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, delta(i), num_videos);
-%       test_acc(i) = acc;     
-%    end
-%    
-%    save_results =strcat( 'LED_RBF_all_delta_performance.mat');
-%    save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
+ display('Training svm + Kernel LED-RBF');
+ delta = -10:1:9;
+ ACC_train = zeros(length(delta),25);
+ parfor i=1:length(delta)
+    acc = LED_RBF_train(path, action_seq_names, dim, delta(i), num_videos );
+    ACC_train(i,:) = acc;
+ end
+
+   display('Testing svm + Kernel LED-RBF');
+   delta = -10:1:9;
+   test_acc = zeros(length(delta),1);
+   scale = 1;
+   shift = 0;
+   
+   parfor i=1:length(delta)
+      acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, delta(i), num_videos);
+      test_acc(i) = acc;     
+   end
+   
+   save_results =strcat( 'LED_RBF_all_delta_performance.mat');
+   save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
  
  %% Kernel LED-Poly
 

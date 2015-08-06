@@ -18,7 +18,7 @@ j=1;
       act_ts  =  str2double( action_seq_names(video_tr,3) );
       
       if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-          load_svm_model = strcat( './svm_models/LED_RBF_run_', int2str(video_ts), '_delta', num2str(delta),'.mat');
+          load_svm_model = strcat( './svm_models_LED_RBF/LED_RBF_run_', int2str(video_ts), '_delta', num2str(delta),'.mat');
           load(load_svm_model); %loading model and X_train
       
           real_labels(j) = act_ts;
