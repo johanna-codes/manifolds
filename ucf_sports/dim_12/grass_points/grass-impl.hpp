@@ -128,7 +128,7 @@ grass_points::one_video_one_point( std::string load_feat_video_i, std::string fo
   else
   {
     cout << load_feat_video_i << endl;
-    getchar();
+    //getchar();
   }
   
 }
