@@ -14,7 +14,7 @@ acc = [];
 
 load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
-for video_ts= 1: n_videos
+parfor video_ts= 1: n_videos
     X_train = zeros(dim,dim,n_test);
     labels_train = zeros(n_test,1);
     k =1;
@@ -53,7 +53,8 @@ for video_ts= 1: n_videos
         
         acc = [acc accuracy(1)];
         save_svm_model =strcat( './svm_models/LED_POLY_run_', int2str(video_ts), '_n', num2str(n),'.mat');
-        save(save_svm_model, 'model', 'X_train');
+        parfor_save(save_svm_model, model, X_train);
+        %save(save_svm_model, 'model', 'X_train');
     end
 end
 
