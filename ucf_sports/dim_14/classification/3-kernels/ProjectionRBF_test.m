@@ -1,4 +1,4 @@
-function acc = ProjectionRBF_test(path, action_seq_names, scale_factor, shift, delta, dim, p)
+function acc = ProjectionRBF_test(path, action_seq_names, scale_factor, shift, delta, dim, p, num_videos)
 
 gamma = 2^delta/dim;
 PROJECTION_RBF_KERNEL = @(X,Y,gamma) exp( -gamma*( norm(X*X'-Y*Y','fro') )^2 );

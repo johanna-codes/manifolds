@@ -114,7 +114,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
      disp(X);
 
  for i=1:length(delta)
-    acc = ProjectionRBF_train(path, action_seq_names, delta(i), dim, in_p);
+    acc = ProjectionRBF_train(path, action_seq_names, delta(i), dim, in_p, num_videos);
     ACC_train(i,:) = acc;
  end
 
@@ -133,7 +133,7 @@ shift = 0;
 for j=1:length(p)
     in_p = p(j)
 parfor i=1:length(delta )
-   acc = ProjectionRBF_test(path, action_seq_names, scale, shift, delta (i), dim, in_p);
+   acc = ProjectionRBF_test(path, action_seq_names, scale, shift, delta (i), dim, in_p, num_videos);
    test_acc(i) = acc;
 end
 all_p{j} = test_acc;
