@@ -1,4 +1,4 @@
-function acc = ProjectionRBF_train(path, action_seq_names, delta, dim, p, num_videos)
+function acc = ProjectionRBF_train(path, action_seq_names, delta, dim, p, n_videos)
 
 scale_factor = 1;
 shift = 0;
