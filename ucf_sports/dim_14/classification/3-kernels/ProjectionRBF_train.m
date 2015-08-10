@@ -14,7 +14,7 @@ load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point
 
 %parpool(5);
 parfor video_ts= 1: n_videos
-    X_train = zeros(dim,dim,n_test);
+    X_train = zeros(dim,p,n_test);
     labels_train = zeros(n_test,1);
     k =1;
     
