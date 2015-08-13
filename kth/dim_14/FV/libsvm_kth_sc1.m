@@ -77,7 +77,7 @@ j=1;
           X_train(:,1) = one_FV;
        
           [predicted_label, accuracy] = svmpredict([act_ts], X_train, model, ['-b 1']);         
-          est_labels(j) = predict_label;
+          est_labels(j) = predicted_label;
           j=j+1;
           
           if predict_label == act_ts
