@@ -78,7 +78,7 @@ main(int argc, char** argv)
       std::stringstream load_feat_video_i;	  
       load_folder << path << "dim_" << dim <<"/features/kth-features_dim" << dim <<  "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
       load_feat_video_i << load_folder.str() << "/" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
-      mat_features_video_i.load( load_feat_video_i.str(), hdf5_binaas per Improved Trajectories Featuresry );
+      mat_features_video_i.load( load_feat_video_i.str(), hdf5_binary );
       //getchar();
       
       if ( mat_features_video_i.n_cols>0 )
