@@ -88,10 +88,11 @@ main(int argc, char** argv)
 	  }
 	  
 	}
+	  cout << "r&c "<<  mat_features.n_rows << " & " << mat_features.n_cols << endl;
     }
     
     
-    cout << "r&c "<<  mat_features.n_rows << " & " << mat_features.n_cols << endl;
+    cout << "Final r&c "<<  mat_features.n_rows << " & " << mat_features.n_cols << endl;
 
     
   
