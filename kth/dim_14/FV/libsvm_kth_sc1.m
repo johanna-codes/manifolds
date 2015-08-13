@@ -80,13 +80,13 @@ j=1;
           est_labels(j) = predicted_label;
           j=j+1;
           
-          if predict_label == act_ts
+          if predicted_label == act_ts
               acc = acc+1;
           end
 
       end
       
-     save_labels = strcat('./svm_results/scale', int2str(scale_factor), '-shift', int2str(shift),'-sigma',num2str(sigma),'.mat' );     
+     save_labels = strcat('./svm_results/scale', int2str(scale_factor), '-shift', int2str(shift),'.mat' );     
      save(save_labels, 'est_labels', 'real_labels');
   
   end
