@@ -32,8 +32,8 @@ for pe_ts= 1: n_peo
     for pe_tr=1: n_peo
         if pe_tr~=pe_ts
             for act=1: n_actions
-                 show_you = strcat(all_people(pe_tr),  '_', actions(act));
-                 disp(show_you);
+                 %show_you = strcat(all_people(pe_tr),  '_', actions(act));
+                 %disp(show_you);
                 name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_tr),'_',actions(act),'_sc', sc, '_Ng', Ng, '.txt');
                 one_FV = load( char( name_load_FV ) );
                 X_train(:,k) = one_FV;
@@ -46,7 +46,7 @@ for pe_ts= 1: n_peo
 data_train = X_train';
 labels_train = labels_train';
 model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
-save_svm_model =strcat( './svm_models/run_', int2str(pe_ts), '.mat');
+save_svm_model =strcat( './svm_models/run_', int2str(pe_ts), '.mat')
 save(save_svm_model, 'model');
     
     
