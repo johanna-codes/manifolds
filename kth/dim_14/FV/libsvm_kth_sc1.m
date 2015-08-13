@@ -71,7 +71,7 @@ j=1;
       for act_ts = 1:n_actions
           
           show_you = strcat(all_people(pe_ts),  '_', actions(act_ts));
-          %disp(show_you);
+          disp(show_you);
           real_labels(j) = act_ts;
           
           name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng, '.txt');
