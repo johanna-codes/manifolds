@@ -47,9 +47,16 @@ main(int argc, char** argv)
   int scale_factor = atoi( argv[1] );
   int shift = atoi( argv[2] );
   int dim = 14; 
+  int sc =1;
   
   field<string> all_people;
   all_people.load(peopleList);
+  
+  field<std::string> actions;
+  actions.load( actionNames );  
+  
+   int n_actions = actions.n_rows;
+  int n_peo =  all_people.n_rows;
   
   
   //mat uni_features;
@@ -65,7 +72,6 @@ main(int argc, char** argv)
 	  std::stringstream load_feat_video_i;	  
 	  load_folder << path <<"kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
 	  load_feat_video_i << load_folder.str() << "/" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
-	  mat mat_features_video_i;
 	  mat_features_video_i.load( load_feat_video_i, hdf5_binary );
 	  
 	  
