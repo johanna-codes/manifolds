@@ -44,7 +44,7 @@ for pe_ts= 1: n_peo
     end
     
 data_train = X_train';
-labels_train = labels_train';
+labels_train = labels_train;
 model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
 save_svm_model =strcat( './svm_models/run_person', int2str(pe_ts), '.mat')
 save(save_svm_model, 'model');
