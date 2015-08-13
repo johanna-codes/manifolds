@@ -22,7 +22,7 @@ sc = 1
 n_test = (n_peo-1)*n_actions;
 
 load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
-dim_FV = 2*dim*NCent;
+dim_FV = 2*dim*Ncent;
 
 
 for pe_ts= 1: n_peo
