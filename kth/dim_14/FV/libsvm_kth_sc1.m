@@ -6,7 +6,7 @@ close all
 clc
 
 dim = 14; 
-NCent = 256;
+Ncent = 256;
 
 Ng = int2str(Ncent);
 %%Training
