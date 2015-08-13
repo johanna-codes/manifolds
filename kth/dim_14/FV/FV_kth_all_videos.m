@@ -26,7 +26,7 @@ for i=1:n_people
     for j=1:n_actions
         
 
-        folder_feat = strcat( path, 'dim_', dim, '/features/kth-features_dim', dim, '_OpenMP/sc', sc, '/scale',int2str(scale_factor), '-shift',  int2str(shift) );
+        folder_feat = strcat( path, 'dim_', dim, '/features/kth-features_dim', dim, '_openMP/sc', sc, '/scale',int2str(scale_factor), '-shift',  int2str(shift) );
         name_feat = strcat(folder_feat, '/',  people (i),  '_', actionNames(j), '_dim', dim, '.h5');
           
         show_you = strcat(people (i),  '_', actionNames(j));
