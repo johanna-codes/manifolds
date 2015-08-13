@@ -76,7 +76,7 @@ j=1;
           one_FV = load( char( name_load_FV ) );
           X_train(:,1) = one_FV;
        
-          [predicted_label, accuracy] = svmpredict([act_ts], X_train, model, ['-b 1']);         
+          [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_train, model, ['-b 1']);         
           est_labels(j) = predicted_label;
           j=j+1;
           
