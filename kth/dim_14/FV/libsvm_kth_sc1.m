@@ -12,12 +12,12 @@ Ng = int2str(Ncent);
 %%Training
 actions = importdata('actionNames.txt')
 all_people = importdata('people_list.txt')
-scale_factor = 1;
-shift = 0;
+scale_factor = 1
+shift = 0
 
-n_actions = size(actions,1);
-n_peo =  size(all_people,1);
-sc = 1;
+n_actions = size(actions,1)
+n_peo =  size(all_people,1)
+sc = 1
 
 n_test = (n_peo-1)*n_actions;
 
