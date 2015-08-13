@@ -57,7 +57,7 @@ for i=1:n_people
         end
         %to save
         
-        save_name = strcat('./FV_training/FV_', people_train(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '.txt');
+        save_name = strcat('./FV_training/FV_', people(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '.txt');
         sSave = char(save_name);
         display(sSave);
         fid1=fopen(sSave,'wt');
