@@ -210,13 +210,13 @@ main(int argc, char** argv)
   
   //Saving statistics
   std::stringstream ss_weigths;
-  ss_weigths << "/universal_GMM/weights_Ng" << N_cent << "_dim" << dim << "_all_sc" << ".dat"; 
+  ss_weigths << "./universal_GMM/weights_Ng" << N_cent << "_dim" << dim << "_all_sc" << ".dat"; 
   
   std::stringstream ss_means;
-  ss_means << "/universal_GMM/means_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".dat"; 
+  ss_means << "./universal_GMM/means_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".dat"; 
   
   std::stringstream ss_covs;
-  ss_covs << "universal_GMM/covs_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".dat"; 
+  ss_covs << "./universal_GMM/covs_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".dat"; 
   
   weights.save( ss_weigths.str(), raw_ascii );
   means.save( ss_means.str(), raw_ascii );
