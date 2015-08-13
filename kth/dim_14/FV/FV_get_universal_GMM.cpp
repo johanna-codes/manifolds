@@ -55,8 +55,9 @@ main(int argc, char** argv)
   field<std::string> actions;
   actions.load( actionNames );  
   
-   int n_actions = actions.n_rows;
+  int n_actions = actions.n_rows;
   int n_peo =  all_people.n_rows;
+  
   
   
   //mat uni_features;
