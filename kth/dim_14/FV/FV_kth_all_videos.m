@@ -28,9 +28,10 @@ for i=1:n_people
 
         folder_feat = strcat( path, 'dim_', dim, '/features/kth-features_dim', dim, '/sc', sc, '/scale',int2str(scale_factor), '-shift',  int2str(shift) );
         name_feat = strcat(folder_feat, '/',  people (i),  '_', actionNames(j), '_dim', dim, '.h5');
+          
         S = char(name_feat);
-        data_onevideo = load(S);
-        one_video = {data_onevideo};
+        data_onevideo = hdf5info(S);
+        one_video = hdf5read(data_onevideo.GroupHierarchy.Datasets(1));;
         
         v = compute_fisher_joha (single(w), single(mu), single(sigma), one_video);
         d_fisher = size (v, 1);              % dimension of the Fisher vectors
