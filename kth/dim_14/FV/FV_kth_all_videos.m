@@ -34,7 +34,7 @@ for i=1:n_people
         
         S = char(name_feat);
         data_onevideo = hdf5info(S);
-        one_video = hdf5read(data_onevideo.GroupHierarchy.Datasets(1));;
+        one_video = hdf5read(data_onevideo.GroupHierarchy.Datasets(1));
         
         v = compute_fisher_joha (single(w), single(mu), single(sigma), one_video);
         d_fisher = size (v, 1);              % dimension of the Fisher vectors
