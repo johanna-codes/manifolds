@@ -58,8 +58,8 @@ scale_factor = 1;
 shift = 0;
 
 acc = 0;
-real_labels = zeros(n_peo*n_actions);
-est_labels  = zeros(n_peo*n_actions);
+real_labels = zeros(n_peo*n_actions)
+est_labels  = zeros(n_peo*n_actions)
   
 j=1;
   for pe_ts= 1: n_peo
