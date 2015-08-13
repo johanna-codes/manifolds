@@ -10,8 +10,8 @@ Ncent = 256;
 
 Ng = int2str(Ncent);
 %%Training
-actions = importdata('actionNames.txt')
-all_people = importdata('people_list.txt')
+actions = importdata('actionNames.txt');
+all_people = importdata('people_list.txt');
 scale_factor = 1;
 shift = 0;
 
@@ -36,7 +36,7 @@ for pe_ts= 1: n_peo
                  disp(show_you);
                 name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_tr),'_',actions(act),'_sc', sc, '_Ng', Ng, '.txt');
                 one_FV = load( char( name_load_FV ) );
-                X_train(:,k) = one_video;
+                X_train(:,k) = one_FV;
                 labels_train(k) = act;
                 k=k+1;               
             end
