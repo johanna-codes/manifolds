@@ -6,6 +6,9 @@ close all
 clc
 
 dim = 14; 
+NCent = 256;
+
+Ng = int2str(Ncent);
 %%Training
 actions = importdata('actionNames.txt')
 all_people = importdata('people_list.txt')
