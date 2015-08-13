@@ -29,8 +29,8 @@ for i=1:n_people
         folder_feat = strcat( path, 'dim_', dim, '/features/kth-features_dim', dim, '_openMP/sc', sc, '/scale',int2str(scale_factor), '-shift',  int2str(shift) );
         name_feat = strcat(folder_feat, '/',  people (i),  '_', actionNames(j), '_dim', dim, '.h5');
           
-        show_you = strcat(people (i),  '_', actionNames(j));
-        disp(show_you);
+        %show_you = strcat(people (i),  '_', actionNames(j));
+        %disp(show_you);
         
         S = char(name_feat);
         data_onevideo = hdf5info(S);
