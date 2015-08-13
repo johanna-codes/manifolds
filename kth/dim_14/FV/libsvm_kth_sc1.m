@@ -1,70 +1,56 @@
-addpath('/home/johanna/codes/FV_Matlab/libsvm-3.20/matlab')
+%NICTA && Server
+addpath('/home/johanna/toolbox/libsvm-3.20/matlab')
+addpath('/home/johanna/toolbox/yael/matlab');
 clear all
 close all
 clc
 
-run = int2str(1);
+dim = 14; 
+%%Training
+actions = importdata('actionNames.txt');
+all_people = importdata('people_list.txt');
+scale_factor = 1;
+shift = 0;
+
+n_actions = size(actions,1);
+n_peo =  size(all_people,1);
+sc = 1;
+
+n_test = (n_peo-1)*n_actions;
+
+%save_name = strcat('./FV_training/scale',int2str(scale_factor), '-shift',  int2str(shift),  '/FV_', people(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '.txt');
+        
+load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
+dim_FV = 2*dim*NCent;
 
 
-people = importdata(strcat('./run', run, '/rand_selection_run', run, '.dat'));
-actionNames = importdata('actionNames.txt');
-
-people_train = people(1:16);
-people_test = people(17:25);
-n_pe_tr  = length(people_train);
-n_pe_te  = length(people_test);
-n_actions = length(actionNames);
-
-data_train = [];
-labels_train = [];
-data_test = [];
-labels_test = [];
-
-
-%% TRAINING
-%  Loading Training data
-display('training');
-
-for pe = 1: n_pe_tr
-    for act = 1:n_actions
-        load_name = strcat('./run', run,  '/FV_training/FV_', people_train(pe),'_',actionNames(act),'_sc', int2str(1), '.txt');
-        sLoad = char(load_name);
-        FV = load(sLoad);
-        data_train = [data_train FV];
-        labels_train = [labels_train (act)];
+for pe_ts= 1: n_peo
+    X_train = zeros(dim_FV,n_test);
+    labels_train = zeros(n_test,1);
+    k =1;
+    for pe_tr=1: n_peo
+        if pe_tr~=pe_ts
+            for act=1: n_actions
+                 show_you = strcat(all_people(pe_tr),  '_', actions(act));
+                 disp(show_you);
+                name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_tr),'_',actions(act),'_sc', sc, '_Ng', Ng, '.txt');
+                one_FV = load( char( name_load_FV ) );
+                X_train(:,k) = one_video;
+                labels_train(k) = act;
+                k=k+1;               
+            end
+        end
     end
-end
-
-
+    
 data_train = data_train';
 labels_train = labels_train';
-
 model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
-
-%% TESTING. This testing is only for single actions
-%  Loading Testing data
-display('TESTING');
-for pe = 1: n_pe_te
+save_svm_model =strcat( './svm_models/run_', int2str(pe_ts), '.mat');
+save(save_svm_model, 'model');
     
-    for act = 1:n_actions
-
-            load_name = strcat('./run', run,  '/FV_testing/FV_', people_test(pe),'_',actionNames(act),'_sc', int2str(1), '.txt');
-            sLoad = char(load_name);
-            FV = load(sLoad);
-            %hist(FV)
-            %pause
-            data_test = [data_test FV];
-            labels_test = [labels_test (act)];
-
-    end
+    
 end
 
 
-data_test = data_test';
-labels_test = labels_test';
-
-
-[predicted_label, accuracy, prob_estimates] = svmpredict(labels_test, data_test, model, ['-b 1']);
-%acc = 100*sum(results ==labels_test)/length(labels_test)
 
 
