@@ -7,8 +7,8 @@ clc
 
 dim = 14; 
 %%Training
-actions = importdata('actionNames.txt');
-all_people = importdata('people_list.txt');
+actions = importdata('actionNames.txt')
+all_people = importdata('people_list.txt')
 scale_factor = 1;
 shift = 0;
 
@@ -18,8 +18,6 @@ sc = 1;
 
 n_test = (n_peo-1)*n_actions;
 
-%save_name = strcat('./FV_training/scale',int2str(scale_factor), '-shift',  int2str(shift),  '/FV_', people(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '.txt');
-        
 load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
 dim_FV = 2*dim*NCent;
 
