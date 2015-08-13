@@ -49,6 +49,8 @@ main(int argc, char** argv)
   int dim = 14; 
   int sc =1;
   
+  int N_cent = 256; // as per Improved Trajectories Features
+  
   field<string> all_people;
   all_people.load(peopleList);
   
@@ -76,7 +78,7 @@ main(int argc, char** argv)
       std::stringstream load_feat_video_i;	  
       load_folder << path << "dim_" << dim <<"/features/kth-features_dim" << dim <<  "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
       load_feat_video_i << load_folder.str() << "/" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
-      mat_features_video_i.load( load_feat_video_i.str(), hdf5_binary );
+      mat_features_video_i.load( load_feat_video_i.str(), hdf5_binaas per Improved Trajectories Featuresry );
       //getchar();
       
       if ( mat_features_video_i.n_cols>0 )
@@ -195,7 +197,7 @@ main(int argc, char** argv)
   cout <<"EM was repeated " << rep_em << endl;
   
   std::stringstream tmp_ss5;
-  tmp_ss5 << "/universal_GMM/UniversalGMM_Ng" << N_cent << "_dim" <<dim << "_all_sc"; 
+  tmp_ss5 << "./universal_GMM/UniversalGMM_Ng" << N_cent << "_dim" <<dim << "_sc1"; 
   cout << "Saving GMM in " << tmp_ss5.str() << endl;
   gmm_model.save( tmp_ss5.str() );
   cout << endl;
@@ -210,13 +212,13 @@ main(int argc, char** argv)
   
   //Saving statistics
   std::stringstream ss_weigths;
-  ss_weigths << "./universal_GMM/weights_Ng" << N_cent << "_dim" << dim << "_all_sc" << ".dat"; 
+  ss_weigths << "./universal_GMM/weights_Ng" << N_cent << "_dim" << dim << "_sc1" << ".dat"; 
   
   std::stringstream ss_means;
-  ss_means << "./universal_GMM/means_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".dat"; 
+  ss_means << "./universal_GMM/means_Ng" << N_cent << "_dim" <<dim << "_sc1" << ".dat"; 
   
   std::stringstream ss_covs;
-  ss_covs << "./universal_GMM/covs_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".dat"; 
+  ss_covs << "./universal_GMM/covs_Ng" << N_cent << "_dim" <<dim << "_sc1" << ".dat"; 
   
   weights.save( ss_weigths.str(), raw_ascii );
   means.save( ss_means.str(), raw_ascii );
