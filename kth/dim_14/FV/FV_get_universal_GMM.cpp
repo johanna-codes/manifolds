@@ -200,6 +200,9 @@ main(int argc, char** argv)
   gmm_model.save( tmp_ss5.str() );
   cout << endl;
   
+  mat means;
+  mat covs;
+  vec weights;	
   
   means = gmm_model.means;
   covs  = gmm_model.dcovs;
