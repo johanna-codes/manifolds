@@ -59,7 +59,7 @@ for i=1:n_people
         
         save_name = strcat('./FV_training/scale',int2str(scale_factor), '-shift',  int2str(shift),  '/FV_', people(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '.txt');
         sSave = char(save_name);
-        display(sSave);
+        %display(sSave);
         fid1=fopen(sSave,'wt');
         fprintf(fid1,'%8.8f\n',vn);
         fclose(fid1);
