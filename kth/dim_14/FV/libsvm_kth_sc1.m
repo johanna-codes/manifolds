@@ -43,7 +43,7 @@ for pe_ts= 1: n_peo
         end
     end
     
-size(X_train  )
+%size(X_train);
 data_train = X_train';
 labels_train = labels_train;
 model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
