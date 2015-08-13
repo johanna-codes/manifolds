@@ -20,12 +20,13 @@ sc = int2str(1);
 
 n_test = (n_peo-1)*n_actions;
 
-load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
+
 dim_FV = 2*dim*Ncent;
 
 %% Training
 % scale_factor = 1;
 % shift = 0;
+% load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
 % for pe_ts= 1: n_peo
 %     X_train = zeros(dim_FV,n_test);
 %     labels_train = zeros(n_test,1);
@@ -56,7 +57,7 @@ dim_FV = 2*dim*Ncent;
 
 scale_factor = 1;
 shift = 0;
-
+load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
 acc = 0;
 real_labels = zeros(n_peo*n_actions);
 est_labels  = zeros(n_peo*n_actions);
