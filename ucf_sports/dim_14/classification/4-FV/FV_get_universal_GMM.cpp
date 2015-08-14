@@ -53,7 +53,8 @@ main(int argc, char** argv)
     field <std::string> list_folders;
     list_folders.load( ss_folders.str() );
     int n_folders = list_folders.n_rows;
-    //cout <<  actions (act) << endl;
+    cout <<  actions (act) << endl;
+    getchar();
     //list_folders.print();
     
     mat mat_features_tmp;
