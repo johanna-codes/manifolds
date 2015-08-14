@@ -268,7 +268,7 @@ get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts, int act )
 
 inline
 vec
-get_loglikelihoods(mat mat_features, int run, int N_cent, int dim)
+get_loglikelihoods(mat &mat_features, int run, int N_cent, int dim)
 {
   vec likelihood_actions(actions.n_rows);
   
