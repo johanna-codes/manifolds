@@ -26,9 +26,9 @@ const std::string peopleList = "people_list.txt";
 const std::string  actionNames = "actionNames.txt";
 
 ///KTH  
-const field<string> all_people;
+field<string> all_people;
 
-const field<std::string> actions;
+field<std::string> actions;
 
 
 inline
