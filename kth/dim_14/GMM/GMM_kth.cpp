@@ -182,7 +182,8 @@ test_kth(int N_cent, int dim, int sc, int scale_factor, int shift )
       cout << "Real label is " <<  act << " and it was classified as " << est_label_video_i << endl;
     }
     
-    
+    cout << "Kill it" << endl;
+    getchar();  
   }
   
   cout << "Performance: " << acc*100/n_test << " %" << endl;
