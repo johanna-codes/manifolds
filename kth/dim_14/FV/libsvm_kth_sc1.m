@@ -66,6 +66,7 @@ vec_shift = [ -25, -20, -15, -10, 0,  -5, 5, 10, 15, 20, 25 ];
 
 %% Testing
 
+all_acc_shifts = zeros( length(vec_shift), 1);
 for i=1:length(vec_shift)
     scale_factor = 1;
     shift = vec_shift(i)
@@ -107,6 +108,7 @@ for i=1:length(vec_shift)
     end
     %[acc n_peo n_actions]
     acc = acc*100/(n_peo*n_actions)
+    all_acc_shifts(i) = acc;
 end
 
 
