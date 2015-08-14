@@ -54,7 +54,6 @@ main(int argc, char** argv)
     list_folders.load( ss_folders.str() );
     int n_folders = list_folders.n_rows;
     cout <<  actions (act) << endl;
-    getchar();
     //list_folders.print();
     
     mat mat_features_tmp;
@@ -70,7 +69,7 @@ main(int argc, char** argv)
       load_folder << path <<"dim_" << dim <<  "/features/features_dim" << dim << "/scale" << scale_factor << "-shift"<< shift;
       
       load_feat_video_i   << load_folder.str() << "/"     << actions(act)  << "_" << list_folders(i) << "_dim" << dim  << ".h5";
-      cout << load_feat_video_i.str() << endl;
+      //cout << load_feat_video_i.str() << endl;
       mat mat_features_video_i;
       mat_features_video_i.load( load_feat_video_i.str() , hdf5_binary );
       
@@ -122,6 +121,7 @@ main(int argc, char** argv)
   }
   
   cout << "Final r&c "<<  uni_features.n_rows << " & " << uni_features.n_cols << endl;
+  getchar();
   
   // **************************universal GMM*******************************
   
