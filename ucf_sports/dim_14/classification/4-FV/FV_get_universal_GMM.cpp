@@ -20,8 +20,7 @@ const std::string path = "/home/johanna/codes/codes-git/manifolds/trunk/ucf_spor
 const std::string path_dataset = "/home/johanna/codes/datasets_codes/my_ucf_sports_actions/";
 
 
-
-
+const std::string  actionNames = "actionNames.txt";
 
 int
 main(int argc, char** argv)
