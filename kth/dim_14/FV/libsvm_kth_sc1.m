@@ -22,7 +22,7 @@ n_test = (n_peo-1)*n_actions;
 
 
 dim_FV = 2*dim*Ncent;
-vec_shift = [ -25, -20, -15, -10, 0,  -5, 5, 10, 15, 20, 25 ];
+vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
 
 %% Get FV. Run Just once
 
@@ -112,4 +112,5 @@ for i=1:length(vec_shift)
     all_acc_shifts(i) = acc;
 end
 
+[vec_shift' all_acc_shifts]
 
