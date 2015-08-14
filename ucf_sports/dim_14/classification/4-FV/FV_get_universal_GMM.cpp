@@ -121,7 +121,7 @@ main(int argc, char** argv)
   }
   
   cout << "Final r&c "<<  uni_features.n_rows << " & " << uni_features.n_cols << endl;
-  getchar();
+  //getchar();
   
   // **************************universal GMM*******************************
   
@@ -185,7 +185,7 @@ main(int argc, char** argv)
   cout <<"EM was repeated " << rep_em << endl;
   
   std::stringstream tmp_ss5;
-  tmp_ss5 << "./universal_GMM/UniversalGMM_Ng" << N_cent << "_dim" <<dim << "_sc1"; 
+  tmp_ss5 << "./universal_GMM/UniversalGMM_Ng" << N_cent << "_dim" <<dim ; 
   cout << "Saving GMM in " << tmp_ss5.str() << endl;
   gmm_model.save( tmp_ss5.str() );
   cout << endl;
@@ -200,13 +200,13 @@ main(int argc, char** argv)
   
   //Saving statistics
   std::stringstream ss_weigths;
-  ss_weigths << "./universal_GMM/weights_Ng" << N_cent << "_dim" << dim << "_sc1" << ".dat"; 
+  ss_weigths << "./universal_GMM/weights_Ng" << N_cent << "_dim" << dim  << ".dat"; 
   
   std::stringstream ss_means;
-  ss_means << "./universal_GMM/means_Ng" << N_cent << "_dim" <<dim << "_sc1" << ".dat"; 
+  ss_means << "./universal_GMM/means_Ng" << N_cent << "_dim" <<dim <<  ".dat"; 
   
   std::stringstream ss_covs;
-  ss_covs << "./universal_GMM/covs_Ng" << N_cent << "_dim" <<dim << "_sc1" << ".dat"; 
+  ss_covs << "./universal_GMM/covs_Ng" << N_cent << "_dim" <<dim << ".dat"; 
   
   weights.save( ss_weigths.str(), raw_ascii );
   means.save( ss_means.str(), raw_ascii );

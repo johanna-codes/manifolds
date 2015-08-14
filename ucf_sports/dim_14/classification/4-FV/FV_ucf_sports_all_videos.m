@@ -1,9 +1,11 @@
-function FV_kth_all_videos(Ncent, DIM, scale_factor, shift, n_videos)
+function FV_kth_all_videos(Ncent, DIM, scale_factor, shift, n_videos, action_seq_names )
 %%Calcular FV for all videos
 
-n_test =  n_videos - 1; %Problem with Run-Side_001_dim14
+%n_test =  n_videos - 1; %Problem with Run-Side_001_dim14
 
-path  = '/home/johanna/codes/codes-git/study-paper/trunk/'; %Donde estan las caracteristicas
+path  = '~/codes/codes-git/manifolds/trunk/ucf_sports/';%Donde estan las caracteristicas
+dataset_path  = '~/codes/datasets_codes/my_ucf_sports_actions/';
+
 fprintf('Ng %d \n',Ncent);
 
 
@@ -18,10 +20,18 @@ sigma = load(strcat('./universal_GMM/covs_Ng'   , Ng, '_dim', dim,'_sc1.dat'));
 
 sc = int2str(1); %Using only scenario 1
 
-people= importdata(strcat('people_list.txt'));
-actionNames = importdata('actionNames.txt');
-n_people  = length(people);
-n_actions = length(actionNames);
+
+
+
+
+
+
+
+
+
+
+
+%%ANTES: DE KTH de muestra
 
 for i=1:n_people
     for j=1:n_actions
