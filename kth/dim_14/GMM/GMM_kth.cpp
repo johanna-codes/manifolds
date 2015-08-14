@@ -27,10 +27,8 @@ const std::string  actionNames = "actionNames.txt";
 
 ///KTH  
 const field<string> all_people;
-all_people.load(peopleList);
 
 const field<std::string> actions;
-actions.load( actionNames ); 
 
 
 inline
@@ -61,6 +59,9 @@ inline
 void
 train_kth(int N_cent, int dim, int sc)
 {
+  all_people.load(peopleList);
+  actions.load( actionNames ); 
+
   int scale_factor =1;
   int shift = 0;
   int n_actions = actions.n_rows;
