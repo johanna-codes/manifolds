@@ -278,7 +278,7 @@ get_loglikelihoods(mat &mat_features, int run, int N_cent, int dim)
     
     std::stringstream tmp_ss5;
     tmp_ss5 << "./GMM_models/run" << run << "_" << actions(act_tr) <<  "_GMM_Ng" << N_cent << "_dim" <<dim << "_sc1" ; 
-    cout << "Saving GMM in " << tmp_ss5.str() << endl;
+    cout << "Loading GMM in " << tmp_ss5.str() << endl;
     gmm_model.load( tmp_ss5.str() );
     
     
