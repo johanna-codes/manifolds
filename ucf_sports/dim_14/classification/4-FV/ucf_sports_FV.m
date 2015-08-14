@@ -24,17 +24,19 @@ n_test = (n_peo-1)*n_actions;
 dim_FV = 2*dim*Ncent;
 vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
 
+action_seq_names = list_video_sequences(dataset_path);
+num_videos = 150; %From the dataset description (150). 
+
 %% Get FV. Run Just once
 
+ scale_factor = 1;
+ for i=1:length(vec_shift)
+     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
+     disp(show_you);
+     FV_ucf_sports_all_videos( Ncent, dim, scale_factor, vec_shift(i), n_videos, action_seq_names );
+ end
 
-% scale_factor = 1;
-% for i=1:length(vec_shift)
-%     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
-%     disp(show_you);
-%     FV_kth_all_videos(Ncent, dim, scale_factor, vec_shift(i));
-% end
-
-%% Training
+%% Training TODO
 % scale_factor = 1;
 % shift = 0;
 % load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
@@ -64,7 +66,7 @@ vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
 %     
 % end
 
-%% Testing
+%% Testing TODO
 
 
 % all_acc_shifts = zeros( length(vec_shift), 1);
