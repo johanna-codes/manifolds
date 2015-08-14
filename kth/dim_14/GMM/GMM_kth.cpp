@@ -35,10 +35,23 @@ inline
 void
 train_kth(int N_cent,  int dim, int sc);
 
+inline
+void
+test_kth(int N_cent, int dim, int sc, int scale_factor, int shift );
+
+
 inline 
 void
 get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts,  int act);
 
+inline
+vec
+get_loglikelihoods(mat &mat_features, int run, int N_cent, int dim);
+
+
+
+
+//******************MAIN********************************************************
 int
 main(int argc, char** argv)
 {
@@ -48,12 +61,22 @@ main(int argc, char** argv)
   
   int N_cent = 256; // as per Improved Trajectories Features
   
- 
   
+  //Train the mode
   train_kth( N_cent, dim, sc);
+  
+  
+  //Test
+  int scale_factor =1;
+  int shift = 0;
+  test_kth( N_cent, dim, sc, scale_factor, shift );
   
   return 0;
 }
+
+
+//*************************************************************
+//***************************Train******************************
 
 inline
 void
@@ -61,12 +84,12 @@ train_kth(int N_cent, int dim, int sc)
 {
   all_people.load(peopleList);
   actions.load( actionNames ); 
-
+  
   int scale_factor =1;
   int shift = 0;
   int n_actions = actions.n_rows;
   int n_peo =  all_people.n_rows;
-
+  
   for (int pe_ts = 0; pe_ts< n_peo; ++pe_ts)
   {
     for (int act=0; act<n_actions; ++act)
@@ -97,13 +120,77 @@ train_kth(int N_cent, int dim, int sc)
 	
       }
       
-      //ACA voy a tener todos los vectores de la accion _i. GET GMM
+      //GET GMM for each action and save
       get_gmm(features_action_i, N_cent, dim,  pe_ts, act );
       
     }
   }
-
+  
 }
+
+
+//*************************************************************
+//***************************Test******************************
+inline
+void
+test_kth(int N_cent, int dim, int sc, int scale_factor, int shift )
+{
+  all_people.load(peopleList);
+  actions.load( actionNames ); 
+  
+  int n_actions = actions.n_rows;
+  int n_peo =  all_people.n_rows;
+  
+  int n_test = n_peo*n_actions;
+  
+  vec real_labels;
+  vec est_labels;
+  
+  real_labels.zeros(n_test);
+  est_labels.zeros(n_test);
+  
+  float acc;
+  acc = 0;
+  int k = 0;
+  
+  
+  for (int pe_ts = 0; pe_ts< n_peo; ++pe_ts)
+  {
+    
+    for (int act=0; act<n_actions; ++act)
+    { 
+      mat mat_features_video_i;  
+      std::stringstream load_folder;
+      std::stringstream load_feat_video_i;	  
+      load_folder << path << "dim_" << dim <<"/features/kth-features_dim" << dim <<  "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+      load_feat_video_i << load_folder.str() << "/" << all_people (pe_ts) << "_" << actions(act) << "_dim" << dim  << ".h5";
+      mat_features_video_i.load( load_feat_video_i.str(), hdf5_binary );
+      
+      vec likelihood_actions =  get_loglikelihoods( mat_features_video_i, pe_ts, N_cent, dim);
+      
+      uword est_label_video_i;
+      likelihood_actions.max(est_label_video_i);
+      
+      real_labels(k)= act;
+      est_labels(k) = est_label_video_i;
+      ++k;
+      
+      if (est_label_video_i == act)
+      {
+	acc++;  
+      }
+      cout << "Real label is " <<  act << " and it was classified as " << est_label_video_i << endl;
+    }
+    
+    
+  }
+  
+  cout << "Performance: " << acc*100/n_test << " %" << endl;
+  
+  
+  
+}
+
 
 // **************************GMM*******************************
 
@@ -111,15 +198,15 @@ inline
 void
 get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts, int act )
 {
-
-   bool is_finite = features_action_i.is_finite();
- 
-    if (!is_finite )
-    {
-      cout << "is_finite?? " << is_finite << endl;
-      cout << features_action_i.n_rows << " " << features_action_i.n_cols << endl;
-      getchar();
-    }
+  
+  bool is_finite = features_action_i.is_finite();
+  
+  if (!is_finite )
+  {
+    cout << "is_finite?? " << is_finite << endl;
+    cout << features_action_i.n_rows << " " << features_action_i.n_cols << endl;
+    getchar();
+  }
   
   
   cout << "universal GMM" << endl;
@@ -176,5 +263,30 @@ get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts, int act )
   gmm_model.save( tmp_ss5.str() );
   cout << endl;
   
+}
+
+
+inline
+vec
+get_loglikelihoods(mat mat_features, int run, int N_cent, int dim)
+{
+  vec likelihood_actions(actions.n_rows);
+  
+  for (uword act_tr=0; act_tr < actions.n_rows; ++act_tr)
+  {
+    gmm_diag gmm_model;
+    
+    std::stringstream tmp_ss5;
+    tmp_ss5 << "./GMM_models/run" << run << "_" << actions(act_tr) <<  "_GMM_Ng" << N_cent << "_dim" <<dim << "_sc1" ; 
+    cout << "Saving GMM in " << tmp_ss5.str() << endl;
+    gmm_model.load( tmp_ss5.str() );
+    
+    
+    likelihood_actions (act_tr) = gmm_model.avg_log_p(mat_features);
+    
+  }
+  
+  
+  return likelihood_actions;
   
 }
