@@ -10,15 +10,10 @@ Ncent = 256;
 
 Ng = int2str(Ncent);
 
-actions = importdata('actionNames.txt');
-all_people = importdata('people_list.txt');
+path  = '~/codes/codes-git/manifolds/trunk/ucf_sports/';
+dataset_path  = '~/codes/datasets_codes/my_ucf_sports_actions/';
 
 
-n_actions = size(actions,1);
-n_peo =  size(all_people,1);
-sc = int2str(1);
-
-n_test = (n_peo-1)*n_actions;
 
 
 dim_FV = 2*dim*Ncent;
@@ -33,7 +28,7 @@ num_videos = 150; %From the dataset description (150).
  for i=1:length(vec_shift)
      show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
      disp(show_you);
-     FV_ucf_sports_all_videos( Ncent, dim, scale_factor, vec_shift(i), n_videos, action_seq_names );
+     FV_ucf_sports_all_videos( path, Ncent, dim, scale_factor, vec_shift(i), n_videos, action_seq_names );
  end
 
 %% Training TODO
