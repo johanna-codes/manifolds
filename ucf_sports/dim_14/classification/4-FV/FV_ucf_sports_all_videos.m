@@ -15,9 +15,6 @@ mu =    load(strcat('./universal_GMM/means_Ng'  , Ng, '_dim', dim, '.dat'));
 sigma = load(strcat('./universal_GMM/covs_Ng'   , Ng, '_dim', dim, '.dat'));
 
 
-sc = int2str(1); %Using only scenario 1
-
-
 folder_feat =strcat(path, 'dim_', dim, '/features/features_dim', dim, '/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
 
@@ -28,7 +25,7 @@ for video_ts= 1: n_videos
     
     if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
         name_feat = strcat( '/',folder_feat, action_name, '_', folder_n, '_dim', int2str(dim), '.h5');
-        S = char(name_feat);
+        S = char(name_feat)
         data_onevideo = hdf5info(S);
         one_video = hdf5read(data_onevideo.GroupHierarchy.Datasets(1));
         one_video= {one_video};
