@@ -28,7 +28,7 @@ num_videos = 150; %From the dataset description (150).
  for i=1:length(vec_shift)
      show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
      disp(show_you);
-     FV_ucf_sports_all_videos( path, Ncent, dim, scale_factor, vec_shift(i), n_videos, action_seq_names );
+     FV_ucf_sports_all_videos( path, Ncent, dim, scale_factor, vec_shift(i), num_videos, action_seq_names );
  end
 
 %% Training TODO
