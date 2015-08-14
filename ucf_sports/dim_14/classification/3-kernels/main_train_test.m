@@ -99,7 +99,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 
 %%%%%%%%%%%%%%%%%%%%   Grassmann Kernels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Projection kernel: RBF. TODO: Run in WANDA
+%% Projection kernel: RBF. Running in WANDA
  display('Training svm + Projection RBF Kernel ');
  delta = -14:1:21;
  dim = 14;
@@ -144,7 +144,7 @@ save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
 
 
 
-%% Projection Kernel: Poly TODO!!!!!!!!!!
+%% Projection Kernel: Poly TODO!!!!!!!!!! Crear scrpits y correr en Wanda
 %  display('Training svm + Projection Poly Kernel ');
 %  dim = 14;
 %  p = 1:14;
