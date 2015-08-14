@@ -63,7 +63,7 @@ main(int argc, char** argv)
   
   
   //Train the mode
-  train_kth( N_cent, dim, sc);
+  //train_kth( N_cent, dim, sc);
   
   
   //Test
