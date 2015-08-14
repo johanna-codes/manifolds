@@ -33,7 +33,7 @@ const std::string  actionNames = "actionNames.txt";
 
 inline
 void
-train_kth(field<string> all_people, field<std::string> actions, int N_cent, int scale_factor, int shift, int dim, int sc);
+train_kth(field<string> all_people, field<std::string> actions, int N_cent,  int dim, int sc);
 
 inline 
 void
@@ -43,15 +43,9 @@ int
 main(int argc, char** argv)
 {
   
-  if(argc < 3 )
-  {
-    cout << "usage: " << argv[0] << " scale_factor " << " shift_factor " << endl;
-    return -1;
-  }
+
   
-  
-  int scale_factor = atoi( argv[1] );
-  int shift = atoi( argv[2] );
+
   int dim = 14; 
   int sc =1;
   
@@ -63,16 +57,17 @@ main(int argc, char** argv)
   field<std::string> actions;
   actions.load( actionNames );  
   
-  train_kth(all_people,  actions, N_cent, scale_factor, shift, dim, sc);
+  train_kth(all_people,  actions, N_cent, dim, sc);
   
   return 0;
 }
 
 inline
 void
-train_kth(field<string> all_people, field<std::string> actions, int N_cent, int scale_factor, int shift, int dim, int sc)
+train_kth(field<string> all_people, field<std::string> actions, int N_cent, int dim, int sc)
 {
-  
+  int scale_factor =1;
+  int shift = 0;
   int n_actions = actions.n_rows;
   int n_peo =  all_people.n_rows;
 
