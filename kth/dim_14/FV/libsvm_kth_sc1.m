@@ -68,7 +68,7 @@ vec_shift = [ -25, -20, -15, -10, 0,  -5, 5, 10, 15, 20, 25 ];
 
 for i=1:length(vec_shift)
     scale_factor = 1;
-    shift = vec_shift(i);
+    shift = vec_shift(i)
     load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
     acc = 0;
     real_labels = zeros(n_peo*n_actions);
@@ -82,8 +82,8 @@ for i=1:length(vec_shift)
         
         for act_ts = 1:n_actions
             
-            show_you = strcat(all_people(pe_ts),  '_', actions(act_ts));
-            disp(show_you);
+            %show_you = strcat(all_people(pe_ts),  '_', actions(act_ts));
+            %disp(show_you);
             real_labels(j) = act_ts;
             
             name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng, '.txt');
