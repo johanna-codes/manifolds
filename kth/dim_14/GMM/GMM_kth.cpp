@@ -26,10 +26,10 @@ const std::string peopleList = "people_list.txt";
 const std::string  actionNames = "actionNames.txt";
 
 ///KTH  
-field<string> all_people;
+const field<string> all_people;
 all_people.load(peopleList);
 
-field<std::string> actions;
+const field<std::string> actions;
 actions.load( actionNames ); 
 
 
