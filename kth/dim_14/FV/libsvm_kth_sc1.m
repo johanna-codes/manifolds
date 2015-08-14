@@ -91,7 +91,7 @@ for i=1:length(vec_shift)
             X_train(:,1) = one_FV;
             
             [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_train', model, ['-b 1']);
-            predicted_label
+            %predicted_label
             est_labels(j) = predicted_label;
             j=j+1;
             
@@ -106,7 +106,7 @@ for i=1:length(vec_shift)
         
     end
     %[acc n_peo n_actions]
-    acc = acc*100/(n_peo*n_actions);
+    acc = acc*100/(n_peo*n_actions)
 end
 
 
