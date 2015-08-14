@@ -25,15 +25,17 @@ const std::string path  = "/home/johanna/codes/codes-git/study-paper/trunk/";
 const std::string peopleList = "people_list.txt";
 const std::string  actionNames = "actionNames.txt";
 
-///kth
-// int ori_col = 160;
-// int ori_row = 120;
+///KTH  
+field<string> all_people;
+all_people.load(peopleList);
 
+field<std::string> actions;
+actions.load( actionNames ); 
 
 
 inline
 void
-train_kth(field<string> all_people, field<std::string> actions, int N_cent,  int dim, int sc);
+train_kth(int N_cent,  int dim, int sc);
 
 inline 
 void
@@ -43,28 +45,21 @@ int
 main(int argc, char** argv)
 {
   
-
-  
-
   int dim = 14; 
   int sc =1;
   
   int N_cent = 256; // as per Improved Trajectories Features
   
-  field<string> all_people;
-  all_people.load(peopleList);
+ 
   
-  field<std::string> actions;
-  actions.load( actionNames );  
-  
-  train_kth(all_people,  actions, N_cent, dim, sc);
+  train_kth( N_cent, dim, sc);
   
   return 0;
 }
 
 inline
 void
-train_kth(field<string> all_people, field<std::string> actions, int N_cent, int dim, int sc)
+train_kth(int N_cent, int dim, int sc)
 {
   int scale_factor =1;
   int shift = 0;
@@ -102,7 +97,7 @@ train_kth(field<string> all_people, field<std::string> actions, int N_cent, int 
       }
       
       //ACA voy a tener todos los vectores de la accion _i. GET GMM
-      get_gmm(features_action_i, N_cent, dim,  pe_ts);
+      get_gmm(features_action_i, N_cent, dim,  pe_ts, act );
       
     }
   }
@@ -113,7 +108,7 @@ train_kth(field<string> all_people, field<std::string> actions, int N_cent, int 
 
 inline 
 void
-get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts)
+get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts, int act )
 {
 
    bool is_finite = features_action_i.is_finite();
@@ -175,7 +170,7 @@ get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts)
   cout <<"EM was repeated " << rep_em << endl;
   
   std::stringstream tmp_ss5;
-  tmp_ss5 << "./GMM_models/run" << pe_ts << "_GMM_Ng" << N_cent << "_dim" <<dim << "_sc1"; 
+  tmp_ss5 << "./GMM_models/run" << pe_ts << "_" << actions(act) <<  "_GMM_Ng" << N_cent << "_dim" <<dim << "_sc1" ; 
   cout << "Saving GMM in " << tmp_ss5.str() << endl;
   gmm_model.save( tmp_ss5.str() );
   cout << endl;
