@@ -22,18 +22,17 @@ n_test = (n_peo-1)*n_actions;
 
 
 dim_FV = 2*dim*Ncent;
-vec_shift = [ -25, -20, -15, -10, -5, 5, 10, 15, 20, 25 ];
+vec_shift = [ -25, -20, -15, -10, 0,  -5, 5, 10, 15, 20, 25 ];
 
 %% Get FV. Run Just once
 
 
-scale_factor = 1;
-
-for i=1:length(vec_shift)
-    show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
-    disp(show_you);
-    FV_kth_all_videos(Ncent, dim, scale_factor, vec_shift(i));
-end
+% scale_factor = 1;
+% for i=1:length(vec_shift)
+%     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
+%     disp(show_you);
+%     FV_kth_all_videos(Ncent, dim, scale_factor, vec_shift(i));
+% end
 
 %% Training
 scale_factor = 1;
