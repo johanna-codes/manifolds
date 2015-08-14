@@ -25,7 +25,7 @@ for video_ts= 1: n_videos
     
     if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
         name_feat = strcat( folder_feat, '/', action_name, '_', folder_n, '_dim', dim, '.h5');
-        S = char(name_feat)
+        S = char(name_feat);
         data_onevideo = hdf5info(S);
         one_video = hdf5read(data_onevideo.GroupHierarchy.Datasets(1));
         one_video= {one_video};
