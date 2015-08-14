@@ -37,7 +37,7 @@ train_kth(int N_cent,  int dim, int sc);
 
 inline 
 void
-get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts);
+get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts,  int act);
 
 int
 main(int argc, char** argv)
