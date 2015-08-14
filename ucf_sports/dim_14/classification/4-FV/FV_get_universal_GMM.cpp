@@ -69,7 +69,7 @@ main(int argc, char** argv)
       load_folder << path <<"dim_" << dim <<  "/features/features_dim" << dim << "/scale" << scale_factor << "-shift"<< shift;
       
       load_feat_video_i   << load_folder.str() << "/"     << actions(act)  << "_" << list_folders(i) << "_dim" << dim  << ".h5";
-      
+      cout << load_feat_video_i.str() << endl;
       mat mat_features_video_i;
       mat_features_video_i.load( load_feat_video_i.str() , hdf5_binary );
       
