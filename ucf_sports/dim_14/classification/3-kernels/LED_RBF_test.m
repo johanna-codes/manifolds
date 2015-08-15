@@ -12,7 +12,7 @@ est_labels  = zeros(num_videos - 1);
 load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
 j=1;
-  for video_ts= 1: n_videos
+  for video_ts= 1: num_videos
       action_name = action_seq_names(video_ts,1);
       folder_n    = action_seq_names(video_ts,2);
       act_ts  =  str2double( action_seq_names(video_tr,3) );
