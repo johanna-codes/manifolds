@@ -1,4 +1,4 @@
-function acc = LED_POLY_train(path, action_seq_names, dim, n)
+function acc = LED_POLY_train(path, action_seq_names, dim, n, n_videos)
 
 gamma = 1/n;
 RIEMANNIAN_KERNEL = @(X,Y,gamma) ( gamma*( trace(logm(X)'*logm(Y)) ) )^n;

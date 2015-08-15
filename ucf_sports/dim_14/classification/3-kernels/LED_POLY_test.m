@@ -1,4 +1,4 @@
-function acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, n)
+function acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, n, num_videos )
 
 gamma = 1/n;
 RIEMANNIAN_KERNEL = @(X,Y,gamma) ( gamma*( trace(logm(X)'*logm(Y)) ) )^n;

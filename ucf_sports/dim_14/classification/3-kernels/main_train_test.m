@@ -81,7 +81,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
  for i=1:length(n)
      in_n = n(i);
      X = sprintf('n = %d ', in_n);
-     acc = LED_POLY_train(path, action_seq_names, dim, in_n);
+     acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
      %ACC_train(i,:) = acc;
  end
 
@@ -92,9 +92,11 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
   scale = 1;
   shift = 0;
 
-  parfor i=1:length(n)
-     acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, n(i));
-     test_acc(i) = acc;
+  for i=1:length(n)
+      in_n = n(i);
+      X = sprintf('n = %d ', in_n);
+      acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
+      test_acc(i) = acc;
       %end
   end
 
