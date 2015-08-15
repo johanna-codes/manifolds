@@ -142,10 +142,20 @@ train_ucf(int N_cent, int dim, int sc)
 	if (test_i!=train_i)
 	{
 	  cout << action_name << "_" << folder_n << " ";
+	  std::stringstream load_feat_video_i;
+	  load_feat_video_i   << load_folder.str() << "/"     << action_name << "_" << folder_n << "_dim" << dim  << ".h5";
+
+	  mat mat_features_video_i;
+	  mat_features_video_i.load( load_feat_video_i.str() , hdf5_binary );
+	  
+	  field_all_actions(index_act)  =join_rows( field_all_actions(index_act), mat_features_video_i);	  
 	  
 	}
 	
       }
+      
+      
+      
 
     getchar();
   }
