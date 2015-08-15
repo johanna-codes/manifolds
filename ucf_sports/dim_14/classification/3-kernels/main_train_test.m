@@ -54,51 +54,50 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %     ACC_train(i,:) = acc;
 % end
 
-display('Testing svm + Kernel LED-RBF');
-delta = -10:1:9;
-test_acc = zeros(length(delta),1);
-scale = 1;
-shift = 0;
-
-for i=1:length(delta)
-    in_delta = delta(i);
-    X = sprintf('delta = %d ', in_delta);
-    disp(delta(i));
-    acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, in_delta, num_videos);
-    test_acc(i) = acc;
-end
-
-save_results =strcat( 'LED_RBF_all_delta_performance.mat');
-save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
+% display('Testing svm + Kernel LED-RBF');
+% delta = -10:1:9;
+% test_acc = zeros(length(delta),1);
+% scale = 1;
+% shift = 0;
+% 
+% for i=1:length(delta)
+%     in_delta = delta(i);
+%     X = sprintf('delta = %d ', in_delta);
+%     disp(delta(i));
+%     acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, in_delta, num_videos);
+%     test_acc(i) = acc;
+% end
+% 
+% save_results =strcat( 'LED_RBF_all_delta_performance.mat');
+% save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
 
 %% Kernel LED-Poly. TODO: Run in NICTA
 
-%  display('Training svm + Kernel LED-POLY');
-%  %n=1:dim;
-%  n=1:20;
-% 
-% 
-%  for i=1:length(n)
-%      acc = LED_POLY_train(path, action_seq_names, dim, n(i));
-%      %ACC_train(i,:) = acc;
-%  end
-% 
-%   display('Testing svm + Kernel LED-POLY');
-%   %n=1:dim;
-%   n=1:20;
-%   test_acc = zeros(length(n),1);
-%   scale = 1;
-%   shift = 0;
-% 
-%   parfor i=1:length(n)
-%       %if (i~=2)
-%      acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, n(i));
-%      test_acc(i) = acc;
-%       %end
-%   end
-% 
-%   save_results =strcat( 'LED_POLY_all_n_performance.mat');
-%   save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
+ display('Training svm + Kernel LED-POLY');
+ %n=1:dim;
+ n=1:20;
+
+
+ for i=1:length(n)
+     acc = LED_POLY_train(path, action_seq_names, dim, n(i));
+     %ACC_train(i,:) = acc;
+ end
+
+  display('Testing svm + Kernel LED-POLY');
+  %n=1:dim;
+  n=1:20;
+  test_acc = zeros(length(n),1);
+  scale = 1;
+  shift = 0;
+
+  parfor i=1:length(n)
+     acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, n(i));
+     test_acc(i) = acc;
+      %end
+  end
+
+  save_results =strcat( 'LED_POLY_all_n_performance.mat');
+  save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 
 
 %%%%%%%%%%%%%%%%%%%%   Grassmann Kernels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
