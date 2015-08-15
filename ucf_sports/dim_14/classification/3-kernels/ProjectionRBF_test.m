@@ -1,4 +1,4 @@
-function acc = ProjectionRBF_test(path, action_seq_names, scale_factor, shift, delta, dim, p, n_videos)
+function acc = ProjectionRBF_test(path, action_seq_names, scale_factor, shift, delta, dim, p, num_videos)
 
 gamma = 2^delta/dim;
 PROJECTION_RBF_KERNEL = @(X,Y,gamma) exp( -gamma*( norm(X*X'-Y*Y','fro') )^2 );
@@ -12,7 +12,7 @@ est_labels  = zeros(num_videos - 1);
 load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
 j=1;
-  for video_ts= 1: n_videos
+  for video_ts= 1: num_videos
       action_name = action_seq_names(video_ts,1);
       folder_n    = action_seq_names(video_ts,2);
       act_ts  =  str2double( action_seq_names(video_tr,3) );
