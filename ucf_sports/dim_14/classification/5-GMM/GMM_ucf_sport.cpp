@@ -154,6 +154,14 @@ train_ucf(int N_cent, int dim, int sc)
 	
       }
       
+      for (int act=0; act<n_actions; ++act)
+      {
+	mat uni_features;
+	uni_features = field_all_actions(act);
+	field_all_actions(act).reset();
+	cout << "Final r&c "<<  uni_features.n_rows << " & " << uni_features.n_cols << endl;
+	
+      }
       
       
 
