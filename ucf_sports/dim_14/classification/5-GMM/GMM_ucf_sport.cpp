@@ -49,7 +49,7 @@ get_loglikelihoods(mat &mat_features, int run, int N_cent, int dim);
 int
 main(int argc, char** argv)
 {
-  
+  actions.load( actionNames ); 
   int dim = 14; 
   int sc =1;
   
@@ -119,7 +119,7 @@ inline
 void
 train_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc)
 {
-  actions.load( actionNames ); 
+  
   
   int scale_factor =1;
   int shift = 0;
