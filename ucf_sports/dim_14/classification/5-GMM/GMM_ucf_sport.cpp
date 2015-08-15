@@ -76,8 +76,8 @@ main(int argc, char** argv)
 	std::ostringstream ss_action;
 	ss_action << act;
 	
-	cout << actions(act) << "_" << list_folders(i) << endl;
-	getchar();
+	//cout << actions(act) << "_" << list_folders(i) << endl;
+	//getchar();
 	action_seq_names(k,0) = actions(act); //Action
 	action_seq_names(k,1) = list_folders(i); //Video Sequence
 	action_seq_names(k,2) = ss_action.str();; //Action index
