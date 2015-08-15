@@ -100,7 +100,7 @@ j=1;
           
           name_load_FV = strcat( load_sub_path, '/FV_', action_name, '_', folder_n, '_Ng', Ng, '.txt');
           one_FV = load( char( name_load_FV ) );
-          X_test(:,j) = one_FV;
+          X_test = one_FV;
           [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_test', model, ['-b 1']);
           predicted_label
           j
