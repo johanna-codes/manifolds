@@ -174,7 +174,7 @@ test_kth(int N_cent, int dim, int sc, int scale_factor, int shift )
       mat mat_features_video_i;  
       std::stringstream load_folder;
       std::stringstream load_feat_video_i;	  
-      load_folder << path << "dim_" << dim <<"/features/kth-features_dim" << dim <<  "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+      load_folder << path << "dim_" << dim <<"/features/kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
       load_feat_video_i << load_folder.str() << "/" << all_people (pe_ts) << "_" << actions(act) << "_dim" << dim  << ".h5";
       mat_features_video_i.load( load_feat_video_i.str(), hdf5_binary );
       
