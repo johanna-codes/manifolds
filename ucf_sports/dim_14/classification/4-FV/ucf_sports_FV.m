@@ -91,7 +91,7 @@ j=1;
   for video_ts= 1: num_videos
       action_name = action_seq_names(video_ts,1);
       folder_n    = action_seq_names(video_ts,2);
-      act_ts  =  str2double( action_seq_names(video_tr,3) );
+      act_ts  =  str2double( action_seq_names(video_ts,3) );
       
       if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
           load_svm_model =  strcat( './svm_models/run_video', int2str(video_ts), '.mat');
