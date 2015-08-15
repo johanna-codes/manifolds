@@ -90,7 +90,7 @@ for i=1:length(vec_shift)
     
     
     load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
-    show_you = strcat('Testing video ', int2str(shift) );
+    show_you = strcat('Testing shift ', int2str(shift) );
     disp(show_you);
     j=1;
     for video_ts= 1: num_videos
