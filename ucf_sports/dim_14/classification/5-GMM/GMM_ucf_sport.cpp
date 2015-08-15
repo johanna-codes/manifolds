@@ -158,7 +158,7 @@ train_ucf(int N_cent, int dim, int sc)
 	features_action_i = field_all_actions(act);
 	field_all_actions(act).reset();
 	cout << "Final r&c "<<  features_action_i.n_rows << " & " << features_action_i.n_cols << endl;
-	get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act )
+	get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act );
       }
       
     getchar();
