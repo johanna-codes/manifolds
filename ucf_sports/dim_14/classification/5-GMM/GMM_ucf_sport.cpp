@@ -55,9 +55,10 @@ main(int argc, char** argv)
   
   int N_cent = 256; // as per Improved Trajectories Features
   
-    int k=0;
+  int k=0;
   field <std::string> action_seq_names (150-1,3);  ///From the dataset description (150)
-  
+  int n_actions = actions.n_rows;
+
   
   //Creating list with all videos
   for (int act=0; act<n_actions; ++act)
