@@ -81,8 +81,8 @@ num_videos = 150; %From the dataset description (150).
 scale_factor = 1;
 shift = 0;
 acc = 0;
-real_labels = zeros(num_videos - 1);%Problem with Run-Side_001_dim14
-est_labels  = zeros(num_videos - 1);
+real_labels = zeros(num_videos - 1,1);%Problem with Run-Side_001_dim14
+est_labels  = zeros(num_videos - 1,1);
   
 
 load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
