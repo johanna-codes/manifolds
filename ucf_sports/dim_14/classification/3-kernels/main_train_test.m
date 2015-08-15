@@ -74,8 +74,8 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %% Kernel LED-Poly. TODO: Run in NICTA
 
  display('Training svm + Kernel LED-POLY');
- %n=1:dim;
- n=1:20;
+ n=1:dim;
+ %n=1:20;
 
  for i=1:length(n)
      in_n = n(i);
