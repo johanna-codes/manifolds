@@ -142,9 +142,11 @@ train_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc)
 	
 	if (test_i!=train_i)
 	{
-	  //cout << action_name << "_" << folder_n << " ";
+	  cout << load_folder.str()  << endl;
+	  cout << action_name << "_" << folder_n << " ";
 	  std::stringstream load_feat_video_i;
 	  load_feat_video_i   << load_folder.str() << "/"     << action_name << "_" << folder_n << "_dim" << dim  << ".h5";
+	  getchar();
 
 	  mat mat_features_video_i;
 	  mat_features_video_i.load( load_feat_video_i.str() , hdf5_binary );
