@@ -79,7 +79,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
  for i=1:length(n)
      in_n = n(i);
-     X = sprintf('n = %d ', in_n);
+     sprintf('n = %d ', in_n)
      acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
      %ACC_train(i,:) = acc;
  end
