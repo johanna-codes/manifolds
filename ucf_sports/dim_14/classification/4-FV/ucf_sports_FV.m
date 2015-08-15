@@ -24,12 +24,12 @@ num_videos = 150; %From the dataset description (150).
 
 %% Get FV. Run Just once. Run all shifts when features are ready
 
-scale_factor = 1;
-for i=1:length(vec_shift)
-    show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
-    disp(show_you);
-    FV_ucf_sports_all_videos( path, Ncent, dim, scale_factor, vec_shift(i), num_videos, action_seq_names );
-end
+% scale_factor = 1;
+% for i=1:length(vec_shift)
+%     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
+%     disp(show_you);
+%     FV_ucf_sports_all_videos( path, Ncent, dim, scale_factor, vec_shift(i), num_videos, action_seq_names );
+% end
 
 %% Training
 % scale_factor = 1;
@@ -90,15 +90,15 @@ for i=1:length(vec_shift)
     
     
     load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
-    
+    show_you = strcat('Testing video ', int2str(shift) );
+    disp(show_you);
     j=1;
     for video_ts= 1: num_videos
         
         action_name = action_seq_names(video_ts,1);
         folder_n    = action_seq_names(video_ts,2);
         act_ts  =  str2double( action_seq_names(video_ts,3) );
-        show_you = strcat('Getting FVs video', video_ts );
-        disp(show_you);
+        
         
         if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
             load_svm_model =  strcat( './svm_models/run_video', int2str(video_ts), '.mat');
