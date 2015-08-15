@@ -148,7 +148,7 @@ train_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc)
 	  //cout << action_name << "_" << folder_n << " ";
 	  std::stringstream load_feat_video_i;
 	  load_feat_video_i   << load_folder.str() << "/"     << action_name << "_" << folder_n << "_dim" << dim  << ".h5";
-	  getchar();
+	  //getchar();
 
 	  mat mat_features_video_i;
 	  mat_features_video_i.load( load_feat_video_i.str() , hdf5_binary );
@@ -163,7 +163,7 @@ train_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc)
 	features_action_i = field_all_actions(act);
 	field_all_actions(act).reset();
 	cout << "Final r&c "<<  features_action_i.n_rows << " & " << features_action_i.n_cols << endl;
-	getchar();
+	//getchar();
 	get_gmm (features_action_i, N_cent,  dim,  test_i,  act );
       }
 
