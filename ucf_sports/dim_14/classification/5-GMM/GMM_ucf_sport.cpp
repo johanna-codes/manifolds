@@ -36,7 +36,7 @@ test_ucf(int N_cent, int dim, int sc, int scale_factor, int shift );
 
 inline 
 void
-get_gmm (mat& features_action_i, int N_cent, int dim, int pe_ts,  int act);
+get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act );
 
 inline
 vec
@@ -141,7 +141,7 @@ train_ucf(int N_cent, int dim, int sc)
 	
 	if (test_i!=train_i)
 	{
-	  cout << action_name << "_" << folder_n << " ";
+	  //cout << action_name << "_" << folder_n << " ";
 	  std::stringstream load_feat_video_i;
 	  load_feat_video_i   << load_folder.str() << "/"     << action_name << "_" << folder_n << "_dim" << dim  << ".h5";
 
@@ -149,48 +149,92 @@ train_ucf(int N_cent, int dim, int sc)
 	  mat_features_video_i.load( load_feat_video_i.str() , hdf5_binary );
 	  
 	  field_all_actions(index_act)  =join_rows( field_all_actions(index_act), mat_features_video_i);	  
-	  
 	}
-	
       }
       
       for (int act=0; act<n_actions; ++act)
       {
-	mat uni_features;
-	uni_features = field_all_actions(act);
+	mat features_action_i;
+	features_action_i = field_all_actions(act);
 	field_all_actions(act).reset();
-	cout << "Final r&c "<<  uni_features.n_rows << " & " << uni_features.n_cols << endl;
-	
+	cout << "Final r&c "<<  features_action_i.n_rows << " & " << features_action_i.n_cols << endl;
+	get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act )
       }
       
-      
-
     getchar();
   }
   
-/*  
-  //borra lo de abajo
+}
+
+// **************************GMM*******************************
+
+inline 
+void
+get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act )
+{
   
-  std::string action_name = action_seq_names(test_i,0);   
-  std::string folder_n    = action_seq_names(test_i,1);
-  int act  = atoi( action_seq_names(test_i,2).c_str() );
+  bool is_finite = features_action_i.is_finite();
   
-  
+  if (!is_finite )
   {
+    cout << "is_finite?? " << is_finite << endl;
+    cout << features_action_i.n_rows << " " << features_action_i.n_cols << endl;
+    getchar();
+  }
+  
+  
+  cout << "universal GMM" << endl;
+  gmm_diag gmm_model;
+  gmm_diag bg_model;
+  
+  
+  
+  bool status_em = false;
+  int rep_em=0;
+  
+  
+  int km_iter = 10;
+  int em_iter  = 5;
+  double var_floor = 1e-10;
+  bool print_mode = true;
+  
+  
+  
+  
+  while (!status_em)
+  {
+    bool status_kmeans = false;
+    //int rep_km = 0;
     
-    for (int act=0; act<n_actions; ++act)
+    while (!status_kmeans)
     {
-      std::stringstream load_feat_video_i;
+      arma_rng::set_seed_random();
       
-      
-      load_feat_video_i   << load_folder.str() << "/"     << action_name  << "_" << folder_n << "_dim" << dim  << ".h5";
-      
+      status_kmeans = gmm_model.learn(features_action_i, N_cent, eucl_dist, random_subset, km_iter, 0, var_floor, print_mode);   //Only Kmeans
+      bg_model = gmm_model;
+      //rep_km++;
     }
     
     
+    status_em = gmm_model.learn(features_action_i, N_cent, eucl_dist, keep_existing, 0, em_iter, var_floor, print_mode);   
+    rep_em++;
+    
+    if (rep_em==9)
+    {
+      status_em = true;
+      gmm_model = bg_model;
+      
+    }
+    
   }
   
-}*/
-
-
+  
+  cout <<"EM was repeated " << rep_em << endl;
+  
+  std::stringstream tmp_ss5;
+  tmp_ss5 << "./GMM_models/run" << test_i << "_" << actions(act) <<  "_GMM_Ng" << N_cent << "_dim" <<dim; 
+  cout << "Saving GMM in " << tmp_ss5.str() << endl;
+  gmm_model.save( tmp_ss5.str() );
+  cout << endl;
+  
 }
