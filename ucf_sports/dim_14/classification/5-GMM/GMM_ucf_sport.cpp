@@ -135,8 +135,8 @@ train_ucf(int N_cent, int dim, int sc)
 
       for (int train_i = 0; train_i< action_seq_names.n_rows; ++train_i)
       {
-	std::string action_name = action_seq_names(test_i,0);   
-	std::string folder_n    = action_seq_names(test_i,1);
+	std::string action_name = action_seq_names(train_i,0);   
+	std::string folder_n    = action_seq_names(train_i,1);
 	int index_act  = atoi( action_seq_names(test_i,2).c_str() );
 	
 	if (test_i!=train_i)
