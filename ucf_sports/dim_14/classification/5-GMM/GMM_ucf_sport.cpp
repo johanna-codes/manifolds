@@ -315,7 +315,7 @@ get_loglikelihoods(mat &mat_features, int run, int N_cent, int dim)
     gmm_diag gmm_model;
     
     std::stringstream tmp_ss5;
-    tmp_ss5 << "./GMM_models/run" << test_i << "_" << actions(act) <<  "_GMM_Ng" << N_cent << "_dim" <<dim;    //cout << "Loading GMM in " << tmp_ss5.str() << endl;
+    tmp_ss5 << "./GMM_models/run" << run << "_" << actions(act_tr) <<  "_GMM_Ng" << N_cent << "_dim" <<dim;    //cout << "Loading GMM in " << tmp_ss5.str() << endl;
     gmm_model.load( tmp_ss5.str() );
     
     likelihood_actions (act_tr) = gmm_model.avg_log_p(mat_features);
