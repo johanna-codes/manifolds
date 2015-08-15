@@ -46,13 +46,13 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %% Kernel LED-RBF. Running in NICTA
 
-display('Training svm + Kernel LED-RBF');
-delta = -10:1:9;
-ACC_train = zeros(length(delta),num_videos -1);
-for i=1:length(delta)
-    acc = LED_RBF_train(path, action_seq_names, dim, delta(i), num_videos );
-    ACC_train(i,:) = acc;
-end
+% display('Training svm + Kernel LED-RBF');
+% delta = -10:1:9;
+% ACC_train = zeros(length(delta),num_videos -1);
+% for i=1:length(delta)
+%     acc = LED_RBF_train(path, action_seq_names, dim, delta(i), num_videos );
+%     ACC_train(i,:) = acc;
+% end
 
 display('Testing svm + Kernel LED-RBF');
 delta = -10:1:9;
