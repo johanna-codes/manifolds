@@ -36,7 +36,7 @@ void
 train_kth(int N_cent,  int dim, int sc);
 
 inline
-void
+float
 test_kth(int N_cent, int dim, int sc, int scale_factor, int shift );
 
 
