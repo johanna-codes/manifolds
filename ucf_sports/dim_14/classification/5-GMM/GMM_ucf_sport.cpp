@@ -271,7 +271,7 @@ test_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc, int 
   {
     std::string action_name = action_seq_names(test_i,0);   
     std::string folder_n    = action_seq_names(test_i,1);
-    int index_act  = atoi( action_seq_names(test_i,2).c_str() );
+    int act  = atoi( action_seq_names(test_i,2).c_str() );
     
      std::stringstream load_feat_video_i;
      load_feat_video_i   << load_folder.str() << "/"     << action_name << "_" << folder_n << "_dim" << dim  << ".h5";
@@ -285,7 +285,7 @@ test_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc, int 
       uword est_label_video_i;
       likelihood_actions.max(est_label_video_i);
       
-      real_labels(k)= index_act;
+      real_labels(k)= act;
       est_labels(k) = est_label_video_i;
       ++k;
       
