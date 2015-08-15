@@ -60,8 +60,11 @@ test_acc = zeros(length(delta),1);
 scale = 1;
 shift = 0;
 
-parfor i=1:length(delta)
-    acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, delta(i), num_videos);
+for i=1:length(delta)
+    in_delta = delta(i);
+    X = sprintf('delta = %d ', in_delta);
+    disp(delta(i));
+    acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, in_delta, num_videos);
     test_acc(i) = acc;
 end
 
