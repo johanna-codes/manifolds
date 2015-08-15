@@ -65,11 +65,22 @@ main(int argc, char** argv)
   //Train the mode
   //train_kth( N_cent, dim, sc);
   
-  
   //Test
+  vec vec_shift;  
+  vec all_acc;
+  all_acc.zeros(vec_shift.n_elem);
+  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+  
+  for (int i=0; i<vec_shift.n_elem; ++i)
+  {
   int scale_factor =1;
-  int shift = 0;
-  test_kth( N_cent, dim, sc, scale_factor, shift );
+  int shift = vec_shift(i);
+  all_acc(i) = test_kth( N_cent, dim, sc, scale_factor, shift );
+  }
+  
+  vec_shift.t().print();
+  all_acc.t().print();
+  
   
   return 0;
 }
@@ -132,7 +143,7 @@ train_kth(int N_cent, int dim, int sc)
 //*************************************************************
 //***************************Test******************************
 inline
-void
+float
 test_kth(int N_cent, int dim, int sc, int scale_factor, int shift )
 {
   all_people.load(peopleList);
@@ -179,16 +190,16 @@ test_kth(int N_cent, int dim, int sc, int scale_factor, int shift )
       {
 	acc++;  
       }
-      cout << "Real label is " <<  act << " and it was classified as " << est_label_video_i << endl;
+      //cout << "Real label is " <<  act << " and it was classified as " << est_label_video_i << endl;
     }
     
     //cout << "Kill it" << endl;
     //getchar();  
   }
   
-  cout << "Performance: " << acc*100/n_test << " %" << endl;
+  cout << "Performance for shift: " << shift << " = " << acc*100/n_test << " %" << endl;
   
-  
+  return acc*100/n_test;
   
 }
 
@@ -279,7 +290,7 @@ get_loglikelihoods(mat &mat_features, int run, int N_cent, int dim)
     
     std::stringstream tmp_ss5;
     tmp_ss5 << "./GMM_models/run" << run << "_" << actions(act_tr) <<  "_GMM_Ng" << N_cent << "_dim" <<dim << "_sc1" ; 
-    cout << "Loading GMM in " << tmp_ss5.str() << endl;
+    //cout << "Loading GMM in " << tmp_ss5.str() << endl;
     gmm_model.load( tmp_ss5.str() );
     
     
