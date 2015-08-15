@@ -68,9 +68,10 @@ main(int argc, char** argv)
   //Test
   vec vec_shift;  
   vec all_acc;
-  all_acc.zeros(vec_shift.n_elem);
+ 
   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
-  
+   all_acc.zeros(vec_shift.n_elem);
+   
   for (int i=0; i<vec_shift.n_elem; ++i)
   {
   int scale_factor =1;
