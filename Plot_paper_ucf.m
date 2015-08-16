@@ -30,7 +30,7 @@ print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v2/images/experiments_ucf/PM_uc
 %% Kernels: LED_POLY: KTH
 figure
 
-led_poly = [14.7651   14.7651   14.7651   14.7651   14.7651   14.7651   23.4899   41.6107   43.6242   63.0872   71.1409   74.4966  79.1946   72.4832   56.3758   42.2819   26.1745   18.1208   16.1074   14.7651];
+led_poly = [  ];
 
 plot(led_poly, '-md','LineWidth',3,'MarkerSize',3)
 title('UCF-sports','FontSize',20);
