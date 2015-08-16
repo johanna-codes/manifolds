@@ -44,7 +44,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %    save_results =strcat( 'LogEucl_all_sigma_performance.mat');
 %    save(save_results, 'test_acc', 'sigma', 'dim', 'scale', 'shift');
 
-%% Kernel LED-RBF. Running in NICTA
+%% Kernel LED-RBF. Running in NICTA: Done
 
 % display('Training svm + Kernel LED-RBF');
 % delta = -10:1:9;
@@ -156,7 +156,7 @@ save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
 
 
 
-%% Projection Kernel: Poly TODO!!!!!!!!!! Crear scrpits y correr en Wanda
+%% Projection Kernel: Poly TODO!!!!!!!!!! Crear scrpits y correr en Wanda. No hacer todavia
 %  display('Training svm + Projection Poly Kernel ');
 %  dim = 14;
 %  p = 1:14;
