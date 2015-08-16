@@ -18,7 +18,8 @@ j=1;
       act_ts  =  str2double( action_seq_names(video_ts,3) );
       
       if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-          load_svm_model = strcat( './svm_models_ProjectionRBF/projRBF_run_', int2str(video_ts), '_n', num2str(n),'.mat');
+          load_svm_model = strcat( './svm_models_ProjectionRBF/projRBF_run_', int2str(video_ts), '_p', p, '_delta', num2str(delta),'.mat');
+        
           load(load_svm_model); %loading model and X_train
       
           real_labels(j) = act_ts;
@@ -40,7 +41,7 @@ j=1;
 
       end
       
-     save_labels = strcat('./svm_results_ProjRBF/ProjRBF_scale', int2str(scale_factor), '-shift', int2str(shift),'-n',num2str(n),'.mat' );     
+     save_labels = strcat('./svm_results_ProjRBF/ProjRBF_scale', int2str(scale_factor), '-shift', int2str(shift),'-p',num2str(p), '_delta', num2str(delta), '.mat' );     
      save(save_labels, 'est_labels', 'real_labels', 'sigma');
   
   end
