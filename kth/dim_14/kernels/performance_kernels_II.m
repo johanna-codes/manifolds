@@ -64,6 +64,7 @@ set(gca,'FontSize',20);
 %% LED-POLY Kernel
 figure
 load('LED_POLY_all_n_performance.mat')
+led_poly = test_acc;
 max_ledPOLY= max(test_acc);
 plot(test_acc, '-bd','LineWidth',3,'MarkerSize',3)
 ylabel('(%)','FontSize',20)

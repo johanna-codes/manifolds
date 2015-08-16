@@ -176,7 +176,7 @@ test_kth(int N_cent, int dim, int sc, int scale_factor, int shift )
       std::stringstream load_feat_video_i;	  
       load_folder << path << "dim_" << dim <<"/features/kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
       load_feat_video_i << load_folder.str() << "/" << all_people (pe_ts) << "_" << actions(act) << "_dim" << dim  << ".h5";
-      mat_features_video_i.load( load_feat_video_i.str(), hdf5_binary );
+      mat_features_video_i.load( load_feat_video_i.str( ), hdf5_binary );
       
       vec likelihood_actions =  get_loglikelihoods( mat_features_video_i, pe_ts, N_cent, dim);
       
@@ -193,9 +193,7 @@ test_kth(int N_cent, int dim, int sc, int scale_factor, int shift )
       }
       //cout << "Real label is " <<  act << " and it was classified as " << est_label_video_i << endl;
     }
-    
-    //cout << "Kill it" << endl;
-    //getchar();  
+
   }
   
   cout << "Performance for shift: " << shift << " = " << acc*100/n_test << " %" << endl;

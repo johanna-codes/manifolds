@@ -90,9 +90,9 @@ for i=1:length(vec_shift)
             
             name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng, '.txt');
             one_FV = load( char( name_load_FV ) );
-            X_train(:,1) = one_FV;
+            X_test(:,1) = one_FV;
             
-            [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_train', model, ['-b 1']);
+            [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_test', model, ['-b 1']);
             %predicted_label
             est_labels(j) = predicted_label;
             j=j+1;

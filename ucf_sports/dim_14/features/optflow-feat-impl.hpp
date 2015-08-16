@@ -19,7 +19,7 @@ opt_feat::features_all_videos( )
 {
   int n_actions = actions.n_rows;
   
-  field <std::string> load_save_names (150,3);  ///From the sataset description
+  field <std::string> load_save_names (150,3);  ///From the dataset description
   int k =0;
   
 
@@ -66,7 +66,6 @@ opt_feat::features_all_videos( )
   omp_set_num_threads(1); //Use only 1 processors
   
   #pragma omp parallel for 
-  
   for (int i = 0; i<load_save_names.n_rows; ++i)
   {
     
@@ -168,15 +167,10 @@ opt_feat::feature_video( std::string folder_path, Struct_feat_lab &my_Struct_fea
     
     int row = frame.rows;
     int col = frame.cols;
-    
-    
-    
-    
+
     int new_row = row;
     int new_col = col;
   
-    
-    
     if (shift!=0)
     {
       int shif_x = floor(col*shift/100);
@@ -185,24 +179,15 @@ opt_feat::feature_video( std::string folder_path, Struct_feat_lab &my_Struct_fea
       
     }
     
-    
       if (scale_factor!=1)
       {
 	new_row = row*scale_factor;
 	new_col = col*scale_factor;
 	cv::resize( frame, frame, cv::Size(new_row, new_col) );
-	
       }
     
-    
-    
-    
-    
-    
     cv::cvtColor(frame, gray, CV_BGR2GRAY);
-    
-    
-    
+
     if( prevgray.data )
     {
       //cout << t << " " ;
@@ -351,32 +336,22 @@ opt_feat::feature_video( std::string folder_path, Struct_feat_lab &my_Struct_fea
    
     //cv::imshow("color", frame);
     //cv::waitKey(1);
-    
-    
   }
-  
-  
 }
-
 
 inline 
 cv::Mat
 opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
 {
   
-  
   cv::Mat img_out;
-  
-  
   cv::Mat rot_mat = (cv::Mat_<double>(2,3) << 1, 0, num_pixels_x, 0, 1, num_pixels_y);
   warpAffine( src_in, img_out, rot_mat, src_in.size() );
   
   if (num_pixels_x>0) //Move right
   {   
-    
     cv::Mat col = src_in.col(0);
     cv::Mat row = src_in.row(0);
-    
     
     for (int i=0; i<abs(num_pixels_x); ++i)
     {
@@ -393,7 +368,6 @@ opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
   
   if (num_pixels_x<0) //Move right
   {   
-    
     int w = src_in.size().width;
     int h = src_in.size().height;
     cv::Mat col = src_in.col(w-1);
@@ -411,7 +385,6 @@ opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
       row.row(0).copyTo(img_out.row(i));
     }
   }
-  
 
   return img_out;
 }
