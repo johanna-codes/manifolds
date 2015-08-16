@@ -116,12 +116,13 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
  for j=1:length(p)
      in_p = p(j);
-     X = sprintf('p = %d ', in_p);
-     disp(X);
+     %X = sprintf('p = %d ', in_p);
+     %disp(X);
 
  for i=1:length(delta)
      in_delta = delta(i);
-     X = sprintf('delta = %d ', in_delta);
+     X = sprintf('p= %d and delta = %d ', in_p, in_delta);
+     disp(X);
     acc = ProjectionRBF_train(path, action_seq_names, in_delta, dim, in_p, num_videos);
     ACC_train(i,:) = acc;
  end
@@ -139,10 +140,13 @@ all_p = cell(length(p),1);
 scale = 1;
 shift = 0;
 for j=1:length(p)
-    in_p = p(j)
-parfor i=1:length(delta )
-   acc = ProjectionRBF_test(path, action_seq_names, scale, shift, delta (i), dim, in_p, num_videos);
-   test_acc(i) = acc;
+    in_p = p(j);
+for i=1:length(delta )   
+    in_delta = delta(i);
+    X = sprintf('p= %d and delta = %d ', in_p, in_delta);
+    disp(X);
+    acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
+    test_acc(i) = acc;
 end
 all_p{j} = test_acc;
 end
