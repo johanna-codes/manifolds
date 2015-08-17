@@ -25,7 +25,7 @@ xlim([0 15])
 
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v2/images/experiments_ucf/PM_ucf','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v2/images/experiments_ucf/PM_ucf','-dpng','-r300');
 
 %% Kernels: LED_POLY: KTH
 figure
@@ -39,7 +39,7 @@ ylabel('(%)','FontSize',20)
 xlabel('D','FontSize',20)
 set(gca,'FontSize',20);
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v2/images/experiments_ucf/LED-POLY_ucf','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v2/images/experiments_ucf/LED-POLY_ucf','-dpng','-r300');
 
 
 
