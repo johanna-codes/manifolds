@@ -6,6 +6,8 @@
 #include <armadillo>
 #include <iomanip>
 #include <vector>
+#include <hdf5.h>
+
 
 using namespace std;
 using namespace arma;
