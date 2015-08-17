@@ -105,6 +105,7 @@ opt_feat::features_all_videos( field<string> all_people )
     #pragma omp critical
     {
     mat_features_video_i.save( save_feat_video_i, hdf5_binary );
+    cout << save_labels_video_i << endl;
     lab_video_i.save( save_labels_video_i, hdf5_binary );
     }
   }
