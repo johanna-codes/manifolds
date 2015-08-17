@@ -99,12 +99,10 @@ main(int argc, char** argv)
   
   for (int i=0; i< vec_shift.n_elem; ++i)
   {
-    
     int shift = vec_shift(i);
     cout << "Shift: " << shift << endl;
     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-    vec_pm_shifts(p-1) = kth_CV_omp_onesegment.proj_grass(p);
-    
+    vec_pm_shifts(p-1) = kth_CV_omp_onesegment.proj_grass(p);    
   }
   
   vec_pm_shifts.t().print();
