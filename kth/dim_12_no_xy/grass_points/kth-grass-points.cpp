@@ -51,7 +51,7 @@ main(int argc, char** argv)
     
     
     
-    cout << "Gp for shift " << shift << " &  p= " << p << endl;
+    cout << "Gp for shift " << shift << " &  p= " << best_p << endl;
     
     
     field<string> all_people;
