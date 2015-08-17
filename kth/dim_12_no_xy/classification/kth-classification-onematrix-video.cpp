@@ -50,15 +50,17 @@ int
 main(int argc, char** argv)
 {
   
-   if(argc < 3 )
-  {
-    cout << "usage: " << argv[0] << " scale_factor " << " shift_factor " << endl;
-    return -1;
-  }
-  
-  
-  int scale_factor = atoi( argv[1] );
-  int shift = atoi( argv[2] );
+//    if(argc < 3 )
+//   {
+//     cout << "usage: " << argv[0] << " scale_factor " << " shift_factor " << endl;
+//     return -1;
+//   }
+//   
+//   
+//   int scale_factor = atoi( argv[1] );
+//   int shift = atoi( argv[2] );
+
+
   int total_scenes = 1; //Only for Scenario 1.
   int dim = 12; 
   
@@ -74,19 +76,38 @@ main(int argc, char** argv)
 
    
     
-  vec vec_bc = zeros(dim);
-  vec vec_pm = zeros(dim);
+//   vec vec_bc = zeros(dim);
+//   vec vec_pm = zeros(dim);
+//   
+//   for (int p=1; p<= dim; ++p)
+//   {
+//     cout << "p= " << p << endl;
+//     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+//     vec_pm(p-1) = kth_CV_omp_onesegment.proj_grass(p);
+//     vec_bc(p-1) = kth_CV_omp_onesegment.BC_grass(p);
+//   }
+//   
+//   vec_pm.t().print("Projection Metric");
+//   vec_bc.t().print("Binet-Cauchy");
   
-  for (int p=1; p<= dim; ++p)
+    int best_p = 7;
+  int scale_factor = 1;
+  
+  vec_shift << -25 << -20 << -15 << -10 << -5 << 5 << 10 << 15 << 20 << 25 << endr;
+  
+  vec vec_pm_shifts = zeros(vec_shift.n_elem);
+  
+  for (int i=0; i< vec_shift.n_elem; ++i)
   {
-    cout << "p= " << p << endl;
+    
+    int shift = vec_shift(i);
+    cout << "Shift: " << shift << endl;
     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-    vec_pm(p-1) = kth_CV_omp_onesegment.proj_grass(p);
-    vec_bc(p-1) = kth_CV_omp_onesegment.BC_grass(p);
+    vec_pm_shifts(p-1) = kth_CV_omp_onesegment.proj_grass(p);
+    
   }
   
-  vec_pm.t().print("Projection Metric");
-  vec_bc.t().print("Binet-Cauchy");
+  vec_pm_shifts.t().print();
   
   
   
