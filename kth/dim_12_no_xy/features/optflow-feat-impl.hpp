@@ -59,14 +59,14 @@ opt_feat::features_all_videos( field<string> all_people )
   timer.tic();
   omp_set_num_threads(1); //Use only 8 processors
   
-  #pragma omp parallel for 
+  //#pragma omp parallel for 
   for (int i = 0; i<load_save_names.n_rows; ++i)
   {
     
     std::string one_video = load_save_names(i,0);
     int tid=omp_get_thread_num();
     
-    #pragma omp critical
+    //#pragma omp critical
     cout<< "Processor " << tid <<" doing "<< one_video << endl;
     
     
@@ -102,7 +102,7 @@ opt_feat::features_all_videos( field<string> all_people )
     std::string save_feat_video_i   = load_save_names(i,1);
     std::string save_labels_video_i = load_save_names(i,2);
     
-    #pragma omp critical
+    //#pragma omp critical
     {
     mat_features_video_i.save( save_feat_video_i, hdf5_binary );
     cout << save_labels_video_i << endl;
