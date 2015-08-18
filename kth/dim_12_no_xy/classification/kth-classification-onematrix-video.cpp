@@ -30,16 +30,12 @@
 //const std::string path = "/media/johanna/HD1T/codes/datasets_codes/KTH/"; 
 
 //WANDA
-const std::string path  = "/home/johanna/codes/codes-git/study-paper/trunk/dim_12_no_xy/";
+const std::string path  = "/home/johanna/codes/codes-git/manifolds/trunk/kth/dim_12_no_xy/";
 
 
 
 const std::string peopleList = "people_list.txt";
 const std::string  actionNames = "actionNames.txt";
-
-///kth
-// int ori_col = 160;
-// int ori_row = 120;
 
 
 
