@@ -88,24 +88,26 @@ main(int argc, char** argv)
   
   
   //**********Train the mode**********************
-  train_ucf( action_seq_names, N_cent, dim, sc);
+  //train_ucf( action_seq_names, N_cent, dim, sc);
   
-  //   //Test
-  //   vec vec_shift;  
-  //   vec all_acc;
-  //  
-  //   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
-  //    all_acc.zeros(vec_shift.n_elem);
-  //    
-  //   for (int i=0; i<vec_shift.n_elem; ++i)
-  //   {
-  //   int scale_factor =1;
-  //   int shift = vec_shift(i);
-  //   all_acc(i) = test_ucf( N_cent, dim, sc, scale_factor, shift );
-  //   }
-  //   
-  //   vec_shift.t().print();
-  //   all_acc.t().print();
+     //Test
+     cout << "Testing GMM for UCF_SPORTS" << endl; 
+     vec vec_shift;  
+     vec all_acc;
+    
+     vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+      all_acc.zeros(vec_shift.n_elem);
+      
+     for (int i=0; i<vec_shift.n_elem; ++i)
+     {
+       int scale_factor =1;
+       int shift = vec_shift(i);
+       all_acc(i) = test_ucf( N_cent, dim, sc, scale_factor, shift );
+       
+    }
+     
+     vec_shift.t().print();
+     all_acc.t().print();
   
   
   return 0;
