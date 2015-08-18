@@ -85,7 +85,7 @@ inline
 void
 grass_points::one_video_one_point( std::string load_feat_video_i, int sc, int pe, int act )
 {
-  cout << load_feat_video_i << endl;
+  //cout << load_feat_video_i << endl;
   mat mat_features_video_i;
   
   mat_features_video_i.load( load_feat_video_i, hdf5_binary );
