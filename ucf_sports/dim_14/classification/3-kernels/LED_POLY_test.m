@@ -5,8 +5,8 @@ RIEMANNIAN_KERNEL = @(X,Y,gamma) ( gamma*( trace(logm(X)'*logm(Y)) ) )^n;
 
 
 acc = 0;
-real_labels = zeros(num_videos - 1);%Problem with Run-Side_001_dim14
-est_labels  = zeros(num_videos - 1);
+real_labels = zeros(n_videos - 1);%Problem with Run-Side_001_dim14
+est_labels  = zeros(n_videos - 1);
   
 
 load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
