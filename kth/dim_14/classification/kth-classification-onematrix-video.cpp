@@ -93,6 +93,7 @@ main(int argc, char** argv)
   int best_p = 7;
   int scale_factor = 1;
   
+  vec vec_shift;
   vec_shift << -25 << -20 << -15 << -10 << -5 << 5 << 10 << 15 << 20 << 25 << endr;
   
   vec vec_pm_shifts = zeros(vec_shift.n_elem);
