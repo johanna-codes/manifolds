@@ -78,7 +78,8 @@ set(gca,'FontSize',20);
 %print('/home/johanna/latex-svn/study-paper-reports/v5/images/ledPoly_ker_delta', '-dpng','-r300');
 
 %% ALL Best Perfomances
-close all
+%close all
+figure()
 all = [max_projRBF max_projPoly max_LogEucl max_ledRBF max_ledPOLY];
 
 
