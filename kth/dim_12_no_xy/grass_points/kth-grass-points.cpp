@@ -51,8 +51,6 @@ main(int argc, char** argv)
   {
     int shift = vec_shift(i);
     
-    
-    
     cout << "Gp for shift " << shift << " &  p= " << best_p << endl;
     
     
