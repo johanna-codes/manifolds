@@ -8,6 +8,8 @@ p14=1:14;
 p12=1:12;
 
 PM_dim14 = [37.3333   40.6667   36.6667   38.0000   38.6667   41.3333   67.3333   60.6667   62.6667   55.3333   67.3333   54.6667   52.0000   18.0000];
+
+%Bug: Incorrect see report
 PM_dim12 = [56.0000   53.0000   51.0000   54.0000   74.0000   93.0000   96.0000   88.0000   80.0000   91.0000   74.0000   19.0000];
 
 
@@ -27,7 +29,7 @@ xlim([0 15])
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v2/images/experiments_kth/PM_kth','-dpng','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/PM_kth', '-dpng','-r300');
+%print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/PM_kth', '-dpng','-r300');
 
 
 %% Kernels: LED_POLY: KTH
@@ -45,7 +47,7 @@ set(gca,'FontSize',20);
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v2/images/experiments_kth/LED-POLY_kth','-dpng','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/LED-POLY_kth','-dpng','-r300');
+%print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/LED-POLY_kth','-dpng','-r300');
 
 
 
@@ -98,7 +100,7 @@ legend( 'm=6', 'm=7', 'm=8', 'Location','northeast', 'orientation','horizontal')
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v2/images/experiments_kth/Proj-RBFY_kth','-dpng','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/Proj-RBF_kth','-dpng','-r300');
+%print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/Proj-RBF_kth','-dpng','-r300');
 
 
 

@@ -41,7 +41,8 @@ main(int argc, char** argv)
 {
   
   vec vec_shift;
-  vec_shift << -25 << -20 << -15 << -10 << -5 << 5 << 10 << 15 << 20 << 25 << endr;
+  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+
   int scale_factor =1;
   
   int total_scene = 1; 

@@ -7,8 +7,8 @@ close all
 %% One Grassmann Point per video. NN
 p=1:12;
 
-PM = [56.0000   53.0000   51.0000   54.0000   74.0000   93.0000   96.0000   88.0000   80.0000   91.0000   74.0000   19.0000];
-BC = [56.0000   53.0000   51.0000   54.0000   74.0000   93.0000   96.0000   88.0000   80.0000   91.0000   74.0000   31.0000];
+PM = [37.3333   35.3333   34.0000   36.0000   49.3333   62.0000   64.0000   58.6667   53.3333   60.6667   49.3333   12.6667];
+BC = [37.3333   35.3333   34.0000   36.0000   49.3333   62.0000   64.0000   58.6667   53.3333   60.6667   49.3333   20.6667];
 
 
 
@@ -22,7 +22,7 @@ xlabel('subspace order','FontSize',20)
 set(gca,'FontSize',20); 
 
 %Home
-%print('/media/johanna/HD1T/latex-svn/study-paper-report/v3/images/Grass_varying_p_NN_dim12_no_xy', '-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/study-paper-report/kth/v5/images/Grass_varying_p_NN_dim12_no_xy', '-dpng','-r300');
 
 %% One Grassmann Point per video. SVM (using distances)
  figure
@@ -42,7 +42,7 @@ m_bc = max(BC_svm);
  set(gca,'FontSize',20); 
 
 %Home
-%print('/media/johanna/HD1T/latex-svn/study-paper-report/v3/images/Grass_varying_p_SVM_dim12_no_xy', '-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/study-paper-report/kth/v5/images/Grass_varying_p_SVM_dim12_no_xy', '-dpng','-r300');
 
 %Nicta
 %print('/home/johanna/latex-svn/study-paper-reports/v5/images/Grass_varying_p_SVM_dim12_no_xy', '-dpng','-r300');
@@ -68,7 +68,7 @@ for i=1:length(h)
     end
 end
 
-ylim([0 109])
+ylim([0 90])
 set(gca,'XTickLabel',Xlabel,'FontSize',20);
 
 l{1}='ProjMet'; l{2}='BinCau';
@@ -77,9 +77,9 @@ legend(h,l);
 
 
 %Home
-%print('/media/johanna/HD1T/latex-svn/study-paper-report/v3/images/Grass_best_p_both_dim12_no_xy','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/study-paper-report/kth/v5/images/Grass_best_p_both_dim12_no_xy','-dpng','-r300');
 
 %Nicta
-print('/home/johanna/latex-svn/study-paper-reports/v5/images/Grass_best_p_both_dim12_no_xy', '-dpng','-r300');
+%print('/home/johanna/latex-svn/study-paper-reports/v5/images/Grass_best_p_both_dim12_no_xy', '-dpng','-r300');
 % 
 
