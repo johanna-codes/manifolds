@@ -39,7 +39,7 @@ j=1;
 
       end
       
-     save_labels = strcat('./svm_results/LED_POLY_scale', int2str(scale_factor), '-shift', int2str(shift),'-n',num2str(n),'.mat' );     
+     save_labels = strcat('./svm_results_LED_POLY/LED_POLY_scale', int2str(scale_factor), '-shift', int2str(shift),'-n',num2str(n),'.mat' );     
      save(save_labels, 'est_labels', 'real_labels', 'sigma');
   
   end
