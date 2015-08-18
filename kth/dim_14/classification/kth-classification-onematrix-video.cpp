@@ -96,18 +96,21 @@ main(int argc, char** argv)
   vec_shift << -25 << -20 << -15 << -10 << -5 << 5 << 10 << 15 << 20 << 25 << endr;
   
   vec vec_pm_shifts = zeros(vec_shift.n_elem);
+  vec vec_logEucl   = zeros(vec_shift.n_elem);
   
   for (int i=0; i< vec_shift.n_elem; ++i)
   {
     
     int shift = vec_shift(i);
     cout << "Shift: " << shift << endl;
-     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-     vec_pm_shifts(p-1) = kth_CV_omp_onesegment.proj_grass(p);
+    kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+    vec_pm_shifts(i) = kth_CV_omp_onesegment.proj_grass(best_p);
+    vec_logEucl(i) = kth_CV_omp_onesegment.logEucl();
     
   }
   
   vec_pm_shifts.t().print();
+  vec_logEucl.t().print();
   
   
   
