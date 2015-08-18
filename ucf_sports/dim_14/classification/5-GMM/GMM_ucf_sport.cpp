@@ -102,7 +102,7 @@ main(int argc, char** argv)
      {
        int scale_factor =1;
        int shift = vec_shift(i);
-       all_acc(i) = test_ucf( N_cent, dim, sc, scale_factor, shift );
+       all_acc(i) = test_ucf( action_seq_names, N_cent, dim, sc, scale_factor, shift );
        
     }
      
