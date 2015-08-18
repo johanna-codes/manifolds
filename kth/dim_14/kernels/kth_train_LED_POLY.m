@@ -42,6 +42,7 @@ for pe_ts= 1: n_peo
     disp(strcat('Doing for n= ', num2str(n)));
     K_train = compute_kernel_svm(X_train,X_train, RIEMANNIAN_KERNEL, gamma);
     disp('SVM');
+    find(isfinite(K_train )==0)
     model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
     %Borrame Funciona Bien
     %[predict_label, accuracy, dec_values] = svmpredict(labels_train,[[1:size(K_train,1)]' K_train], model);
