@@ -94,7 +94,7 @@ main(int argc, char** argv)
   int scale_factor = 1;
   
   vec vec_shift;
-  vec_shift << -25 << -20 << -15 << -10 << -5 << 5 << 10 << 15 << 20 << 25 << endr;
+  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
   
   vec vec_pm_shifts = zeros(vec_shift.n_elem);
   vec vec_logEucl   = zeros(vec_shift.n_elem);

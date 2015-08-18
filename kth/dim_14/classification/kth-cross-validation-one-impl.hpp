@@ -18,7 +18,7 @@ kth_cv_omp::kth_cv_omp(const std::string in_path,
 
 // Log-Euclidean Distance
 inline
-void
+float
 kth_cv_omp::logEucl()
 {
   
@@ -98,6 +98,8 @@ kth_cv_omp::logEucl()
   est_labels.save("./results_onesegment/Log_Eucl_est_labels.dat", raw_ascii);
   test_video_list.save("./results_onesegment/Log_Eucl_test_video_list.dat", raw_ascii);
   cout << "Performance: " << acc*100/n_test << " %" << endl;
+  
+  return acc*100/n_test;
   
 }
 

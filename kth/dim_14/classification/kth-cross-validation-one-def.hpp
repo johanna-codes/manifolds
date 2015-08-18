@@ -11,7 +11,7 @@ class kth_cv_omp //KTH Cross validation
 		const int in_scene, //only for kth
 		const int in_dim 
  		);
-    inline void logEucl();
+    inline float logEucl();
     inline void SteinDiv();
     inline float proj_grass(int p);
     inline float BC_grass(int p);
