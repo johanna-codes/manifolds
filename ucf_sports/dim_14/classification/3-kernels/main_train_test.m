@@ -95,7 +95,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
       in_n = n(i);
       X = sprintf('n = %d ', in_n);
       acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
-      test_acc(i) = acc;
+      test_acc(i) = acc
       %end
   end
 
