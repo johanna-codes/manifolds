@@ -30,5 +30,3 @@ vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
     
  end
  
- %save_results =strcat( 'LED_POLY_all_n_performance.mat');
- %save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
