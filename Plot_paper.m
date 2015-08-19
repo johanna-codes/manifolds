@@ -8,20 +8,20 @@ PM_kth = [37.3333   40.6667   36.6667   38.0000   38.6667   41.3333   67.3333   
 PM_ucf = [57.0470   65.7718   56.3758   63.0872   61.7450   52.3490   43.6242   38.9262   51.6779   46.3087   38.2550   24.8322 39.5973    9.3960];
 
 
-plot(PM_kth, '-gd', 'LineWidth',3,'MarkerSize',5);
+plot(PM_kth, '-gd', 'LineWidth',3,'MarkerSize',9);
 hold on
-plot(PM_ucf, '--ro', 'LineWidth',3,'MarkerSize',5);
+plot(PM_ucf, '--ro', 'LineWidth',3,'MarkerSize',9);
 title('Projection Metric','FontSize',20);
-legend('KTH','UCF', 'south');
+legend('KTH','UCF', 'Location', 'northeast');
 ylabel('(%)','FontSize',20)
 xlabel('subspace order','FontSize',20)
 set(gca,'FontSize',20); 
 
 ylim([0 100])
-xlim([0 15])
+xlim([1 14])
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v4/images/experiments/PM_kth_ucf','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/PM_kth_ucf','-dpng','-r300');
 %Nicta
 %print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/PM_kth', '-dpng','-r300');
 
@@ -29,17 +29,21 @@ print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v4/images/experiments/PM_kth_uc
 %% Kernels: LED_POLY: KTH & UCF(running)
 figure()
 
-led_poly_kth = [86.6667   89.3333   89.3333   88.0000   88.6667   90.0000   90.6667   90.6667   91.3333   91.3333   92.0000   92.0000 91.3333   92.0000   92.0000   92.0000   92.6667   92.6667   92.6667   92.6667];
-%led_poly_ucf = [];
+led_poly_kth = [86.6667   89.3333   89.3333   88.0000   88.6667   90.0000   90.6667   90.6667   91.3333   91.3333   92.0000   92.0000   91.3333   92.0000   92.0000   92.0000   92.6667   92.6667   92.6667   92.6667];
+led_poly_ucf = [75.1678   72.4832   72.4832   71.8121   70.4698   70.4698   70.4698   70.4698   71.8121   71.8121   71.8121   71.8121   71.8121   72.483];
 
-plot(led_poly_kth, '-gd','LineWidth',3,'MarkerSize',3)
+plot(led_poly_kth, '-gd','LineWidth',3,'MarkerSize',7)
+hold on
+plot(led_poly_ucf, '--ro','LineWidth',3,'MarkerSize',7)
 title('LED POLY','FontSize',20);
-legend('KTH dataset','Location', 'south');
+ylim([50 100])
+xlim([1 20])
+legend('KTH', 'UCF','Location', 'southeast');
 ylabel('(%)','FontSize',20)
 xlabel('D','FontSize',20)
 set(gca,'FontSize',20);
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v4/images/experiments/LED-POLY_kth_ucf','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/LED-POLY_kth_ucf','-dpng','-r300');
 %Nicta
 %print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/LED-POLY_kth','-dpng','-r300');
 
@@ -73,7 +77,7 @@ legend( 'm=6', 'm=7', 'm=8', 'Location','southwest', 'orientation','horizontal')
 
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v4/images/experiments/Proj-RBF_kth_ucf','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/Proj-RBF_kth_ucf','-dpng','-r300');
 %Nicta
 %print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/Proj-RBF_kth','-dpng','-r300');
 
