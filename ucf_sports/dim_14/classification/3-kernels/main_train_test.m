@@ -73,35 +73,35 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %% Kernel LED-Poly. Running in NICTA
 
-%  display('Training svm + Kernel LED-POLY');
-%  n=1:dim;
-%  %n=1:20;
-% 
-%  for i=1:length(n)
-%      in_n = n(i);
-%      sprintf('n = %d ', in_n)
-%      acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
-%      %ACC_train(i,:) = acc;
-%  end
-% 
-  display('Testing svm + Kernel LED-POLY');
-  %n=1:dim;
-  n=1:dim;
-  test_acc = zeros(length(n),1);
-  scale = 1;
-  shift = 0;
+ display('Training svm + Kernel LED-POLY');
+ %n=1:dim;
+ n=1:20;
 
-  for i=1:length(n)
-      in_n = n(i);
-      X = sprintf('n = %d ', in_n);
-      acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
-      test_acc(i) = acc;
-      test_acc'
-      %end
-  end
+ for i=15:length(n)
+     in_n = n(i);
+     sprintf('n = %d ', in_n)
+     acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
+     %ACC_train(i,:) = acc;
+ end
 
-  save_results =strcat( 'LED_POLY_all_n_performance.mat');
-  save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
+%   display('Testing svm + Kernel LED-POLY');
+%   %n=1:dim;
+%   n=1:20;
+%   test_acc = zeros(length(n),1);
+%   scale = 1;
+%   shift = 0;
+% 
+%   for i=1:length(n)
+%       in_n = n(i);
+%       X = sprintf('n = %d ', in_n);
+%       acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
+%       test_acc(i) = acc;
+%       test_acc'
+%       %end
+%   end
+% 
+%   save_results =strcat( 'LED_POLY_all_n_performance.mat');
+%   save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 
 
 %%%%%%%%%%%%%%%%%%%%   Grassmann Kernels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
