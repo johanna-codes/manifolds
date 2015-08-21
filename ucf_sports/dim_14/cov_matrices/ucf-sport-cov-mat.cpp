@@ -40,17 +40,17 @@ main(int argc, char** argv)
      int shift = atoi( argv[2] );
   
   
-  //vec vec_shift;
-  //vec_shift << -25 << -20 << -15 << -10 << -5 << 5 << 10 << 15 << 20 << 25 << endr;
-  //int scale_factor =1;
+  vec vec_shift;
+  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+  int scale_factor =1;
   
   int dim = 14; 
   
   
-  //for (int i=0; i< vec_shift.n_elem; ++i)
+  for (int i=0; i< vec_shift.n_elem; ++i)
   {
     
-    //int shift = vec_shift(i);
+    int shift = vec_shift(i);
     cout << "Cov for shift " << shift << endl;
     cov_mat get_cov_seg(path, path_dataset, actionNames, scale_factor, shift, dim);
     get_cov_seg.calculate_one_per_video(  );
