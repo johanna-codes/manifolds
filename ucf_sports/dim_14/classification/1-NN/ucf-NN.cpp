@@ -35,16 +35,16 @@ int
 main(int argc, char** argv)
 {
   
-   if(argc < 3 )
-  {
-    cout << "usage: " << argv[0] << " scale_factor " << " shift_factor " << endl;
-    return -1;
-  }
-  
-  
-  int scale_factor = atoi( argv[1] );
-  int shift = atoi( argv[2] );
-  int dim = 14; 
+//    if(argc < 3 )
+//   {
+//     cout << "usage: " << argv[0] << " scale_factor " << " shift_factor " << endl;
+//     return -1;
+//   }
+//   
+//   
+//   int scale_factor = atoi( argv[1] );
+//   int shift = atoi( argv[2] );
+//   int dim = 14; 
   
 
   
@@ -52,9 +52,31 @@ main(int argc, char** argv)
     //cv_classify_NN CV_onesegment(path, path_dataset, actionNames, scale_factor, shift,  dim);
     //CV_onesegment.logEucl();
     //CV_onesegment.SteinDiv();
+  
+  vec vec_shift;
+  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+  int scale_factor = 1;
+
+  
+  vec vec_logEucl   = zeros(vec_shift.n_elem);
+  
+  for (int i=0; i< vec_shift.n_elem; ++i)
+  {
+    
+    int shift = vec_shift(i);
+    cout << "Shift: " << shift << endl;
+    cv_classify_NN CV_onesegment(path, path_dataset, actionNames, scale_factor, shift,  dim);
+    CV_onesegment.logEucl();
+   
+  }
+  
+  vec_logEucl.t().print();
+  
+  
+  
     
    
-    
+/*    
    vec vec_bc = zeros(dim);
    vec vec_pm = zeros(dim);
    for (int p=1; p<= dim; ++p)
@@ -66,7 +88,7 @@ main(int argc, char** argv)
    }
    
    vec_pm.t().print("Projection Metric");
-   vec_bc.t().print("Binet-Cauchy");
+   vec_bc.t().print("Binet-Cauchy");*/
 //   
 //   
   
