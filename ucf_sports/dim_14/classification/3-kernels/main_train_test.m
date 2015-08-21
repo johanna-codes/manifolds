@@ -115,7 +115,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
  ACC_train = zeros(length(delta),num_videos -1);
  all_p = cell(length(p),1);
 
- for j=9:-1:4
+ for j=3:-1:1
      in_p = p(j);
      %X = sprintf('p = %d ', in_p);
      %disp(X);
