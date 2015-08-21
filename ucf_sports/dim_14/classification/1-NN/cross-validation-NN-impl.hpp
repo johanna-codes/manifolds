@@ -17,7 +17,7 @@ cv_classify_NN::cv_classify_NN(const std::string in_path,
 
 // Log-Euclidean Distance
 inline
-void
+float
 cv_classify_NN::logEucl()
 {
   
@@ -112,7 +112,7 @@ cv_classify_NN::logEucl()
   est_labels.save("./results/nn_Log_Eucl_est_labels.dat", raw_ascii);
   test_video_list.save("nn_Log_Eucl_test_video_list.dat", raw_ascii);
   cout << "Performance: " << acc*100/n_test << " %" << endl;
-  
+  return acc*100/n_test;
 }
 
 

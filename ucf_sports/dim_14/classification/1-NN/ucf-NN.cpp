@@ -67,7 +67,7 @@ main(int argc, char** argv)
     int shift = vec_shift(i);
     cout << "Shift: " << shift << endl;
     cv_classify_NN CV_onesegment(path, path_dataset, actionNames, scale_factor, shift,  dim);
-    CV_onesegment.logEucl();
+    vec_logEucl(i) = CV_onesegment.logEucl();
    
   }
   
