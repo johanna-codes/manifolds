@@ -87,7 +87,7 @@ cv_classify_NN::logEucl()
       std::stringstream load_cov;
       load_cov << load_sub_path.str() << "/LogMcov_" <<  action_name << "_" <<  folder_n << "_dim" << dim  << ".h5";
       
-      cout <<  action_name << "_" <<  folder_n << endl;
+      //cout <<  action_name << "_" <<  folder_n << endl;
       //#pragma omp critical
       //cout << load_cov_seg.str() << endl;
       
