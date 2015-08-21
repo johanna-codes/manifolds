@@ -30,14 +30,14 @@ int
 main(int argc, char** argv)
 {
   
-    if(argc < 3 )
-     {
-       cout << "usage: " << argv[0] << " scale_factor " << " shift_factor " << endl;
-       return -1;
-     }
-     
-     int scale_factor = atoi( argv[1] );
-     int shift = atoi( argv[2] );
+//     if(argc < 3 )
+//      {
+//        cout << "usage: " << argv[0] << " scale_factor " << " shift_factor " << endl;
+//        return -1;
+//      }
+//      
+//      int scale_factor = atoi( argv[1] );
+//      int shift = atoi( argv[2] );
   
   
   vec vec_shift;
