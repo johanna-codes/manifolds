@@ -12,7 +12,7 @@ dim =14;
 
 vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
  
- %% Kernel LED-Poly
+ %% Kernel LED-Poly: KTH
 
 
  display('Testing svm + Kernel LED-POLY');

@@ -21,7 +21,7 @@ ylim([0 100])
 xlim([1 14])
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/PM_kth_ucf','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/PM_kth_ucf','-dpng','-r300');
 %Nicta
 %print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/PM_kth', '-dpng','-r300');
 
@@ -30,7 +30,7 @@ print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/PM_kth_uc
 figure()
 
 led_poly_kth = [86.6667   89.3333   89.3333   88.0000   88.6667   90.0000   90.6667   90.6667   91.3333   91.3333   92.0000   92.0000   91.3333   92.0000   92.0000   92.0000   92.6667   92.6667   92.6667   92.6667];
-led_poly_ucf = [75.1678   72.4832   72.4832   71.8121   70.4698   70.4698   70.4698   70.4698   71.8121   71.8121   71.8121   71.8121   71.8121   72.483];
+led_poly_ucf = [75.1678   72.4832   72.4832   71.8121   70.4698   70.4698   70.4698   70.4698   71.8121   71.8121   71.8121   71.8121   71.8121   72.4832   71.8121   71.8121   72.4832   73.1544   73.1544   73.1544];
 
 plot(led_poly_kth, '-gd','LineWidth',3,'MarkerSize',7)
 hold on
@@ -42,10 +42,11 @@ legend('KTH', 'UCF','Location', 'southeast');
 ylabel('(%)','FontSize',20)
 xlabel('D','FontSize',20)
 set(gca,'FontSize',20);
+
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/LED-POLY_kth_ucf','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/LED-POLY_kth_ucf','-dpng','-r300');
 %Nicta
-%print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/LED-POLY_kth','-dpng','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v7/images/experiments/LED-POLY_kth_ucf','-dpng','-r300');
 
 
 
@@ -77,7 +78,7 @@ legend( 'm=6', 'm=7', 'm=8', 'Location','southwest', 'orientation','horizontal')
 
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/Proj-RBF_kth_ucf','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/Proj-RBF_kth_ucf','-dpng','-r300');
 %Nicta
 %print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/Proj-RBF_kth','-dpng','-r300');
 

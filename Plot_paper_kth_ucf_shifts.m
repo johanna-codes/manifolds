@@ -28,24 +28,32 @@ set(gca,'FontSize',20);
 %Nicta
 %print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/all_shifts_kth','-dpng','-r300');
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/all_shifts_kth','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/all_shifts_kth','-dpng','-r300');
 
 
 %% UCF GMM & FV
 figure()
-GMM_all_acc  = [50.3356   54.3624   59.7315   69.1275   75.8389   80.5369   76.5101   65.7718   57.7181   51.6779   51.0067];
-FV_all_acc   = [59.0604   63.7584   73.8255   79.1946   87.2483   88.5906   85.9060   77.1812   69.7987   56.3758   51.6779];
+LED_ucf  = [75.8389   75.1678   73.1544   71.1409   74.4966   76.5101   79.8658   69.7987   67.1141   65.7718   65.1007];
+GMM_ucf  = [50.3356   54.3624   59.7315   69.1275   75.8389   80.5369   76.5101   65.7718   57.7181   51.6779   51.0067];
+FV_ucf   = [59.0604   63.7584   73.8255   79.1946   87.2483   88.5906   85.9060   77.1812   69.7987   56.3758   51.6779];
 
-all = [GMM_all_acc; FV_all_acc ];
-plot(vec_shift,all', '-d', 'LineWidth', 3,'MarkerSize', 10);
+plot(vec_shift,LED_ucf, '-bh', 'LineWidth', 3,'MarkerSize', 10);
+hold on
+%plot(vec_shift,LED_Poly_ucf, '--go', 'LineWidth', 3,'MarkerSize', 10);
+plot(vec_shift,GMM_ucf, ':r>', 'LineWidth', 3,'MarkerSize', 10);
+plot(vec_shift,FV_ucf, '-.m+', 'LineWidth', 3,'MarkerSize', 10);
+
+
 xlim([-25 25])
-legend('GMM', 'FV','Location','northeast');
+legend('LED', 'GMM','FV','Location','south', 'orientation', 'horizontal');
 ylabel('(%)','FontSize',20)
 xlabel('shift (%)','FontSize',20)
 set(gca,'FontSize',20); 
 
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v4/images/experiments/all_shifts_ucf','-dpng','-r300');
+%Nicta
+print('/home/johanna/latex-svn/wacv_2016_b/v7/images/experiments/all_shifts_ucf','-dpng','-r300');
 
 
 
