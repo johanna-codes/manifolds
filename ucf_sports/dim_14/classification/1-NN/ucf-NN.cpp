@@ -44,8 +44,7 @@ main(int argc, char** argv)
 //   
 //   int scale_factor = atoi( argv[1] );
 //   int shift = atoi( argv[2] );
-//   int dim = 14; 
-  
+   
 
   
   //Cross Validation
@@ -56,6 +55,8 @@ main(int argc, char** argv)
   vec vec_shift;
   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
   int scale_factor = 1;
+  int dim = 14; 
+  
 
   
   vec vec_logEucl   = zeros(vec_shift.n_elem);
