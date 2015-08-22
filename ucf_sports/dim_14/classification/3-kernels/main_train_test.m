@@ -77,7 +77,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %  %n=1:dim;
 %  n=1:20;
 % 
-%  for i=15:length(n)
+%  for i=1:length(n)
 %      in_n = n(i);
 %      sprintf('n = %d ', in_n)
 %      acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
@@ -132,44 +132,46 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %  end
  
  
-display('Testing svm + Projection RBF Kernel');
-delta = -14:1:21;
+% display('Testing svm + Projection RBF Kernel');
+% delta = -14:1:21;
+% dim = 14;
+% p = 1:14;
+% test_acc = zeros( length(delta),1 );
+% all_p = cell(length(p),1);
+% scale = 1;
+% shift = 0;
+% for j=1:length(p)
+%     in_p = p(j);
+% for i=1:length(delta )   
+%     in_delta = delta(i);
+%     X = sprintf('p= %d and delta = %d ', in_p, in_delta);
+%     disp(X);
+%     acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
+%     test_acc(i) = acc; 
+% end
+% all_p{j} = test_acc;
+% end
+% 
+% save_results =strcat( 'projRBF_all_p_delta_performance.mat');
+% save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
+
+
+
+%% Projection Poly  Kernel: Run in NICTA. DO IT!!!!!!!!!!!
+
+display('Training svm + Projection Poly Kernel ');
 dim = 14;
 p = 1:14;
-test_acc = zeros( length(delta),1 );
-all_p = cell(length(p),1);
-scale = 1;
-shift = 0;
-for j=1:length(p)
-    in_p = p(j);
-for i=1:length(delta )   
-    in_delta = delta(i);
-    X = sprintf('p= %d and delta = %d ', in_p, in_delta);
-    disp(X);
-    acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
-    test_acc(i) = acc; 
-end
-all_p{j} = test_acc;
+ACC_train = zeros(length(p),25);
+
+
+parfor i=1:length(p)
+    in_p = p(i);
+    sprintf('n = %d ', in_n);
+    acc = ProjPoly_train(path,  dim, in_p);
+    ACC_train(i,:) = acc;
 end
 
-save_results =strcat( 'projRBF_all_p_delta_performance.mat');
-save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
-
-
-
-%% Projection Kernel: Run in NICTA. DO IT!!!!!!!!!!!
-
-%display('Training svm + Projection Poly Kernel ');
-%  dim = 14;
-%  p = 1:14;
-%  ACC_train = zeros(length(p),25);
-%
-%
-%   parfor i=1:length(p)
-%      acc = kth_train_ProjectionPoly(path,  dim, p(i));
-%      ACC_train(i,:) = acc;
-%   end
-%
 
 
 %  display('Testing svm + Projection Poly Kernel');
@@ -180,7 +182,7 @@ save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
 %  shift = 0;
 %
 %  parfor i=1:length( p )
-%     acc = kth_test_ProjectionPoly(path,scale, shift, dim, p(i) );
+%     acc = ProjPoly_test(path,scale, shift, dim, p(i) );
 %     test_acc(i) = acc;
 %  end
 %

@@ -46,5 +46,5 @@ j=1;
   
   end
   %[acc n_peo n_actions]
-  acc = acc*100/(n_peo*n_actions);
+  acc = acc*100/(num_videos-1);
    
