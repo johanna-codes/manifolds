@@ -168,7 +168,7 @@ ACC_train = zeros(length(p),25);
 parfor i=1:length(p)
     in_p = p(i);
     sprintf('n = %d ', in_p);
-    acc = ProjPoly_train(path, action_seq_names, dim, in_p, num_videos);
+    acc = ProjPOLY_train(path, action_seq_names, dim, in_p, num_videos);
     ACC_train(i,:) = acc;
 end
 
