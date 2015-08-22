@@ -167,7 +167,7 @@ ACC_train = zeros(length(p),25);
 
 parfor i=1:length(p)
     in_p = p(i);
-    sprintf('n = %d ', in_n);
+    sprintf('n = %d ', in_p;
     acc = ProjPoly_train(path,  dim, in_p);
     ACC_train(i,:) = acc;
 end
