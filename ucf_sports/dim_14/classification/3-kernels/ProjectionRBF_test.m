@@ -18,7 +18,7 @@ j=1;
       act_ts  =  str2double( action_seq_names(video_ts,3) );
       
       if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-          load_svm_model = strcat( './svm_models_ProjectionRBF/projRBF_run_', int2str(video_ts), '_p', p, '_delta', num2str(delta),'.mat');
+          load_svm_model = strcat( './svm_models_ProjectionRBF/projRBF_run_', int2str(video_ts), '_p', int2str(p), '_delta', num2str(delta),'.mat');
         
           load(load_svm_model); %loading model and X_train
       
@@ -30,7 +30,7 @@ j=1;
           one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
           X_test(:,:,1) = one_video;
           
-          K_test = compute_kernel_svm(X_test,X_train, RIEMANNIAN_KERNEL,gamma);
+          K_test = compute_kernel_svm(X_test,X_train, PROJECTION_RBF_KERNEL,gamma);
           [predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
           est_labels(j) = predict_label;
           j=j+1;
