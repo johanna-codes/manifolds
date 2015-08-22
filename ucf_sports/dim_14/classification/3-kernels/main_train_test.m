@@ -148,7 +148,6 @@ for i=1:length(delta )
     disp(X);
     acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
     test_acc(i) = acc; 
-    test_acc'
 end
 all_p{j} = test_acc;
 end
