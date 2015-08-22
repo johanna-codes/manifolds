@@ -42,7 +42,7 @@ j=1;
       end
       
      save_labels = strcat('./svm_results_ProjRBF/ProjRBF_scale', int2str(scale_factor), '-shift', int2str(shift),'-p',num2str(p), '_delta', num2str(delta), '.mat' );     
-     save(save_labels, 'est_labels', 'real_labels', 'sigma');
+     save(save_labels, 'est_labels', 'real_labels');
   
   end
   %[acc n_peo n_actions]
