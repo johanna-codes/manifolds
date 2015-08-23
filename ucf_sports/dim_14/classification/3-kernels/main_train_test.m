@@ -77,7 +77,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
  %n=1:dim;
  n=1:20;
 
- parfor i=1:length(n)
+ for i=1:length(n)
      in_n = n(i);
      %sprintf('n = %d ', in_n)
      disp(in_n);
