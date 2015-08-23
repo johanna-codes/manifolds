@@ -159,32 +159,32 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %% Projection Poly  Kernel: Running in NICTA. 
 
-% display('Training svm + Projection Poly Kernel ');
-% dim = 14;
-% p = 1:14;
+display('Training svm + Projection Poly Kernel ');
+dim = 14;
+p = 1:14;
+
+
+parfor i=1:length(p)
+    in_p = p(i);
+    X = sprintf('n = %d ', in_p);
+    disp(X);
+    acc = ProjPOLY_train(path, action_seq_names, dim, in_p, num_videos);    
+end
+
+
+
+%  display('Testing svm + Projection Poly Kernel');
+%  dim = 14;
+%  p = 1:14;
+%  test_acc = zeros(length(p),1);
+%  scale = 1;
+%  shift = 0;
 % 
+%  parfor i=1:length( p )
+%     acc = ProjPoly_test(path, action_seq_names, scale, shift, dim, p(i), num_videos );
+%     test_acc(i) = acc;
+%  end
 % 
-% parfor i=1:length(p)
-%     in_p = p(i);
-%     X = sprintf('n = %d ', in_p);
-%     disp(X);
-%     acc = ProjPOLY_train(path, action_seq_names, dim, in_p, num_videos);    
-% end
-
-
-
- display('Testing svm + Projection Poly Kernel');
- dim = 14;
- p = 1:14;
- test_acc = zeros(length(p),1);
- scale = 1;
- shift = 0;
-
- parfor i=1:length( p )
-    acc = ProjPoly_test(path, action_seq_names, scale, shift, dim, p(i), num_videos );
-    test_acc(i) = acc;
- end
-
-save_results =strcat( 'projPoly_all_p_performance.mat');
-save(save_results, 'test_acc', 'p', 'dim', 'scale', 'shift');
+% save_results =strcat( 'projPoly_all_p_performance.mat');
+% save(save_results, 'test_acc', 'p', 'dim', 'scale', 'shift');
 
