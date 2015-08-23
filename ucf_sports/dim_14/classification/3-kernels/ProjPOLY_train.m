@@ -37,7 +37,7 @@ parfor video_ts= 1: n_videos
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
                     %disp(one_video);
                     X_train(:,:,k) = one_video;
-                    labels_train(k) = act_tr;
+                    labels_train(k) = act_tr
                     k=k+1;
                 end
             end
