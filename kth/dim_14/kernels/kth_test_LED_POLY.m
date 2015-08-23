@@ -22,7 +22,7 @@ load_sub_path =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/
 j=1;
   for pe_ts= 1: n_peo
       
-      load_svm_model =strcat( './svm_models/LED-POLY_svm_run_', int2str(pe_ts), '_n', num2str(n), '.mat');
+      load_svm_model =strcat( './svm_models_LED_POLY/LED-POLY_svm_run_', int2str(pe_ts), '_n', num2str(n), '.mat');
       load(load_svm_model); %loading model and X_train
 
       for act_ts = 1:n_actions
@@ -45,7 +45,7 @@ j=1;
 
       end
       
-     save_labels = strcat('./svm_results/LED-POLY_scale', int2str(scale_factor), '-shift', int2str(shift),'-n',num2str(n),'.mat' );     
+     save_labels = strcat('./svm_results_LED_POLY/LED-POLY_scale', int2str(scale_factor), '-shift', int2str(shift),'-n',num2str(n),'.mat' );     
      save(save_labels, 'est_labels', 'real_labels', 'n');
   
   end

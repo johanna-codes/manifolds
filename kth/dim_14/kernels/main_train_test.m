@@ -96,7 +96,7 @@ end
  %%%%%%%%%%%%%%%%%%%%   Grassmann Kernels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Projection kernel: RBF
 %  display('Training svm + Projection RBF Kernel ');
-%  delta = -14:1:21;
+%  delta = -14:2:20;
 %  dim = 14;
 %  p = 1:14; 
 %  %p = 12;
@@ -118,7 +118,7 @@ end
 
  
 % display('Testing svm + Projection RBF Kernel');
-% delta = -14:1:21;
+% delta = -14:2:20;
 % dim = 14;
 % p = 1:14; 
 % test_acc = zeros( length(delta),1 );
