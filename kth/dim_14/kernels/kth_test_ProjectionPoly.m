@@ -1,9 +1,9 @@
-function acc = kth_test_ProjectionPoly(path,scale_factor, shift, dim, p)
+function acc = kth_test_ProjectionPoly(path,scale_factor, shift, dim, p,d)
 
 
 gamma = 1/p;
 
-PROJECTION_POLY_KERNEL = @(X,Y,gamma,p)( ( gamma*( norm(X'*Y,'fro') )^2 )^p);
+PROJECTION_POLY_KERNEL = @(X,Y,gamma,p)( ( gamma*( norm(X'*Y,'fro') )^2 )^d);
 
 actions = importdata('actionNames.txt');
 all_people = importdata('people_list.txt');
@@ -23,7 +23,7 @@ load_sub_path =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim)
 j=1;
   for pe_ts= 1: n_peo
       
-      load_svm_model =strcat( './svm_models_projPoly/projPoly_svm_run_', int2str(pe_ts), '_degree', num2str(p),'.mat');
+      load_svm_model =strcat( './svm_models_projPoly/projPoly_svm_run_', int2str(pe_ts), '_degree', num2str(d), '_p', num2str(d), '.mat');
       load(load_svm_model); %loading model and X_train
 
       for act_ts = 1:n_actions
@@ -45,7 +45,7 @@ j=1;
 
       end
       
-     save_labels = strcat('./svm_results_projPoly/projPoly_scale', int2str(scale_factor), '-shift', int2str(shift),'-degree',num2str(p),'.mat' );     
+     save_labels = strcat('./svm_results_projPoly/projPoly_scale', int2str(scale_factor), '-shift', int2str(shift),'-degree',num2str(d), '_p', num2str(d), '.mat' );     
      save(save_labels, 'est_labels', 'real_labels');
   
   end

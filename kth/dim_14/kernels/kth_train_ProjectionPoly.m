@@ -1,8 +1,8 @@
-function acc = kth_train_ProjectionPoly(path,dim, p)
+function acc = kth_train_ProjectionPoly(path,dim, p,d)
 
 
 gamma = 1/p;
-PROJECTION_POLY_KERNEL = @(X,Y,gamma,p) (( gamma*( norm(X'*Y,'fro') )^2 )^p);
+PROJECTION_POLY_KERNEL = @(X,Y,gamma,d) (( gamma*( norm(X'*Y,'fro') )^2 )^d);
 
 
 actions = importdata('actionNames.txt');
@@ -39,14 +39,14 @@ for pe_ts= 1: n_peo
     end
     
     
-    K_train = compute_projPoly_kernel_svm(X_train,X_train, PROJECTION_POLY_KERNEL, gamma, p);
+    K_train = compute_projPoly_kernel_svm(X_train,X_train, PROJECTION_POLY_KERNEL, gamma, d);
     model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
     %Borrame Funciona Bien
     [predict_label, accuracy, dec_values] = svmpredict(labels_train,[[1:size(K_train,1)]' K_train], model);
     %display(accuracy');
     
     acc = [acc accuracy(1)];
-    save_svm_model =strcat( './svm_models_projPoly/projPoly_svm_run_', int2str(pe_ts), '_degree', num2str(p),'.mat');
+    save_svm_model =strcat( './svm_models_projPoly/projPoly_svm_run_', int2str(pe_ts), '_degree', num2str(d), '_p', num2str(d), '.mat');
     save(save_svm_model, 'model', 'X_train');
     
     
