@@ -39,9 +39,9 @@ for pe_ts= 1: n_peo
         end
     end
     
-    disp(strcat('Doing for n= ', num2str(n)));
+    %disp(strcat('Doing for n= ', num2str(n)));
     K_train = compute_poly_kernel_svm(X_train,X_train, LED_POLY_KERNEL, gamma, n);
-    disp('SVM');
+    %disp('SVM');
     %find(isfinite(K_train )==0)
     %K_train
     model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
