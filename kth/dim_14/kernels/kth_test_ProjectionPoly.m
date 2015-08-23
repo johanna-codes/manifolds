@@ -1,7 +1,7 @@
 function acc = kth_test_ProjectionPoly(path,scale_factor, shift, dim, p)
 
 
-gamma = 1/dim;
+gamma = 1/p;
 
 PROJECTION_POLY_KERNEL = @(X,Y,gamma,p)( ( gamma*( norm(X'*Y,'fro') )^2 )^p);
 
