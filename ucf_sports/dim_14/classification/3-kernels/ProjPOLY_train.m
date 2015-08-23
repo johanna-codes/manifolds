@@ -46,7 +46,7 @@ parfor video_ts= 1: n_videos
         K_train = compute_proj_kernel_svm(X_train,X_train, PROJECTION_POLY_KERNEL, gamma, p);
         model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
         %Borrame Funciona Bien
-        labels_train
+        labels_train'
         [predict_label, accuracy, dec_values] = svmpredict(labels_train,[[1:size(K_train,1)]' K_train], model);
         display(accuracy');
         
