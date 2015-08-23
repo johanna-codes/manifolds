@@ -1,7 +1,7 @@
 function acc = kth_train_LED_POLY(path,dim, n)
 
 gamma = 1/n;
-RIEMANNIAN_KERNEL = @(X,Y,gamma) ( gamma*( trace(logm(X)'*logm(Y)) ) )^n;
+LED_POLY_KERNEL = @(X,Y,gamma,n)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^n );
 
 
 actions = importdata('actionNames.txt');
@@ -40,7 +40,7 @@ for pe_ts= 1: n_peo
     end
     
     disp(strcat('Doing for n= ', num2str(n)));
-    K_train = compute_kernel_svm(X_train,X_train, RIEMANNIAN_KERNEL, gamma);
+    K_train = compute_poly_kernel_svm(X_train,X_train, LED_POLY_KERNEL, gamma, n);
     disp('SVM');
     %find(isfinite(K_train )==0)
     %K_train
