@@ -105,7 +105,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %%%%%%%%%%%%%%%%%%%%   Grassmann Kernels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Projection kernel: RBF.
-%  Running in NICTA 
+%  Running in NICTA:DONE
 
 %  display('Training svm + Projection RBF Kernel ');
 %  delta = -14:1:21;
@@ -162,14 +162,12 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 display('Training svm + Projection Poly Kernel ');
 dim = 14;
 p = 1:14;
-ACC_train = zeros(length(p),25);
 
 
 parfor i=1:length(p)
     in_p = p(i);
     sprintf('n = %d ', in_p);
-    acc = ProjPOLY_train(path, action_seq_names, dim, in_p, num_videos);
-    ACC_train(i,:) = acc;
+    acc = ProjPOLY_train(path, action_seq_names, dim, in_p, num_videos);    
 end
 
 
