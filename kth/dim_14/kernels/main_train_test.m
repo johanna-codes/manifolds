@@ -147,7 +147,9 @@ dim =14;
  
   
 for i=1:length(p)
-    acc = kth_train_ProjectionPoly(path,  dim, p(i));
+     in_p = p(i);
+     sprintf('p = %d ', in_p)
+    acc = kth_train_ProjectionPoly(path,  dim, in_p);
     ACC_train(i,:) = acc;
 end
  
