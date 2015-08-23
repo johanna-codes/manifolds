@@ -9,7 +9,7 @@ acc = [];
 gamma = 1/dim;
 PROJECTION_POLY_KERNEL = @(X,Y,gamma,p) ( gamma*( norm(X'*Y,'fro') )^2 )^p;
 
-load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) )
 
 %parpool(5);
 parfor video_ts= 1: n_videos
@@ -46,7 +46,6 @@ parfor video_ts= 1: n_videos
         K_train = compute_proj_kernel_svm(X_train,X_train, PROJECTION_POLY_KERNEL, gamma, p);
         model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
         %Borrame Funciona Bien
-        labels_train'
         [predict_label, accuracy, dec_values] = svmpredict(labels_train,[[1:size(K_train,1)]' K_train], model);
         display(accuracy');
         
