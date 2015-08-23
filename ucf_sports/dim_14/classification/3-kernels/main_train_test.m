@@ -167,7 +167,7 @@ p = 1:14;
 parfor i=1:length(p)
     in_p = p(i);
     X = sprintf('n = %d ', in_p);
-    displ(X);
+    disp(X);
     acc = ProjPOLY_train(path, action_seq_names, dim, in_p, num_videos);    
 end
 
