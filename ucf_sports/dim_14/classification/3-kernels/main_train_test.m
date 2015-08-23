@@ -77,9 +77,10 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
  %n=1:dim;
  n=1:20;
 
- for i=1:length(n)
+ parfor i=1:length(n)
      in_n = n(i);
-     sprintf('n = %d ', in_n)
+     %sprintf('n = %d ', in_n)
+     disp(in_n);
      acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
      %ACC_train(i,:) = acc;
  end
@@ -108,7 +109,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %  Running in NICTA:DONE
 
 %  display('Training svm + Projection RBF Kernel ');
-%  delta = -14:1:21;
+%  delta = -14:2:20;
 %  dim = 14;
 %  p = 1:14;
 %  %p = 12;
@@ -133,7 +134,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
  
  
 % display('Testing svm + Projection RBF Kernel');
-% delta = -14:1:21;
+% delta = -14:2:20;
 % dim = 14;
 % p = 1:14;
 % test_acc = zeros( length(delta),1 );
