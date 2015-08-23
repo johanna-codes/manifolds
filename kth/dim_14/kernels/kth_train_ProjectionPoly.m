@@ -16,7 +16,7 @@ acc = [];
 
 n_test = (n_peo-1)*n_actions;
 
-PROJECTION_POLY_KERNEL = @(X,Y,gamma,p) ( gamma*( norm(X'*Y,'fro') )^2 )^p;
+PROJECTION_POLY_KERNEL = @(X,Y,gamma,p) (( gamma*( norm(X'*Y,'fro') )^2 )^p);
 
 load_sub_path =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim), '/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) );
 for pe_ts= 1: n_peo
@@ -44,7 +44,7 @@ for pe_ts= 1: n_peo
     %display(accuracy');
     
     acc = [acc accuracy(1)];
-    save_svm_model =strcat( './svm_models/projPoly_svm_run_', int2str(pe_ts), '_degree', num2str(p),'.mat');
+    save_svm_model =strcat( './svm_models_projPoly/projPoly_svm_run_', int2str(pe_ts), '_degree', num2str(p),'.mat');
     save(save_svm_model, 'model', 'X_train');
     
     
