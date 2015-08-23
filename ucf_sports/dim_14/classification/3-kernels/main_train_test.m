@@ -73,16 +73,16 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %% Kernel LED-Poly. DONE
 
-%  display('Training svm + Kernel LED-POLY');
-%  %n=1:dim;
-%  n=1:20;
-% 
-%  for i=1:length(n)
-%      in_n = n(i);
-%      sprintf('n = %d ', in_n)
-%      acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
-%      %ACC_train(i,:) = acc;
-%  end
+ display('Training svm + Kernel LED-POLY');
+ %n=1:dim;
+ n=1:20;
+
+ for i=1:length(n)
+     in_n = n(i);
+     sprintf('n = %d ', in_n)
+     acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
+     %ACC_train(i,:) = acc;
+ end
 
 %   display('Testing svm + Kernel LED-POLY');
 %   %n=1:dim;
@@ -159,17 +159,17 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %% Projection Poly  Kernel: Running in NICTA. 
 
-display('Training svm + Projection Poly Kernel ');
-dim = 14;
-p = 1:14;
-
-
-for i=1:length(p)
-    in_p = p(i);
-    X = sprintf('n = %d ', in_p);
-    disp(X);
-    acc = ProjPOLY_train(path, action_seq_names, dim, in_p, num_videos);    
-end
+% display('Training svm + Projection Poly Kernel ');
+% dim = 14;
+% p = 1:14;
+% 
+% 
+% for i=1:length(p)
+%     in_p = p(i);
+%     X = sprintf('n = %d ', in_p);
+%     disp(X);
+%     acc = ProjPOLY_train(path, action_seq_names, dim, in_p, num_videos);    
+% end
 
 
 

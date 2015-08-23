@@ -1,7 +1,7 @@
 function acc = LED_POLY_train(path, action_seq_names, dim, n, n_videos)
 
 gamma = 1/n;
-RIEMANNIAN_KERNEL = @(X,Y,gamma) ( gamma*( trace(logm(X)'*logm(Y)) ) )^n;
+LED_POLY_KERNEL = @(X,Y,gamma) (( gamma*( trace(logm(X)'*logm(Y)) ) )^n);
 
 
 scale_factor = 1;
@@ -45,7 +45,7 @@ parfor video_ts= 1: n_videos
             end
         end
         
-        K_train = compute_kernel_svm(X_train,X_train, RIEMANNIAN_KERNEL, gamma);
+        K_train = compute_poly_kernel_svm(X_train,X_train, LED_POLY_KERNEL, gamma, n);
         model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
         %Borrame Funciona Bien
         [predict_label, accuracy, dec_values] = svmpredict(labels_train,[[1:size(K_train,1)]' K_train], model);

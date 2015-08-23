@@ -1,7 +1,7 @@
 function acc = LED_POLY_test(path,action_seq_names,scale_factor, shift, dim, n, n_videos )
 
 gamma = 1/n;
-RIEMANNIAN_KERNEL = @(X,Y,gamma) ( gamma*( trace(logm(X)'*logm(Y)) ) )^n;
+LED_POLY_KERNEL = @(X,Y,gamma) (( gamma*( trace(logm(X)'*logm(Y)) ) )^n);
 
 
 acc = 0;
@@ -28,7 +28,7 @@ j=1;
           one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
           X_test(:,:,1) = one_video;
           
-          K_test = compute_kernel_svm(X_test,X_train, RIEMANNIAN_KERNEL,gamma);
+          K_test = compute_poly_kernel_svm(X_test,X_train, LED_POLY_KERNEL,gamma);
           [predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
           est_labels(j) = predict_label;
           j=j+1;
