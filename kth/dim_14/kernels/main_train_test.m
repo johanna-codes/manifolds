@@ -163,7 +163,9 @@ end
  shift = 0;
  
 for i=1:length( p )
-    acc = kth_test_ProjectionPoly(path,scale, shift, dim, p(i) );
+    in_p = p(i);
+    sprintf('p = %d ', in_p)
+    acc = kth_test_ProjectionPoly(path,scale, shift, dim, in_p );
     test_acc(i) = acc;     
 end
 
