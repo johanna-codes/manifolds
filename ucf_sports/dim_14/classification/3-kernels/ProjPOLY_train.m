@@ -9,10 +9,10 @@ acc = [];
 gamma = 1/dim;
 PROJECTION_POLY_KERNEL = @(X,Y,gamma,p) ( gamma*( norm(X'*Y,'fro') )^2 )^p;
 
-load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) )
+load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
 %parpool(5);
-parfor video_ts= 1: n_videos
+for video_ts= 1: n_videos
     X_train = zeros(dim,p,n_test);
     labels_train = zeros(n_test,1);
     k =1;

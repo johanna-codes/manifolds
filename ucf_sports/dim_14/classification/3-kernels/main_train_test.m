@@ -164,7 +164,7 @@ dim = 14;
 p = 1:14;
 
 
-parfor i=1:length(p)
+for i=1:length(p)
     in_p = p(i);
     X = sprintf('n = %d ', in_p);
     disp(X);
