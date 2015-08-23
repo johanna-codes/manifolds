@@ -52,7 +52,7 @@ parfor video_ts= 1: n_videos
         %display(accuracy');
         
         acc = [acc accuracy(1)];
-        save_svm_model =strcat( './svm_models/LED_POLY_run_', int2str(video_ts), '_n', num2str(n),'.mat');
+        save_svm_model =strcat( './svm_models_LED_POLY/LED_POLY_run_', int2str(video_ts), '_n', num2str(n),'.mat');
         parfor_save(save_svm_model, model, X_train);
         %save(save_svm_model, 'model', 'X_train');
     end
