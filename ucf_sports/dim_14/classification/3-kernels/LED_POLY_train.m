@@ -14,7 +14,7 @@ acc = [];
 
 load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
-parfor video_ts= 1: n_videos
+for video_ts= 1: n_videos
     X_train = zeros(dim,dim,n_test);
     labels_train = zeros(n_test,1);
     k =1;
