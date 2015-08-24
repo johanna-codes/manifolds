@@ -63,17 +63,21 @@ dim =14;
 
 %% Kernel LED-Poly
 
-% display('Training svm + Kernel LED-POLY');
+ display('Training svm + Kernel LED-POLY');
 % %n=1:dim;
-% n=1:20; % No funciono para ningun n>21
-% %ACC_train = zeros(length(n),25);
-%
-% for i=1:length(n)
-%     in_n = n(i);
-%     sprintf('n = %d ', in_n)
-%     acc = kth_train_LED_POLY(path, dim, in_n);
-%     %ACC_train(i,:) = acc;
-% end
+ n=1:20; % No funciono para ningun n>21
+ d=1:14;
+ %ACC_train = zeros(length(n),25);
+
+ for i=1:length(n)
+     for j=1:length(d)
+         in_p = p(i);
+         in_d = d(j);
+         X=sprintf('p = %d, d= %d ', in_p, in_d);
+         disp(X);
+         acc = kth_train_LED_POLY(path, dim, in_n, in_d);
+     end
+ end
 %
 %  display('Testing svm + Kernel LED-POLY');
 %  %n=1:dim;
@@ -83,10 +87,14 @@ dim =14;
 %  shift = 0;
 %
 %  for i=1:length(n)
-%      %if (i~=2)
-%     acc = kth_test_LED_POLY(path,scale, shift, dim, n(i));
+%      for j=1:length(d)
+%         in_p = p(i);
+%         in_d = d(j);
+%         X=sprintf('p = %d, d= %d ', in_p, in_d);
+%         disp(X);
+%     acc = kth_test_LED_POLY(path,scale, shift, dim, in_n, in_d);
 %     test_acc(i) = acc;
-%      %end
+%     end
 %  end
 
 %save_results =strcat( 'LED_POLY_all_n_performance.mat');
@@ -140,45 +148,45 @@ dim =14;
 
 
 %% Projection Kernel: Poly
-display('Training svm + Projection Poly Kernel ');
-dim = 14;
-p = 1:14;
-d=1:14;
-%ACC_train = zeros(length(p),25);
+% display('Training svm + Projection Poly Kernel ');
+% dim = 14;
+% p = 1:14;
+% d=1:14;
+% %ACC_train = zeros(length(p),25);
+% 
+% 
+% 
+% for i=1:length(p)
+%     for j=1:length(d)
+%         in_p = p(i);
+%         in_d = d(j);
+%         X=sprintf('p = %d, d= %d ', in_p, in_d);
+%         disp(X);
+%         acc = kth_train_ProjectionPoly(path,  dim, in_p, in_d);
+%         %  ACC_train(i,:) = acc;
+%     end
+% end
 
 
 
-for i=1:length(p)
-    for j=1:length(d)
-        in_p = p(i);
-        in_d = d(j);
-        X=sprintf('p = %d, d= %d ', in_p, in_d);
-        disp(X);
-        acc = kth_train_ProjectionPoly(path,  dim, in_p, in_d);
-        %  ACC_train(i,:) = acc;
-    end
-end
-
-
-
-display('Testing svm + Projection Poly Kernel');
-dim = 14;
-p = 1:14;
-d=1:14;
-test_acc = zeros(length(p),length(d));
-scale = 1;
-shift = 0;
-
-for i=1:length( p )
-    for j=1:length(d)
-        in_p = p(i);
-        in_d = d(j);
-        X=sprintf('p = %d, d= %d ', in_p, in_d);
-        disp(X);
-        acc = kth_test_ProjectionPoly(path,scale, shift, dim, in_p, in_d );
-        test_acc(i,j) = acc;
-    end
-end
-save_results =strcat( 'projPoly_all_p_performance.mat');
-save(save_results, 'test_acc', 'p', 'dim', 'scale', 'shift');
+% display('Testing svm + Projection Poly Kernel');
+% dim = 14;
+% p = 1:14;
+% d=1:14;
+% test_acc = zeros(length(p),length(d));
+% scale = 1;
+% shift = 0;
+% 
+% for i=1:length( p )
+%     for j=1:length(d)
+%         in_p = p(i);
+%         in_d = d(j);
+%         X=sprintf('p = %d, d= %d ', in_p, in_d);
+%         disp(X);
+%         acc = kth_test_ProjectionPoly(path,scale, shift, dim, in_p, in_d );
+%         test_acc(i,j) = acc;
+%     end
+% end
+% save_results =strcat( 'projPoly_all_p_performance.mat');
+% save(save_results, 'test_acc', 'p', 'dim', 'scale', 'shift');
 
