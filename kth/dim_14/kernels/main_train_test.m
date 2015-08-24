@@ -140,24 +140,24 @@ dim =14;
 
 
 %% Projection Kernel: Poly
-% display('Training svm + Projection Poly Kernel ');
-% dim = 14;
-% p = 1:14;
-% d=1:14;
-% %ACC_train = zeros(length(p),25);
-% 
-% 
-% 
-% for i=1:length(p)
-%     for j=1:length(d)
-%         in_p = p(i);
-%         in_d = d(j);
-%         X=sprintf('p = %d, d= %d ', in_p, in_d);
-%         disp(X);
-%         acc = kth_train_ProjectionPoly(path,  dim, in_p, in_d);
-%         %  ACC_train(i,:) = acc;
-%     end
-% end
+display('Training svm + Projection Poly Kernel ');
+dim = 14;
+p = 1:14;
+d=1:14;
+%ACC_train = zeros(length(p),25);
+
+
+
+for i=1:length(p)
+    for j=1:length(d)
+        in_p = p(i);
+        in_d = d(j);
+        X=sprintf('p = %d, d= %d ', in_p, in_d);
+        disp(X);
+        acc = kth_train_ProjectionPoly(path,  dim, in_p, in_d);
+        %  ACC_train(i,:) = acc;
+    end
+end
 
 
 
