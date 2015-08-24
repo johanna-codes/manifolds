@@ -63,25 +63,26 @@ dim =14;
 
 %% Kernel LED-Poly
 
- %display('Training svm + Kernel LED-POLY');
+display('Training svm + Kernel LED-POLY');
 % %n=1:dim;
  %n=1:20; % No funciono para ningun n>21
- %d=1:14;
+d=1:14;
  %ACC_train = zeros(length(n),25);
 
  
- %in_n = input('Enter n: ');
- %for i=1:length(n)
-     %for j=1:length(d)
-         %in_n = n(i);
-         %in_d = d(j);
-         %X=sprintf('n = %d, d= %d ', in_n, in_d);
-         %disp(X);
-         %acc = kth_train_LED_POLY(path, dim, in_n, in_d);
-     %end
+in_n = input('Enter n: ');
+%for i=1:length(n)
+     for j=1:length(d)
+         %%in_n = n(i);
+         in_d = d(j);
+         X=sprintf('n = %d, d= %d ', in_n, in_d);
+         disp(X);
+         acc = kth_train_LED_POLY(path, dim, in_n, in_d);
+     end
  %end
-%
-  display('Testing svm + Kernel LED-POLY');
+
+ 
+%  display('Testing svm + Kernel LED-POLY');
 %  %n=1:dim;
 %  n=1:20;
 %  test_acc = zeros(length(n),1);
