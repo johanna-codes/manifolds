@@ -70,12 +70,12 @@ dim =14;
  %ACC_train = zeros(length(n),25);
 
  
- in_p = input('Enter n: ');
+ in_n = input('Enter n: ');
  %for i=1:length(n)
      for j=1:length(d)
-         %in_p = p(i);
+         %in_n = n(i);
          in_d = d(j);
-         X=sprintf('p = %d, d= %d ', in_p, in_d);
+         X=sprintf('p = %d, d= %d ', in_n, in_d);
          disp(X);
          acc = kth_train_LED_POLY(path, dim, in_n, in_d);
      end
@@ -90,9 +90,9 @@ dim =14;
 %
 %  for i=1:length(n)
 %      for j=1:length(d)
-%         in_p = p(i);
+%         in_n = n(i);
 %         in_d = d(j);
-%         X=sprintf('p = %d, d= %d ', in_p, in_d);
+%         X=sprintf('p = %d, d= %d ', in_n, in_d);
 %         disp(X);
 %     acc = kth_test_LED_POLY(path,scale, shift, dim, in_n, in_d);
 %     test_acc(i) = acc;
