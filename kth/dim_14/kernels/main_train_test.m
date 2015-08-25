@@ -105,8 +105,9 @@ dim =14;
         disp(X);
         acc = kth_test_LED_POLY(path,scale, shift, dim, in_n, in_d);
         test_acc(i,j) = acc;
-        test_acc
-    end
+       
+     end
+     test_acc(i,:)
  end
 
 %save_results =strcat( 'LED_POLY_all_n_performance.mat');
