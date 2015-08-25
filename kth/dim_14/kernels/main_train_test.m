@@ -47,7 +47,8 @@ for i=1:length(n)
     for j=1:length(delta)
         in_n = n(i);
         in_delta = delta(j);
-         X=sprintf('n = %d, delta= %d ', in_n, in_delta);
+        X=sprintf('n = %d, delta= %d ', in_n, in_delta);
+        disp(X);
         acc = kth_train_LED_RBF(path, dim, in_n, in_delta);
     end
 end
