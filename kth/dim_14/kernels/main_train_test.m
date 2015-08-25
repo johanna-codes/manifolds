@@ -38,16 +38,22 @@ dim =14;
 
 %% Kernel LED-RBF
 
-% display('Training svm + Kernel LED-RBF');
-% delta = -10:1:9;
-% ACC_train = zeros(length(delta),25);
-% parfor i=1:length(delta)
-%    acc = kth_train_LED_RBF(path, dim, delta(i));
-%    ACC_train(i,:) = acc;
-%
-% end
+display('Training svm + Kernel LED-RBF');
+delta = -10:1:9;
+ACC_train = zeros(length(delta),25);
+n=1:dim;
 
-%  display('Testing svm + Kernel LED-RBF');
+for i=1:length(n)
+    for j=1:length(delta)
+        in_n = n(i);
+        in_delta = delta(j);
+         X=sprintf('n = %d, delta= %d ', in_n, in_delta);
+        acc = kth_train_LED_RBF(path, dim, in_n, in_delta);
+    end
+end
+
+% DO IT: enter in_n in_delta, change load svm_model. change save n_delta  
+%display('Testing svm + Kernel LED-RBF');
 %  delta = -10:1:9;
 %  test_acc = zeros(length(delta),1);
 %  scale = 1;
@@ -61,25 +67,25 @@ dim =14;
 %  save_results =strcat( 'LED_RBF_all_delta_performance.mat');
 %  save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
 
-%% Kernel LED-Poly
+%% Kernel LED-Poly: Running in Wanda
 
-display('Training svm + Kernel LED-POLY');
-% %n=1:dim;
- %n=1:20; % No funciono para ningun n>21
-d=1:14;
- %ACC_train = zeros(length(n),25);
-
- 
-in_n = input('Enter n: ');
-%for i=1:length(n)
-     for j=1:length(d)
-         %%in_n = n(i);
-         in_d = d(j);
-         X=sprintf('n = %d, d= %d ', in_n, in_d);
-         disp(X);
-         acc = kth_train_LED_POLY(path, dim, in_n, in_d);
-     end
- %end
+% display('Training svm + Kernel LED-POLY');
+% % %n=1:dim;
+% %n=1:20; % No funciono para ningun n>21
+% d=1:14;
+% 
+% 
+%  
+% in_n = input('Enter n: ');
+% %for i=1:length(n)
+%      for j=1:length(d)
+%          %%in_n = n(i);
+%          in_d = d(j);
+%          X=sprintf('n = %d, d= %d ', in_n, in_d);
+%          disp(X);
+%          acc = kth_train_LED_POLY(path, dim, in_n, in_d);
+%      end
+%  %end
 
  
 %  display('Testing svm + Kernel LED-POLY');

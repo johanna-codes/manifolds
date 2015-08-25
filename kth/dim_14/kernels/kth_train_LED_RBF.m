@@ -1,6 +1,6 @@
-function acc = kth_train_LED_RBF(path,dim, delta)
+function acc = kth_train_LED_RBF(path,dim, n, delta)
 
-gamma = 1/dim*2^delta;
+gamma = 1/n*2^delta;
 RIEMANNIAN_KERNEL = @(X,Y,gamma) exp( -gamma*( norm(logm(X) - logm(Y),'fro') )^2 );
 
 
@@ -45,7 +45,7 @@ for pe_ts= 1: n_peo
     %display(accuracy');
     
     acc = [acc accuracy(1)];
-    save_svm_model =strcat( './svm_models/LED-RBF_svm_run_', int2str(pe_ts), '_delta', num2str(delta),'.mat');
+    save_svm_model =strcat( './svm_models_LED_RBF/LED_RBF_svm_run_', int2str(pe_ts), '_n', num2str(n),'_delta', num2str(delta),'.mat');
     save(save_svm_model, 'model', 'X_train');
     
     
