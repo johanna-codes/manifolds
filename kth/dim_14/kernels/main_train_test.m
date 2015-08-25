@@ -93,7 +93,7 @@ dim =14;
  %n=1:dim;
  n=1:20;
  d=1:10; %As per paper
- test_acc = zeros(length(n),1);
+ test_acc = zeros(length(n),length(d));
  scale = 1;
  shift = 0;
 
@@ -103,8 +103,9 @@ dim =14;
         in_d = d(j);
         X=sprintf('n = %d, d= %d ', in_n, in_d);
         disp(X);
-    acc = kth_test_LED_POLY(path,scale, shift, dim, in_n, in_d);
-    test_acc(i) = acc;
+        acc = kth_test_LED_POLY(path,scale, shift, dim, in_n, in_d);
+        test_acc(i,j) = acc;
+        test_acc
     end
  end
 
