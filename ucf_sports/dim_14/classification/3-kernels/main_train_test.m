@@ -160,19 +160,19 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %% Projection Poly  Kernel: Running in NICTA 
 
-display('Training svm + Projection Poly Kernel ');
-p = 1:14;
-d=1:14;
-
-for i=1:length(p)
-    for j=1:length(d)
-        in_p = p(i);
-        in_d = d(j);
-        X=sprintf('p = %d, d= %d ', in_p, in_d);
-        disp(X);
-        acc = ProjPOLY_train(path, action_seq_names, dim, in_p, in_d, num_videos);    
-    end
-end
+% display('Training svm + Projection Poly Kernel ');
+% p = 1:14;
+% d=1:14;
+% 
+% for i=1:length(p)
+%     for j=1:length(d)
+%         in_p = p(i);
+%         in_d = d(j);
+%         X=sprintf('p = %d, d= %d ', in_p, in_d);
+%         disp(X);
+%         acc = ProjPOLY_train(path, action_seq_names, dim, in_p, in_d, num_videos);    
+%     end
+% end
 
 
 
@@ -189,7 +189,7 @@ end
         in_d = d(j);
         X=sprintf('p = %d, d= %d ', in_p, in_d);
         disp(X);
-        acc = ProjPoly_test(path, action_seq_names, scale, shift, dim, p(i), num_videos );
+        acc = ProjPOLY_test(path, action_seq_names, scale, shift, dim, p(i), num_videos );
         test_acc(i,j) = acc;
      end
  end
