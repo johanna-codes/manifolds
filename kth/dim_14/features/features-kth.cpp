@@ -63,6 +63,7 @@ main(int argc, char** argv)
   
   for (int i=0; i<scale_vec.n_elem; ++i)
   {
+    cout << "scale_factor " << scale_factor << endl;
     float scale_factor = scale_vec(i);
     opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim);
     opt_feat_kth.features_all_videos( all_people );
