@@ -257,7 +257,7 @@ cov_mat_kth::calculate_one_per_video( field<string> in_all_people, int  in_dim  
       int act  = atoi( parallel_names(k,3).c_str() );
       
       cov_mat_kth::one_video_one_cov(load_feat_video_i, load_labels_video_i, sc, pe, act );
-      getchar();
+      //getchar();
     }
 
 }
