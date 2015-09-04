@@ -33,8 +33,45 @@ const std::string  actionNames = "actionNames.txt";
 
 
 
+int
+main(int argc, char** argv)
+{
+  
+  
+  int shift = 0;
+  vec scale_vec;
+  scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
+  
+  int total_scenes = 1; //Only for Scenario 1.
+  int segment_length = 20;
+  int dim = 14; 
+  
+  
+  for (int i=0; i<scale_vec.n_elem; ++i)
+  {
+    float scale_factor = scale_vec(i);
+    cout << "Cov for scale_factor " << scale_factor << endl;
+    
+    field<string> all_people;
+    all_people.load(peopleList);
+    
+    cov_mat_kth get_cov_seg(path, actionNames, scale_factor, shift, total_scenes, segment_length);
+    //get_cov_seg.calculate( all_people, dim );
+    get_cov_seg.calculate_one_per_video( all_people, dim );
+    
+  }
+  
+
+  return 0;
+  
+}
 
 
+
+
+
+
+/*
 int
 main(int argc, char** argv)
 {
@@ -75,4 +112,4 @@ main(int argc, char** argv)
 
   return 0;
   
-}
+}*/
