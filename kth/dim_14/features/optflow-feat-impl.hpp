@@ -426,7 +426,7 @@ opt_feat::Scale_Image( cv::Mat src_in, float scale_factor)
   if (scale_factor>1)
   {
     cv::resize(tmp, dst, cv::Size(n_cols, n_rows ), CV_INTER_CUBIC );
-    cout << "** New Size " << dst.cols << " & " << dst.rows << endl;
+    //cout << "** New Size " << dst.cols << " & " << dst.rows << endl;
     int mid_col_ori = tmp.cols/2;
     int mid_row_ori = tmp.rows/2;
     
@@ -449,7 +449,7 @@ opt_feat::Scale_Image( cv::Mat src_in, float scale_factor)
   else
   {
     cv::resize(tmp, dst, cv::Size(n_cols, n_rows ) , CV_INTER_AREA);
-    cout << "** New Size " << dst.cols << " & " << dst.rows << endl;
+    //cout << "** New Size " << dst.cols << " & " << dst.rows << endl;
     
     int x = (tmp.cols - dst.cols)/2;
     int y = (tmp.rows - dst.rows)/2;
