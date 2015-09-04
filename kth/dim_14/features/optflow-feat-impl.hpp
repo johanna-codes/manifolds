@@ -411,7 +411,8 @@ inline
 cv::Mat
 opt_feat::Scale_Image( cv::Mat src_in, float scale_factor)
 {
- tmp = src_in
+  cv::Mat scaled_image, dst, tmp;
+  tmp = src_in;
   
   cout << "** Original Size " << tmp.cols << " & " << tmp.rows << endl;
   
@@ -419,7 +420,7 @@ opt_feat::Scale_Image( cv::Mat src_in, float scale_factor)
   int n_rows =  int(tmp.rows*scale_factor);
 	
 	
-  cv::Mat scaled_image, dst;
+  
   
   
   if (scale_factor>1)
