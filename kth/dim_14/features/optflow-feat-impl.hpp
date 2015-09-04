@@ -419,7 +419,7 @@ opt_feat::Scale_Image( cv::Mat src_in, float scale_factor)
   int n_rows =  int(tmp.rows*scale_factor);
 	
 	
-  cv::Mat scaled_image;
+  cv::Mat scaled_image, dst;
   
   
   if (scale_factor>1)
