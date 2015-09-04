@@ -60,6 +60,7 @@ main(int argc, char** argv)
   field<string> all_people;
   all_people.load(peopleList);
   
+  
   for (int i=0; i<scale_vec.n_elem; ++i)
   {
     float scale_factor = scale_vec(i);
