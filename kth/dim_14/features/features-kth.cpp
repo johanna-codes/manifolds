@@ -39,15 +39,21 @@ int
 main(int argc, char** argv)
 {
   
-   if(argc < 3 )
-  {
-    cout << "usage: " << argv[0] << " scale_factor " << " shift_factor " << endl;
-    return -1;
-  }
   
+//    if(argc < 3 )
+//   {
+//     cout << "usage: " << argv[0] << " scale_factor " << " shift_factor " << endl;
+//     return -1;
+//   }
+//   float scale_factor = atof( argv[1] );
+//   int shift = atoi( argv[2] );
+
+
   
-  float scale_factor = atof( argv[1] );
-  int shift = atoi( argv[2] );
+  int shift =1;
+  vec scale_vec;
+  scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
+  
   int total_scene = 1; //Hacer solo para scenario 1
   int dim = 14;
   
@@ -66,3 +72,8 @@ main(int argc, char** argv)
 
  //Scale-factors:
  //0.75, 0.80, 0.85, 0.90, 0.95, 1.0, 1.05, 1.10, 1.15, 1.20, 1.25
+ 
+//mkdir scale0.80-shift-1 scale0.85-shift-1 scale0.90-shift-1 scale0.95-shift-1 scale1.05-shift-1 scale1.10-shift-1 scale1.15-shift-1 scale1.20-shift-1 scale1.25-shift-1
+
+
+
