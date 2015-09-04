@@ -46,7 +46,7 @@ main(int argc, char** argv)
   }
   
   
-  int scale_factor = atoi( argv[1] );
+  float scale_factor = atof( argv[1] );
   int shift = atoi( argv[2] );
   int total_scene = 1; //Hacer solo para scenario 1
   int dim = 14;
@@ -63,3 +63,6 @@ main(int argc, char** argv)
   return 0;
   
 }
+
+ //Scale-factors:
+ //0.75, 0.80, 0.85, 0.90, 0.95, 1.0, 1.05, 1.10, 1.15, 1.20, 1.25

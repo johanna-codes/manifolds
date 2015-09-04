@@ -5,7 +5,7 @@ public:
 		  const std::string in_actionNames,  
 		  const int in_col, 
 		  const int in_row,
-		  const int in_scale_factor, 
+		  const float in_scale_factor, 
 		  const int in_shift,
 		  const int in_scene,
 		  const int dim
@@ -21,7 +21,7 @@ public:
   
   const int col;
   const int row;
-  const int scale_factor;
+  const float scale_factor;
   const int shift;
   const int total_scene;
   const int dim;
@@ -45,6 +45,7 @@ private:
   
   inline void feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_lab );
   inline cv::Mat Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y);
+  inline cv::Mat Scale_Image( cv::Mat src_in, float scale_factor);
   
   
   
