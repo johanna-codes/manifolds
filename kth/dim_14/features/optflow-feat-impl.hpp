@@ -419,12 +419,12 @@ opt_feat::Scale_Image( cv::Mat src_in, float scale_factor)
   int n_rows =  int(tmp.rows*scale_factor);
 	
 	
-  Mat scaled_image;
+  cv::Mat scaled_image;
   
   
   if (scale_factor>1)
   {
-    resize(tmp, dst, Size(n_cols, n_rows ), CV_INTER_CUBIC );
+    cv::resize(tmp, dst, cv::Size(n_cols, n_rows ), CV_INTER_CUBIC );
     cout << "** New Size " << dst.cols << " & " << dst.rows << endl;
     int mid_col_ori = tmp.cols/2;
     int mid_row_ori = tmp.rows/2;
@@ -435,7 +435,7 @@ opt_feat::Scale_Image( cv::Mat src_in, float scale_factor)
     int rec_col = mid_col_new - mid_col_ori;
     int rec_row = mid_row_new - mid_row_ori;
     
-    Rect roi(rec_col, rec_row, tmp.cols, tmp.rows);
+    cv::Rect roi(rec_col, rec_row, tmp.cols, tmp.rows);
     scaled_image = dst(roi);
 
     
@@ -447,13 +447,13 @@ opt_feat::Scale_Image( cv::Mat src_in, float scale_factor)
   }
   else
   {
-    resize(tmp, dst, Size(n_cols, n_rows ) , CV_INTER_AREA);
+    cv::resize(tmp, dst, cv::Size(n_cols, n_rows ) , CV_INTER_AREA);
     cout << "** New Size " << dst.cols << " & " << dst.rows << endl;
     
     int x = (tmp.cols - dst.cols)/2;
     int y = (tmp.rows - dst.rows)/2;
-    Mat black_border(tmp.size(),CV_8UC3, cv::Scalar(0,0,0)); // all white image  
-    dst.copyTo( black_border( Rect( x, y, dst.cols, dst.rows) )  );    
+    cv::Mat black_border(tmp.size(),CV_8UC3, cv::Scalar(0,0,0)); // all white image  
+    dst.copyTo( black_border( cv::Rect( x, y, dst.cols, dst.rows) )  );    
     scaled_image = black_border;
 
     //Adding Vertical Pixels
