@@ -1,7 +1,7 @@
 inline
 opt_feat::opt_feat(const std::string in_path,
 		   const std::string in_actionNames,  
-		   const int in_scale_factor, 
+		   const float in_scale_factor, 
 		   const int in_shift,
 		   const int in_dim
 )
