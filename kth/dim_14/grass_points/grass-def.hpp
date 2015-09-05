@@ -3,7 +3,7 @@ class grass_points
 public:  
     inline grass_points(const std::string in_path,
 		    const std::string in_actionNames,  
-		    const int in_scale_factor, 
+		    const float in_scale_factor, 
 		    const int in_shift,
 		    const int in_scene,
 		    const int segment_length,
@@ -18,7 +18,7 @@ public:
 const std::string path;
 const std::string actionNames;
 
-const int scale_factor;
+const float scale_factor;
 const int shift;
 const int total_scenes;
 const int segment_length;
