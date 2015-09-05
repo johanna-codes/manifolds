@@ -52,7 +52,6 @@ main(int argc, char** argv)
     
     opt_feat opt_feat_ucf(path, actionNames, scale_factor, shift, dim);
     opt_feat_ucf.features_all_videos();
-    //opt_feat_kth.features_all_videos( all_people );
   }
   
   return 0;
