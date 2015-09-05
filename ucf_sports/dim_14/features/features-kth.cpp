@@ -42,11 +42,6 @@ main(int argc, char** argv)
   vec scale_vec;
   scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
   
-  int total_scene = 1; //Hacer solo para scenario 1
-  int dim = 14;
-  
-  field<string> all_people;
-  all_people.load(peopleList);
   
   
   for (int i=0; i<scale_vec.n_elem; ++i)
