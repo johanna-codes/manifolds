@@ -63,7 +63,7 @@ opt_feat::features_all_videos( )
   
   wall_clock timer;
   timer.tic();
-  omp_set_num_threads(10); //Use only 1 processors
+  omp_set_num_threads(1); //Use only 1 processors
   
   #pragma omp parallel for 
   for (int i = 0; i<load_save_names.n_rows; ++i)
@@ -110,7 +110,7 @@ opt_feat::features_all_videos( )
     #pragma omp critical
     {
     mat_features_video_i.save( save_feat_video_i, hdf5_binary );
-    cout << save_feat_video_i << endl;
+    //cout << save_feat_video_i << endl;
     lab_video_i.save( save_labels_video_i, hdf5_binary );
     }
     
