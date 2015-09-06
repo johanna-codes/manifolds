@@ -180,12 +180,15 @@ opt_feat::feature_video( std::string folder_path, Struct_feat_lab &my_Struct_fea
       
     }
     
-      if (scale_factor!=1)
-      {
-	new_row = row*scale_factor;
-	new_col = col*scale_factor;
-	cv::resize( frame, frame, cv::Size(new_row, new_col) );
-      }
+    if (scale_factor!=1)
+    {
+//       new_row = row*scale_factor;
+//       new_col = col*scale_factor;
+//       cv::resize( frame, frame, cv::Size(new_row, new_col) );
+//       
+      frame =  Scale_Image( frame,  scale_factor);
+    }
+    
     
     cv::cvtColor(frame, gray, CV_BGR2GRAY);
 
@@ -388,4 +391,93 @@ opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
   }
 
   return img_out;
+}
+
+inline 
+cv::Mat
+opt_feat::Scale_Image( cv::Mat src_in, float scale_factor)
+{
+  cv::Mat scaled_image, dst, tmp;
+  tmp = src_in;
+  
+  //cout << "** Original Size " << tmp.cols << " & " << tmp.rows << endl;
+  
+  int n_cols =  int(tmp.cols*scale_factor);
+  int n_rows =  int(tmp.rows*scale_factor);
+	
+	
+  
+  
+  
+  if (scale_factor>1)
+  {
+    cv::resize(tmp, dst, cv::Size(n_cols, n_rows ), CV_INTER_CUBIC );
+    //cout << "** New Size " << dst.cols << " & " << dst.rows << endl;
+    int mid_col_ori = tmp.cols/2;
+    int mid_row_ori = tmp.rows/2;
+    
+    int mid_col_new = dst.cols/2;
+    int mid_row_new = dst.rows/2;
+    
+    int rec_col = mid_col_new - mid_col_ori;
+    int rec_row = mid_row_new - mid_row_ori;
+    
+    cv::Rect roi(rec_col, rec_row, tmp.cols, tmp.rows);
+    scaled_image = dst(roi);
+
+    
+  }
+  else if (scale_factor==1)
+  {
+    scaled_image = tmp;
+        
+  }
+  else
+  {
+    cv::resize(tmp, dst, cv::Size(n_cols, n_rows ) , CV_INTER_AREA);
+    //cout << "** New Size " << dst.cols << " & " << dst.rows << endl;
+    
+    int x = (tmp.cols - dst.cols)/2;
+    int y = (tmp.rows - dst.rows)/2;
+    cv::Mat black_border(tmp.size(),CV_8UC3, cv::Scalar(0,0,0)); // all white image  
+    dst.copyTo( black_border( cv::Rect( x, y, dst.cols, dst.rows) )  );    
+    scaled_image = black_border;
+
+    //Adding Vertical Pixels
+    //At the beginning
+    cv::Mat col = tmp.col(0);
+
+    for (int i=0; i<x ; ++i)
+    {
+      col.col(0).copyTo(scaled_image.col(i));
+      
+    }
+    
+    //At the end
+    col = tmp.col(tmp.cols-1);
+    for (int i=x+dst.cols; i<tmp.cols ; ++i)
+    {
+      col.col(0).copyTo(scaled_image.col(i));      
+    }
+    
+    //Adding horizontal pixels
+    cv::Mat row = tmp.row(0);
+    
+    for (int i=0; i<y; ++i)
+    {
+      row.row(0).copyTo(scaled_image.row(i));
+      //src_in.copyTo(img_out,crop);
+     }
+     row = tmp.row(tmp.rows-1);
+     
+     for (int i=y+dst.rows; i<tmp.rows; ++i)
+     {
+       row.row(0).copyTo(scaled_image.row(i));
+      
+       
+    }
+  }
+    
+ return scaled_image;
+  
 }
