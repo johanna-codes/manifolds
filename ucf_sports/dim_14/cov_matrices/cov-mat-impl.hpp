@@ -2,7 +2,7 @@ inline
 cov_mat::cov_mat( const std::string in_path,
 		  const std::string in_path_dataset,
 			  const std::string in_actionNames,  
-			  const int in_scale_factor, 
+			  const float in_scale_factor, 
 			  const int in_shift,
 			  const int in_dim
 )
