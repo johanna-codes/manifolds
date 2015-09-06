@@ -63,7 +63,7 @@ opt_feat::features_all_videos( )
   
   wall_clock timer;
   timer.tic();
-  omp_set_num_threads(1); //Use only 1 processors
+  omp_set_num_threads(10); //Use only 1 processors
   
   #pragma omp parallel for 
   for (int i = 0; i<load_save_names.n_rows; ++i)
