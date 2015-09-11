@@ -81,7 +81,7 @@ main(int argc, char** argv)
  //Scale-factors:
  //0.75, 0.80, 0.85, 0.90, 0.95, 1.0, 1.05, 1.10, 1.15, 1.20, 1.25
  
-//mkdir scale0.75-shift0 scale0.80-shift0 scale0.85-shift0 scale0.90-shift0 scale0.95-shift0 scale1.05-shift0 scale1.10-shift0 scale1.15-shift0 scale1.20-shift0 scale1.25-shift0
+//mkdir scale0.75-shift0 scale0.8-shift0 scale0.85-shift0 scale0.9-shift0 scale0.95-shift0 scale1.05-shift0 scale1.1-shift0 scale1.15-shift0 scale1.2-shift0 scale1.25-shift0
 
 
 
