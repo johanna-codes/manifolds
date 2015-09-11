@@ -20,7 +20,7 @@ opt_feat::features_all_videos( )
   mat data;
   data.load("bbox_data.h5", hdf5_binary);
   
-  cout << data.n_rows << " & " << data.n_cols << endl;
+  //cout << data.n_rows << " & " << data.n_cols << endl;
   vec labels_all_frames = data.col(0);
   
   
@@ -46,6 +46,7 @@ opt_feat::features_all_videos( )
       feature_video( data_i_j, actID, seqID, n_frames, my_Struct_feat_lab );
       mat mat_features_video_i;
       //vec lab_video_i;
+      //getchar();
       
       if (my_Struct_feat_lab.features_video_i.size()>0)
       {
@@ -92,7 +93,7 @@ void
 opt_feat::feature_video(mat data_i_j, int actID, int seqID, int n_frames, Struct_feat_lab &my_Struct_feat_lab)
 //( std::string folder_path, Struct_feat_lab &my_Struct_feat_lab )
 {
-  cv::Mat prevgray, gray, flow, cflow, ori, prevflow;
+  cv::Mat prevgray, gray, flow, cflow, orig, prevflow;
   cv::Mat ixMat, iyMat, ixxMat, iyyMat;
   cv::Mat flow_xy[2], mag, ang;
  
@@ -103,176 +104,175 @@ opt_feat::feature_video(mat data_i_j, int actID, int seqID, int n_frames, Struct
     std::stringstream folder_name;
     folder_name << path << "im" << setw(2) << setfill( '0' ) << actID + 1 << "_" << setw(2) << setfill( '0' ) << seqID + 1 << "_" << setw(3) << setfill( '0' ) << frameID+1 << ".bmp";
     //cout << folder_name.str() << endl;
-    ori = cv::imread(folder_name.str() );
+    orig = cv::imread(folder_name.str() );
     
     int x = data_i_j(frameID,3);
     int y = data_i_j(frameID,4);
     int w = data_i_j(frameID,5);
     int h = data_i_j(frameID,6);
     
-    cv::Mat frame(ori, cv::Rect(x-1,y-1,w-1,h-1));
+    cv::Mat frame(orig, cv::Rect(x-1,y-1,w-1,h-1));
+    
+    cv::resize( frame, frame, cvSize(32, 32) );
     
     
     
-    int row = frame.rows;
-    int col = frame.cols;
-    
-    int new_row = row;
-    int new_col = col;
-    
-    if (shift!=0)
-    {
-      int shif_x = floor(col*shift/100);
-      int shif_y = floor(row*shift/100);
-      frame = Shift_Image( frame, shif_x, shif_y);
-      
-    }
-    
-    if (scale_factor!=1)
-    {
-      //       new_row = row*scale_factor;
-      //       new_col = col*scale_factor;
-      //       cv::resize( frame, frame, cv::Size(new_row, new_col) );
-      //       
-      frame =  Scale_Image( frame,  scale_factor);
-    }
-    
-    
-    cv::cvtColor(frame, gray, CV_BGR2GRAY);
-    
-    if( prevgray.data )
-    {
-      //cout << t << " " ;
-      cv::calcOpticalFlowFarneback(prevgray, 
-				   gray, 
-				   flow, 
-				   0.5, //pyr_scale
-				   3,   //levels
-				   9,   //winsize
-				   1,   //iterations
-				   5,   //poly_n
-				   1.1, //poly_sigma
-				   0);  //flags
-      
-      
-      //optical flow
-      cv::split(flow, flow_xy);
-      cv::cartToPolar(flow_xy[0], flow_xy[1], mag, ang, true);
-      
-      cv::Sobel(gray, ixMat, CV_32F, 1, 0, 1);
-      cv::Sobel(gray, iyMat, CV_32F, 0, 1, 1);
-      cv::Sobel(gray, ixxMat, CV_32F, 2, 0, 1);
-      cv::Sobel(gray, iyyMat, CV_32F, 0, 2, 1);
-      
-      float  ux = 0, uy = 0, vx = 0,  vy = 0;
-      float u, v;
-      
-      if( prevflow.data )
-      {
-	//cout << new_col << " " << new_row << endl;
-	
-	for (int x = 0 ; x < new_col ; ++x ){
-	  for (int y = 0 ; y < new_row ; ++y ) {
-	    
-	    vec features_one_pixel(dim);
-	    u = flow.at<cv::Vec2f>(y, x)[0];
-	    v = flow.at<cv::Vec2f>(y, x)[1];
-	    
-	    //cout << "x= " << x << " - y= " << y << endl;
-	    // x grad
-	    //cout << " x y grad" << endl;
-	    float ix = ixMat.at<float>(y, x);
-	    //cout << " y grad" << endl;
-	    float iy = iyMat.at<float>(y, x);
-	    
-	    // grad direction &  grad magnitude. (Edges)
-	    //cout << "grad direction &  grad magnitude" << endl;
-	    float gd = std::atan2(std::abs(iy), std::abs(ix));
-	    float gm = std::sqrt(ix * ix + iy * iy);
-	    
-	    // x second grad
-	    //cout << "x y  second grad " << endl;
-	    float ixx = ixxMat.at<float>(y, x);
-	    // y second grad
-	    float iyy = iyyMat.at<float>(y, x);
-	    
-	    //du/dt
-	    float ut = u - prevflow.at<cv::Vec2f>(y, x)[0];
-	    // dv/dt
-	    float vt = v - prevflow.at<cv::Vec2f>(y, x)[1];
-	    
-	    
-	    
-	    if (x>0 && y>0 )
-	    {
-	      ux = u - flow.at<cv::Vec2f>(y, x - 1)[0];
-	      uy = u - flow.at<cv::Vec2f>(y - 1, x)[0];
-	      vx = v - flow.at<cv::Vec2f>(y, x - 1)[1];
-	      vy = v - flow.at<cv::Vec2f>(y - 1, x)[1];
-	    }
-	    
-	    
-	    float Div = (ux + vy);
-	    float Vor = (vx - uy);
-	    //Adding more features
-	    mat G (2,2);
-	    mat S;
-	    float gd_opflow = ang.at<float>(y,x);
-	    float mg_opflow = mag.at<float>(y,x);
-	    //Gradient Tensor
-	    G   << ux << uy << endr
-	    << vx << vy << endr;
-	    
-	    //Rate of Stein Tensor  
-	    S = 0.5*(G + G.t());
-	    
-	    float tr_G = trace(G);
-	    float tr_G2 = trace( square(G) );
-	    float tr_S = trace(S);
-	    float tr_S2 = trace(square(S));
-	    
-	    //Tensor Invariants  of the optical flow
-	    float Gten = 0.5*( tr_G*tr_G - tr_G2 );
-	    float Sten = 0.5*( tr_S*tr_S - tr_S2 ); 
-
-	    if (dim ==14)
-	    {
-	      
-	      features_one_pixel  << x << y << abs(ix) << abs(iy) << abs(ixx) 
-	      << abs(iyy) << gm << gd <<  u << v << abs(ut) 
-	      << abs(vt) << (ux + vy)  << (vx - uy);
-	    }
-	    
-	    if (!is_finite( features_one_pixel ) )
-	    {
-	      cout << "It's not FINITE... continue???" << endl;
-	      getchar(); 
-	    }
-	    // Plotting Moving pixels
-	    //cout << " " << gm;
-	    
-	    double is_zero = accu(abs(features_one_pixel));
-	    
-	    if (gm>40 && is_finite( features_one_pixel ) && is_zero!=0 ) // Empirically set to 40
-	    {   
-	      
-	      frame.at<cv::Vec3b>(y,x)[0] = 0;
-	      frame.at<cv::Vec3b>(y,x)[1] = 0;
-	      frame.at<cv::Vec3b>(y,x)[2] = 255;
-	      my_Struct_feat_lab.features_video_i.push_back(features_one_pixel);
-	      //my_Struct_feat_lab.labels_video_i.push_back( frameID );
-	    }
-	  }
-	}
-      }
-      
-      if(cv::waitKey(30)>=0)
-	break;
-      
-    }
-    
-    std::swap(prevgray, gray);
-    std::swap(prevflow, flow);
+     int row = frame.rows;
+     int col = frame.cols;
+     //cout << row << " & " << col << endl;
+     
+     
+     int new_row = row;
+     int new_col = col;
+     
+     if (shift!=0)
+     {
+       int shif_x = floor(col*shift/100);
+       int shif_y = floor(row*shift/100);
+       frame = Shift_Image( frame, shif_x, shif_y);
+       
+     }
+     
+     if (scale_factor!=1)
+     {
+       frame =  Scale_Image( frame,  scale_factor);
+     }
+     
+     
+     cv::cvtColor(frame, gray, CV_BGR2GRAY);
+     
+     if( prevgray.data )
+     {
+       cv::calcOpticalFlowFarneback(prevgray, 
+ 				   gray, 
+ 				   flow, 
+ 				   0.5, //pyr_scale
+ 				   3,   //levels
+ 				   9,   //winsize
+ 				   1,   //iterations
+ 				   5,   //poly_n
+ 				   1.1, //poly_sigma
+ 				   0);  //flags
+       
+       
+       //optical flow
+       cv::split(flow, flow_xy);
+       cv::cartToPolar(flow_xy[0], flow_xy[1], mag, ang, true);
+       
+       cv::Sobel(gray, ixMat, CV_32F, 1, 0, 1);
+       cv::Sobel(gray, iyMat, CV_32F, 0, 1, 1);
+       cv::Sobel(gray, ixxMat, CV_32F, 2, 0, 1);
+       cv::Sobel(gray, iyyMat, CV_32F, 0, 2, 1);
+       
+       float  ux = 0, uy = 0, vx = 0,  vy = 0;
+       float u, v;
+       
+       if( prevflow.data )
+       {
+ 	//cout << new_col << " " << new_row << endl;
+ 	
+ 	for (int x = 0 ; x < new_col ; ++x ){
+ 	  for (int y = 0 ; y < new_row ; ++y ) {
+ 	    
+ 	    vec features_one_pixel(dim);
+ 	    u = flow.at<cv::Vec2f>(y, x)[0];
+ 	    v = flow.at<cv::Vec2f>(y, x)[1];
+ 	    
+ 	    //cout << "x= " << x << " - y= " << y << endl;
+ 	    // x grad
+ 	    //cout << " x y grad" << endl;
+ 	    float ix = ixMat.at<float>(y, x);
+ 	    //cout << " y grad" << endl;
+ 	    float iy = iyMat.at<float>(y, x);
+ 	    
+ 	    // grad direction &  grad magnitude. (Edges)
+ 	    //cout << "grad direction &  grad magnitude" << endl;
+ 	    float gd = std::atan2(std::abs(iy), std::abs(ix));
+ 	    float gm = std::sqrt(ix * ix + iy * iy);
+ 	    
+ 	    // x second grad
+ 	    //cout << "x y  second grad " << endl;
+ 	    float ixx = ixxMat.at<float>(y, x);
+ 	    // y second grad
+ 	    float iyy = iyyMat.at<float>(y, x);
+ 	    
+ 	    //du/dt
+ 	    float ut = u - prevflow.at<cv::Vec2f>(y, x)[0];
+ 	    // dv/dt
+ 	    float vt = v - prevflow.at<cv::Vec2f>(y, x)[1];
+ 	    
+ 	    
+ 	    
+ 	    if (x>0 && y>0 )
+ 	    {
+ 	      ux = u - flow.at<cv::Vec2f>(y, x - 1)[0];
+ 	      uy = u - flow.at<cv::Vec2f>(y - 1, x)[0];
+ 	      vx = v - flow.at<cv::Vec2f>(y, x - 1)[1];
+ 	      vy = v - flow.at<cv::Vec2f>(y - 1, x)[1];
+ 	    }
+ 	    
+ 	    
+ 	    float Div = (ux + vy);
+ 	    float Vor = (vx - uy);
+ 	    //Adding more features
+ 	    mat G (2,2);
+ 	    mat S;
+ 	    float gd_opflow = ang.at<float>(y,x);
+ 	    float mg_opflow = mag.at<float>(y,x);
+ 	    //Gradient Tensor
+ 	    G   << ux << uy << endr
+ 	    << vx << vy << endr;
+ 	    
+ 	    //Rate of Stein Tensor  
+ 	    S = 0.5*(G + G.t());
+ 	    
+ 	    float tr_G = trace(G);
+ 	    float tr_G2 = trace( square(G) );
+ 	    float tr_S = trace(S);
+ 	    float tr_S2 = trace(square(S));
+ 	    
+ 	    //Tensor Invariants  of the optical flow
+ 	    float Gten = 0.5*( tr_G*tr_G - tr_G2 );
+ 	    float Sten = 0.5*( tr_S*tr_S - tr_S2 ); 
+ 
+ 	    if (dim ==14)
+ 	    {
+ 	      
+ 	      features_one_pixel  << x << y << abs(ix) << abs(iy) << abs(ixx) 
+ 	      << abs(iyy) << gm << gd <<  u << v << abs(ut) 
+ 	      << abs(vt) << (ux + vy)  << (vx - uy);
+ 	    }
+ 	    
+ 	    if (!is_finite( features_one_pixel ) )
+ 	    {
+ 	      cout << "It's not FINITE... continue???" << endl;
+ 	      getchar(); 
+ 	    }
+ 	    // Plotting Moving pixels
+ 	    //cout << " " << gm;
+ 	    
+ 	    double is_zero = accu(abs(features_one_pixel));
+ 	    
+ 	    if (gm>40 && is_finite( features_one_pixel ) && is_zero!=0 ) // Empirically set to 40
+ 	    {   
+ 	      
+ 	      frame.at<cv::Vec3b>(y,x)[0] = 0;
+ 	      frame.at<cv::Vec3b>(y,x)[1] = 0;
+ 	      frame.at<cv::Vec3b>(y,x)[2] = 255;
+ 	      my_Struct_feat_lab.features_video_i.push_back(features_one_pixel);
+ 	      //my_Struct_feat_lab.labels_video_i.push_back( frameID );
+ 	    }
+ 	  }
+ 	}
+       }
+       
+       if(cv::waitKey(30)>=0)
+ 	break;
+       
+     }
+     
+     std::swap(prevgray, gray);
+     std::swap(prevflow, flow);
     
     cv::imshow("color", frame);
     cv::waitKey(10);
