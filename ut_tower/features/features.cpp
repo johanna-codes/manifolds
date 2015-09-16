@@ -18,10 +18,10 @@ using namespace arma;
 
 
 //Casita
-//const std::string path = "/media/johanna/HD1T/codes/datasets_codes/ut_tower/";
+const std::string path = "/media/johanna/HD1T/codes/datasets_codes/ut_tower/";
 
 //WANDA
-const std::string path = "/home/johanna/codes/datasets_codes/ut_tower/";
+//const std::string path = "/home/johanna/codes/datasets_codes/ut_tower/";
 
 
 
