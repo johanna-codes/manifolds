@@ -17,7 +17,11 @@ using namespace arma;
 
 
 //Casita
-const std::string path =  "/media/johanna/HD1T/codes/codes-git/manifolds/trunk/ut_tower/";
+//const std::string path =  "/media/johanna/HD1T/codes/codes-git/manifolds/trunk/ut_tower/";
+
+//WANDA
+const std::string path = "/home/johanna/codes/codes-git/manifolds/trunk/ut_tower/";
+
 
 
 const std::string  actionNames = "actionNames.txt";
