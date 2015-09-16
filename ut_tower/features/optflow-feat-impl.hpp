@@ -275,8 +275,8 @@ opt_feat::feature_video(mat data_i_j, int actID, int seqID, int n_frames, Struct
      std::swap(prevgray, gray);
      std::swap(prevflow, flow);
     
-    //cv::imshow("color", frame);
-    //cv::waitKey(10);
+    cv::imshow("color", frame);
+    cv::waitKey(10);
   }
 }
 
