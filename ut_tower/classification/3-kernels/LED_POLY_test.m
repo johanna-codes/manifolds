@@ -1,7 +1,7 @@
 function acc = LED_POLY_test(path,action_seq_names,scale_factor, shift, dim, n, n_videos )
 
 gamma = 1/n;
-LED_POLY_KERNEL = @(X,Y,gamma) (( gamma*( trace(logm(X)'*logm(Y)) ) )^n);
+LED_POLY_KERNEL = @(X,Y,gamma,n) (( gamma*( trace(logm(X)'*logm(Y)) ) )^n);
 
 
 acc = 0;
