@@ -2,14 +2,14 @@
 clear all
 clc
 
-%addpath('/media/johanna/HD1T/Toolbox/libsvm-3.20/matlab'); --> Home
+%addpath('/media/johanna/HD1T/Toolbox/libsvm-3.20/matlab'); %--> Home
 addpath('/home/johanna/toolbox/libsvm-3.20/matlab');% --> Wanda
 
 
-path  = '~/codes/codes-git/manifolds/trunk/ut_tower/';
+path  = '~/codes/codes-git/manifolds/trunk/ut_tower/'; % --> Wanda
 
-%home
-%path_dataset = '/media/johanna/HD1T/codes/datasets_codes/my_ucf_sports_actions/';
+%path  = '/media/johanna/HD1T/codes/codes-git/manifolds/trunk/ut_tower/'; % --> Home
+
 
 action_seq_names = list_video_sequences;
 
