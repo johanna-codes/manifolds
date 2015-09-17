@@ -10,10 +10,10 @@ action_seq_names=cell(108,3);
 for act=1:n_actions
    
   
- for i=1:12
+ for seq=1:12
    action_seq_names(k,1) = actions(act); %Action
-   action_seq_names(k,2) = text(act); %Action ID
-   action_seq_names(k,3) = text(i); %Video Sequence
+   action_seq_names(k,2) = {int2str(act)}; %Action ID
+   action_seq_names(k,3) = {int2str(seq)}; %Video Sequence
    k=k+1;
      
  end
