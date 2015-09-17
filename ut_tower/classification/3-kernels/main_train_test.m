@@ -50,7 +50,7 @@ num_videos = 108; %From the dataset description (108).
 
 display('Training svm + Kernel LED-RBF');
 delta = -10:1:9;
-ACC_train = zeros(length(delta),num_videos -1);
+ACC_train = zeros(length(delta),num_videos);
 for i=1:length(delta)
     acc = LED_RBF_train(path, action_seq_names, dim, delta(i), num_videos );
     ACC_train(i,:) = acc;
