@@ -30,8 +30,7 @@ num_videos = 108; %From the dataset description (108).
  end
 % 
 %   display('Testing svm + Kernel LED-POLY');
-%   %n=1:dim;
-%   n=1:20;
+%   n=1:dim;
 %   test_acc = zeros(length(n),1);
 %   scale = 1;
 %   shift = 0;
