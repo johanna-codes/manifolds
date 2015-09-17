@@ -24,11 +24,11 @@ for video_ts= 1: n_videos
             if (video_tr~=video_ts)
                 action_name_tr = action_seq_names(video_tr,1);
                 act_tr  =  str2double( action_seq_names(video_tr,2) );
-                seqID_tr    = action_seq_names(video_tr,3) - 1;
+                seqID_tr    = action_seq_names(video_tr,3);
                 
                     %tr = [action_name_tr,'_',folder_n_tr];
                     %disp(tr);
-                    name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_seq', seqID_tr-1, '.h5');
+                    name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_seq', seqID_tr, '.h5');
                     hinfo = hdf5info( char(name_load_cov) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
                     %disp(one_video);
