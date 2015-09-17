@@ -54,8 +54,8 @@ ACC_train = zeros(length(delta),num_videos);
 
 for i=1:length(delta)
     in_delta = delta(i);
+    X = sprintf('delta = %d ', in_delta); 
     disp(X);
-    X = sprintf('delta = %d ', in_delta);
     acc = LED_RBF_train(path, action_seq_names, dim, in_delta, num_videos );
     ACC_train(i,:) = acc;
 end
