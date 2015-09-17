@@ -29,32 +29,32 @@ num_videos = 108; %From the dataset description (108).
 %      %ACC_train(i,:) = acc;
 %  end
 % 
-  display('Testing svm + Kernel LED-POLY');
-  n=1:dim;
-  test_acc = zeros(length(n),1);
-  scale = 1;
-  shift = 0;
-
-  for i=1:length(n)
-      in_n = n(i);
-      X = sprintf('n = %d ', in_n);
-      acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
-      test_acc(i) = acc;
-      test_acc'
-  end
+%   display('Testing svm + Kernel LED-POLY');
+%   n=1:dim;
+%   test_acc = zeros(length(n),1);
+%   scale = 1;
+%   shift = 0;
 % 
-  save_results =strcat( 'LED_POLY_all_n_performance.mat');
- save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
+%   for i=1:length(n)
+%       in_n = n(i);
+%       X = sprintf('n = %d ', in_n);
+%       acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
+%       test_acc(i) = acc;
+%       test_acc'
+%   end
+% % 
+%   save_results =strcat( 'LED_POLY_all_n_performance.mat');
+%  save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 
 %% Kernel LED-RBF.
 
-% display('Training svm + Kernel LED-RBF');
-% delta = -10:1:9;
-% ACC_train = zeros(length(delta),num_videos -1);
-% for i=1:length(delta)
-%     acc = LED_RBF_train(path, action_seq_names, dim, delta(i), num_videos );
-%     ACC_train(i,:) = acc;
-% end
+display('Training svm + Kernel LED-RBF');
+delta = -10:1:9;
+ACC_train = zeros(length(delta),num_videos -1);
+for i=1:length(delta)
+    acc = LED_RBF_train(path, action_seq_names, dim, delta(i), num_videos );
+    ACC_train(i,:) = acc;
+end
 
 % display('Testing svm + Kernel LED-RBF');
 % delta = -10:1:9;
