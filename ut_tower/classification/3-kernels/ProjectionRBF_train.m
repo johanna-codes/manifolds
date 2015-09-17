@@ -9,7 +9,7 @@ gamma = 2^delta/dim;
 PROJECTION_RBF_KERNEL = @(X,Y,gamma) exp( -gamma*( norm(X*X'-Y*Y','fro') )^2 );
 
 
-load_sub_path =strcat(path, '/grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
 %parpool(5);
 for video_ts= 1: n_videos
