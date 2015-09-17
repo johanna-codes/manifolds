@@ -24,7 +24,7 @@ for video_ts= 1: n_videos
             if (video_tr~=video_ts)
                 action_name_tr = action_seq_names(video_tr,1);
                 act_tr  =  str2double( action_seq_names(video_tr,2) );
-                seqID_tr    = action_seq_names(video_tr,3);
+                seqID_tr    = action_seq_names(video_tr,3) - 1;
                 
                     %tr = [action_name_tr,'_',folder_n_tr];
                     %disp(tr);
