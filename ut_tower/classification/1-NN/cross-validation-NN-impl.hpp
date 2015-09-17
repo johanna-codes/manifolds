@@ -34,12 +34,12 @@ cv_classify_NN::logEucl()
   est_labels.zeros(n_test);
   
   int k=0;
-  mat action_seq_names (108,2);  ///From the dataset description (150)
+  mat action_seq_names (108,2);  ///From the dataset description 
   
   
    for (int actID=0; actID<n_actions; ++actID)
     {
-      for (int seqID=0; seqID< 12; ++seqID) ///From the sataset description
+      for (int seqID=0; seqID< 12; ++seqID) ///From the dataset description
       {
 	action_seq_names(k,0) = actID;
 	action_seq_names(k,1) = seqID;
