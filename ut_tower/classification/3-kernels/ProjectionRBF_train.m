@@ -22,7 +22,7 @@ for video_ts= 1: n_videos
                 action_name_tr = action_seq_names(video_tr,1);
                 act_tr  =  str2double( action_seq_names(video_tr,2) );
                 seqID_tr    = action_seq_names(video_tr,3);
-                    name_load_gp = strcat( load_sub_path, '/grass_pt_',  action_name_tr, '_seq', seqID_tr, '_p', int2str(p)  '.h5');
+                    name_load_gp = strcat( load_sub_path, '/grass_pt_',  action_name_tr, '_seq', seqID_tr, '_p', int2str(p),  '.h5');
                     hinfo = hdf5info( char(name_load_gp) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
                     %disp(one_video);
