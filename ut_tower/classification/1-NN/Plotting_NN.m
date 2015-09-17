@@ -10,30 +10,22 @@ real =load('./results/nn_Log_Eucl_real_labels.dat');
 
 acc_logEucl = length(find(logEucl_est==real))/length(logEucl_est)*100;
 
-%% Stein Divergence 
-SteinDiv_est  =load('./results/nn_Stein_div_est_labels.dat');
-
-acc_SteinDiv = length(find(SteinDiv_est==real))/length(SteinDiv_est)*100;
-
 
 %% Grassmann Projection Metric & Binnet-Cauchy
 p=1:dim;
 all_PM_est = zeros(dim,1);
-all_BC_est = zeros(dim,1);
+
 for i=1:dim
     
   PM_est =  load( strcat('./results/grass_PM_est_labels_p', num2str(i), '.dat') );    
   acc_PM = length(find(PM_est==real))/length(PM_est)*100;
   all_PM_est(i) = acc_PM;
   
-  BC_est =  load( strcat('./results/grass_BC_est_labels_p', num2str(i), '.dat') );    
-  acc_BC = length(find(BC_est==real))/length(BC_est)*100;
-  all_BC_est(i) = acc_BC;
+
    
 end
 plot(p,all_PM_est, '-cd', 'LineWidth',3,'MarkerSize',5);
 hold on
-plot(p,all_BC_est, '-mo', 'LineWidth',3,'MarkerSize',5);
 legend('Projection Metric','Binet-Cauchy','Location', 'southwest');
 ylabel('(%)','FontSize',20)
 xlabel('subspace order','FontSize',20)
