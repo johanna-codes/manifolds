@@ -29,22 +29,22 @@ num_videos = 108; %From the dataset description (108).
 %      %ACC_train(i,:) = acc;
 %  end
 %
-display('Testing svm + Kernel LED-POLY');
-n=1:dim;
-test_acc = zeros(length(n),1);
-scale = 1;
-shift = 0;
-
-for i=1:length(n)
-    in_n = n(i);
-    X = sprintf('n = %d ', in_n);
-    acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
-    test_acc(i) = acc;
-    test_acc'
-end
-
-save_results =strcat( 'LED_POLY_all_n_performance.mat');
-save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
+% display('Testing svm + Kernel LED-POLY');
+% n=1:dim;
+% test_acc = zeros(length(n),1);
+% scale = 1;
+% shift = 0;
+% 
+% for i=1:length(n)
+%     in_n = n(i);
+%     X = sprintf('n = %d ', in_n);
+%     acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
+%     test_acc(i) = acc;
+%     test_acc'
+% end
+% 
+% save_results =strcat( 'LED_POLY_all_n_performance.mat');
+% save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 
 %% Kernel LED-RBF.
 
@@ -60,22 +60,22 @@ save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 %     ACC_train(i,:) = acc;
 % end
 %
-% display('Testing svm + Kernel LED-RBF');
-% delta = -10:1:9;
-% test_acc = zeros(length(delta),1);
-% scale = 1;
-% shift = 0;
-%
-% for i=1:length(delta)
-%     in_delta = delta(i);
-%     X = sprintf('delta = %d ', in_delta);
-%     disp(delta(i));
-%     acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, in_delta, num_videos);
-%     test_acc(i) = acc;
-% end
-%
-% save_results =strcat( 'LED_RBF_all_delta_performance.mat');
-% save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
+display('Testing svm + Kernel LED-RBF');
+delta = -10:1:9;
+test_acc = zeros(length(delta),1);
+scale = 1;
+shift = 0;
+
+for i=1:length(delta)
+    in_delta = delta(i);
+    X = sprintf('delta = %d ', in_delta);
+    disp(delta(i));
+    acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, in_delta, num_videos);
+    test_acc(i) = acc;
+end
+
+save_results =strcat( 'LED_RBF_all_delta_performance.mat');
+save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
 
 
 
