@@ -28,7 +28,7 @@ for video_ts= 1: n_videos
                 
                     %tr = [action_name_tr,'_',folder_n_tr];
                     %disp(tr);
-                    name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_seg', seqID_tr, '.h5');
+                    name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_seq', seqID_tr, '.h5');
                     hinfo = hdf5info( char(name_load_cov) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
                     %disp(one_video);
