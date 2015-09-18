@@ -38,20 +38,20 @@ dim =14;
 
 %% Kernel LED-RBF
 
-% display('Training svm + Kernel LED-RBF');
-% delta = -10:1:9;
-% ACC_train = zeros(length(delta),25);
-% n=1:dim;
-% 
-% for i=1:length(n)
-%     for j=1:length(delta)
-%         in_n = n(i);
-%         in_delta = delta(j);
-%         X=sprintf('n = %d, delta= %d ', in_n, in_delta);
-%         disp(X);
-%         acc = kth_train_LED_RBF(path, dim, in_n, in_delta);
-%     end
-% end
+display('Training svm + Kernel LED-RBF');
+delta = -10:1:9;
+ACC_train = zeros(length(delta),25);
+n=1:dim;
+
+for i=1:length(n)
+    for j=1:length(delta)
+        in_n = n(i);
+        in_delta = delta(j);
+        X=sprintf('n = %d, delta= %d ', in_n, in_delta);
+        disp(X);
+        acc = kth_train_LED_RBF(path, dim, in_n, in_delta);
+    end
+end
 
 % DO IT: enter in_n in_delta, change load svm_model. change save n_delta  
 display('Testing svm + Kernel LED-RBF');
