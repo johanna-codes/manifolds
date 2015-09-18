@@ -55,10 +55,10 @@ end
 
 % DO IT: enter in_n in_delta, change load svm_model. change save n_delta  
 display('Testing svm + Kernel LED-RBF');
- delta = -10:1:9;
- test_acc = zeros(length(delta),1);
- scale = 1;
- shift = 0;
+delta = -10:1:9;
+test_acc = zeros(length(delta),1);
+scale = 1;
+shift = 0;
 
  parfor i=1:length(delta)
     acc = kth_test_LED_RBF(path,scale, shift, dim, delta(i));
