@@ -22,7 +22,7 @@ j=1;
       
           real_labels(j) = act_ts;
           
-          name_load_gp = strcat(load_sub_path, '/grass_pt_',  action_name_tr, '_seq', seqID_tr, '_p', int2str(p),  '.h5');
+          name_load_gp = strcat(load_sub_path, '/grass_pt_',  action_name, '_seq', seqID_ts, '_p', int2str(p),  '.h5');
                    
           hinfo = hdf5info( char(name_load_gp) );
           one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
