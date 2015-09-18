@@ -34,7 +34,7 @@ num_videos = 108; %From the dataset description (108).
 % test_acc = zeros(length(n),1);
 % scale = 1;
 % shift = 0;
-% 
+%
 % for i=1:length(n)
 %     in_n = n(i);
 %     X = sprintf('n = %d ', in_n);
@@ -42,7 +42,7 @@ num_videos = 108; %From the dataset description (108).
 %     test_acc(i) = acc;
 %     test_acc'
 % end
-% 
+%
 % save_results =strcat( 'LED_POLY_all_n_performance.mat');
 % save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 
@@ -65,7 +65,7 @@ num_videos = 108; %From the dataset description (108).
 % test_acc = zeros(length(delta),1);
 % scale = 1;
 % shift = 0;
-% 
+%
 % for i=1:length(delta)
 %     in_delta = delta(i);
 %     X = sprintf('delta = %d ', in_delta);
@@ -73,7 +73,7 @@ num_videos = 108; %From the dataset description (108).
 %     acc = LED_RBF_test(path,action_seq_names, scale, shift, dim, in_delta, num_videos);
 %     test_acc(i) = acc;
 % end
-% 
+%
 % save_results =strcat( 'LED_RBF_all_delta_performance.mat');
 % save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
 
@@ -82,7 +82,7 @@ num_videos = 108; %From the dataset description (108).
 
 %%%%%%%%%%%%%%%%%%%%   Grassmann Kernels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Projection kernel: RBF.
-% 
+%
 %  display('Training svm + Projection RBF Kernel ');
 %  delta = -14:2:20;
 %  dim = 14;
@@ -90,12 +90,12 @@ num_videos = 108; %From the dataset description (108).
 %  %p = 12;
 %  ACC_train = zeros(length(delta),num_videos -1);
 %  all_p = cell(length(p),1);
-% 
+%
 %  for j=1:length(p)
 %      in_p = p(j);
 %      %X = sprintf('p = %d ', in_p);
 %      %disp(X);
-% 
+%
 %  for i=1:length(delta)
 %      in_delta = delta(i);
 %      X = sprintf('p= %d and delta = %d ', in_p, in_delta);
@@ -103,8 +103,8 @@ num_videos = 108; %From the dataset description (108).
 %      acc = ProjectionRBF_train(path, action_seq_names, in_delta, dim, in_p, num_videos);
 %     %ACC_train(i,:) = acc;
 %  end
-%  
-%  
+%
+%
 %  %all_p{j} = ACC_train;
 % end
 
@@ -119,14 +119,14 @@ scale = 1;
 shift = 0;
 for j=1:length(p)
     in_p = p(j);
-for i=1:length(delta )
-    in_delta = delta(i);
-    X = sprintf('p= %d and delta = %d ', in_p, in_delta);
-    disp(X);
-    acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
-    test_acc(i) = acc;
-end
-all_p{j} = test_acc;
+    for i=1:length(delta )
+        in_delta = delta(i);
+        X = sprintf('p= %d and delta = %d ', in_p, in_delta);
+        disp(X);
+        acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
+        test_acc(i) = acc;
+    end
+    all_p{j} = test_acc;
 end
 
 save_results =strcat( 'projRBF_all_p_delta_performance.mat');
