@@ -54,21 +54,21 @@ dim =14;
 % end
 
 % DO IT: enter in_n in_delta, change load svm_model. change save n_delta  
-%display('Testing svm + Kernel LED-RBF');
-%  delta = -10:1:9;
-%  test_acc = zeros(length(delta),1);
-%  scale = 1;
-%  shift = 0;
-%
-%  parfor i=1:length(delta)
-%     acc = kth_test_LED_RBF(path,scale, shift, dim, delta(i));
-%     test_acc(i) = acc;
-%  end
-%
-%  save_results =strcat( 'LED_RBF_all_delta_performance.mat');
-%  save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
+display('Testing svm + Kernel LED-RBF');
+ delta = -10:1:9;
+ test_acc = zeros(length(delta),1);
+ scale = 1;
+ shift = 0;
 
-%% Kernel LED-Poly: Running in Wanda
+ parfor i=1:length(delta)
+    acc = kth_test_LED_RBF(path,scale, shift, dim, delta(i));
+    test_acc(i) = acc;
+ end
+
+ save_results =strcat( 'LED_RBF_all_delta_performance.mat');
+ save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
+
+%% Kernel LED-Poly
 
 % display('Training svm + Kernel LED-POLY');
 % % %n=1:dim;
@@ -89,26 +89,26 @@ dim =14;
 %  %end
 
  
- display('Testing svm + Kernel LED-POLY');
- %n=1:dim;
- n=1:20;
- d=1:10; %As per paper
- test_acc = zeros(length(n),length(d));
- scale = 1;
- shift = 0;
-
- for i=1:length(n)
-     for j=1:length(d)
-        in_n = n(i);
-        in_d = d(j);
-        X=sprintf('n = %d, d= %d ', in_n, in_d);
-        disp(X);
-        acc = kth_test_LED_POLY(path,scale, shift, dim, in_n, in_d);
-        test_acc(i,j) = acc;
-       
-     end
-     test_acc(i,:)
- end
+%  display('Testing svm + Kernel LED-POLY');
+%  %n=1:dim;
+%  n=1:20;
+%  d=1:10; %As per paper
+%  test_acc = zeros(length(n),length(d));
+%  scale = 1;
+%  shift = 0;
+% 
+%  for i=1:length(n)
+%      for j=1:length(d)
+%         in_n = n(i);
+%         in_d = d(j);
+%         X=sprintf('n = %d, d= %d ', in_n, in_d);
+%         disp(X);
+%         acc = kth_test_LED_POLY(path,scale, shift, dim, in_n, in_d);
+%         test_acc(i,j) = acc;
+%        
+%      end
+%      test_acc(i,:)
+%  end
 
 %save_results =strcat( 'LED_POLY_all_n_performance.mat');
 %save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
