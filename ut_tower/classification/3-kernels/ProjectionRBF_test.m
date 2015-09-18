@@ -9,7 +9,7 @@ real_labels = zeros(num_videos );
 est_labels  = zeros(num_videos );
   
 
-load_sub_path =strcat(path, '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) );
 j=1;
   for video_ts= 1: num_videos
       action_name = action_seq_names(video_ts,1);
@@ -33,7 +33,8 @@ j=1;
           est_labels(j) = predict_label;
           j=j+1;
           
-          if predict_label == act_ts
+          if predict_label == actexit
+              _ts
               acc = acc+1;
           end
 
