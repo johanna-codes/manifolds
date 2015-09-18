@@ -109,28 +109,28 @@ num_videos = 108; %From the dataset description (108).
 end
 
 
-% display('Testing svm + Projection RBF Kernel');
-% delta = -14:2:20;
-% dim = 14;
-% p = 1:14;
-% test_acc = zeros( length(delta),1 );
-% all_p = cell(length(p),1);
-% scale = 1;
-% shift = 0;
-% for j=1:length(p)
-%     in_p = p(j);
-% for i=1:length(delta )
-%     in_delta = delta(i);
-%     X = sprintf('p= %d and delta = %d ', in_p, in_delta);
-%     disp(X);
-%     acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
-%     test_acc(i) = acc;
-% end
-% all_p{j} = test_acc;
-% end
-%
-% save_results =strcat( 'projRBF_all_p_delta_performance.mat');
-% save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
+display('Testing svm + Projection RBF Kernel');
+delta = -14:2:20;
+dim = 14;
+p = 1:14;
+test_acc = zeros( length(delta),1 );
+all_p = cell(length(p),1);
+scale = 1;
+shift = 0;
+for j=1:length(p)
+    in_p = p(j);
+for i=1:length(delta )
+    in_delta = delta(i);
+    X = sprintf('p= %d and delta = %d ', in_p, in_delta);
+    disp(X);
+    acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
+    test_acc(i) = acc;
+end
+all_p{j} = test_acc;
+end
+
+save_results =strcat( 'projRBF_all_p_delta_performance.mat');
+save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
 
 
 
