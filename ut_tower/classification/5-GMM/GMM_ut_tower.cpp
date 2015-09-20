@@ -230,7 +230,7 @@ get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act )
   
   
   cout <<"EM was repeated " << rep_em << endl;
-  
+  getchar();
   std::stringstream tmp_ss5;
   tmp_ss5 << "./GMM_models/run" << test_i << "_" << actions(act) <<  "_GMM_Ng" << N_cent << "_dim" <<dim; 
   cout << "Saving GMM in " << tmp_ss5.str() << endl;
