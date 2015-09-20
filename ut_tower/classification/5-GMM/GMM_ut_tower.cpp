@@ -212,7 +212,7 @@ get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act )
       
       status_kmeans = gmm_model.learn(features_action_i, N_cent, eucl_dist, random_subset, km_iter, 0, var_floor, print_mode);   //Only Kmeans
       cout << status_kmeans << endl;
-      getchar();
+      //getchar();
       bg_model = gmm_model;
       //rep_km++;
     }
