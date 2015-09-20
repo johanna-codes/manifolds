@@ -1,0 +1,10 @@
+pointing
+standing
+digging
+walking
+carrying
+running
+wave1
+wave2
+jumping
+
