@@ -72,7 +72,7 @@ main(int argc, char** argv)
   
   
   //**********Train the mode**********************
-  train_ut( action_seq_names, N_cent, dim, sc);
+  train_ut( action_seq_names, N_cent, dim);
   
   //**********Test********************************
   cout << "Testing GMM for UCF_SPORTS" << endl; 
