@@ -73,7 +73,7 @@ opt_feat::features_all_videos( )
     std::stringstream save_feat_video_i ;
     save_feat_video_i << "./features_dim" << dim <<  "/scale" << scale_factor << "-shift"<< shift ;
     save_feat_video_i <<  "/" << actions(actID)  << "_seq" <<  seqID << ".h5";
-    cout << save_feat_video_i.str() << endl;
+    //cout << save_feat_video_i.str() << endl;
     mat_features_video_i.save( save_feat_video_i.str(), hdf5_binary );
       
 
