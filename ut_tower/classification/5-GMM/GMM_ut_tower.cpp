@@ -143,22 +143,22 @@ train_ut(mat action_seq_names, int N_cent, int dim)
 	std::stringstream load_feat_video_i;
 	load_feat_video_i   << load_folder.str() << "/" << actions(actID)  << "_seq" <<  seqID << ".h5";
 	//getchar();
-	cout << actions(actID)  << "_seq" <<  seqID << ".h5" << endl;;
+	cout << actions(actID)  << "_seq" <<  seqID << ".h5" << " ";;
 	mat mat_features_video_i;
 	mat_features_video_i.load( load_feat_video_i.str() , hdf5_binary );
-	cout << "mat_features_video_i r&c "<<  mat_features_video_i.n_rows << " & " << mat_features_video_i.n_cols << endl;
+	//cout << "mat_features_video_i r&c "<<  mat_features_video_i.n_rows << " & " << mat_features_video_i.n_cols << endl;
 	
 	field_all_actions(actID)  =join_rows( field_all_actions(actID), mat_features_video_i);	  
       }
     }
-    
+    cout << endl;
     for (int act=0; act<n_actions; ++act)
     {
       mat features_action_i;
       features_action_i = field_all_actions(act);
       field_all_actions(act).reset();
       cout << "Final r&c "<<  features_action_i.n_rows << " & " << features_action_i.n_cols << endl;
-      getchar();
+      //getchar();
       get_gmm (features_action_i, N_cent,  dim,  test_i,  act );
     }
     
@@ -212,7 +212,7 @@ get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act )
       arma_rng::set_seed_random();
       
       status_kmeans = gmm_model.learn(features_action_i, N_cent, eucl_dist, random_subset, km_iter, 0, var_floor, print_mode);   //Only Kmeans
-      cout << status_kmeans << endl;
+      //cout << status_kmeans << endl;
       //getchar();
       bg_model = gmm_model;
       //rep_km++;
@@ -237,10 +237,10 @@ get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act )
   std::stringstream tmp_ss5;
   tmp_ss5 << "./GMM_models/run" << test_i << "_" << actions(act) <<  "_GMM_Ng" << N_cent << "_dim" <<dim; 
   cout << "Saving GMM in " << tmp_ss5.str() << endl;
-  getchar();
+  //getchar();
   gmm_model.save( tmp_ss5.str() );
   cout << endl;
-  getchar();
+  //getchar();
   
 }
 
