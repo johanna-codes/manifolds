@@ -52,7 +52,7 @@ main(int argc, char** argv)
   int n_actions = actions.n_rows;
   int dim = 14; 
   
-  int N_cent = 256; // as per Improved Trajectories Features
+  int N_cent = 128; // as per Improved Trajectories Features
   
   
   //Creating list with all videos
