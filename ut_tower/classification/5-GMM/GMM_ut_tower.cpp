@@ -133,8 +133,8 @@ train_ut(mat action_seq_names, int N_cent, int dim)
     
     for (int train_i = 0; train_i< action_seq_names.n_rows; ++train_i)
     {
-       int actID  = action_seq_names(test_i,0); 
-       int seqID  = action_seq_names(test_i,1);
+       int actID  = action_seq_names(train_i,0); 
+       int seqID  = action_seq_names(train_i,1);
       
       if (test_i!=train_i)
       {
