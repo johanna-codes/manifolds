@@ -1,7 +1,7 @@
 function FV_ut_tower_all_videos(path, Ncent, DIM, scale_factor, shift, n_videos, action_seq_names )
 %%Calcular FV for all videos
 
-%n_test =  n_videos - 1; %Problem with Run-Side_001_dim14
+
 
 fprintf('Ng %d \n',Ncent);
 
@@ -15,16 +15,17 @@ mu =    load(strcat('./universal_GMM/means_Ng'  , Ng, '_dim', dim, '.dat'));
 sigma = load(strcat('./universal_GMM/covs_Ng'   , Ng, '_dim', dim, '.dat'));
 
 
-folder_feat =strcat(path, 'dim_', dim, '/features/features_dim', dim, '/scale', int2str(scale_factor), '-shift', int2str(shift) );
+folder_feat =strcat(path,'/features/features_dim', dim, '/scale', int2str(scale_factor), '-shift', int2str(shift) );
 
 
 for video_ts= 1: n_videos
-   action_name = action_seq_names(video_ts,1);
-   folder_n    = action_seq_names(video_ts,2);
+  
+    action_name_tr = action_seq_names(video_tr,1);
+    %act_tr  =  str2double( action_seq_names(video_tr,2) );
+    seqID_tr    = action_seq_names(video_tr,3);
     
     
-    if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-        name_feat = strcat( folder_feat, '/', action_name, '_', folder_n, '_dim', dim, '.h5');
+        name_feat = strcat( folder_feat, '/', action_name_tr, '_seq', seqID_tr, '.h5');
         S = char(name_feat);
         data_onevideo = hdf5info(S);
         one_video = hdf5read(data_onevideo.GroupHierarchy.Datasets(1));
@@ -57,7 +58,6 @@ for video_ts= 1: n_videos
         fprintf(fid1,'%8.8f\n',vn);
         fclose(fid1);
 
-    end
 end
 
 

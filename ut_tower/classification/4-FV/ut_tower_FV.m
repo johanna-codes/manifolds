@@ -7,24 +7,20 @@ clc
 
 dim = 14;
 Ncent = 256;
-
 Ng = int2str(Ncent);
-
-path  = '~/codes/codes-git/manifolds/trunk/ucf_sports/';
-dataset_path  = '~/codes/datasets_codes/my_ucf_sports_actions/';
-
-
-
+path  = '~/codes/codes-git/manifolds/trunk/uct_tower/';
 
 dim_FV = 2*dim*Ncent;
 vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
 
-action_seq_names = list_video_sequences(dataset_path);
-num_videos = 150; %From the dataset description (150).
+action_seq_names = list_video_sequences;
+num_videos = 108; %From the dataset description (150).
 
 %% Get FV. Run Just once. Run all shifts when features are ready
+scale_factor = 1;
+shift = 0;
+FV_ut_tower_all_videos( path, Ncent, dim, scale_factor, shift, num_videos, action_seq_names );
 
-% scale_factor = 1;
 % for i=1:length(vec_shift)
 %     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
 %     disp(show_you);

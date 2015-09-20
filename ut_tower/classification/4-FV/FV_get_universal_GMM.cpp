@@ -51,8 +51,7 @@ main(int argc, char** argv)
     mat mat_features;
     for (int seqID=0; seqID< 12; ++seqID) ///From the dataset description
     {
-      std::stringstream ss_frames_folder;
-      ss_frames_folder << path << actions(act) << "/"  << list_folders(i);
+
       
       std::stringstream load_folder;
       std::stringstream load_feat_video_i;
