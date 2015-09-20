@@ -39,22 +39,27 @@ main(int argc, char** argv)
   int shift = 0;
   int dim = 14;
   
-  //vec scale_vec;
-  //scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
+  vec scale_vec;
+  scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
+  
+  vec vec_shift;
+  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
   
   
-  
-  //for (int i=0; i<scale_vec.n_elem; ++i)
-  //{
-    
-    //float scale_factor = scale_vec(i);
-
-    float scale_factor = 1;
-    cout << "scale_factor " << scale_factor << endl;
-    
-    opt_feat opt_feat_ut(path, actionNames, scale_factor, shift, dim);
-    opt_feat_ut.features_all_videos();
-  //}
+  for (int i=0; i<scale_vec.n_elem; ++i)
+  {
+    for (int j=0; i<vec_shift.n_elem; ++j)
+    {
+      float scale_factor = scale_vec(i);
+      int shift = vec_shift(j);
+      cout << "Scale & Shift: " << scale_factor << " & " << shift << endl;
+      //float scale_factor = 1;
+      //cout << "scale_factor " << scale_factor << endl;
+      
+      opt_feat opt_feat_ut(path, actionNames, scale_factor, shift, dim);
+      opt_feat_ut.features_all_videos();
+    }
+  }
   
   return 0;
   
