@@ -73,32 +73,32 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 %% Kernel LED-Poly. DONE
 
-%  display('Training svm + Kernel LED-POLY');
-%  %n=1:dim;
-%  n=1:20;
-% 
-%  for i=1:length(n)
-%      in_n = n(i);
-%      %sprintf('n = %d ', in_n)
-%      disp(in_n);
-%      acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
-%      %ACC_train(i,:) = acc;
-%  end
-% 
-%   display('Testing svm + Kernel LED-POLY');
-%   %n=1:dim;
-%   n=1:20;
-%   test_acc = zeros(length(n),1);
-%   scale = 1;
-%   shift = 0;
-% 
-%   for i=1:length(n)
-%       in_n = n(i);
-%       X = sprintf('n = %d ', in_n);
-%       acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
-%       test_acc(i) = acc;
-%       test_acc'
-%   end
+ display('Training svm + Kernel LED-POLY');
+ %n=1:dim;
+ n=1:20;
+
+ for i=1:length(n)
+     in_n = n(i);
+     %sprintf('n = %d ', in_n)
+     disp(in_n);
+     acc = LED_POLY_train(path, action_seq_names, dim, in_n, num_videos);
+     %ACC_train(i,:) = acc;
+ end
+
+   display('Testing svm + Kernel LED-POLY');
+   n=1:dim;
+   %n=1:20;
+   test_acc = zeros(length(n),1);
+   scale = 1;
+   shift = 0;
+ 
+  for i=1:length(n)
+      in_n = n(i);
+      X = sprintf('n = %d ', in_n);
+      acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
+      test_acc(i) = acc;
+      test_acc'
+  end
 % % 
 %   save_results =strcat( 'LED_POLY_all_n_performance.mat');
 %  save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
@@ -176,24 +176,24 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 
 
 
- display('Testing svm + Projection Poly Kernel');
- p = 1:14;
- d=1:14;
- test_acc = zeros(length(p),length(d));
- scale = 1;
- shift = 0;
-
- for i=1:length( p )
-     for j=1:length(d)
-        in_p = p(i);
-        in_d = d(j);
-        X=sprintf('p = %d, d= %d ', in_p, in_d);
-        disp(X);
-        acc = ProjPOLY_test(path, action_seq_names, scale, shift, dim, p(i), in_d, num_videos );
-        test_acc(i,j) = acc;
-     end
- end
-
-save_results =strcat( 'projPoly_all_p_performance.mat');
-save(save_results, 'test_acc', 'p', 'd', 'dim', 'scale', 'shift');
+%  display('Testing svm + Projection Poly Kernel');
+%  p = 1:14;
+%  d=1:14;
+%  test_acc = zeros(length(p),length(d));
+%  scale = 1;
+%  shift = 0;
+% 
+%  for i=1:length( p )
+%      for j=1:length(d)
+%         in_p = p(i);
+%         in_d = d(j);
+%         X=sprintf('p = %d, d= %d ', in_p, in_d);
+%         disp(X);
+%         acc = ProjPOLY_test(path, action_seq_names, scale, shift, dim, p(i), in_d, num_videos );
+%         test_acc(i,j) = acc;
+%      end
+%  end
+% 
+% save_results =strcat( 'projPoly_all_p_performance.mat');
+% save(save_results, 'test_acc', 'p', 'd', 'dim', 'scale', 'shift');
 
