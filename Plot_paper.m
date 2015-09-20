@@ -14,7 +14,7 @@ hold on
 plot(PM_ucf, '--ro', 'LineWidth',3,'MarkerSize',10);
 plot(PM_ut, '-.bx', 'LineWidth',3,'MarkerSize',10);
 %title('Projection Metric','FontSize',20);
-legend('KTH','UCF', 'UT Tower', 'Location', 'southwest');
+legend('KTH','UCF', 'UT Tower', 'Location', 'southwest','orientation','horizontal');
 ylabel('accuraccy (%)','FontSize',20)
 xlabel('subspace order (m)','FontSize',20)
 set(gca,'FontSize',20); 
@@ -55,9 +55,9 @@ plot(led_poly_ucf(1:14), '--ro','LineWidth',3,'MarkerSize',10)
 plot(led_poly_ut(1:14), '-.bx','LineWidth',3,'MarkerSize',10)
 
 title('LED POLY','FontSize',20);
-ylim([60 95])
+ylim([60 100])
 xlim([1 14])
-legend('KTH', 'UCF','UT Tower','Location', 'southwest','orientation','horizontal');
+legend('KTH', 'UCF','UT Tower','Location', 'northwest','orientation','horizontal');
 ylabel('(%)','FontSize',20)
 xlabel('D','FontSize',20)
 set(gca,'FontSize',20);
@@ -76,7 +76,7 @@ grid
 
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED-POLY_kth_ucf_ut','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED_POLY_kth_ucf_ut','-dpng','-r300');
 %Nicta
 %print('/home/johanna/latex-svn/wacv_2016_b/v7/images/experiments/LED-POLY_kth_ucf','-dpng','-r300');
 
@@ -122,14 +122,14 @@ grid
 
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED-RBF_kth_ucf_ut','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED_RBF_kth_ucf_ut','-dpng','-r300');
 %Nicta
 
 
-%% Kernels: ProjPOLY: (Se ve muy fea) 
-%plot_Proj_Poly_I
+%% Kernels: ProjPOLY: 
+%plot_Proj_Poly_I (Se ve muy fea) 
 plot_Proj_Poly_II
 %% Kernels: Proj_RBF: 
 figure()
-%plot_Proj_rbf_I
+%plot_Proj_rbf_I(Se ve muy fea) 
 plot_Proj_rbf_II

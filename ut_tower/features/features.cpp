@@ -82,6 +82,7 @@ main(int argc, char** argv)
 
 
 //mkdir scale1-shift0 scale1-shift10 scale1-shift-10 scale1-shift15 scale1-shift-15 scale1-shift20 scale1-shift-20 scale1-shift25 scale1-shift-25 scale1-shift5 scale1-shift-5
+
 //mkdir scale0.75-shift0 scale0.8-shift0 scale0.85-shift0 scale0.9-shift0 scale0.95-shift0 scale1.05-shift0 scale1.1-shift0 scale1.15-shift0 scale1.2-shift0 scale1.25-shift0
 
 
