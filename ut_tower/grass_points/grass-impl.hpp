@@ -91,7 +91,7 @@ grass_points::one_video_one_point( std::string load_feat_video_i, std::string ac
     std::stringstream save_Gnp;
     //cout << save_folder.str() << endl;
     save_Gnp << save_folder.str() << "/grass_pt_" << action_name << "_seq" <<  seqID << "_p" << p << ".h5";
-    cout << save_Gnp.str() << endl;
+    //cout << save_Gnp.str() << endl;
     
     //#pragma omp critical
     Gnp.save( save_Gnp.str(), hdf5_binary ); 
