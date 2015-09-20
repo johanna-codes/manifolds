@@ -52,7 +52,7 @@ main(int argc, char** argv)
   int n_actions = actions.n_rows;
   int dim = 14; 
   
-  int N_cent = 128; // Dead means when k=256
+  int N_cent = 256; // Dead means when k=256
   
   
   //Creating list with all videos
