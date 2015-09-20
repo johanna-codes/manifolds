@@ -283,11 +283,11 @@ test_ucf(mat action_seq_names, int N_cent, int dim,  int scale_factor, int shift
     uword est_label_video_i;
     likelihood_actions.max(est_label_video_i);
     
-    real_labels(k)= act;
+    real_labels(k)= actID;
     est_labels(k) = est_label_video_i;
     ++k;
     
-    if (est_label_video_i == act)
+    if (est_label_video_i == actID)
     {
       acc++;  
     }
