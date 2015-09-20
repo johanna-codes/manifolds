@@ -8,7 +8,7 @@ clc
 dim = 14;
 Ncent = 256;
 Ng = int2str(Ncent);
-path  = '~/codes/codes-git/manifolds/trunk/uct_tower/';
+path  = '~/codes/codes-git/manifolds/trunk/ut_tower/';
 
 dim_FV = 2*dim*Ncent;
 vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
