@@ -157,7 +157,7 @@ train_ut(mat action_seq_names, int N_cent, int dim)
       features_action_i = field_all_actions(act);
       field_all_actions(act).reset();
       cout << "Final r&c "<<  features_action_i.n_rows << " & " << features_action_i.n_cols << endl;
-      //getchar();
+      getchar();
       get_gmm (features_action_i, N_cent,  dim,  test_i,  act );
     }
     
