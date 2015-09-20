@@ -57,7 +57,6 @@ main(int argc, char** argv)
   
   //Creating list with all videos
   int k=0;
-  field <std::string> action_seq_names (108,2);  ///From the dataset description (150)
   mat action_seq_names (108,2);  ///From the dataset description 
   
   
