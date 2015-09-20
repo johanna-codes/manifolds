@@ -242,7 +242,7 @@ get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act )
 
 inline
 float
-test_ucf(mat action_seq_names, int N_cent, int dim,  int scale_factor, int shift )
+test_ut(mat action_seq_names, int N_cent, int dim,  int scale_factor, int shift )
 {
   actions.load( actionNames ); 
   
