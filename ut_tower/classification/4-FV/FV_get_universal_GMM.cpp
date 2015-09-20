@@ -16,8 +16,7 @@ using namespace arma;
 
 
 //WANDA
-const std::string path = "/home/johanna/codes/codes-git/manifolds/trunk/ucf_sports/";
-const std::string path_dataset = "/home/johanna/codes/datasets_codes/my_ucf_sports_actions/";
+const std::string path = "/home/johanna/codes/codes-git/manifolds/trunk/ut_tower";
 
 
 const std::string  actionNames = "actionNames.txt";
