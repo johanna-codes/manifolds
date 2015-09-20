@@ -20,12 +20,12 @@ folder_feat =strcat(path,'/features/features_dim', dim, '/scale', int2str(scale_
 
 for video_ts= 1: n_videos
   
-    action_name_tr = action_seq_names(video_tr,1);
+    action_name_ts = action_seq_names(video_ts,1);
     %act_tr  =  str2double( action_seq_names(video_tr,2) );
-    seqID_tr    = action_seq_names(video_tr,3);
+    seqID_ts    = action_seq_names(video_ts,3);
     
     
-        name_feat = strcat( folder_feat, '/', action_name_tr, '_seq', seqID_tr, '.h5');
+        name_feat = strcat( folder_feat, '/', action_name_ts, '_seq', seqID_ts, '.h5');
         S = char(name_feat);
         data_onevideo = hdf5info(S);
         one_video = hdf5read(data_onevideo.GroupHierarchy.Datasets(1));
@@ -51,7 +51,7 @@ for video_ts= 1: n_videos
         end
         %to save
         
-        save_name = strcat('./FV_training/scale',int2str(scale_factor), '-shift',  int2str(shift),  '/FV_', action_name, '_', folder_n, '_Ng', Ng, '.txt');
+        save_name = strcat('./FV_training/scale',int2str(scale_factor), '-shift',  int2str(shift),  '/FV_', action_name_ts, '_seq', seqID_ts, '_Ng', Ng, '.txt');
         sSave = char(save_name);
         %display(sSave);
         fid1=fopen(sSave,'wt');
