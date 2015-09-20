@@ -45,31 +45,31 @@ main(int argc, char** argv)
   vec vec_shift;
   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
   
-
   
-    for (int j=0; i<vec_shift.n_elem; ++j)
-    {
-      float scale_factor = 1;
-      int shift = vec_shift(j);
-      cout << "Scale & Shift: " << scale_factor << " & " << shift << endl;
-      //float scale_factor = 1;
-      //cout << "scale_factor " << scale_factor << endl;
-      
-      opt_feat opt_feat_ut(path, actionNames, scale_factor, shift, dim);
-      opt_feat_ut.features_all_videos();
-    }
-
-    for (int i=0; i<scale_vec.n_elem; ++i)
+  
+  for (int j=0; j<vec_shift.n_elem; ++j)
   {
-      float scale_factor = scale_vec(i);
-      int shift = 0;
-      cout << "Scale & Shift: " << scale_factor << " & " << shift << endl;
-      //float scale_factor = 1;
-      //cout << "scale_factor " << scale_factor << endl;
-      
-      opt_feat opt_feat_ut(path, actionNames, scale_factor, shift, dim);
-      opt_feat_ut.features_all_videos();
-
+    float scale_factor = 1;
+    int shift = vec_shift(j);
+    cout << "Scale & Shift: " << scale_factor << " & " << shift << endl;
+    //float scale_factor = 1;
+    //cout << "scale_factor " << scale_factor << endl;
+    
+    opt_feat opt_feat_ut(path, actionNames, scale_factor, shift, dim);
+    opt_feat_ut.features_all_videos();
+  }
+  
+  for (int i=0; i<scale_vec.n_elem; ++i)
+  {
+    float scale_factor = scale_vec(i);
+    int shift = 0;
+    cout << "Scale & Shift: " << scale_factor << " & " << shift << endl;
+    //float scale_factor = 1;
+    //cout << "scale_factor " << scale_factor << endl;
+    
+    opt_feat opt_feat_ut(path, actionNames, scale_factor, shift, dim);
+    opt_feat_ut.features_all_videos();
+    
   }
   
   
