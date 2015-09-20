@@ -14,7 +14,7 @@ using namespace arma;
 
 
 //WANDA
-const std::string path = "/home/johanna/codes/codes-git/manifolds/trunk/ut-tower/";
+const std::string path = "/home/johanna/codes/codes-git/manifolds/trunk/ut-tower";
 
 
 
