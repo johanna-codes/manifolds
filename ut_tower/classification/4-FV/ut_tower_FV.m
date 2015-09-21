@@ -60,8 +60,8 @@ num_videos = 108; %From the dataset description (150).
 
 
 
-%% Testing 
-
+%% Testing  
+scale_factor = 1;
 vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
 %vec_shift = [0];
 
