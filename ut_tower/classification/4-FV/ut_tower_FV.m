@@ -14,16 +14,12 @@ dim_FV = 2*dim*Ncent;
 action_seq_names = list_video_sequences;
 num_videos = 108; %From the dataset description (150).
 
-%% Get FV. Run Just once. Run all shifts & do Scales
+%% Get FV. Run Just once. 
 % scale_factor = 1;
 % shift = 0;
 % FV_ut_tower_all_videos( path, Ncent, dim, scale_factor, shift, num_videos, action_seq_names );
 
-% for i=1:length(vec_shift)
-%     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
-%     disp(show_you);
-%     FV_ut_tower_all_videos( path, Ncent, dim, scale_factor, vec_shift(i), num_videos, action_seq_names );
-% end
+
 
 %% Training
 % scale_factor = 1;
@@ -68,6 +64,16 @@ num_videos = 108; %From the dataset description (150).
 
 vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
 %vec_shift = [0];
+
+% Get FV. Run Just once.
+
+ for i=1:length(vec_shift)
+     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
+     disp(show_you);
+     FV_ut_tower_all_videos( path, Ncent, dim, scale_factor, vec_shift(i), num_videos, action_seq_names );
+ end
+
+
 all_acc_shifts = zeros( length(vec_shift), 1);
 
 for i=1:length(vec_shift)
@@ -75,7 +81,7 @@ for i=1:length(vec_shift)
     scale_factor = 1;
     shift = vec_shift(i);
     acc = 0;
-    real_labels = zeros(num_videos,1);%Problem with Run-Side_001_dim14
+    real_labels = zeros(num_videos,1);
     est_labels  = zeros(num_videos,1);
     
     
