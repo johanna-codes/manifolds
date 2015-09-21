@@ -28,39 +28,39 @@ num_videos = 108; %From the dataset description (150).
 % end
 
 %% Training
-scale_factor = 1;
-shift = 0;
-n_test =  num_videos - 2; %Problem with Run-Side_001_dim14
-
-load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
-
-for video_ts= 1: num_videos
-    X_train = zeros(dim_FV,n_test);
-    labels_train = zeros(n_test,1);
-    k =1;
-    
-    for video_tr=1: num_videos
-        if (video_tr~=video_ts)
-            
-            action_name_tr = action_seq_names(video_tr,1);
-            act_tr  =  str2double( action_seq_names(video_tr,2) );
-            seqID_tr    = action_seq_names(video_tr,3);
-            
-            name_load_FV = strcat( load_sub_path, '/FV_', action_name_tr, '_seq', seqID_tr, '_Ng', Ng, '.txt');
-            one_FV = load( char( name_load_FV ) );
-            X_train(:,k) = one_FV;
-            labels_train(k) = act_tr;
-            k=k+1;
-            
-        end
-    end
-    
-    data_train = X_train';
-    model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
-    [predicted_label, accuracy, prob_estimates] = svmpredict(labels_train, data_train, model, ['-b 1']);
-    save_svm_model = strcat( './svm_models/run_video', int2str(video_ts), '.mat');
-    save(save_svm_model, 'model');
-end
+% scale_factor = 1;
+% shift = 0;
+% n_test =  num_videos - 2; %Problem with Run-Side_001_dim14
+% 
+% load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
+% 
+% for video_ts= 1: num_videos
+%     X_train = zeros(dim_FV,n_test);
+%     labels_train = zeros(n_test,1);
+%     k =1;
+%     
+%     for video_tr=1: num_videos
+%         if (video_tr~=video_ts)
+%             
+%             action_name_tr = action_seq_names(video_tr,1);
+%             act_tr  =  str2double( action_seq_names(video_tr,2) );
+%             seqID_tr    = action_seq_names(video_tr,3);
+%             
+%             name_load_FV = strcat( load_sub_path, '/FV_', action_name_tr, '_seq', seqID_tr, '_Ng', Ng, '.txt');
+%             one_FV = load( char( name_load_FV ) );
+%             X_train(:,k) = one_FV;
+%             labels_train(k) = act_tr;
+%             k=k+1;
+%             
+%         end
+%     end
+%     
+%     data_train = X_train';
+%     model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
+%     [predicted_label, accuracy, prob_estimates] = svmpredict(labels_train, data_train, model, ['-b 1']);
+%     save_svm_model = strcat( './svm_models/run_video', int2str(video_ts), '.mat');
+%     save(save_svm_model, 'model');
+% end
 
 
 
@@ -85,7 +85,7 @@ for i=1:length(vec_shift)
     j=1;
     for video_ts= 1: num_videos
         
-        action_name = action_seq_names(video_ts,1);
+        action_name_ts = action_seq_names(video_ts,1);
         act_ts  =  str2double( action_seq_names(video_ts,2) );
         seqID_ts    = action_seq_names(video_ts,3);
         
