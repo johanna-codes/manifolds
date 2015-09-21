@@ -302,7 +302,7 @@ test_ut(mat action_seq_names, int N_cent, int dim,  int scale_factor, int shift 
     
   }
   
-  cout << "Performance for shift: " << shift << " = " << acc*100/n_test << " %" << endl;
+  //cout << "Performance for shift: " << shift << " = " << acc*100/n_test << " %" << endl;
   
   return acc*100/n_test;
   
