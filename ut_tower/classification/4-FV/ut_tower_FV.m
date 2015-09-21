@@ -11,8 +11,6 @@ Ng = int2str(Ncent);
 path  = '~/codes/codes-git/manifolds/trunk/ut_tower';
 
 dim_FV = 2*dim*Ncent;
-%vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
-vec_shift = [0];
 action_seq_names = list_video_sequences;
 num_videos = 108; %From the dataset description (150).
 
@@ -66,8 +64,10 @@ num_videos = 108; %From the dataset description (150).
 
 
 
-%% Testing TODO: Run all shifts when features are ready. OJO vec_shifts =
-% [0]; cambiar
+%% Testing 
+
+vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
+%vec_shift = [0];
 all_acc_shifts = zeros( length(vec_shift), 1);
 
 for i=1:length(vec_shift)
