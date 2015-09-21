@@ -76,12 +76,12 @@ main(int argc, char** argv)
   //train_ut( action_seq_names, N_cent, dim);
   
   ///**********Test Shift = 0 ********************************
-  cout << "Testing GMM for UT Tower" << endl; 
-  int scale_factor =1;
-  int shift = 0;
-  float acc;
-  acc= test_ut( action_seq_names, N_cent, dim, scale_factor, shift );
-  cout << all_acc << "%" << endl;
+//   cout << "Testing GMM for UT Tower" << endl; 
+//   int scale_factor =1;
+//   int shift = 0;
+//   float acc;
+//   acc= test_ut( action_seq_names, N_cent, dim, scale_factor, shift );
+//   cout << all_acc << "%" << endl;
   
   
   ///**********Test all Shifts  ********************************
