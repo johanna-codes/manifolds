@@ -111,8 +111,7 @@ num_videos = 108; %From the dataset description (108).
 
 display('Testing svm + Projection RBF Kernel');
 delta = -14:2:20;
-dim = 14;
-p = 1:14;
+p = 1:dim;
 test_acc = zeros( length(delta),1 );
 all_p = cell(length(p),1);
 scale = 1;
