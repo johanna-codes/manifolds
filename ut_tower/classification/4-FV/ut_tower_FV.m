@@ -94,8 +94,7 @@ for i=1:length(vec_shift)
         action_name_ts = action_seq_names(video_ts,1);
         act_ts  =  str2double( action_seq_names(video_ts,2) );
         seqID_ts    = action_seq_names(video_ts,3);
-        
-        
+         
         load_svm_model =  strcat( './svm_models/run_video', int2str(video_ts), '.mat');
         load(load_svm_model); %loading model and X_train
         
