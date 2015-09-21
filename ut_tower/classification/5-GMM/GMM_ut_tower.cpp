@@ -71,36 +71,37 @@ main(int argc, char** argv)
   }
   
   
-  //**********Train the mode**********************
-  train_ut( action_seq_names, N_cent, dim);
+  ///**********Train the mode**********************
+  //Train just once =)
+  //train_ut( action_seq_names, N_cent, dim);
   
-  //**********Test********************************
-  cout << "Testing GMM for UCF_SPORTS" << endl; 
+  ///**********Test Shift = 0 ********************************
+  cout << "Testing GMM for UT Tower" << endl; 
+  int scale_factor =1;
+  int shift = 0;
+  float acc;
+  acc= test_ut( action_seq_names, N_cent, dim, scale_factor, shift );
+  cout << all_acc << "%" << endl;
+  
+  
+  ///**********Test all Shifts  ********************************
+  cout << "Testing GMM for UT Tower" << endl; 
   vec vec_shift;  
   vec all_acc;
   
+  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+  all_acc.zeros(vec_shift.n_elem);
   
-  //vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
-  //all_acc.zeros(vec_shift.n_elem);
-  
-  //for (int i=0; i<vec_shift.n_elem; ++i)
+  for (int i=0; i<vec_shift.n_elem; ++i)
   {
     int scale_factor =1;
-    //int shift = vec_shift(i);
-    //all_acc(i) = test_ut( action_seq_names, N_cent, dim, scale_factor, shift );
-    //cout << "Shift " << shift << " " << all_acc(i) << "%" << endl;
-    
-    int shift = 0;
-    float acc;
-    acc= test_ut( action_seq_names, N_cent, dim, scale_factor, shift );
-    cout << all_acc << "%" << endl;
-    
-    
-    
+    int shift = vec_shift(i);
+    all_acc(i) = test_ut( action_seq_names, N_cent, dim, scale_factor, shift );
+    cout << "Shift " << shift << " " << all_acc(i) << "%" << endl;
   }
   
-  //vec_shift.t().print();
-  //all_acc.t().print();
+  vec_shift.t().print();
+  all_acc.t().print();
   
   
   return 0;
@@ -133,8 +134,8 @@ train_ut(mat action_seq_names, int N_cent, int dim)
     
     for (int train_i = 0; train_i< action_seq_names.n_rows; ++train_i)
     {
-       int actID  = action_seq_names(train_i,0); 
-       int seqID  = action_seq_names(train_i,1);
+      int actID  = action_seq_names(train_i,0); 
+      int seqID  = action_seq_names(train_i,1);
       
       if (test_i!=train_i)
       {
@@ -273,8 +274,8 @@ test_ut(mat action_seq_names, int N_cent, int dim,  int scale_factor, int shift 
   
   for (int test_i = 0; test_i< action_seq_names.n_rows; ++test_i)
   {
-     int actID  = action_seq_names(test_i,0); 
-       int seqID  = action_seq_names(test_i,1);
+    int actID  = action_seq_names(test_i,0); 
+    int seqID  = action_seq_names(test_i,1);
     
     std::stringstream load_feat_video_i;
     load_feat_video_i   << load_folder.str() << "/" << actions(actID)  << "_seq" <<  seqID << ".h5";
