@@ -16,11 +16,13 @@ using namespace arma;
 
 
 //Home
-const std::string path = "/media/johanna/HD1T/Datasets/UT-Tower/ut-tower/Video_Frames/";
+//const std::string path = "/media/johanna/HD1T/Datasets/UT-Tower/ut-tower/Video_Frames/";
 
 //WANDA
-//const std::string path = "/home/johanna/codes/datasets_codes/KTH/";
+const std::string path = "/home/johanna/codes/datasets_codes/ut_tower/";
 
+//NICTA
+//const std::string path = "/home/johanna/codes/datasets_codes/ut_tower/";
 
 
 const std::string peopleList = "people_list.txt";
@@ -40,6 +42,8 @@ main(int argc, char** argv)
   
   cout << data.n_rows << " & " << data.n_cols << endl;
   vec labels_all_frames = data.col(0);
+  
+  
   cv::Mat frame;
   
 
@@ -66,7 +70,7 @@ main(int argc, char** argv)
 	  
 	  std::stringstream folder_name;
 	  folder_name << path << "im" << setw(2) << setfill( '0' ) << actID + 1 << "_" << setw(2) << setfill( '0' ) << seqID + 1 << "_" << setw(3) << setfill( '0' ) << frameID+1 << ".bmp";
-	  //cout << folder_name.str() << endl;
+	  cout << folder_name.str() << endl;
 	  frame = cv::imread(folder_name.str() );
 	  
 	  int x = data_i_j(frameID,3);
