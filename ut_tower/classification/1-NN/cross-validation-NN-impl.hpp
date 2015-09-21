@@ -66,7 +66,7 @@ cv_classify_NN::logEucl()
     
     std::stringstream load_cov;
     load_cov << load_sub_path.str() << "/LogMcov_"  << actions(actID) << "_seq" <<  seqID << ".h5";
-    cout << load_cov.str() << endl;
+    //cout << load_cov.str() << endl;
       
 
       
