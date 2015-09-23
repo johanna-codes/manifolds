@@ -12,22 +12,22 @@ dim =14;
 
 
 %% Kernel LED-Poly: KTH
-display('Testing svm + Kernel LED-POLY. Shifting Videos');
-vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
-
-%n=1:dim;
-best_n = 12;
-all_acc_shifts = zeros( length(vec_shift), 1); 
-scale=1;
- 
- for i=1:length(vec_shift)
-     shift = vec_shift(i);
-     sprintf('shift = %d ', shift)
-     acc = kth_test_LED_POLY(path,scale, shift, dim, best_n);
-     all_acc_shifts(i) = acc;  
-     all_acc_shifts'
-    
- end
+% display('Testing svm + Kernel LED-POLY. Shifting Videos');
+% vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
+% 
+% %n=1:dim;
+% best_n = 12;
+% all_acc_shifts = zeros( length(vec_shift), 1); 
+% scale=1;
+%  
+%  for i=1:length(vec_shift)
+%      shift = vec_shift(i);
+%      sprintf('shift = %d ', shift)
+%      acc = kth_test_LED_POLY(path,scale, shift, dim, best_n);
+%      all_acc_shifts(i) = acc;  
+%      all_acc_shifts'
+%     
+%  end
  
  
 display('Testing svm + Kernel LED-POLY. Varying Scale');

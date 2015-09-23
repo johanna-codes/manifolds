@@ -9,7 +9,7 @@ vec_shift = [-25 -20 -15  -10 -5  0  5  10 15 20 25];
 %% KTH d_led, K_led_poly, GMM & FV
 
 LED_kth =         [75.3333   74.6667   81.3333   79.3333   78.6667   76.0000   74.6667   70.0000   74.0000   64.6667   66.6667 ];
-LED_Poly_kth =    [52.0000   54.0000   64.6667   81.3333   86.6667   92.6667   87.3333   73.3333   57.3333   54.0000   53.3333 ];
+LED_Poly_kth =    [52.0000   55.3333   64.0000   82.6667   87.3333   92.0000   86.0000   71.3333   57.3333   54.0000   52.6667 ];
 GMM_kth =         [43.3333   56.6667   71.3333   84.6667   90.0000   86.6667   78.6667   78.6667   76.6667   68.6667   65.3333 ];
 FV_kth =          [53.3333   62.6667   78.0000   90.6667   94.6667   96.6667   95.3333   92.6667   88.0000   84.6667   80.0000 ];
 
@@ -44,9 +44,9 @@ set(gcf,'PaperPosition', myfiguresize);
 
 %Nicta
 
-print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_kth','-depsc2','-r300');
+%print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_kth','-depsc2','-r300');
 %Home
-%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v5/images/experiments/all_shifts_kth','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_kth','-depsc2','-r300');
 
 
 %% UCF d_led, K_led_poly, GMM & FV
@@ -85,9 +85,9 @@ myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
 
 %Home
-%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v4/images/experiments/all_shifts_ucf','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_ucf','-depsc2','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_ucf','-depsc2','-r300');
+%print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_ucf','-depsc2','-r300');
 
 %% UT_Tower d_led, K_led_poly, GMM & FV
 figure()
@@ -124,9 +124,9 @@ bottom = (papersize(2)- height)/2;
 myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
 %Home
-%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v4/images/experiments/all_shifts_ucf','-dpng','-r300');
+print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_ucf','-depsc2','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_ut','-depsc2','-r300');
+%print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_ut','-depsc2','-r300');
 
 
 
