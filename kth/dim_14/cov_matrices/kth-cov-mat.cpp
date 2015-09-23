@@ -31,8 +31,6 @@ const std::string  actionNames = "actionNames.txt";
 // int ori_col = 160;
 // int ori_row = 120;
 
-
-
 int
 main(int argc, char** argv)
 {
