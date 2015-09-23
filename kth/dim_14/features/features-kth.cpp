@@ -49,6 +49,7 @@ main(int argc, char** argv)
 //   int shift = atoi( argv[2] );
 
 
+///Shifting Videos
   float scale_factor = 1;
    vec vec_shift;
    vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
