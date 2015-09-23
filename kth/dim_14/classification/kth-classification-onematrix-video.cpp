@@ -128,7 +128,7 @@ main(int argc, char** argv)
     for (int i=0; i< scale_vec.n_elem; ++i)
     {
       
-      float scale_factor = scale_vec(i)
+      float scale_factor = scale_vec(i);
       cout << "scale_factor: " << scale_factor << endl;
       kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
       vec_logEucl(i) = kth_CV_omp_onesegment.logEucl();
