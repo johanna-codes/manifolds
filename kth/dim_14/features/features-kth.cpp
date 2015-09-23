@@ -49,10 +49,19 @@ main(int argc, char** argv)
 //   int shift = atoi( argv[2] );
 
 
+
+    if(argc < 2 )
+   {
+     cout << "usage: " << argv[0] << "shift_factor " << endl;
+     return -1;
+   }
+   int shift = atoi( argv[1] );
+
+
 ///Shifting Videos
   float scale_factor = 1;
-   vec vec_shift;
-   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+   //vec vec_shift;
+   //vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
   
   int total_scene = 1; //Hacer solo para scenario 1
   int dim = 14;
@@ -61,9 +70,9 @@ main(int argc, char** argv)
   all_people.load(peopleList);
   
   
-  for (int i=0; i<vec_shift.n_elem; ++i)
+  //for (int i=0; i<vec_shift.n_elem; ++i)
   {
-    float shift = vec_shift(i);
+    //int shift = vec_shift(i);
     cout << "shift " << shift << endl;
 
     opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim);
