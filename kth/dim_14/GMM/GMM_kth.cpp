@@ -92,7 +92,9 @@ main(int argc, char** argv)
   
   for (int i=0; i<scale_vec.n_elem; ++i)
   {
+    
     float scale_factor = scale_vec(i);
+    cout << "scale_factor="  << scale_factor << endl;
     all_acc(i) = test_kth( N_cent, dim, sc, scale_factor, shift );
   }
   
