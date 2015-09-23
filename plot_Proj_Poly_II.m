@@ -21,7 +21,6 @@ plot(d,best_kth, '-gd', 'LineWidth',3,'MarkerSize',10);
 hold on
 plot(d,best_ucf, '--ro', 'LineWidth',3,'MarkerSize',10);
 plot(d,best_ut, '-.bx', 'LineWidth',3,'MarkerSize',10);
-%title('Projection Metric','FontSize',20);
 legend('KTH','UCF', 'UT Tower', 'Location', 'northwest','orientation','horizontal');
 ylabel('accuraccy (%)','FontSize',20)
 xlabel('subspace order (m)','FontSize',20)
@@ -29,8 +28,8 @@ set(gca,'FontSize',20);
 xlim([0 14])
 ylim([0 70])
 
-width = 6;     % Width in inches
-height = 5;    % Height in inches
+width = 8;     % Width in inches
+height = 7;    % Height in inches
 
 set(gcf,'InvertHardcopy','on');
 set(gcf,'PaperUnits', 'inches');
@@ -41,6 +40,9 @@ myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
 grid
 
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/ProjPoly_kth_ucf_ut','-dpng','-r300');
+%home
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/ProjPoly_kth_ucf_ut','-dpng','-r300');
+%Nicta
+print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/ProjPoly_kth_ucf_ut','-depsc2','-r300');
 
 

@@ -135,7 +135,7 @@ main(int argc, char** argv)
       
     }
     
-    vec_pm_shifts.t().print();
+    //vec_pm_shifts.t().print();
     vec_logEucl.t().print();
     
     

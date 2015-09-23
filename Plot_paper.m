@@ -1,6 +1,8 @@
 clear all
 close all
 clc
+%To save in eps depsc2
+%To save in png dpng
 
 %% NN: Projection Metric: KTH & UCF
 
@@ -23,8 +25,8 @@ ylim([0 80])
 xlim([1 14])
 
 %To save
-width = 6;     % Width in inches
-height = 5;    % Height in inches
+width = 7;     % Width in inches
+height = 6;    % Height in inches
 
 set(gcf,'InvertHardcopy','on');
 set(gcf,'PaperUnits', 'inches');
@@ -36,9 +38,9 @@ set(gcf,'PaperPosition', myfiguresize);
 grid
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/PM_kth_ucf_ut','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/PM_kth_ucf_ut','-depsc2','-r300');
 %Nicta
-%print('/home/johanna/latex-svn/wacv_2016_b/v3/images/experiments_kth/PM_kth', '-dpng','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/PM_kth_ucf_ut','-depsc2','-r300');
 
 
 %% Kernels: LED_POLY: KTH & UCF & UT
@@ -54,7 +56,9 @@ hold on
 plot(led_poly_ucf(1:14), '--ro','LineWidth',3,'MarkerSize',10)
 plot(led_poly_ut(1:14), '-.bx','LineWidth',3,'MarkerSize',10)
 
-title('LED POLY','FontSize',20);
+l = title('$K_{LED}^{Poly}$','FontSize',20);
+set(l,'Interpreter','Latex');
+
 ylim([60 100])
 xlim([1 14])
 legend('KTH', 'UCF','UT Tower','Location', 'northwest','orientation','horizontal');
@@ -62,8 +66,8 @@ ylabel('(%)','FontSize',20)
 xlabel('D','FontSize',20)
 set(gca,'FontSize',20);
 
-width = 6;     % Width in inches
-height = 5;    % Height in inches
+width = 8;     % Width in inches
+height = 7;    % Height in inches
 
 set(gcf,'InvertHardcopy','on');
 set(gcf,'PaperUnits', 'inches');
@@ -76,9 +80,9 @@ grid
 
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED_POLY_kth_ucf_ut','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED_POLY_kth_ucf_ut','-depsc2','-r300');
 %Nicta
-%print('/home/johanna/latex-svn/wacv_2016_b/v7/images/experiments/LED-POLY_kth_ucf','-dpng','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/LED_POLY_kth_ucf_ut','-depsc2','-r300');
 
 %% Kernels: LED_RBF: KTH & UCF & UT
 figure
@@ -86,7 +90,7 @@ figure
 load('./kth/dim_14/kernels/LED_RBF_all_delta_performance.mat');
 led_rbf_kth = test_acc;
 
-load('./ucf_sports/dim_14/classification/3-kernels/results/LED_RBF_all_delta_performance.mat')
+load('./ucf_sports/dim_14/classification/3-kernels/LED_RBF_all_delta_performance.mat')
 led_rbf_ucf = test_acc;
 
 load('ut_tower/classification/3-kernels/LED_RBF_all_delta_performance.mat');
@@ -100,7 +104,8 @@ ylabel('(%)','FontSize',20)
 xlabel('\delta','FontSize',20)
 set(gca,'FontSize',20);
 
-title('LED RBF','FontSize',20);
+l= title('$K_{LED}^{rbf}$','FontSize',20);
+set(l,'Interpreter','Latex');
 ylim([0 105])
 %xlim([1 14])
 legend('KTH', 'UCF','UT Tower','Location', 'northwest','orientation','horizontal');
@@ -108,8 +113,8 @@ ylabel('(%)','FontSize',20)
 xlabel('D','FontSize',20)
 set(gca,'FontSize',20);
 
-width = 6;     % Width in inches
-height = 5;    % Height in inches
+width = 8;     % Width in inches
+height = 7;    % Height in inches
 
 set(gcf,'InvertHardcopy','on');
 set(gcf,'PaperUnits', 'inches');
@@ -122,9 +127,9 @@ grid
 
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED_RBF_kth_ucf_ut','-dpng','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED_RBF_kth_ucf_ut','-depsc2','-r300');
 %Nicta
-
+print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/LED_RBF_kth_ucf_ut','-depsc2','-r300');
 
 %% Kernels: ProjPOLY: 
 %plot_Proj_Poly_I (Se ve muy fea) 

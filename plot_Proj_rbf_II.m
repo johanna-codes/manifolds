@@ -15,7 +15,7 @@ m = 4;
 best_ucf =  all_p{m,:};
 delta = delta( [1:2:length(delta)]);
 best_ucf_2 = best_ucf(1:2:length(best_ucf));
-size(delta)
+%size(delta)
 
 %UT
 load('./ut_tower/classification/3-kernels/projRBF_all_p_delta_performance.mat');
@@ -30,7 +30,6 @@ plot(delta, best_kth_2, '-gd', 'LineWidth',3,'MarkerSize',10);
 hold on
 plot(delta,best_ucf_2, '--ro', 'LineWidth',3,'MarkerSize',10);
 plot(delta,best_ut, '-.bx', 'LineWidth',3,'MarkerSize',10);
-%title('Projection Metric','FontSize',20);
 legend('KTH','UCF', 'UT Tower', 'Location', 'northwest','orientation','horizontal');
 ylabel('accuraccy (%)','FontSize',20)
 xlabel('\delta','FontSize',20)
@@ -40,8 +39,8 @@ ylim([0 100])
 
 
 
-width = 6;     % Width in inches
-height = 5;    % Height in inches
+width = 8;     % Width in inches
+height = 7;    % Height in inches
 
 set(gcf,'InvertHardcopy','on');
 set(gcf,'PaperUnits', 'inches');
@@ -52,6 +51,8 @@ myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
 grid
 
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/ProjRbf_kth_ucf_ut','-dpng','-r300');
-
+%Home
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/ProjRbf_kth_ucf_ut','-dpng','-r300');
+%Nicta
+print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/ProjRbf_kth_ucf_ut','-depsc2','-r300');
 
