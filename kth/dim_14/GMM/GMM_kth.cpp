@@ -37,7 +37,7 @@ train_kth(int N_cent,  int dim, int sc);
 
 inline
 float
-test_kth(int N_cent, int dim, int sc, int scale_factor, int shift );
+test_kth(int N_cent, int dim, int sc, float scale_factor, int shift );
 
 
 inline 
@@ -88,7 +88,7 @@ main(int argc, char** argv)
   scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
   int shift = 0;
   
-    vec all_acc;
+  vec all_acc;
   all_acc.zeros(scale_vec.n_elem);
   
   
@@ -165,7 +165,7 @@ train_kth(int N_cent, int dim, int sc)
 //***************************Test******************************
 inline
 float
-test_kth(int N_cent, int dim, int sc, int scale_factor, int shift )
+test_kth(int N_cent, int dim, int sc, float scale_factor, int shift )
 {
   all_people.load(peopleList);
   actions.load( actionNames ); 
