@@ -17,8 +17,6 @@ acc = [];
 
 n_test = (n_peo-1)*n_actions;
 
-
-
 load_sub_path =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) );
 for pe_ts= 1: n_peo
     X_train = zeros(dim,dim,n_test);
