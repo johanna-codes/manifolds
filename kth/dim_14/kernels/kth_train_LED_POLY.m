@@ -1,7 +1,7 @@
-function acc = kth_train_LED_POLY(path,dim, n, d)
+function acc = kth_train_LED_POLY(path,dim, n)
 
 gamma = 1/n;
-LED_POLY_KERNEL = @(X,Y,gamma,d)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^d );
+LED_POLY_KERNEL = @(X,Y,gamma,n)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^n );
 
 
 actions = importdata('actionNames.txt');
@@ -40,7 +40,7 @@ for pe_ts= 1: n_peo
     end
     
     %disp(strcat('Doing for n= ', num2str(n)));
-    K_train = compute_poly_kernel_svm(X_train,X_train, LED_POLY_KERNEL, gamma, d);
+    K_train = compute_poly_kernel_svm(X_train,X_train, LED_POLY_KERNEL, gamma, n);
     %disp('SVM');
     %find(isfinite(K_train )==0)
     %K_train
@@ -51,9 +51,7 @@ for pe_ts= 1: n_peo
     
     
     %acc = [acc accuracy(1)];
-    save_svm_model =strcat( './svm_models_LED_POLY/LED-POLY_svm_run_',num2str(pe_ts), '_n', num2str(n), '_degree', num2str(d), '.mat')
+    save_svm_model =strcat( './svm_models_LED_POLY/LED-POLY_svm_run_',num2str(pe_ts), '_n', num2str(n), '.mat')
     save(save_svm_model, 'model', 'X_train');
-    
-    
 end
 
