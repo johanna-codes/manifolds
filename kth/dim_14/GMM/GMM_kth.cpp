@@ -62,26 +62,42 @@ main(int argc, char** argv)
   int N_cent = 256; // as per Improved Trajectories Features
   
   
-  //Train the mode
+  /// Train the model. Run once
   //train_kth( N_cent, dim, sc);
   
-  //Test
-  vec vec_shift;  
+  /// Test - Shifts
+  //   vec vec_shift;  
+  //   vec all_acc;
+  //  
+  //   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+  //   all_acc.zeros(vec_shift.n_elem);
+  //    
+  //   for (int i=0; i<vec_shift.n_elem; ++i)
+  //   {
+  //   int scale_factor =1;
+  //   int shift = vec_shift(i);
+  //   all_acc(i) = test_kth( N_cent, dim, sc, scale_factor, shift );
+  //   }
+  //   
+  //   vec_shift.t().print();
+  //   all_acc.t().print();
+  //   
+  
   vec all_acc;
- 
-  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
-   all_acc.zeros(vec_shift.n_elem);
-   
-  for (int i=0; i<vec_shift.n_elem; ++i)
+  all_acc.zeros(vec_shift.n_elem);
+  vec scale_vec;
+  scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
+  int shift = 0;
+  
+  
+  for (int i=0; i<scale_vec.n_elem; ++i)
   {
-  int scale_factor =1;
-  int shift = vec_shift(i);
-  all_acc(i) = test_kth( N_cent, dim, sc, scale_factor, shift );
+    float scale_factor = scale_vec(i);
+    all_acc(i) = test_kth( N_cent, dim, sc, scale_factor, shift );
   }
   
-  vec_shift.t().print();
+  scale_vec.t().print();
   all_acc.t().print();
-  
   
   return 0;
 }
@@ -193,7 +209,7 @@ test_kth(int N_cent, int dim, int sc, int scale_factor, int shift )
       }
       //cout << "Real label is " <<  act << " and it was classified as " << est_label_video_i << endl;
     }
-
+    
   }
   
   cout << "Performance for shift: " << shift << " = " << acc*100/n_test << " %" << endl;
