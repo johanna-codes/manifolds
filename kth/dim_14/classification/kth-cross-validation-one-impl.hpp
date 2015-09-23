@@ -4,7 +4,7 @@ inline
 kth_cv_omp::kth_cv_omp(const std::string in_path,
 		       const std::string in_actionNames,  
 		       const field<std::string> in_all_people,
-		       const int in_scale_factor, 
+		       const float in_scale_factor, 
 		       const int in_shift,
 		       const int in_scene, //only for kth
 		       const int in_dim 

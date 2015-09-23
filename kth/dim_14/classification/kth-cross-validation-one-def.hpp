@@ -6,7 +6,7 @@ class kth_cv_omp //KTH Cross validation
     inline kth_cv_omp(const std::string in_path,
 		const std::string in_actionNames,  
 		const field<std::string> in_all_people,
-		const int in_scale_factor, 
+		const float in_scale_factor, 
 		const int in_shift,
 		const int in_scene, //only for kth
 		const int in_dim 
@@ -22,7 +22,7 @@ class kth_cv_omp //KTH Cross validation
     const std::string actionNames;
     field<std::string> all_people;
     
-    const int scale_factor;
+    const float scale_factor;
     const int shift;
     const int total_scenes;
     const int dim;
