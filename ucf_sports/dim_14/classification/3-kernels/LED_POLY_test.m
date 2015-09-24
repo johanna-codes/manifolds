@@ -9,7 +9,7 @@ real_labels = zeros(n_videos - 1);%Problem with Run-Side_001_dim14
 est_labels  = zeros(n_videos - 1);
   
 
-load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', num2str(scale_factor), '-shift', int2str(shift) );
 
 j=1;
   for video_ts= 1: n_videos
@@ -39,7 +39,7 @@ j=1;
 
       end
       
-     save_labels = strcat('./svm_results_LED_POLY/LED_POLY_scale', int2str(scale_factor), '-shift', int2str(shift),'-n',num2str(n),'.mat' );     
+     save_labels = strcat('./svm_results_LED_POLY/LED_POLY_scale', num2str(scale_factor), '-shift', int2str(shift),'-n',num2str(n),'.mat' );     
      save(save_labels, 'est_labels', 'real_labels', 'gamma', 'n');
   
   end
