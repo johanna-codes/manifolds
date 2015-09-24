@@ -2,7 +2,7 @@ function FV_kth_all_videos(Ncent, DIM, scale_factor, shift)
 %%Calcular FV for all videos
 
 
-path  = '/home/johanna/codes/codes-git/study-paper/trunk/';
+path  = '/home/johanna/codes/codes-git/manifolds/trunk/kth/';
 fprintf('Ng %d \n',Ncent);
 
 
