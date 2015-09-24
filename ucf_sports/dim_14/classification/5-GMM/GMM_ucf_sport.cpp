@@ -31,7 +31,7 @@ train_ucf(field <std::string> action_seq_names, int N_cent,  int dim, int sc);
 
 inline
 float
-test_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc, int scale_factor, int shift );
+test_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc, float scale_factor, int shift );
 
 
 inline 
@@ -90,25 +90,46 @@ main(int argc, char** argv)
   //**********Train the mode**********************
   //train_ucf( action_seq_names, N_cent, dim, sc);
   
-     //Test
-     cout << "Testing GMM for UCF_SPORTS" << endl; 
-     vec vec_shift;  
-     vec all_acc;
+///	Test - Shifts
+//      cout << "Testing GMM for UCF_SPORTS" << endl; 
+//      vec vec_shift;  
+//      vec all_acc;
+//     
+//      vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+//       all_acc.zeros(vec_shift.n_elem);
+//       
+//      for (int i=0; i<vec_shift.n_elem; ++i)
+//      {
+//        int scale_factor =1;
+//        int shift = vec_shift(i);
+//        all_acc(i) = test_ucf( action_seq_names, N_cent, dim, sc, scale_factor, shift );
+//        cout << "Shift " << shift << " " << all_acc(i) << "%" << endl;
+//        
+//     }
+//      
+//      vec_shift.t().print();
+//      all_acc.t().print();
+  
+
+  /// Test - Scales
+    vec scale_vec;
+    scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.0 << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
+    int shift = 0;
     
-     vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
-      all_acc.zeros(vec_shift.n_elem);
-      
-     for (int i=0; i<vec_shift.n_elem; ++i)
-     {
-       int scale_factor =1;
-       int shift = vec_shift(i);
-       all_acc(i) = test_ucf( action_seq_names, N_cent, dim, sc, scale_factor, shift );
-       cout << "Shift " << shift << " " << all_acc(i) << "%" << endl;
-       
-    }
-     
-     vec_shift.t().print();
-     all_acc.t().print();
+    vec all_acc;
+    all_acc.zeros(scale_vec.n_elem);
+  
+  
+  for (int i=0; i<scale_vec.n_elem; ++i)
+  {
+    
+    float scale_factor = scale_vec(i);
+    cout << "scale_factor="  << scale_factor << endl;
+    all_acc(i) = test_ucf( action_seq_names, N_cent, dim, sc, scale_factor, shift );
+  }
+  
+  scale_vec.t().print();
+  all_acc.t().print();
   
   
   return 0;
@@ -251,7 +272,7 @@ get_gmm (mat& features_action_i, int N_cent, int dim, int test_i, int act )
 
 inline
 float
-test_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc, int scale_factor, int shift )
+test_ucf(field <std::string> action_seq_names, int N_cent, int dim, int sc, float scale_factor, int shift )
 {
   actions.load( actionNames ); 
   
