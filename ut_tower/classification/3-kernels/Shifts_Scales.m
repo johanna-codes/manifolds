@@ -41,7 +41,7 @@ test_acc = zeros(length(vec_scale),1);
 
 for i=1:length(vec_scale)
     scale = vec_scale(i);
-    sprintf('shift = %d ', shift)
+    sprintf('scale = %d ', scale)
     acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, best_n, num_videos);
     vec_scale_scales(i) = acc;
 end
