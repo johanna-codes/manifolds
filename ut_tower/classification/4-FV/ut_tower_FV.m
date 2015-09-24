@@ -56,36 +56,32 @@ num_videos = 108; %From the dataset description (150).
 %     save(save_svm_model, 'model');
 % end
 
+%% Testing. Scales
+shift = 0;
+vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
 
-
-
-
-%% Testing  
-scale_factor = 1;
-vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
-%vec_shift = [0];
 
 % Get FV. Run Just once.
 
- for i=1:length(vec_shift)
-     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
+ for i=1:length(vec_scale)
+     scale_factor = vec_scale(i);
+     show_you = strcat('Getting FVs for scale: ', num2str( scale_factor ) );
      disp(show_you);
-     FV_ut_tower_all_videos( path, Ncent, dim, scale_factor, vec_shift(i), num_videos, action_seq_names );
+     FV_ut_tower_all_videos( path, Ncent, dim, scale_factor, shift, num_videos, action_seq_names );
  end
 
 
-all_acc_shifts = zeros( length(vec_shift), 1);
+all_acc_shifts = zeros( length(vec_scale), 1);
 
-for i=1:length(vec_shift)
+for i=1:length(vec_scale)
     
-    scale_factor = 1;
-    shift = vec_shift(i);
+    scale_factor = vec_scale(i);
     acc = 0;
     real_labels = zeros(num_videos,1);
     est_labels  = zeros(num_videos,1);
     
     
-    load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
+    load_sub_path =strcat('./FV_training/scale', num2str(scale_factor), '-shift',  int2str(shift));
     show_you = strcat('Testing shift ', int2str(shift) );
     disp(show_you);
     j=1;
@@ -112,7 +108,7 @@ for i=1:length(vec_shift)
         end
         
         
-        save_labels = strcat('./svm_results/scale', int2str(scale_factor), '-shift', int2str(shift),'.mat' );
+        save_labels = strcat('./svm_results/scale', num2str(scale_factor), '-shift', int2str(shift),'.mat' );
         save(save_labels, 'est_labels', 'real_labels');
     end
     acc = acc*100/(num_videos - 1);
@@ -121,3 +117,7 @@ end
 
 [vec_shift' all_acc_shifts]
 
+
+
+
+%% Testing. Shifts 
