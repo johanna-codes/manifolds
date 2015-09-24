@@ -22,7 +22,7 @@ class cv_classify_NN //KTH Cross validation
     const std::string actionNames;
 
     
-    const int scale_factor;
+    const float scale_factor;
     const int shift;
     const int dim;
     int p;
