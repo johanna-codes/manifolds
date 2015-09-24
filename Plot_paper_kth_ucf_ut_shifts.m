@@ -92,7 +92,7 @@ print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shif
 %% UT_Tower d_led, K_led_poly, GMM & FV
 figure()
 LED_ut          = [79.6296   77.7778   83.3333   78.7037   75.0000   73.1481   74.0741   79.6296   81.4815   78.7037   81.4815];
-LED_Poly_ut    =  [48.1481   62.9630   71.2963   75.9259   84.2593   83.3333   84.2593   82.4074   82.4074   75.9259   61.1111];
+LED_Poly_ut     = [48.1481   62.0370   70.3704   76.8519   87.9630   87.9630   87.0370   85.1852   82.4074   75.9259   59.2593];
 GMM_ut          = [60.1852   75.0000   86.1111   87.0370   90.7407   87.9630   87.9630   85.1852   82.4074   74.0741   61.1111];
 FV_ut           = [61.6822   76.6355   85.9813   90.6542   91.5888   92.5234   93.4579   89.7196   88.7850   78.5047   60.7477];
 
@@ -124,7 +124,7 @@ bottom = (papersize(2)- height)/2;
 myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_ucf','-depsc2','-r300');
+print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_ut','-depsc2','-r300');
 %Nicta
 %print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_ut','-depsc2','-r300');
 

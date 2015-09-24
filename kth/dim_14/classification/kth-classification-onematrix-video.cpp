@@ -122,7 +122,6 @@ main(int argc, char** argv)
     scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95 << 1 << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
     
     
-    vec vec_pm_shifts = zeros(scale_vec.n_elem);
     vec vec_logEucl   = zeros(scale_vec.n_elem);
     
     for (int i=0; i< scale_vec.n_elem; ++i)
@@ -135,7 +134,6 @@ main(int argc, char** argv)
       
     }
     
-    //vec_pm_shifts.t().print();
     vec_logEucl.t().print();
     
     

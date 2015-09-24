@@ -85,7 +85,7 @@ main(int argc, char** argv)
   
 
   vec scale_vec;
-  scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
+  scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.0 << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
   int shift = 0;
   
   vec all_acc;
