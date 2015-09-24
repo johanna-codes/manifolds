@@ -3,7 +3,7 @@
 inline
 cv_classify_NN::cv_classify_NN(const std::string in_path,
 			       const std::string in_actionNames,  
-			       const int in_scale_factor, 
+			       const float in_scale_factor, 
 			       const int in_shift,
 			       const int in_dim 
 ):path(in_path), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), dim(in_dim)

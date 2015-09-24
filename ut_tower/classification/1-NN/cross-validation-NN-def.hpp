@@ -5,7 +5,7 @@ class cv_classify_NN //KTH Cross validation
     
     inline cv_classify_NN(const std::string in_path,
 			  const std::string in_actionNames,  
-			  const int in_scale_factor, 
+			  const float in_scale_factor, 
 			  const int in_shift,
 			  const int in_dim 
 			 );
@@ -20,7 +20,7 @@ class cv_classify_NN //KTH Cross validation
     const std::string actionNames;
 
     
-    const int scale_factor;
+    const float scale_factor;
     const int shift;
     const int dim;
     int p;
