@@ -63,12 +63,12 @@ vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
 
 % Get FV. Run Just once.
 
- for i=1:length(vec_scale)
-     scale_factor = vec_scale(i);
-     show_you = strcat('Getting FVs for scale: ', num2str( scale_factor ) );
-     disp(show_you);
-     FV_ut_tower_all_videos( path, Ncent, dim, scale_factor, shift, num_videos, action_seq_names );
- end
+%  for i=1:length(vec_scale)
+%      scale_factor = vec_scale(i);
+%      show_you = strcat('Getting FVs for scale: ', num2str( scale_factor ) );
+%      disp(show_you);
+%      FV_ut_tower_all_videos( path, Ncent, dim, scale_factor, shift, num_videos, action_seq_names );
+%  end
 
 
 all_acc_scales = zeros( length(vec_scale), 1);
