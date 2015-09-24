@@ -15,7 +15,7 @@ mu =    load(strcat('./universal_GMM/means_Ng'  , Ng, '_dim', dim, '.dat'));
 sigma = load(strcat('./universal_GMM/covs_Ng'   , Ng, '_dim', dim, '.dat'));
 
 
-folder_feat =strcat(path, 'dim_', dim, '/features/features_dim', dim, '/scale', int2str(scale_factor), '-shift', int2str(shift) );
+folder_feat =strcat(path, 'dim_', dim, '/features/features_dim', dim, '/scale', num2str(scale_factor), '-shift', int2str(shift) );
 
 
 for video_ts= 1: n_videos
@@ -50,7 +50,7 @@ for video_ts= 1: n_videos
         end
         %to save
         
-        save_name = strcat('./FV_training/scale',int2str(scale_factor), '-shift',  int2str(shift),  '/FV_', action_name, '_', folder_n, '_Ng', Ng, '.txt');
+        save_name = strcat('./FV_training/scale',num2str(scale_factor), '-shift',  int2str(shift),  '/FV_', action_name, '_', folder_n, '_Ng', Ng, '.txt');
         sSave = char(save_name);
         %display(sSave);
         fid1=fopen(sSave,'wt');
