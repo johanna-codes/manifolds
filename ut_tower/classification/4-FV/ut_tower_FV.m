@@ -71,7 +71,7 @@ vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
  end
 
 
-all_acc_shifts = zeros( length(vec_scale), 1);
+all_acc_scales = zeros( length(vec_scale), 1);
 
 for i=1:length(vec_scale)
     
@@ -112,10 +112,10 @@ for i=1:length(vec_scale)
         save(save_labels, 'est_labels', 'real_labels');
     end
     acc = acc*100/(num_videos - 1);
-    all_acc_shifts(i) = acc;
+    all_acc_scales(i) = acc;
 end
 
-[vec_shift' all_acc_shifts]
+[vec_scale' all_acc_scales]
 
 
 
