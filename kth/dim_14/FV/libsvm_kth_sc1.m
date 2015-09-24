@@ -25,14 +25,11 @@ dim_FV = 2*dim*Ncent;
 
 
 %% Get FV. Run Just once
-
-
 % scale_factor = 1;
-% for i=1:length(vec_shift)
-%     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
-%     disp(show_you);
-%     FV_kth_all_videos(Ncent, dim, scale_factor, vec_shift(i));
-% end
+% shift =0;
+% FV_kth_all_videos(Ncent, dim, scale_factor, shift);
+
+
 
 %% Training
 % scale_factor = 1;
@@ -65,8 +62,14 @@ dim_FV = 2*dim*Ncent;
 % end
 
 %% Testing - Shifts
-%vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
+
 vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
+shift = 0;
+ for i=1:length(vec_scale)
+     show_you = strcat('Getting FVs for ', num2str( vec_scale(i) ) );
+     disp(show_you);
+     FV_kth_all_videos(Ncent, dim, vec_scale(i), shift);
+ end
 
 all_acc_scales = zeros( length(vec_scale), 1);
 for i=1:length(vec_scale)
@@ -117,7 +120,15 @@ end
 
 %% Testing - Shifts
 % vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
-% 
+
+% scale_factor = 1;
+% for i=1:length(vec_shift)
+%     show_you = strcat('Getting FVs for ', int2str( vec_shift(i) ) );
+%     disp(show_you);
+%     FV_kth_all_videos(Ncent, dim, scale_factor, vec_shift(i));
+% end
+
+
 % all_acc_shifts = zeros( length(vec_shift), 1);
 % for i=1:length(vec_shift)
 %     scale_factor = 1;
