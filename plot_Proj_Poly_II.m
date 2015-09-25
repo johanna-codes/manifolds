@@ -21,11 +21,17 @@ plot(d,best_kth, '-gd', 'LineWidth',3,'MarkerSize',10);
 hold on
 plot(d,best_ucf, '--ro', 'LineWidth',3,'MarkerSize',10);
 plot(d,best_ut, '-.bx', 'LineWidth',3,'MarkerSize',10);
-legend('KTH','UCF', 'UT Tower', 'Location', 'northwest','orientation','horizontal');
+l = legend('KTH $_{m=9}$','UCF $_{m=3}$', 'UT $_{m=2}$', 'Location', 'northwest','orientation','vertical');
+set(l,'Interpreter','Latex');
+
 ylabel('accuraccy (%)','FontSize',20)
-xlabel('subspace order (m)','FontSize',20)
+xlabel('Parameter $d$ for $K_{proj}^{poly}$','FontSize',20, 'Interpreter','Latex')
 set(gca,'FontSize',20); 
-xlim([0 14])
+
+%ylabel('accuraccy (%)','FontSize',20)
+%xlabel('subspace order (m)','FontSize',20)
+
+xlim([1 14])
 ylim([0 70])
 
 width = 8;     % Width in inches
@@ -43,6 +49,6 @@ grid
 %home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/ProjPoly_kth_ucf_ut','-dpng','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/ProjPoly_kth_ucf_ut','-depsc2','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v13/images/experiments/ProjPoly_kth_ucf_ut','-depsc2','-r300');
 
 

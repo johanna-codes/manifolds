@@ -30,12 +30,14 @@ plot(delta, best_kth_2, '-gd', 'LineWidth',3,'MarkerSize',10);
 hold on
 plot(delta,best_ucf_2, '--ro', 'LineWidth',3,'MarkerSize',10);
 plot(delta,best_ut, '-.bx', 'LineWidth',3,'MarkerSize',10);
-legend('KTH','UCF', 'UT Tower', 'Location', 'northwest','orientation','horizontal');
+l = legend('KTH $_{m=7}$','UCF $_{m=4}$', 'UT $_{m=4}$', 'Location', 'northwest','orientation','vertical');
+set(l,'Interpreter','Latex');
+
 ylabel('accuraccy (%)','FontSize',20)
-xlabel('\delta','FontSize',20)
+xlabel('Parameter $\delta$ for $K_{proj}^{rbf}$','FontSize',20, 'Interpreter','Latex')
 set(gca,'FontSize',20); 
 xlim([-14 20])
-ylim([0 100])
+ylim([0 81])
 
 
 
@@ -54,5 +56,5 @@ grid
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/ProjRbf_kth_ucf_ut','-dpng','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/ProjRbf_kth_ucf_ut','-depsc2','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v13/images/experiments/ProjRbf_kth_ucf_ut','-depsc2','-r300');
 

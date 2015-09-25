@@ -18,7 +18,7 @@ plot(PM_ut, '-.bx', 'LineWidth',3,'MarkerSize',10);
 %title('Projection Metric','FontSize',20);
 legend('KTH','UCF', 'UT Tower', 'Location', 'southwest','orientation','horizontal');
 ylabel('accuraccy (%)','FontSize',20)
-xlabel('subspace order (m)','FontSize',20)
+xlabel('$m$','FontSize',20, 'Interpreter','Latex')
 set(gca,'FontSize',20); 
 
 ylim([0 80])
@@ -40,7 +40,7 @@ grid
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/PM_kth_ucf_ut','-depsc2','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/PM_kth_ucf_ut','-depsc2','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v13/images/experiments/PM_kth_ucf_ut','-depsc2','-r300');
 
 
 %% Kernels: LED_POLY: KTH & UCF & UT
@@ -56,14 +56,14 @@ hold on
 plot(led_poly_ucf(1:14), '--ro','LineWidth',3,'MarkerSize',10)
 plot(led_poly_ut(1:14), '-.bx','LineWidth',3,'MarkerSize',10)
 
-l = title('$K_{LED}^{Poly}$','FontSize',20);
-set(l,'Interpreter','Latex');
+%l = title('$K_{led}^{poly}$','FontSize',20);
+%set(l,'Interpreter','Latex');
 
 ylim([60 100])
 xlim([1 14])
 legend('KTH', 'UCF','UT Tower','Location', 'northwest','orientation','horizontal');
-ylabel('(%)','FontSize',20)
-xlabel('D','FontSize',20)
+ylabel('accuraccy (%)','FontSize',20)
+xlabel('Parameter $d$ for $K_{led}^{poly}$' ,'FontSize',20, 'Interpreter','Latex')
 set(gca,'FontSize',20);
 
 width = 8;     % Width in inches
@@ -82,35 +82,36 @@ grid
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED_POLY_kth_ucf_ut','-depsc2','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/LED_POLY_kth_ucf_ut','-depsc2','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v13/images/experiments/LED_POLY_kth_ucf_ut','-depsc2','-r300');
 
 %% Kernels: LED_RBF: KTH & UCF & UT
 figure
 
 load('./kth/dim_14/kernels/LED_RBF_all_delta_performance.mat');
 led_rbf_kth = test_acc;
+%delta
 
 load('./ucf_sports/dim_14/classification/3-kernels/LED_RBF_all_delta_performance.mat')
 led_rbf_ucf = test_acc;
+%delta
 
 load('ut_tower/classification/3-kernels/LED_RBF_all_delta_performance.mat');
 led_rbf_ut = test_acc;
+%delta
 
 plot(delta, led_rbf_kth, '-gd','LineWidth',3,'MarkerSize',10)
 hold on
 plot(delta, led_rbf_ucf, '--ro','LineWidth',3,'MarkerSize',10)
 plot(delta, led_rbf_ut, '-.bx','LineWidth',3,'MarkerSize',10)
-ylabel('(%)','FontSize',20)
-xlabel('\delta','FontSize',20)
-set(gca,'FontSize',20);
 
-l= title('$K_{LED}^{rbf}$','FontSize',20);
-set(l,'Interpreter','Latex');
-ylim([0 105])
+
+%l= title('$K_{led}^{rbf}$','FontSize',20);
+%set(l,'Interpreter','Latex');
+ylim([0 100])
 %xlim([1 14])
 legend('KTH', 'UCF','UT Tower','Location', 'northwest','orientation','horizontal');
-ylabel('(%)','FontSize',20)
-xlabel('D','FontSize',20)
+ylabel('accuraccy (%)','FontSize',20)
+xlabel('Parameter $\delta$ for $K_{led}^{rbf}$','FontSize',20, 'Interpreter','Latex')
 set(gca,'FontSize',20);
 
 width = 8;     % Width in inches
@@ -129,7 +130,7 @@ grid
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v10/images/experiments/LED_RBF_kth_ucf_ut','-depsc2','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/LED_RBF_kth_ucf_ut','-depsc2','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v13/images/experiments/LED_RBF_kth_ucf_ut','-depsc2','-r300');
 
 %% Kernels: ProjPOLY: 
 %plot_Proj_Poly_I (Se ve muy fea) 

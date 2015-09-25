@@ -29,22 +29,23 @@ num_videos = 108; %From the dataset description (108).
 %      %ACC_train(i,:) = acc;
 %  end
 %
-display('Testing svm + Kernel LED-POLY');
-n=1:dim;
-test_acc = zeros(length(n),1);
-scale = 1;
-shift = 0;
 
-for i=1:length(n)
-    in_n = n(i);
-    X = sprintf('n = %d ', in_n);
-    acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
-    test_acc(i) = acc;
-    test_acc'
-end
-
-save_results =strcat( 'LED_POLY_all_n_performance.mat');
-save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
+% display('Testing svm + Kernel LED-POLY');
+% n=1:dim;
+% test_acc = zeros(length(n),1);
+% scale = 1;
+% shift = 0;
+% 
+% for i=1:length(n)
+%     in_n = n(i);
+%     X = sprintf('n = %d ', in_n);
+%     acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
+%     test_acc(i) = acc;
+%     test_acc'
+% end
+% 
+% save_results =strcat( 'LED_POLY_all_n_performance.mat');
+% save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 
 %% Kernel LED-RBF.
 
@@ -85,9 +86,7 @@ save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 %
 %  display('Training svm + Projection RBF Kernel ');
 %  delta = -14:2:20;
-%  dim = 14;
-%  p = 1:14;
-%  %p = 12;
+%  p = 1:dim;
 %  ACC_train = zeros(length(delta),num_videos -1);
 %  all_p = cell(length(p),1);
 %
@@ -136,8 +135,8 @@ save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 %% Projection Poly  Kernel
 
 % display('Training svm + Projection Poly Kernel ');
-% p = 1:14;
-% d=1:14;
+% p = 1:dim;
+% d=1:dim;
 % 
 % for i=1:length(p)
 %     for j=1:length(d)
