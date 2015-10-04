@@ -23,9 +23,9 @@ plot(vec_shift,FV_kth, '-.m+', 'LineWidth', 3,'MarkerSize', 10);
 
 xlim([-25 25])
 ylim([30 100])
-l = legend('$d_{LED}$', '$K_{LED}^{Poly}$', 'GMM','FV','Location','south', 'orientation', 'horizontal');
+l = legend('$d_{led}$', '$K_{led}^{poly}$', 'GMM','FV','Location','south', 'orientation', 'horizontal');
 set(l,'Interpreter','Latex');
-ylabel('(%)','FontSize',20)
+ylabel('accuracy (%)','FontSize',20)
 xlabel('shift (%)','FontSize',20)
 set(gca,'FontSize',20); 
 grid
@@ -43,10 +43,9 @@ myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
 
 %Nicta
-
-%print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_kth','-depsc2','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v14/images/experiments/all_shifts_kth','-depsc2','-r300');
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_kth','-depsc2','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_kth','-depsc2','-r300');
 
 
 %% UCF d_led, K_led_poly, GMM & FV
@@ -65,9 +64,9 @@ plot(vec_shift,FV_ucf, '-.m+', 'LineWidth', 3,'MarkerSize', 10);
 
 xlim([-25 25])
 ylim([30 100])
-l=legend('$d_{LED}$', '$K_{LED}^{Poly}$', 'GMM','FV','Location','south', 'orientation', 'horizontal');
+l=legend('$d_{led}$', '$K_{led}^{poly}$', 'GMM','FV','Location','south', 'orientation', 'horizontal');
 set(l,'Interpreter','Latex');
-ylabel('(%)','FontSize',20)
+ylabel('accuracy (%)','FontSize',20)
 xlabel('shift (%)','FontSize',20)
 set(gca,'FontSize',20); 
 grid
@@ -85,9 +84,9 @@ myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
 
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_ucf','-depsc2','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_ucf','-depsc2','-r300');
 %Nicta
-%print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_ucf','-depsc2','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v14/images/experiments/all_shifts_ucf','-depsc2','-r300');
 
 %% UT_Tower d_led, K_led_poly, GMM & FV
 figure()
@@ -105,9 +104,9 @@ plot(vec_shift,FV_ut, '-.m+', 'LineWidth', 3,'MarkerSize', 10);
 
 xlim([-25 25])
 ylim([30 100])
-l = legend('$d_{LED}$', '$K_{LED}^{Poly}$', 'GMM','FV','Location','south', 'orientation', 'horizontal');
+l = legend('$d_{led}$', '$K_{led}^{poly}$', 'GMM','FV','Location','south', 'orientation', 'horizontal');
 set(l,'Interpreter','Latex');
-ylabel('(%)','FontSize',20)
+ylabel('accuracy (%)','FontSize',20)
 xlabel('shift (%)','FontSize',20)
 set(gca,'FontSize',20); 
 grid
@@ -124,9 +123,9 @@ bottom = (papersize(2)- height)/2;
 myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
 %Home
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_ut','-depsc2','-r300');
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/v12/images/experiments/all_shifts_ut','-depsc2','-r300');
 %Nicta
-%print('/home/johanna/latex-svn/wacv_2016_b/v11/images/experiments/all_shifts_ut','-depsc2','-r300');
+print('/home/johanna/latex-svn/wacv_2016_b/v14/images/experiments/all_shifts_ut','-depsc2','-r300');
 
 
 
