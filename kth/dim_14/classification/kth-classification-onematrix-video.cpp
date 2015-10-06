@@ -77,7 +77,7 @@ main(int argc, char** argv)
     //   {
     //     cout << "p= " << p << endl;
     //     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-    //     vec_bc(p-1) = kth_CV_omp_onesegment.BC_grass(p);
+    //     vec_bc(p-1) = kth_CV_omp_onesegment.proj_grass(p);
     //   }
     //   
     //   vec_pm.t().print("Projection Metric");
@@ -88,6 +88,7 @@ main(int argc, char** argv)
     int shift = 0;
     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
     kth_CV_omp_onesegment.SteinDiv();
+    kth_CV_omp_onesegment.logEucl();
     
     //   vec vec_bc = zeros(dim);
     //   for (int p=1; p<= dim; ++p)
