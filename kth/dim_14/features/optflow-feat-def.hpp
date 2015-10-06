@@ -49,7 +49,7 @@ private:
   inline cv::Mat Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y);
   inline cv::Mat Scale_Image( cv::Mat src_in, float scale_factor);
   inline cv::Mat Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x );
-{
+
   
   
   
