@@ -430,29 +430,21 @@ opt_feat::Shift_Image_Vertical( cv::Mat src_in, int num_pixels_y)
   cv::Mat rot_mat = (cv::Mat_<double>(2,3) << 1, 0, num_pixels_x, 0, 1, num_pixels_y);
   warpAffine( src_in, img_out, rot_mat, src_in.size() );
   cv::imshow("img_out", img_out);
-    cv::waitKey();
 
-  if (num_pixels_x>0) //Move right
+  if (num_pixels_y>0) //Move right
   {   
     
     cv::Mat col = src_in.col(0);
     cv::Mat row = src_in.row(0);
     
     
-    for (int i=0; i<abs(num_pixels_x); ++i)
-    {
-      col.col(0).copyTo(img_out.col(i));
-      
-    }
-    
     for (int i=0; i<abs(num_pixels_y); ++i)
     {
       row.row(0).copyTo(img_out.row(i));
-      //src_in.copyTo(img_out,crop);
     }
   }
   
-  if (num_pixels_x<0) //Move left
+  if (num_pixels_y<0) //Move left
   {   
     
     int w = src_in.size().width;
@@ -460,20 +452,15 @@ opt_feat::Shift_Image_Vertical( cv::Mat src_in, int num_pixels_y)
     cv::Mat col = src_in.col(w-1);
     cv::Mat row = src_in.row(h-1);
     
-    for (int i=w-abs(num_pixels_x) ; i<w; ++i)
-    {
-      col.col(0).copyTo(img_out.col(i));
-      //row.row(0).copyTo(img_out.row(i));
-    } 
-    
     for (int i=h-abs(num_pixels_y) ; i<h; ++i)
     {
-      //col.col(0).copyTo(img_out.col(i));
       row.row(0).copyTo(img_out.row(i));
     }
   }
   
 
+  cv::imshow("img_out_2", img_out);   
+  cv::waitKey();
   return img_out;
 }
 
