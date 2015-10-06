@@ -189,7 +189,7 @@ opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_
       
       if (flag_shift) //horizontal shift
       {
-	cout << "Shift_Image_Horizontal" << endl;
+	 //cout << "Shift_Image_Horizontal" << endl;
 	 frame = Shift_Image_Horizontal( frame, shif_x);
       }
 	
@@ -368,7 +368,7 @@ opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_
     std::swap(prevflow, flow);
     
     cv::imshow("color", frame);
-    cv::waitKey(5);
+    cv::waitKey(3);
     
     
   }
