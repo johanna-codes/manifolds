@@ -84,7 +84,7 @@ main(int argc, char** argv)
   for (int i=0; i<vec_shift.n_elem; ++i)
   {
     int shift = vec_shift(i);
-    cout << "shift " << shift << endl;
+    cout << "Horizontal shift " << shift << endl;
 
     opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
     opt_feat_kth.features_all_videos( all_people );
@@ -97,7 +97,7 @@ main(int argc, char** argv)
    for (int i=0; i<vec_shift.n_elem; ++i)
    {
      int shift = vec_shift(i);
-     cout << "shift " << shift << endl;
+     cout << "Vertical shift " << shift << endl;
      opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
      opt_feat_kth.features_all_videos( all_people );
   }
