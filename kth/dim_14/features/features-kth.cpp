@@ -50,7 +50,7 @@ main(int argc, char** argv)
 
 
 
-    if(argc < 2 )
+    if(argc < 3 )
    {
      //if true: Horizontal Shift
      cout << "usage: " << argv[0] << " shift_factor, true/false " << endl;
@@ -63,6 +63,7 @@ main(int argc, char** argv)
    
    ss >> std::boolalpha >> flag_shift;
    cout << flag_shift << endl;
+   getchar();
    
    
 
