@@ -460,7 +460,7 @@ opt_feat::Shift_Image_Vertical( cv::Mat src_in, int num_pixels_y)
   
 
   cv::imshow("img_out_2", img_out);   
-  cv::waitKey();
+  cv::waitKey(5);
   return img_out;
 }
 
