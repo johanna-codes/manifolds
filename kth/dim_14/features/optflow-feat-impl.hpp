@@ -40,7 +40,21 @@ opt_feat::features_all_videos( field<string> all_people )
       std::stringstream save_feat_video_i;
       std::stringstream save_labels_video_i;
       
-      save_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+      //save_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ; Both shifts 
+      
+      if (flag_shift) //Horizontal Shift
+      {
+	save_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-horshift"<< shift ;
+      
+      }
+      
+      if (!flag_shift)//Vertical Shift
+      {
+	save_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-vershift"<< shift ;
+      }
+      
+	
+	
       save_feat_video_i   << save_folder.str() << "/" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
       save_labels_video_i << save_folder.str() << "/lab_" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
       
@@ -79,7 +93,7 @@ opt_feat::features_all_videos( field<string> all_people )
     
     
     //Donde lo vas a guardar??? Crear nuevas carpetas
-    /*
+    
     mat mat_features_video_i;
     vec lab_video_i;
     
@@ -111,7 +125,7 @@ opt_feat::features_all_videos( field<string> all_people )
     mat_features_video_i.save( save_feat_video_i, hdf5_binary );
     lab_video_i.save( save_labels_video_i, hdf5_binary );
     }
-    */
+    
   }
   
   double n = timer.toc();
@@ -353,8 +367,8 @@ opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_
     std::swap(prevgray, gray);
     std::swap(prevflow, flow);
     
-    //cv::imshow("color", frame);
-    //cv::waitKey();
+    cv::imshow("color", frame);
+    cv::waitKey();
     
     
   }
@@ -375,7 +389,7 @@ opt_feat::Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x )
   cv::Mat rot_mat = (cv::Mat_<double>(2,3) << 1, 0, num_pixels_x, 0, 1, num_pixels_y);
   warpAffine( src_in, img_out, rot_mat, src_in.size() );
   
-   cv::imshow("img_out", img_out);
+   //cv::imshow("img_out", img_out);
   
   
   if (num_pixels_x>0) //Move right
@@ -411,8 +425,8 @@ opt_feat::Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x )
    
   }
   
-  cv::imshow("img_out_2", img_out);   
-  cv::waitKey();
+  //cv::imshow("img_out_2", img_out);   
+  //cv::waitKey();
 
   return img_out;
 }
@@ -429,7 +443,7 @@ opt_feat::Shift_Image_Vertical( cv::Mat src_in, int num_pixels_y)
   
   cv::Mat rot_mat = (cv::Mat_<double>(2,3) << 1, 0, num_pixels_x, 0, 1, num_pixels_y);
   warpAffine( src_in, img_out, rot_mat, src_in.size() );
-  cv::imshow("img_out", img_out);
+  //cv::imshow("img_out", img_out);
 
   if (num_pixels_y>0) //Move right
   {   
@@ -459,8 +473,8 @@ opt_feat::Shift_Image_Vertical( cv::Mat src_in, int num_pixels_y)
   }
   
 
-  cv::imshow("img_out_2", img_out);   
-  cv::waitKey(5);
+  //cv::imshow("img_out_2", img_out);   
+  //cv::waitKey(5);
   return img_out;
 }
 

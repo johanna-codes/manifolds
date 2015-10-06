@@ -50,16 +50,16 @@ main(int argc, char** argv)
 
 
 
-    if(argc < 3 )
-   {
-     //if true: Horizontal Shift
-     cout << "usage: " << argv[0] << " shift_factor, true/false " << endl;
-     return -1;
-   }
+//     if(argc < 3 )
+//    {
+//      //if true: Horizontal Shift
+//      cout << "usage: " << argv[0] << " shift_factor, true/false " << endl;
+//      return -1;
+//    }
    
-   int shift = atoi( argv[1] );
-   std::stringstream ss(argv[2]);
-   bool flag_shift;
+   //int shift = atoi( argv[1] );
+   //std::stringstream ss(argv[2]);
+   //bool flag_shift;
    
    ss >> std::boolalpha >> flag_shift;
    cout << flag_shift << endl;
@@ -68,19 +68,22 @@ main(int argc, char** argv)
 
 ///Shifting Videos
   float scale_factor = 1;
-   //vec vec_shift;
-   //vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+  vec vec_shift;
+  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
   
   int total_scene = 1; //Hacer solo para scenario 1
   int dim = 14;
   
   field<string> all_people;
   all_people.load(peopleList);
+  bool flag_shift = true; //For Horizontal shift
+  // bool flag_shift = false; //For Vertical shift
+
+   
   
-  
-  //for (int i=0; i<vec_shift.n_elem; ++i)
+  for (int i=0; i<vec_shift.n_elem; ++i)
   {
-    //int shift = vec_shift(i);
+    int shift = vec_shift(i);
     cout << "shift " << shift << endl;
 
     opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
@@ -125,4 +128,4 @@ main(int argc, char** argv)
 //mkdir scale0.75-shift0 scale0.8-shift0 scale0.85-shift0 scale0.9-shift0 scale0.95-shift0 scale1.05-shift0 scale1.1-shift0 scale1.15-shift0 scale1.2-shift0 scale1.25-shift0
 
 
-
+//mkdir scale1-horshift-25 scale1-horshift-20 scale1-horshift-15 scale1-horshift-10 scale1-horshift-5 scale1-horshift0 scale1-horshift5 scale1-horshift10 scale1-horshift15 scale1-horshift20 scale1-horshift25
