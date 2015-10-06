@@ -92,6 +92,16 @@ main(int argc, char** argv)
   }
   
   
+   flag_shift = false; //For Vertical shift
+   
+   for (int i=0; i<vec_shift.n_elem; ++i)
+   {
+     int shift = vec_shift(i);
+     cout << "shift " << shift << endl;
+     opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
+     opt_feat_kth.features_all_videos( all_people );
+  }
+  
  
  ///Varying the Scale
 //   int shift = 0;
@@ -128,4 +138,6 @@ main(int argc, char** argv)
 //mkdir scale0.75-shift0 scale0.8-shift0 scale0.85-shift0 scale0.9-shift0 scale0.95-shift0 scale1.05-shift0 scale1.1-shift0 scale1.15-shift0 scale1.2-shift0 scale1.25-shift0
 
 
+//Shifts:
 //mkdir scale1-horshift-25 scale1-horshift-20 scale1-horshift-15 scale1-horshift-10 scale1-horshift-5 scale1-horshift0 scale1-horshift5 scale1-horshift10 scale1-horshift15 scale1-horshift20 scale1-horshift25
+//mkdir scale1-vershift-25 scale1-vershift-20 scale1-vershift-15 scale1-vershift-10 scale1-vershift-5 scale1-vershift0 scale1-vershift5 scale1-vershift10 scale1-vershift15 scale1-vershift20 scale1-vershift25
