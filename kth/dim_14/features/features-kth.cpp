@@ -52,11 +52,19 @@ main(int argc, char** argv)
 
     if(argc < 2 )
    {
-     cout << "usage: " << argv[0] << " shift_factor " << endl;
+     //if true: Horizontal Shift
+     cout << "usage: " << argv[0] << " shift_factor, true/false " << endl;
      return -1;
    }
+   
    int shift = atoi( argv[1] );
-
+   std::stringstream ss(argv[2]);
+   bool flag_shift;
+   
+   ss >> std::boolalpha >> flag_shift;
+   cout << flag_shift << endl;
+   
+   
 
 ///Shifting Videos
   float scale_factor = 1;
@@ -75,7 +83,7 @@ main(int argc, char** argv)
     //int shift = vec_shift(i);
     cout << "shift " << shift << endl;
 
-    opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim);
+    opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
     opt_feat_kth.features_all_videos( all_people );
   
   }

@@ -6,9 +6,10 @@ opt_feat::opt_feat(const std::string in_path,
 		   const float in_scale_factor, 
 		   const int in_shift,
 		   const int in_scene, //only for kth
-		   const int in_dim
+		   const int in_dim,
+		   const bool in_flag_shift // If true: horizontal shift
 )
-:path(in_path), actionNames(in_actionNames), col(in_col), row(in_row), scale_factor(in_scale_factor), shift(in_shift), total_scene(in_scene), dim(in_dim)
+:path(in_path), actionNames(in_actionNames), col(in_col), row(in_row), scale_factor(in_scale_factor), shift(in_shift), total_scene(in_scene), dim(in_dim), flag_shift(in_flag_shift)
 {
   
   actions.load( actionNames );  
@@ -169,11 +170,20 @@ opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_
     
     if (shift!=0)
     {
-      
       int shif_x = floor(col*shift/100);
       int shif_y = floor(row*shift/100);
       
-      frame = Shift_Image( frame, shif_x, shif_y);
+      if (flag_shift) //horizontal shift
+      {
+	 frame = Shift_Image_Horizontal( frame, shif_x);
+      }
+	
+       if (!flag_shift)//vertical shift
+      {
+	 //frame = Shift_Image( frame, shif_y);
+      }
+      
+      //frame = Shift_Image( frame, shif_x, shif_y); //Shifting both
       
     }
     
@@ -354,18 +364,19 @@ opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_
 
 inline 
 cv::Mat
-opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
+opt_feat::Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x )
 {
   
-  
+  int num_pixels_y = 0;
   cv::Mat img_out;
   
   
-  cv::Mat rot_mat = (cv::Mat_<double>(2,3) << 1, 0, 0, 0, 1, num_pixels_y);
-  cout << rot_mat << endl;
-  //getchar();
+  cv::Mat rot_mat = (cv::Mat_<double>(2,3) << 1, 0, num_pixels_x, 0, 1, num_pixels_y);
   warpAffine( src_in, img_out, rot_mat, src_in.size() );
-  cv::imshow("img_out", img_out);
+  
+   cv::imshow("img_out", img_out);
+   cv::waitKey();
+  
   
   if (num_pixels_x>0) //Move right
   {   
@@ -409,8 +420,64 @@ opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
   }
   
 
-   //cv::imshow("img_out", img_out);
-   cv::waitKey();
+  return img_out;
+}
+
+
+inline 
+cv::Mat
+opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
+{
+  
+  
+  cv::Mat img_out;
+  
+  
+  cv::Mat rot_mat = (cv::Mat_<double>(2,3) << 1, 0, num_pixels_x, 0, 1, num_pixels_y);
+  warpAffine( src_in, img_out, rot_mat, src_in.size() );
+  
+  if (num_pixels_x>0) //Move right
+  {   
+    
+    cv::Mat col = src_in.col(0);
+    cv::Mat row = src_in.row(0);
+    
+    
+    for (int i=0; i<abs(num_pixels_x); ++i)
+    {
+      col.col(0).copyTo(img_out.col(i));
+      
+    }
+    
+    for (int i=0; i<abs(num_pixels_y); ++i)
+    {
+      row.row(0).copyTo(img_out.row(i));
+      //src_in.copyTo(img_out,crop);
+    }
+  }
+  
+  if (num_pixels_x<0) //Move left
+  {   
+    
+    int w = src_in.size().width;
+    int h = src_in.size().height;
+    cv::Mat col = src_in.col(w-1);
+    cv::Mat row = src_in.row(h-1);
+    
+    for (int i=w-abs(num_pixels_x) ; i<w; ++i)
+    {
+      col.col(0).copyTo(img_out.col(i));
+      //row.row(0).copyTo(img_out.row(i));
+    } 
+    
+    for (int i=h-abs(num_pixels_y) ; i<h; ++i)
+    {
+      //col.col(0).copyTo(img_out.col(i));
+      row.row(0).copyTo(img_out.row(i));
+    }
+  }
+  
+
   return img_out;
 }
 
