@@ -409,7 +409,7 @@ opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
   }
   
 
-   cv::imshow("img_out", img_out);
+   //cv::imshow("img_out", img_out);
    cv::waitKey();
   return img_out;
 }
