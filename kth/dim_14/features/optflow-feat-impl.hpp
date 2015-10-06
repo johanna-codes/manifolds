@@ -368,7 +368,7 @@ opt_feat::feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_
     std::swap(prevflow, flow);
     
     cv::imshow("color", frame);
-    cv::waitKey();
+    cv::waitKey(5);
     
     
   }
