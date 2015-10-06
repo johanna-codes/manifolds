@@ -365,6 +365,7 @@ opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
   cout << rot_mat << endl;
   //getchar();
   warpAffine( src_in, img_out, rot_mat, src_in.size() );
+  cv::imshow("img_out", img_out);
   
   if (num_pixels_x>0) //Move right
   {   
