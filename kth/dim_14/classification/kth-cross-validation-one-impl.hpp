@@ -174,7 +174,7 @@ kth_cv_omp::SteinDiv()
   float acc;
   acc = 0;
   
-  //int n_test = n_peo*n_actions*total_scenes - 1; // - person13_handclapping_d3
+  //int n_test = n_peo*n_actions*total_scenes - 1; // - person13_handclapping_d3. When using all the scenarios d3 = scenario 3
   int n_test = n_peo*n_actions*total_scenes; // - person13_handclapping_d3
   
   vec real_labels;
