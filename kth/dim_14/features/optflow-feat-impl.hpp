@@ -11,7 +11,7 @@ opt_feat::opt_feat(const std::string in_path,
 )
 :path(in_path), actionNames(in_actionNames), col(in_col), row(in_row), scale_factor(in_scale_factor), shift(in_shift), total_scene(in_scene), dim(in_dim), flag_shift(in_flag_shift)
 {
-  cout <<  "flag_shift" << flag_shift << endl;
+  //cout <<  "flag_shift" << flag_shift << endl;
   actions.load( actionNames );  
   //dim = 14; 
   //dim = 12; //Action Recognition from Video Using feature Covariance Matrices
@@ -376,7 +376,6 @@ opt_feat::Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x )
   warpAffine( src_in, img_out, rot_mat, src_in.size() );
   
    cv::imshow("img_out", img_out);
-   cv::waitKey();
   
   
   if (num_pixels_x>0) //Move right
@@ -392,11 +391,7 @@ opt_feat::Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x )
       
     }
     
-    for (int i=0; i<abs(num_pixels_y); ++i)
-    {
-      row.row(0).copyTo(img_out.row(i));
-      //src_in.copyTo(img_out,crop);
-    }
+    
   }
   
   if (num_pixels_x<0) //Move left
@@ -413,13 +408,11 @@ opt_feat::Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x )
       //row.row(0).copyTo(img_out.row(i));
     } 
     
-    for (int i=h-abs(num_pixels_y) ; i<h; ++i)
-    {
-      //col.col(0).copyTo(img_out.col(i));
-      row.row(0).copyTo(img_out.row(i));
-    }
+   
   }
   
+  cv::imshow("img_out_2", img_out);   
+  cv::waitKey();
 
   return img_out;
 }
