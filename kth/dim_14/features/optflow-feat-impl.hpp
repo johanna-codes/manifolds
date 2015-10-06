@@ -11,7 +11,7 @@ opt_feat::opt_feat(const std::string in_path,
 )
 :path(in_path), actionNames(in_actionNames), col(in_col), row(in_row), scale_factor(in_scale_factor), shift(in_shift), total_scene(in_scene), dim(in_dim), flag_shift(in_flag_shift)
 {
-  
+  cout <<  "flag_shift" << flag_shift << endl;
   actions.load( actionNames );  
   //dim = 14; 
   //dim = 12; //Action Recognition from Video Using feature Covariance Matrices
