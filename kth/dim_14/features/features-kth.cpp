@@ -61,8 +61,8 @@ main(int argc, char** argv)
    //std::stringstream ss(argv[2]);
    //bool flag_shift;
    
-   ss >> std::boolalpha >> flag_shift;
-   cout << flag_shift << endl;
+   //ss >> std::boolalpha >> flag_shift;
+   //cout << flag_shift << endl;
    
    
 
