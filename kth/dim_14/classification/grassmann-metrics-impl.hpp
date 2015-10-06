@@ -15,7 +15,6 @@
    svd( cos_theta, X );
    
    vec cos2_theta = square(cos_theta);
-   cout << cos2_theta.n_elem<< "";
    double tmp_sum = sum(cos2_theta);   
    double dist = sqrt (p - tmp_sum);
    
