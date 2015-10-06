@@ -63,7 +63,6 @@ main(int argc, char** argv)
    
    ss >> std::boolalpha >> flag_shift;
    cout << flag_shift << endl;
-   getchar();
    
    
 
