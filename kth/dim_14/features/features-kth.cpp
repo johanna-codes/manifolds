@@ -52,7 +52,7 @@ main(int argc, char** argv)
 
     if(argc < 2 )
    {
-     cout << "usage: " << argv[0] << "shift_factor " << endl;
+     cout << "usage: " << argv[0] << " shift_factor " << endl;
      return -1;
    }
    int shift = atoi( argv[1] );

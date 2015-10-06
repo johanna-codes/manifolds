@@ -77,6 +77,8 @@ opt_feat::features_all_videos( field<string> all_people )
     
     
     
+    //Donde lo vas a guardar??? Crear nuevas carpetas
+    /*
     mat mat_features_video_i;
     vec lab_video_i;
     
@@ -108,10 +110,12 @@ opt_feat::features_all_videos( field<string> all_people )
     mat_features_video_i.save( save_feat_video_i, hdf5_binary );
     lab_video_i.save( save_labels_video_i, hdf5_binary );
     }
+    */
   }
   
   double n = timer.toc();
   cout << "number of seconds in parallel : " << n << endl;
+  
   
 }
 
@@ -358,6 +362,8 @@ opt_feat::Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y)
   
   
   cv::Mat rot_mat = (cv::Mat_<double>(2,3) << 1, 0, num_pixels_x, 0, 1, num_pixels_y);
+  cout << rot_mat << endl;
+  getchar();
   warpAffine( src_in, img_out, rot_mat, src_in.size() );
   
   if (num_pixels_x>0) //Move right
