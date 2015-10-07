@@ -70,80 +70,78 @@ dim =14;
 
 %% Kernel LED-Poly
 
-display('Training svm + Kernel LED-POLY');
-n=1:dim; % No funciono para ningun n>21
-
-
-for i=1:length(n)
-         in_n = n(i);
-         X=sprintf('n = %d ', in_n);
-         disp(X);
-         acc = kth_train_LED_POLY(path, dim, in_n);
-end
-
- 
- display('Testing svm + Kernel LED-POLY');
- %n=1:dim;
- test_acc = zeros(length(n),1);
- scale = 1;
- shift = 0;
-
- for i=1:length(n)
-        in_n = n(i);
-        X=sprintf('n = %d, ', in_n);
-        disp(X);
-        acc = kth_test_LED_POLY(path,scale, shift, dim, in_n);
-        test_acc(i) = acc;
-        test_acc'
- end
-
-save_results =strcat( 'LED_POLY_all_n_performance.mat');
-save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
+% display('Training svm + Kernel LED-POLY');
+% n=1:dim; % No funciono para ningun n>21
+% 
+% 
+% for i=1:length(n)
+%          in_n = n(i);
+%          X=sprintf('n = %d ', in_n);
+%          disp(X);
+%          acc = kth_train_LED_POLY(path, dim, in_n);
+% end
+% 
+%  
+%  display('Testing svm + Kernel LED-POLY');
+%  %n=1:dim;
+%  test_acc = zeros(length(n),1);
+%  scale = 1;
+%  shift = 0;
+% 
+%  for i=1:length(n)
+%         in_n = n(i);
+%         X=sprintf('n = %d, ', in_n);
+%         disp(X);
+%         acc = kth_test_LED_POLY(path,scale, shift, dim, in_n);
+%         test_acc(i) = acc;
+%         test_acc'
+%  end
+% 
+% save_results =strcat( 'LED_POLY_all_n_performance.mat');
+% save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 
 
 %%%%%%%%%%%%%%%%%%%%   Grassmann Kernels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Projection kernel: RBF
-%  display('Training svm + Projection RBF Kernel ');
-%  delta = -14:2:20;
-%  dim = 14;
-%  p = 1:14;
-%  %p = 12;
-%  ACC_train = zeros(length(delta),25);
-%  all_p = cell(length(p),1);
-%
-%  for j=1:length(p)
-%      in_p = p(j);
-%      X = sprintf('p = %d ', in_p);
-%      disp(X);
-%
-%  parfor i=1:length(delta)
-%     acc = kth_train_ProjectionRBF(path, delta(i), dim, in_p);
-%     ACC_train(i,:) = acc;
-%  end
-%
-%  all_p{j} = ACC_train;
-%  end
+ display('Training svm + Projection RBF Kernel ');
+ delta = -14:2:20;
+ p = 1:14;
+ ACC_train = zeros(length(delta),25);
+ all_p = cell(length(p),1);
+
+ for j=1:length(p)
+     in_p = p(j);
+     X = sprintf('p = %d ', in_p);
+     disp(X);
+
+ parfor i=1:length(delta)
+    acc = kth_train_ProjectionRBF(path, delta(i), dim, in_p);
+    ACC_train(i,:) = acc;
+ end
+
+ all_p{j} = ACC_train;
+ end
 
 
-% display('Testing svm + Projection RBF Kernel');
-% delta = -14:2:20;
-% dim = 14;
-% p = 1:14;
-% test_acc = zeros( length(delta),1 );
-% all_p = cell(length(p),1);
-% scale = 1;
-% shift = 0;
-% for j=1:length(p)
-%     in_p = p(j)
-% parfor i=1:length(delta )
-%    acc = kth_test_ProjectionRBF(path,scale, shift, delta (i), dim, in_p);
-%    test_acc(i) = acc;
-% end
-% all_p{j} = test_acc;
-% end
-%
-% save_results =strcat( 'projRBF_all_p_delta_performance.mat');
-% save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
+display('Testing svm + Projection RBF Kernel');
+delta = -14:2:20;
+dim = 14;
+p = 1:14;
+test_acc = zeros( length(delta),1 );
+all_p = cell(length(p),1);
+scale = 1;
+shift = 0;
+for j=1:length(p)
+    in_p = p(j)
+parfor i=1:length(delta )
+   acc = kth_test_ProjectionRBF(path,scale, shift, delta (i), dim, in_p);
+   test_acc(i) = acc;
+end
+all_p{j} = test_acc;
+end
+
+save_results =strcat( './svm_results_projRBF/projRBF_all_p_delta_performance.mat');
+save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
 
 
 

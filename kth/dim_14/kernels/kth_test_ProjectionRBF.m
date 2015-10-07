@@ -23,7 +23,7 @@ load_sub_path =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim)
 j=1;
   for pe_ts= 1: n_peo
       
-      load_svm_model =strcat( './svm_models/projRGB_svm_run_', int2str(pe_ts), '_delta', num2str(delta), '_p', num2str(p), '.mat');
+      load_svm_model =strcat( './svm_models_projRBF/projRBF_svm_run_', int2str(pe_ts), '_delta', num2str(delta), '_p', num2str(p), '.mat');
       load(load_svm_model); %loading model and X_train
 
       for act_ts = 1:n_actions

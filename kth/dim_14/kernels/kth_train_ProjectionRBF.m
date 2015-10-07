@@ -44,7 +44,7 @@ for pe_ts= 1: n_peo
     %display(accuracy');
     
     acc = [acc accuracy(1)];
-    save_svm_model =strcat( './svm_models/projRGB_svm_run_', int2str(pe_ts), '_delta', num2str(delta), '_p', num2str(p), '.mat');
+    save_svm_model =strcat( './svm_models_projRBF/projRBF_svm_run_', int2str(pe_ts), '_delta', num2str(delta), '_p', num2str(p), '.mat');
     save(save_svm_model, 'model', 'X_train');
     
     
