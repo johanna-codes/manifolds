@@ -9,7 +9,7 @@ real_labels = zeros(num_videos - 1);%Problem with Run-Side_001_dim14
 est_labels  = zeros(num_videos - 1);
   
 
-load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
 
 j=1;
   for video_ts= 1: num_videos
@@ -41,10 +41,11 @@ j=1;
 
       end
       
-     save_labels = strcat('./svm_results_ProjRBF/ProjRBF_scale', int2str(scale_factor), '-shift', int2str(shift),'-p',num2str(p), '_delta', num2str(delta), '.mat' );     
+     save_labels = strcat('./svm_results_ProjRBF/ProjRBF_scale', num2str(scale_factor), '-shift', int2str(shift),'-p',num2str(p), '_delta', num2str(delta), '.mat' );     
      save(save_labels, 'est_labels', 'real_labels');
   
   end
   %[acc n_peo n_actions]
   acc = acc*100/(num_videos-1);
    
+  
