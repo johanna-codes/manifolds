@@ -121,49 +121,53 @@ main(int argc, char** argv)
     
     ///Shifting the Images
     
-       int best_p = 7;
-       int scale_factor = 1;
-       
-       vec vec_shift;
-       vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
-       
-       vec vec_pm_shifts = zeros(vec_shift.n_elem);
-       vec vec_logEucl_shifts   = zeros(vec_shift.n_elem);
-       
-       for (int i=0; i< vec_shift.n_elem; ++i)
-       {
-           
-         int shift = vec_shift(i);
-         cout << "Shift: " << shift << endl;
-         kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-         vec_pm_shifts(i) = kth_CV_omp_onesegment.proj_grass(best_p);
-         vec_logEucl_shifts(i) = kth_CV_omp_onesegment.logEucl();
-         
-       }
-       
-       vec_pm_shifts.t().print();
-       vec_logEucl_shifts.t().print();
+//        int best_p = 7;
+//        int scale_factor = 1;
+//        
+//        vec vec_shift;
+//        vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+//        
+//        vec vec_pm_shifts = zeros(vec_shift.n_elem);
+//        vec vec_logEucl_shifts   = zeros(vec_shift.n_elem);
+//        
+//        for (int i=0; i< vec_shift.n_elem; ++i)
+//        {
+//            
+//          int shift = vec_shift(i);
+//          cout << "Shift: " << shift << endl;
+//          kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+//          vec_pm_shifts(i) = kth_CV_omp_onesegment.proj_grass(best_p);
+//          vec_logEucl_shifts(i) = kth_CV_omp_onesegment.logEucl();
+//          
+//        }
+//        
+//        vec_pm_shifts.t().print();
+//        vec_logEucl_shifts.t().print();
     
     
     ///Varying the  Scales
-//     int shift = 0;
-//     vec scale_vec;
-//     scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95 << 1 << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
-//     
-//     
-//     vec vec_logEucl   = zeros(scale_vec.n_elem);
-//     
-//     for (int i=0; i< scale_vec.n_elem; ++i)
-//     {
-//       
-//       float scale_factor = scale_vec(i);
-//       cout << "scale_factor: " << scale_factor << endl;
-//       kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-//       vec_logEucl(i) = kth_CV_omp_onesegment.logEucl();
-//       
-//     }
-//     
-//     vec_logEucl.t().print();
+    int best_p = 7;
+    int shift = 0;
+    vec scale_vec;
+     scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95 << 1 << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
+     
+     
+     vec vec_logEucl   = zeros(scale_vec.n_elem);
+     vec vec_pm_shifts = zeros(scale_vec.n_elem);
+     
+     for (int i=0; i< scale_vec.n_elem; ++i)
+     {
+       
+       float scale_factor = scale_vec(i);
+       cout << "scale_factor: " << scale_factor << endl;
+       kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+       vec_logEucl(i) = kth_CV_omp_onesegment.logEucl();
+       vec_pm_shifts(i) = kth_CV_omp_onesegment.proj_grass(best_p);
+       
+     }
+     
+     vec_logEucl.t().print();
+     vec_pm_shifts.t().print();
     
     
     
