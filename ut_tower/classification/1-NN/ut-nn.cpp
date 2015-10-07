@@ -51,24 +51,24 @@ main(int argc, char** argv)
   //CV_onesegment.logEucl();
   
   ///LED: Cross Validation. All scales
-   int shift = 0;
-   vec scale_vec;
-   scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95 << 1 << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
-   int dim = 14; 
-  vec vec_logEucl   = zeros(scale_vec.n_elem);
-  
-  for (int i=0; i< scale_vec.n_elem; ++i)
-  {
-    
-    float scale_factor = scale_vec(i);
-    cout << "scale_factor: " << scale_factor << endl;
-    cv_classify_NN CV_onesegment(path, actionNames, scale_factor, shift,  dim);
-    vec_logEucl(i) = CV_onesegment.logEucl();
-    
-  }
-  
-  cout << "Performance for each shift" << endl;
-  vec_logEucl.t().print();
+//    int shift = 0;
+//    vec scale_vec;
+//    scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95 << 1 << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
+//    int dim = 14; 
+//   vec vec_logEucl   = zeros(scale_vec.n_elem);
+//   
+//   for (int i=0; i< scale_vec.n_elem; ++i)
+//   {
+//     
+//     float scale_factor = scale_vec(i);
+//     cout << "scale_factor: " << scale_factor << endl;
+//     cv_classify_NN CV_onesegment(path, actionNames, scale_factor, shift,  dim);
+//     vec_logEucl(i) = CV_onesegment.logEucl();
+//     
+//   }
+//   
+//   cout << "Performance for each shift" << endl;
+//   vec_logEucl.t().print();
 
   
 //   ///LED: Cross Validation. All shifts
@@ -104,7 +104,29 @@ main(int argc, char** argv)
   //    
   //    vec_pm.t().print("Projection Metric");
   //   
-  //   
+  
+   ///PM: Cross Validation. All shifts
+   vec vec_shift;
+   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+   int scale_factor = 1;
+   int dim = 14; 
+   vec vec_proj_grass   = zeros(vec_shift.n_elem);
+   int best_p = 4;
+   
+   for (int i=0; i< vec_shift.n_elem; ++i)
+   {
+     
+     int shift = vec_shift(i);
+     cout << "Shift: " << shift << endl;
+     cv_classify_NN CV_onesegment(path, actionNames, scale_factor, shift,  dim);
+     vec_proj_grass(i) = CV_onesegment.proj_grass(best_p);
+     
+   }
+   
+   cout << "Performance for each shift" << endl;
+   vec_proj_grass.t().print();
+  
+  
   
   
   return 0;
