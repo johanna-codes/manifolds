@@ -84,25 +84,25 @@ main(int argc, char** argv)
     
     
     /// Extra experiments 
-    int scale_factor = 1;
-    int shift = 0;
-    //kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-    //kth_CV_omp_onesegment.SteinDiv();
-    //kth_CV_omp_onesegment.logEucl();
-    
-    vec vec_bc = zeros(dim); 
-    vec vec_pm = zeros(dim);
-    for (int p=1; p<= dim; ++p)
-    {
-         cout << "p= " << p << endl;
-         kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-         vec_bc(p-1) = kth_CV_omp_onesegment.BC_grass(p);
-	 vec_pm(p-1) = kth_CV_omp_onesegment.proj_grass(p);
-      
-    }
-       
-       vec_bc.t().print("Binet-Cauchy");
-       vec_pm.t().print("Projection Metric");
+//     int scale_factor = 1;
+//     int shift = 0;
+//     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+//     kth_CV_omp_onesegment.SteinDiv();
+//     kth_CV_omp_onesegment.logEucl();
+//     
+//     vec vec_bc = zeros(dim); 
+//     vec vec_pm = zeros(dim);
+//     for (int p=1; p<= dim; ++p)
+//     {
+//          cout << "p= " << p << endl;
+//          kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+//          vec_bc(p-1) = kth_CV_omp_onesegment.BC_grass(p);
+// 	 vec_pm(p-1) = kth_CV_omp_onesegment.proj_grass(p);
+//       
+//     }
+//        
+//        vec_bc.t().print("Binet-Cauchy");
+//        vec_pm.t().print("Projection Metric");
     
     
     
@@ -121,28 +121,28 @@ main(int argc, char** argv)
     
     ///Shifting the Images
     
-    //   int best_p = 7;
-    //   int scale_factor = 1;
-    //   
-    //   vec vec_shift;
-    //   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
-    //   
-    //   vec vec_pm_shifts = zeros(vec_shift.n_elem);
-    //   vec vec_logEucl   = zeros(vec_shift.n_elem);
-    //   
-    //   for (int i=0; i< vec_shift.n_elem; ++i)
-    //   {
-      //     
-    //     int shift = vec_shift(i);
-    //     cout << "Shift: " << shift << endl;
-    //     kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-    //     vec_pm_shifts(i) = kth_CV_omp_onesegment.proj_grass(best_p);
-    //     vec_logEucl(i) = kth_CV_omp_onesegment.logEucl();
-    //     
-    //   }
-    //   
-    //   vec_pm_shifts.t().print();
-    //   vec_logEucl.t().print();
+       int best_p = 7;
+       int scale_factor = 1;
+       
+       vec vec_shift;
+       vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+       
+       vec vec_pm_shifts = zeros(vec_shift.n_elem);
+       vec vec_logEucl_shifts   = zeros(vec_shift.n_elem);
+       
+       for (int i=0; i< vec_shift.n_elem; ++i)
+       {
+           
+         int shift = vec_shift(i);
+         cout << "Shift: " << shift << endl;
+         kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+         vec_pm_shifts(i) = kth_CV_omp_onesegment.proj_grass(best_p);
+         vec_logEucl(i)_shifts = kth_CV_omp_onesegment.logEucl();
+         
+       }
+       
+       vec_pm_shifts.t().print();
+       vec_logEucl_shifts.t().print();
     
     
     ///Varying the  Scales
