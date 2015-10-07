@@ -54,7 +54,7 @@ end
 %% Kernel proj-rbf. 
 %UCF Sports. Scales
 
-display('Testing svm + Kernel LED-POLY');
+display('Testing svm + Kernel Proj-RBF');
 
 shift  = 0;
 best_p = 4;
@@ -72,7 +72,7 @@ end
 
 % UCF Sports. Shifts
 
-% display('Testing svm + Kernel LED-POLY');
+% display('Testing svm + Kernel Proj-RBF');
 % 
 % scale  = 1;
 % best_p = 4;
