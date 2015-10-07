@@ -37,19 +37,19 @@ num_videos = 108; %From the dataset description (108).
 %UT Tower. Scales
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-display('Testing svm + Kernel LED-POLY');
-
-shift  = 0;
-best_n = 2;
-vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
-test_acc = zeros(length(vec_scale),1);
-
-for i=1:length(vec_scale)
-    scale = vec_scale(i);
-    sprintf('scale = %d ', scale)
-    acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, best_n, num_videos);
-    vec_scale_scales(i) = acc;
-end
+% display('Testing svm + Kernel LED-POLY');
+% 
+% shift  = 0;
+% best_n = 2;
+% vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
+% test_acc = zeros(length(vec_scale),1);
+% 
+% for i=1:length(vec_scale)
+%     scale = vec_scale(i);
+%     sprintf('scale = %d ', scale)
+%     acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, best_n, num_videos);
+%     vec_scale_scales(i) = acc;
+% end
 
 %% Kernel proj-rbf. 
 
