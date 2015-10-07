@@ -137,7 +137,7 @@ main(int argc, char** argv)
          cout << "Shift: " << shift << endl;
          kth_cv_omp kth_CV_omp_onesegment(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
          vec_pm_shifts(i) = kth_CV_omp_onesegment.proj_grass(best_p);
-         vec_logEucl(i)_shifts = kth_CV_omp_onesegment.logEucl();
+         vec_logEucl_shifts(i) = kth_CV_omp_onesegment.logEucl();
          
        }
        
