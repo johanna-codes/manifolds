@@ -89,6 +89,6 @@ test_acc = zeros(length(vec_scale),1);
 for i=1:length(vec_scale)
     scale = vec_scale(i);
     sprintf('scale = %d ', scale)
-    acc = ProjectionRBF_test(path, action_seq_names, scale, shift, best_delta, best_p, in_p, num_videos);
+    acc = ProjectionRBF_test(path, action_seq_names, scale, shift, best_delta, dim, best_p, num_videos);
     vec_scale_scales(i) = acc;
 end
