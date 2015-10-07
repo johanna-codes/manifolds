@@ -9,7 +9,7 @@ real_labels = zeros(num_videos );
 est_labels  = zeros(num_videos );
   
 
-load_sub_path =strcat(path, 'grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
 j=1;
   for video_ts= 1: num_videos
       action_name = action_seq_names(video_ts,1);
@@ -37,7 +37,7 @@ j=1;
               acc = acc+1;
           end
 
-     save_labels = strcat('./svm_results_ProjRBF/ProjRBF_scale', int2str(scale_factor), '-shift', int2str(shift),'-p',num2str(p), '_delta', num2str(delta), '.mat' );     
+     save_labels = strcat('./svm_results_ProjRBF/ProjRBF_scale', num2str(scale_factor), '-shift', int2str(shift),'-p',num2str(p), '_delta', num2str(delta), '.mat' );     
      save(save_labels, 'est_labels', 'real_labels');
   
   end
