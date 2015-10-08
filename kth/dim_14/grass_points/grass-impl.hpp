@@ -5,9 +5,10 @@ grass_points::grass_points( const std::string in_path,
 			    const int in_shift,
 			    const int in_scene, //only for kth
 			    const int in_segment_length,
-			    const int in_p
+			    const int in_p,
+			    const bool in_flag_shift // If true: horizontal shift
 )
-:path(in_path), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), total_scenes(in_scene), segment_length(in_segment_length), p(in_p)
+:path(in_path), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), total_scenes(in_scene), segment_length(in_segment_length), p(in_p), flag_shift(in_flag_shift)
 {
   actions.load( actionNames );  
 }
@@ -40,9 +41,23 @@ grass_points::calculate_onepervideo( field<string> in_all_people, int  in_dim  )
       std::stringstream load_feat_video_i;
       
       
-      //load_folder << path <<"kth-features_dim" << dim <<  "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
-      load_folder << path <<"kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
-
+      // Shifting both
+      //load_folder << path <<"kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+      
+      
+      if (flag_shift) //Horizontal Shift
+      {
+	load_folder << path <<"kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-horshift"<< shift ;
+	
+      }
+      
+      if (!flag_shift)//Vertical Shift
+      {
+	load_folder << path <<"kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" <<  scale_factor << "-vershift"<< shift ;
+	
+      }
+      
+      
       load_feat_video_i << load_folder.str() << "/" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
       
       
@@ -61,7 +76,7 @@ grass_points::calculate_onepervideo( field<string> in_all_people, int  in_dim  )
   }
   
   
- 
+  
   //omp_set_num_threads(4); //Use only 8 processors
   
   #pragma omp parallel for 
@@ -74,7 +89,7 @@ grass_points::calculate_onepervideo( field<string> in_all_people, int  in_dim  )
     
     //#pragma omp critical
     //cout <<  all_people (pe) << "_" << actions(act) << endl;
-        
+    
     one_video_one_point(load_feat_video_i, sc, pe, act );
   }
   
@@ -92,39 +107,52 @@ grass_points::one_video_one_point( std::string load_feat_video_i, int sc, int pe
   
   
   /*
-  int half = floor(mat_features_video_i.n_cols/2);
-  mat mat_features_video_i_tmp(dim,half);
-  int k =0;
-  for (uword c=0; c<mat_features_video_i.n_cols-1; c=c+2)
-  {
-    mat_features_video_i_tmp.col(k) = mat_features_video_i.col(c);
-    ++k;
-  }
-  mat_features_video_i.clear();
-  //cout << "k: " << k << " & half: " << half << endl;
-  //getchar();
-  
-  */
+   *  int half = floor(mat_features_video_i.n_cols/2);
+   *  mat mat_features_video_i_tmp(dim,half);
+   *  int k =0;
+   *  for (uword c=0; c<mat_features_video_i.n_cols-1; c=c+2)
+   *  {
+   *    mat_features_video_i_tmp.col(k) = mat_features_video_i.col(c);
+   *    ++k;
+   }
+   mat_features_video_i.clear();
+   //cout << "k: " << k << " & half: " << half << endl;
+   //getchar();
+   
+   */
   
   
   std::stringstream save_folder;
+  
+  // Shifting both
   save_folder << "./kth-grass-point-one-dim" << dim << "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
   
-  
-  mat U; vec s;   mat V;
-  svd_econ(U,s,V,mat_features_video_i); 
-  mat Gnp = U.cols(0,p-1);
-  
-  std::stringstream save_Gnp;
-  //cout << save_folder.str() << endl;
-  save_Gnp << save_folder.str() << "/grass_pt_" << all_people (pe) << "_" << actions(act) << "_dim" << dim << "_p" << p << ".h5";
-  //cout << save_Gnp.str() << endl;
-  
-  #pragma omp critical
-  Gnp.save( save_Gnp.str(), hdf5_binary ); 
-
-
-
+  if (flag_shift) //Horizontal Shift
+      {
+	save_folder << "./kth-grass-point-one-dim" << dim << "/sc" << sc << "/scale" << scale_factor << "-horshift"<< shift ;
+	
+      }
+      
+      if (!flag_shift)//Vertical Shift
+      {
+	save_folder << "./kth-grass-point-one-dim" << dim << "/sc" << sc << "/scale" << scale_factor << "-vershift"<< shift ;
+      }
+      
+      
+      mat U; vec s;   mat V;
+      svd_econ(U,s,V,mat_features_video_i); 
+      mat Gnp = U.cols(0,p-1);
+      
+      std::stringstream save_Gnp;
+      //cout << save_folder.str() << endl;
+      save_Gnp << save_folder.str() << "/grass_pt_" << all_people (pe) << "_" << actions(act) << "_dim" << dim << "_p" << p << ".h5";
+      //cout << save_Gnp.str() << endl;
+      
+      #pragma omp critical
+      Gnp.save( save_Gnp.str(), hdf5_binary ); 
+      
+      
+      
 }
 
 
@@ -132,7 +160,7 @@ grass_points::one_video_one_point( std::string load_feat_video_i, int sc, int pe
 
 
 
-// Several Grasmann Poits per Video
+// Several Grasmann Points per Video
 inline
 void
 grass_points::calculate( field<string> in_all_people, int  in_dim  )
@@ -162,7 +190,7 @@ grass_points::calculate( field<string> in_all_people, int  in_dim  )
       
       //load_folder << path <<"kth-features_dim" << dim <<  "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
       load_folder << path <<"kth-features_dim" << dim <<  "_openMP/sc" <<  sc << "/scale" << scale_factor << "-shift"<< shift ;
-
+      
       load_feat_video_i << load_folder.str() << "/" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
       load_labels_video_i << load_folder.str() << "/lab_" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
       
@@ -278,6 +306,7 @@ grass_points::one_video( std::string load_feat_video_i,	std::string load_labels_
   total_seg.zeros(1);
   total_seg( 0 ) = seg;
   save_seg << save_folder.str() << "/num_seg_"<< all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".dat";
+  
   #pragma omp critical
   {
     total_seg.save( save_seg.str(), raw_ascii );

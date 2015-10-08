@@ -108,7 +108,7 @@ main(int argc, char** argv)
        field<string> all_people;
        all_people.load(peopleList);
        
-       grass_points get_gp(path, actionNames, scale_factor, shift, total_scenes, segment_length, p);
+       grass_points get_gp(path, actionNames, scale_factor, shift, total_scenes, segment_length, p, flag_shift);
        //get_gp.calculate( all_people, dim );
        get_gp.calculate_onepervideo( all_people, dim );
      }

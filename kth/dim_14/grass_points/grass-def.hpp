@@ -7,7 +7,8 @@ public:
 		    const int in_shift,
 		    const int in_scene,
 		    const int segment_length,
-		    const int in_p
+		    const int in_p,
+		    const bool in_flag_shift
                   );
     
 
@@ -24,6 +25,7 @@ const int total_scenes;
 const int segment_length;
 const int p;
 int dim;
+const bool flag_shift;
 
 field<std::string> actions;
 field<string> all_people;
