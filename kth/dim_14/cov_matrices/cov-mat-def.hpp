@@ -6,7 +6,8 @@ public:
 		    const float in_scale_factor, 
 		    const int in_shift,
 		    const int in_scene,
-		    const int segment_length
+		    const int segment_length,
+		    const bool in_flag_shift
                   );
     
 
@@ -23,6 +24,7 @@ const int shift;
 const int total_scenes;
 const int segment_length;
 int dim;
+const bool flag_shift;
 
 field<std::string> actions;
 field<string> all_people;

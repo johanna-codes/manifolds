@@ -4,14 +4,17 @@ cov_mat_kth::cov_mat_kth( const std::string in_path,
 			  const float in_scale_factor, 
 			  const int in_shift,
 			  const int in_scene, //only for kth
-			  const int in_segment_length
+			  const int in_segment_length,
+			  const bool in_flag_shift
+
 )
-:path(in_path), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), total_scenes(in_scene), segment_length(in_segment_length)
+:path(in_path), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), total_scenes(in_scene), segment_length(in_segment_length), flag_shift(in_flag_shift)
 {
   actions.load( actionNames );  
 }
 
 
+///*****************DO NOT USE IT**********************************************************
 inline
 void
 cov_mat_kth::calculate( field<string> in_all_people, int  in_dim  )
@@ -221,9 +224,23 @@ cov_mat_kth::calculate_one_per_video( field<string> in_all_people, int  in_dim  
 	std::stringstream load_feat_video_i;
 	std::stringstream load_labels_video_i;
 	
-	
+	 // Shifting both
+	//load_folder << path <<"kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
 	//load_folder << path <<"kth-features_dim" << dim <<  "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
-	load_folder << path <<"kth-features_dim" << dim <<  "_openMP/sc" <<  sc << "/scale" << scale_factor << "-shift"<< shift ;
+	
+	if (flag_shift) //Horizontal Shift
+      {
+	load_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-horshift"<< shift ;
+      
+      }
+      
+      if (!flag_shift)//Vertical Shift
+      {
+	load_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-vershift"<< shift ;
+      }
+      
+       
+
 
 	load_feat_video_i << load_folder.str() << "/" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
 	load_labels_video_i << load_folder.str() << "/lab_" << all_people (pe) << "_" << actions(act) << "_dim" << dim  << ".h5";
@@ -278,8 +295,24 @@ cov_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string load_
 
   
   std::stringstream save_folder;
-  save_folder << "./kth-one-cov-mat-dim" << dim << "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+  // Shifting both
+  //save_folder << "./kth-one-cov-mat-dim" << dim << "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
   
+  
+  if (flag_shift) //Horizontal Shift
+      {
+
+	save_folder << "./kth-one-cov-mat-dim" << dim << "/sc" << sc << "/scale" << scale_factor <<  "-horshift"<< shift ;
+	
+      }
+      
+      if (!flag_shift)//Vertical Shift
+      {
+	 save_folder << "./kth-one-cov-mat-dim" << dim << "/sc" << sc << "/scale" << scale_factor << "-vershift"<< shift ;
+      }
+      
+      
+      
   running_stat_vec<rowvec> stat_seg(true);
   
   for (int l=0; l<n_vec; ++l)

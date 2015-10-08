@@ -35,7 +35,10 @@ int
 main(int argc, char** argv)
 {
   
-  ///Shifting Videos
+///Shifting Videos
+
+  bool flag_shift = true; //For Horizontal shift
+  // bool flag_shift = false; //For Vertical shift
   
   float scale_factor = 1;
   vec vec_shift;
@@ -55,12 +58,42 @@ main(int argc, char** argv)
     field<string> all_people;
     all_people.load(peopleList);
     
-    cov_mat_kth get_cov_seg(path, actionNames, scale_factor, shift, total_scenes, segment_length);
+    cov_mat_kth get_cov_seg(path, actionNames, scale_factor, shift, total_scenes, segment_length, flag_shift);
     //get_cov_seg.calculate( all_people, dim );
     get_cov_seg.calculate_one_per_video( all_people, dim );
     
   }
   
+  
+  
+  
+  
+  ///Shifting horizontal- and vertically at the same time. Shifting Videos
+  
+//   float scale_factor = 1;
+//   vec vec_shift;
+//   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+//   
+//   
+//   int total_scenes = 1; //Only for Scenario 1.
+//   int segment_length = 20; //Not used
+//   int dim = 14; 
+//   
+//   
+//   for (int i=0; i<vec_shift.n_elem; ++i)
+//   {
+//     int shift = vec_shift(i);
+//     cout << "Cov for shift " << shift << endl;
+//     
+//     field<string> all_people;
+//     all_people.load(peopleList);
+//     
+//     cov_mat_kth get_cov_seg(path, actionNames, scale_factor, shift, total_scenes, segment_length);
+//     //get_cov_seg.calculate( all_people, dim );
+//     get_cov_seg.calculate_one_per_video( all_people, dim );
+//     
+//   }
+//   
   
   ///Varying the Scale
   //   int shift = 0;
@@ -96,7 +129,7 @@ main(int argc, char** argv)
 
 
 
-/*
+/* 
  * int
  * main(int argc, char** argv)
  * {
