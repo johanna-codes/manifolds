@@ -239,6 +239,8 @@ cov_mat_kth::calculate_one_per_video( field<string> in_all_people, int  in_dim  
       {
 	cout << "Vertical Shift" << endl;
 	load_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-vershift"<< shift ;
+	cout << load_folder.str() << endl;
+	getchar();
       }
       
        
