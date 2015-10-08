@@ -141,3 +141,7 @@ main(int argc, char** argv)
 //Shifts:
 //mkdir scale1-horshift-25 scale1-horshift-20 scale1-horshift-15 scale1-horshift-10 scale1-horshift-5 scale1-horshift0 scale1-horshift5 scale1-horshift10 scale1-horshift15 scale1-horshift20 scale1-horshift25
 //mkdir scale1-vershift-25 scale1-vershift-20 scale1-vershift-15 scale1-vershift-10 scale1-vershift-5 scale1-vershift0 scale1-vershift5 scale1-vershift10 scale1-vershift15 scale1-vershift20 scale1-vershift25
+
+
+//both
+//mkdir scale1-shift-25 scale1-shift-20 scale1-shift-15 scale1-shift-10 scale1-shift-5 scale1-shift0 scale1-shift5 scale1-shift10 scale1-shift15 scale1-shift20 scale1-shift25

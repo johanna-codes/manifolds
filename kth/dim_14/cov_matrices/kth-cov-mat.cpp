@@ -52,7 +52,7 @@ main(int argc, char** argv)
 //   for (int i=0; i<vec_shift.n_elem; ++i)
 //   {
 //     int shift = vec_shift(i);
-//     cout << "Cov for shift " << shift << endl;
+//     cout << "Cov for Hor_shift " << shift << endl;
 //     
 //     field<string> all_people;
 //     all_people.load(peopleList);
@@ -71,7 +71,7 @@ main(int argc, char** argv)
   for (int i=0; i<vec_shift.n_elem; ++i)
   {
     int shift = vec_shift(i);
-    cout << "Cov for shift " << shift << endl;
+    cout << "Cov for Ver_shift " << shift << endl;
     
     field<string> all_people;
     all_people.load(peopleList);

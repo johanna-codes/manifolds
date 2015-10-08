@@ -104,7 +104,7 @@ main(int argc, char** argv)
      {
        
        int shift = vec_shift(i);
-       cout << "Gp for shift " << shift << " &  p= " << p << endl;
+       cout << "Gp for Hor_shift " << shift << " &  p= " << p << endl;
        
        
        field<string> all_people;
@@ -124,7 +124,7 @@ main(int argc, char** argv)
      {
        
        int shift = vec_shift(i);
-       cout << "Gp for shift " << shift << " &  p= " << p << endl;
+       cout << "Gp for Ver_shift " << shift << " &  p= " << p << endl;
        
        
        field<string> all_people;
