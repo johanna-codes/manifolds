@@ -65,7 +65,7 @@ main(int argc, char** argv)
   
   
   // Vertical shift
-  flag_shift = false; //For Vertical shift
+  bool  flag_shift = false; //For Vertical shift
  
   
   for (int i=0; i<vec_shift.n_elem; ++i)
