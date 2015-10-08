@@ -65,11 +65,7 @@ main(int argc, char** argv)
   
   // Vertical shift
   flag_shift = false; //For Vertical shift
-  
-  int total_scenes = 1; //Only for Scenario 1.
-  int segment_length = 20; //Not used
-  int dim = 14; 
-  
+ 
   
   for (int i=0; i<vec_shift.n_elem; ++i)
   {
