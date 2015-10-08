@@ -125,7 +125,7 @@ grass_points::one_video_one_point( std::string load_feat_video_i, int sc, int pe
   std::stringstream save_folder;
   
   // Shifting both
-  save_folder << "./kth-grass-point-one-dim" << dim << "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+  //save_folder << "./kth-grass-point-one-dim" << dim << "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
   
   if (flag_shift) //Horizontal Shift
       {
