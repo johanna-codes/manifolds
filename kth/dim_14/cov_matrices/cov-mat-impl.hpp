@@ -239,8 +239,8 @@ cov_mat_kth::calculate_one_per_video( field<string> in_all_people, int  in_dim  
       {
 	cout << "Vertical Shift" << endl;
 	load_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-vershift"<< shift ;
-	cout << load_folder.str() << endl;
-	getchar();
+	
+	
       }
       
        
@@ -288,8 +288,9 @@ inline
 void
 cov_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string load_labels_video_i, int sc, int pe, int act )
 {
-  //#pragma omp critical
-  //cout << load_feat_video_i << endl;
+  #pragma omp critical
+  cout << load_feat_video_i << endl;
+  getchar();
   
   mat mat_features_video_i;
   
