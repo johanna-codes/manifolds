@@ -10,7 +10,7 @@ gamma = 2^delta/dim;
 PROJECTION_RBF_KERNEL = @(X,Y,gamma) exp( -gamma*( norm(X*X'-Y*Y','fro') )^2 );
 
 
-load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
 
 %parpool(5);
 parfor video_ts= 1: n_videos
@@ -51,7 +51,7 @@ parfor video_ts= 1: n_videos
         %display(accuracy');
         
         acc = [acc accuracy(1)];
-        save_svm_model =strcat( './svm_models_ProjectionRBF/projRBF_run_', int2str(video_ts), '_p', int2str(p), '_delta', num2str(delta),'.mat');
+        save_svm_model =strcat( './svm_models_ProjRBF/projRBF_run_', int2str(video_ts), '_p', int2str(p), '_delta', num2str(delta),'.mat');
         parfor_save(save_svm_model, model, X_train);
         %save(save_svm_model, 'model', 'X_train');
     end

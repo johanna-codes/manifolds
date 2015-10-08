@@ -44,7 +44,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %    save_results =strcat( 'LogEucl_all_sigma_performance.mat');
 %    save(save_results, 'test_acc', 'sigma', 'dim', 'scale', 'shift');
 
-%% Kernel LED-RBF. Running in NICTA: Done
+%% Kernel LED-RBF. 
 
 % display('Training svm + Kernel LED-RBF');
 % delta = -10:1:9;
@@ -71,7 +71,7 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 % save_results =strcat( 'LED_RBF_all_delta_performance.mat');
 % save(save_results, 'test_acc', 'delta', 'dim', 'scale', 'shift');
 
-%% Kernel LED-Poly. DONE
+%% Kernel LED-Poly. 
 
 %  display('Training svm + Kernel LED-POLY');
 %  n=1:dim;
@@ -85,76 +85,73 @@ num_videos = 150; %From the dataset description (150). Problem with Run-Side_001
 %      %ACC_train(i,:) = acc;
 %  end
 
-   display('Testing svm + Kernel LED-POLY');
-   n=1:dim;
-   %n=1:20;
-   test_acc = zeros(length(n),1);
-   scale = 1;
-   shift = 0;
- 
-  for i=1:length(n)
-      in_n = n(i);
-      X = sprintf('n = %d ', in_n);
-      acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
-      test_acc(i) = acc;
-      test_acc'
-  end
- 
-   save_results =strcat( 'LED_POLY_all_n_performance.mat');
-  save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
+%    display('Testing svm + Kernel LED-POLY');
+%    n=1:dim;
+%    %n=1:20;
+%    test_acc = zeros(length(n),1);
+%    scale = 1;
+%    shift = 0;
+%  
+%   for i=1:length(n)
+%       in_n = n(i);
+%       X = sprintf('n = %d ', in_n);
+%       acc = LED_POLY_test(path,action_seq_names,scale, shift, dim, in_n, num_videos);
+%       test_acc(i) = acc;
+%       test_acc'
+%   end
+%  
+%    save_results =strcat( 'LED_POLY_all_n_performance.mat');
+%   save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
 
 
 %%%%%%%%%%%%%%%%%%%%   Grassmann Kernels %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Projection kernel: RBF.
-%  Running in NICTA:DONE
 
-%  display('Training svm + Projection RBF Kernel ');
-%  delta = -14:2:20;
-%  dim = 14;
-%  p = 1:14;
-%  %p = 12;
-%  ACC_train = zeros(length(delta),num_videos -1);
-%  all_p = cell(length(p),1);
-% 
-%  for j=1:length(p)
-%      in_p = p(j);
-%      %X = sprintf('p = %d ', in_p);
-%      %disp(X);
-% 
-%  for i=1:length(delta)
-%      in_delta = delta(i);
-%      X = sprintf('p= %d and delta = %d ', in_p, in_delta);
-%      disp(X);
-%      acc = ProjectionRBF_train(path, action_seq_names, in_delta, dim, in_p, num_videos);
-%     %ACC_train(i,:) = acc;
-%  end
-% 
-%  %all_p{j} = ACC_train;
-%  end
+ display('Training svm + Projection RBF Kernel ');
+ delta = -14:2:20;
+ p = 1:14;
+ ACC_train = zeros(length(delta),num_videos -1);
+ all_p = cell(length(p),1);
+
+ for j=1:length(p)
+     in_p = p(j);
+     %X = sprintf('p = %d ', in_p);
+     %disp(X);
+
+ for i=1:length(delta)
+     in_delta = delta(i);
+     X = sprintf('p= %d and delta = %d ', in_p, in_delta);
+     disp(X);
+     acc = ProjectionRBF_train(path, action_seq_names, in_delta, dim, in_p, num_videos);
+    %ACC_train(i,:) = acc;
+ end
+
+ %all_p{j} = ACC_train;
+ end
  
  
-% display('Testing svm + Projection RBF Kernel');
-% delta = -14:2:20;
-% dim = 14;
-% p = 1:14;
-% test_acc = zeros( length(delta),1 );
-% all_p = cell(length(p),1);
-% scale = 1;
-% shift = 0;
-% for j=1:length(p)
-%     in_p = p(j);
-% for i=1:length(delta )   
-%     in_delta = delta(i);
-%     X = sprintf('p= %d and delta = %d ', in_p, in_delta);
-%     disp(X);
-%     acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
-%     test_acc(i) = acc; 
-% end
-% all_p{j} = test_acc;
-% end
-% 
-% save_results =strcat( 'projRBF_all_p_delta_performance.mat');
-% save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
+display('Testing svm + Projection RBF Kernel');
+delta = -14:2:20;
+dim = 14;
+p = 1:14;
+test_acc = zeros( length(delta),1 );
+all_p = cell(length(p),1);
+scale = 1;
+shift = 0;
+for j=1:length(p)
+    in_p = p(j);
+for i=1:length(delta )   
+    in_delta = delta(i);
+    X = sprintf('p= %d and delta = %d ', in_p, in_delta);
+    disp(X);
+    acc = ProjectionRBF_test(path, action_seq_names, scale, shift, in_delta, dim, in_p, num_videos);
+    test_acc(i) = acc; 
+end
+all_p{j} = test_acc;
+end
+
+save_results =strcat( 'projRBF_all_p_delta_performance.mat');
+save(save_results, 'all_p', 'delta', 'p', 'dim', 'scale', 'shift');
 
 
 
