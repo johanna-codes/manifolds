@@ -18,7 +18,7 @@ real_labels = zeros(n_peo*n_actions);
 est_labels  = zeros(n_peo*n_actions);
   
 
-load_sub_path =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim), '/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim), '/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', int2str(shift) );
 
 j=1;
   for pe_ts= 1: n_peo
@@ -45,7 +45,7 @@ j=1;
 
       end
       
-     save_labels = strcat('./svm_results/projRGB_scale', int2str(scale_factor), '-shift', int2str(shift),'-delta',num2str(delta),'_p', num2str(p), '.mat' );     
+     save_labels = strcat('./svm_results/projRGB_scale', num2str(scale_factor), '-shift', int2str(shift),'-delta',num2str(delta),'_p', num2str(p), '.mat' );     
      save(save_labels, 'est_labels', 'real_labels', 'delta');
   
   end
