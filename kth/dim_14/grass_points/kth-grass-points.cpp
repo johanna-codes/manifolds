@@ -117,7 +117,7 @@ main(int argc, char** argv)
    }
    
    //For Vertical shift
-   bool flag_shift = false; 
+   flag_shift = false; 
    for (int i=0; i< vec_shift.n_elem; ++i)
    {
      for (int p=1; p<= dim; ++p)
