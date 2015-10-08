@@ -18,7 +18,7 @@ j=1;
       act_ts  =  str2double( action_seq_names(video_ts,3) );
       
       if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-          load_svm_model = strcat( './svm_models_ProjectionRBF/projRBF_run_', int2str(video_ts), '_p', int2str(p), '_delta', num2str(delta),'.mat');
+          load_svm_model = strcat( './svm_models_ProjRBF/projRBF_run_', int2str(video_ts), '_p', int2str(p), '_delta', num2str(delta),'.mat');
         
           load(load_svm_model); %loading model and X_train
       
