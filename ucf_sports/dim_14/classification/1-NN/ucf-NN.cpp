@@ -76,7 +76,7 @@ main(int argc, char** argv)
    }
    
    vec_logEucl.t().print("vec_logEucl");
-   vec_proj_grass.print("vec_proj_grass");
+   vec_proj_grass.t().print("vec_proj_grass");
   
   
   
