@@ -67,20 +67,20 @@ dim =14;
   end
  
  
-% display('Testing svm + Kernel LED-POLY. Varying Scale');
-% vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
-% best_delta = 14;
-% best_p = 7;
-% all_acc_scales = zeros( length(vec_scale), 1); 
-% shift = 0;
-%  
-%  for i=1:length(vec_scale)
-%      scale=vec_scale(i);
-%      sprintf('scale = %d ', scale)
-%      acc = kth_test_ProjectionRBF(path,scale, shift, best_delta, dim, best_p);
-%      all_acc_scales(i) = acc;  
-%      all_acc_scales'
-%     
-%  end
+display('Testing svm + Kernel LED-POLY. Varying Scale');
+vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
+best_delta = 14;
+best_p = 7;
+all_acc_scales = zeros( length(vec_scale), 1); 
+shift = 0;
+ 
+ for i=1:length(vec_scale)
+     scale=vec_scale(i);
+     sprintf('scale = %d ', scale)
+     acc = kth_test_ProjectionRBF(path,scale, shift, best_delta, dim, best_p);
+     all_acc_scales(i) = acc;  
+     all_acc_scales'
+    
+ end
 
 
