@@ -90,7 +90,7 @@ main(int argc, char** argv)
     int dim = 14; 
    
    vec vec_logEucl   = zeros(scale_vec.n_elem);
-   vec vec_proj_grass	= zeros(vec_shift.n_elem);
+   vec vec_proj_grass	= zeros(scale_vec.n_elem);
    
    for (int i=0; i< scale_vec.n_elem; ++i)
    {
