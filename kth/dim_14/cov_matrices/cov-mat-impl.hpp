@@ -230,7 +230,7 @@ cov_mat_kth::calculate_one_per_video( field<string> in_all_people, int  in_dim  
 	
 	if (flag_shift) //Horizontal Shift
       {
-	load_folder << "./kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-horshift"<< shift ;
+	load_folder << path << "/kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-horshift"<< shift ;
       
       }
       
