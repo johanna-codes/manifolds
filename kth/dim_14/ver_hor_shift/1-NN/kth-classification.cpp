@@ -21,8 +21,8 @@ using namespace arma;
 #include "grassmann-metrics-def.hpp"
 #include "grassmann-metrics-impl.hpp"
 
-#include "kth-cross-validation-one-def.hpp"
-#include "kth-cross-validation-one-impl.hpp"
+#include "kth-cross-validation-def.hpp"
+#include "kth-cross-validation-impl.hpp"
 
 
 
