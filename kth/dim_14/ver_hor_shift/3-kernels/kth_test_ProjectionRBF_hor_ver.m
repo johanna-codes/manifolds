@@ -1,4 +1,4 @@
-function acc = kth_test_ProjectionRBF(path,scale_factor, shift, delta, dim, p)
+function acc = kth_test_ProjectionRBF(path,scale_factor, shift, delta, dim, p,flag_shift)
 
 
 gamma = 2^delta/dim;
@@ -17,8 +17,15 @@ acc = 0;
 real_labels = zeros(n_peo*n_actions);
 est_labels  = zeros(n_peo*n_actions);
   
+if (flag_shift==true)
+load_sub_path =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim), '/sc', int2str(sc), '/scale', num2str(scale_factor), '-horshift', int2str(shift) );
+end
 
-load_sub_path =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim), '/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', int2str(shift) );
+if (flag_shift==false)
+load_sub_path =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim), '/sc', int2str(sc), '/scale', num2str(scale_factor), '-vershift', int2str(shift) );
+end
+
+
 
 j=1;
   for pe_ts= 1: n_peo

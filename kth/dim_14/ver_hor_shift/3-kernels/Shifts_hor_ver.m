@@ -40,20 +40,25 @@ scale=1;
 
 
 %% Kernel proj-rbf: KTH
-%  display('Testing svm + Kernel Proj-RBF. Shifting Videos');
-%  vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
-%  
-%  all_acc_shifts = zeros( length(vec_shift), 1); 
-%  scale = 1;
-%  best_delta = 14;
-%  best_p = 7;
-%   for i=1:length(vec_shift)
-%       shift = vec_shift(i);
-%       sprintf('shift = %d ', shift)
-%       acc = kth_test_ProjectionRBF(path,scale, shift, best_delta, dim, best_p);
-%       all_acc_shifts(i) = acc;  
-%       all_acc_shifts'
-%      
-%   end
-%  
-%  
+
+ vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
+ 
+all_acc_shifts_hor = zeros( length(vec_shift), 1); 
+all_acc_shifts_ver = zeros( length(vec_shift), 1);  scale = 1;
+ best_delta = 14;
+ best_p = 7;
+  for i=1:length(vec_shift)
+      shift = vec_shift(i);
+       sprintf('Horizontal shift = %d ', shift)
+       flag_shift = true; %For horizontal Shift
+       acc = kth_test_ProjectionRBF_hor_ver(path,scale, shift, best_delta, dim, best_p,flag_shift);
+       all_acc_shifts_hor(i) = acc;  
+      
+       sprintf('Vertical shift = %d ', shift)
+       flag_shift = true; %For horizontal Shift
+       acc = kth_test_ProjectionRBF_hor_ver(path,scale, shift, best_delta, dim, best_p,flag_shift);
+       all_acc_shifts_ver(i) = acc;  
+
+  end
+ 
+ 
