@@ -56,7 +56,7 @@ for i=1:length(vec_shift)
       if (flag_shift==false)
           show_you = strcat('Vertical Shift', int2str( vec_shift(i) ) );
           disp(show_you);
-          load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-horshift',  int2str(shift));
+          load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-vershift',  int2str(shift));
      end
      
     acc = 0;
