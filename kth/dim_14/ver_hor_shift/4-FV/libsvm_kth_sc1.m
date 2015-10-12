@@ -41,7 +41,7 @@ scale_factor = 1;
 % end
 % 
 
-flag_shift = true;
+flag_shift = false;
 
 all_acc_shifts = zeros( length(vec_shift), 1);
 for i=1:length(vec_shift)
