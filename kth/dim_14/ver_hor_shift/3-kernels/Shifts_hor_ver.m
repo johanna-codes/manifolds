@@ -55,7 +55,7 @@ all_acc_shifts_ver_Proj_RBF = zeros( length(vec_shift), 1);  scale = 1;
        all_acc_shifts_hor_Proj_RBF(i) = acc;  
       
        sprintf('Vertical shift = %d ', shift)
-       flag_shift = true; %For horizontal Shift
+       flag_shift = false; %For horizontal Shift
        acc = kth_test_ProjectionRBF_hor_ver(path,scale, shift, best_delta, dim, best_p,flag_shift);
        all_acc_shifts_ver_Proj_RBF(i) = acc;  
 
