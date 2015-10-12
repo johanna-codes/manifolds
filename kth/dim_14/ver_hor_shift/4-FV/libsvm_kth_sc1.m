@@ -28,18 +28,18 @@ dim_FV = 2*dim*Ncent;
 vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
 
 scale_factor = 1;
-for i=1:length(vec_shift)
-    show_you = strcat('Getting FVs for Horizontal', int2str( vec_shift(i) ) );
-    flag_shift = true; %For horizontal Shift
-    disp(show_you);
-    FV_kth_all_videos(Ncent, dim, scale_factor, vec_shift(i), flag_shift);
-    
-    show_you = strcat('Getting FVs for Vertical', int2str( vec_shift(i) ) );
-    flag_shift = false; %For horizontal Shift
-    disp(show_you);
-    FV_kth_all_videos(Ncent, dim, scale_factor, vec_shift(i),flag_shift);
-end
-
+% for i=1:length(vec_shift)
+%     show_you = strcat('Getting FVs for Horizontal', int2str( vec_shift(i) ) );
+%     flag_shift = true; %For horizontal Shift
+%     disp(show_you);
+%     FV_kth_all_videos(Ncent, dim, scale_factor, vec_shift(i), flag_shift);
+%     
+%     show_you = strcat('Getting FVs for Vertical', int2str( vec_shift(i) ) );
+%     flag_shift = false; %For horizontal Shift
+%     disp(show_you);
+%     FV_kth_all_videos(Ncent, dim, scale_factor, vec_shift(i),flag_shift);
+% end
+% 
 
 flag_shift = true;
 
