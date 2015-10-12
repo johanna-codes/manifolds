@@ -90,9 +90,7 @@ for i=1:length(vec_shift)
             
         end
         
-        save_labels = strcat('./svm_results/scale', int2str(scale_factor), '-shift', int2str(shift),'.mat' );
-        save(save_labels, 'est_labels', 'real_labels');
-        
+       
     end
     %[acc n_peo n_actions]
     acc = acc*100/(n_peo*n_actions)
