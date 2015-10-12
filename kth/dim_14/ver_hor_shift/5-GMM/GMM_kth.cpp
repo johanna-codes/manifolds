@@ -213,7 +213,7 @@ test_kth(int N_cent, int dim, int sc, float scale_factor, int shift, bool flag_s
 	load_folder << path << "dim_" << dim <<"/features/kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-horshift"<< shift ;
       }
       
-      if (flag_shift = true)
+      if (flag_shift = false)
       {
 	load_folder << path << "dim_" << dim <<"/features/kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-vershift"<< shift ;
       }
