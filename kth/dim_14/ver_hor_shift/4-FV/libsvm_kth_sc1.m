@@ -41,11 +41,24 @@ for i=1:length(vec_shift)
 end
 
 
+flag_shift = true;
+
 all_acc_shifts = zeros( length(vec_shift), 1);
 for i=1:length(vec_shift)
     scale_factor = 1;
-    shift = vec_shift(i)
-    load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-shift',  int2str(shift));
+    shift = vec_shift(i);
+    if (flag_shift==true)
+        show_you = strcat('Horizontal Shift', int2str( vec_shift(i) ) );
+        disp(show_you);
+        load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-horshift',  int2str(shift));
+     end
+     
+      if (flag_shift==false)
+          show_you = strcat('Horizontal Shift', int2str( vec_shift(i) ) );
+          disp(show_you);
+          load_sub_path =strcat('./FV_training/scale', int2str(scale_factor), '-horshift',  int2str(shift));
+     end
+     
     acc = 0;
     real_labels = zeros(n_peo*n_actions);
     est_labels  = zeros(n_peo*n_actions);
