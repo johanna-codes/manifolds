@@ -84,7 +84,7 @@ grid
 %Nicta
 print('/home/johanna/latex-svn/wacv_2016_b/v13/images/experiments/LED_POLY_kth_ucf_ut','-depsc2','-r300');
 
-%% Kernels: LED_RBF: KTH & UCF & UT
+%% Kernels: LED_RBF
 figure
 
 load('./kth/dim_14/kernels/LED_RBF_all_delta_performance.mat');
@@ -134,8 +134,10 @@ print('/home/johanna/latex-svn/wacv_2016_b/v13/images/experiments/LED_RBF_kth_uc
 
 %% Kernels: ProjPOLY: 
 %plot_Proj_Poly_I (Se ve muy fea) 
-plot_Proj_Poly_II
+%plot_Proj_Poly_II
+plot_Proj_Poly_fixed_m %--> I decided to keep m fixed from NN with linear subspaces. No funciono mi idea, el mejor valor en NN a veces era una linea
 %% Kernels: Proj_RBF: 
 figure()
-%plot_Proj_rbf_I(Se ve muy fea) 
-plot_Proj_rbf_II
+%plot_Proj_Rbf_I(Se ve muy fea) 
+%plot_Proj_rbf_II
+plot_Proj_Rbf_fixed_m %--> I decided to keep m fixed from NN with linear subspaces. No funciono mi idea, el mejor valor en NN a veces era una linea

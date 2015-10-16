@@ -29,7 +29,7 @@ ylim([30 110])
 l = legend('$d_{spd}$','$d_{ls}$', '$K_{spd}^{poly}$', '$K_{ls}^{rbf}$', 'GMM','FV','Location','north', 'orientation', 'horizontal');
 set(l,'Interpreter','Latex');
 ylabel('accuracy (%)','FontSize',20)
-xlabel('shift (%)','FontSize',20)
+xlabel('both shifts (%)','FontSize',20)
 set(gca,'FontSize',20); 
 grid
 
@@ -45,7 +45,10 @@ bottom = (papersize(2)- height)/2;
 myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
 
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/suplementary_material/images/experiments/both_shifts_kth','-depsc2','-r300');
+%home
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/suplementary_material/images/experiments/both_shifts_kth','-depsc2','-r300');
+%Nicta
+print('/home/johanna/latex-svn/wacv_2016_b/suplementary_material/v2/images/experiments/both_shifts_kth','-depsc2','-r300');
 
 
 %% KTH. Horizontal Shift
@@ -88,7 +91,11 @@ left = (papersize(1)- width)/2;
 bottom = (papersize(2)- height)/2;
 myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/suplementary_material/images/experiments/hor_shift_kth','-depsc2','-r300');
+
+%Home
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/suplementary_material/images/experiments/hor_shift_kth','-depsc2','-r300');
+%Nicta
+print('/home/johanna/latex-svn/wacv_2016_b/suplementary_material/v2/images/experiments/hor_shift_kth','-depsc2','-r300');
 
 
 %% KTH. Vertical Shift
@@ -132,5 +139,10 @@ left = (papersize(1)- width)/2;
 bottom = (papersize(2)- height)/2;
 myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
-print('/media/johanna/HD1T/latex-svn/wacv_2016_b/suplementary_material/images/experiments/ver_shift_kth','-depsc2','-r300');
+
+%Home
+%print('/media/johanna/HD1T/latex-svn/wacv_2016_b/suplementary_material/images/experiments/ver_shift_kth','-depsc2','-r300');
+%Nicta
+print('/home/johanna/latex-svn/wacv_2016_b/suplementary_material/v2/images/experiments/ver_shift_kth','-depsc2','-r300');
+
 
