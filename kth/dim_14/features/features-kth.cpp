@@ -64,43 +64,130 @@ main(int argc, char** argv)
    //ss >> std::boolalpha >> flag_shift;
    //cout << flag_shift << endl;
    
+  
+  
+  //Visualise the shift:
+   int shift = 15;
+   int shif_x;
+   int shif_y;
+   float scale_factor = 1;
+   int total_scene = 1; //Hacer solo para scenario 1
+   int dim = 14;
    
+   bool flag_shift = true; //For Horizontal shift //Pare este ejemplo no importa
+//   // bool flag_shift = false; //For Vertical shift
+      
+      
+  cv::Mat horImage, verImage, pos_hor_verImage, neg_hor_verImage, magImage, shiImage;
+  opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
+  
+  cv::Mat src_in;
+  
+  cv::VideoCapture capVideo("/home/johanna/codes/datasets_codes/KTH/boxing/person01_boxing_d1_uncomp.avi");
+  int n_frames = capVideo.get(CV_CAP_PROP_FRAME_COUNT);
+  
+  
+  
+  for(int fr=0; fr<n_frames; fr++){
+    
+   shift = 15;
+   shif_x = floor(ori_col*shift/100);
+   shif_y = floor(ori_row*shift/100);
+    
+    
+    //For Shifts:
+    bool bSuccess = capVideo.read(src_in); // read a new frame from video
+    //horImage = opt_feat_kth.Shift_Image_Horizontal( src_in,  shif_x );
+    //verImage = opt_feat_kth.Shift_Image_Vertical( src_in,  shif_y );
+    pos_hor_verImage = opt_feat_kth.Shift_Image( src_in,  shif_x,  shif_y);
+    
+    shift = -15;
+    shif_x = floor(ori_col*shift/100);
+    shif_y = floor(ori_row*shift/100);
+   
+    neg_hor_verImage = opt_feat_kth.Shift_Image( src_in,  shif_x,  shif_y);
+    
+    
+    
+    //For Scale
+    scale_factor = 0.80;
+    shiImage = opt_feat_kth.Scale_Image( src_in, scale_factor);
+
+    
+    scale_factor = 1.20;
+    magImage = opt_feat_kth.Scale_Image( src_in, scale_factor);
+
+    
+      
+    //Showing Images and Saving
+    cv::imshow("Original", src_in);
+    //cv::imshow("Hor-Shift", horImage);
+    //cv::imshow("Ver-Shift", verImage);
+    cv::imshow("Positive both_Shifts", pos_hor_verImage);
+    cv::imshow("Negative both_Shifts", neg_hor_verImage);
+       
+    cv::imshow("Shrinking", shiImage);
+    cv::imshow("Magnificient", magImage);
+    
+    
+    
+    cv::imwrite("original.png", src_in);
+    cv::imwrite("hor_ver_shifts_positive.png", pos_hor_verImage);
+    cv::imwrite("hor_ver_shifts_negative.png", neg_hor_verImage); 
+    cv::imwrite("shiImage.png", shiImage);
+    cv::imwrite("magImage.png", magImage);
+    
+    cv::waitKey();
+    
+    
+   
+    
+    
+   
+    
+   
+  }
+ 
+
+  
+  
+  
 
 ///Shifting Videos
-  float scale_factor = 1;
-  vec vec_shift;
-  vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
-  
-  int total_scene = 1; //Hacer solo para scenario 1
-  int dim = 14;
-  
-  field<string> all_people;
-  all_people.load(peopleList);
-  bool flag_shift = true; //For Horizontal shift
-  // bool flag_shift = false; //For Vertical shift
-
-   
-  
-  for (int i=0; i<vec_shift.n_elem; ++i)
-  {
-    int shift = vec_shift(i);
-    cout << "Horizontal shift " << shift << endl;
-
-    opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
-    opt_feat_kth.features_all_videos( all_people );
-  
-  }
-  
-  
-   flag_shift = false; //For Vertical shift
-   
-   for (int i=0; i<vec_shift.n_elem; ++i)
-   {
-     int shift = vec_shift(i);
-     cout << "Vertical shift " << shift << endl;
-     opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
-     opt_feat_kth.features_all_videos( all_people );
-  }
+//   float scale_factor = 1;
+//   vec vec_shift;
+//   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
+//   
+//   int total_scene = 1; //Hacer solo para scenario 1
+//   int dim = 14;
+//   
+//   field<string> all_people;
+//   all_people.load(peopleList);
+//   bool flag_shift = true; //For Horizontal shift
+//   // bool flag_shift = false; //For Vertical shift
+// 
+//    
+//   
+//   for (int i=0; i<vec_shift.n_elem; ++i)
+//   {
+//     int shift = vec_shift(i);
+//     cout << "Horizontal shift " << shift << endl;
+// 
+//     opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
+//     opt_feat_kth.features_all_videos( all_people );
+//   
+//   }
+//   
+//   
+//    flag_shift = false; //For Vertical shift
+//    
+//    for (int i=0; i<vec_shift.n_elem; ++i)
+//    {
+//      int shift = vec_shift(i);
+//      cout << "Vertical shift " << shift << endl;
+//      opt_feat opt_feat_kth(path, actionNames, ori_col, ori_row, scale_factor, shift, total_scene, dim, flag_shift);
+//      opt_feat_kth.features_all_videos( all_people );
+//   }
   
  
  ///Varying the Scale

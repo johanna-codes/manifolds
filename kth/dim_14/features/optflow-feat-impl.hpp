@@ -392,38 +392,38 @@ opt_feat::Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x )
    //cv::imshow("img_out", img_out);
   
   
-  if (num_pixels_x>0) //Move right
-  {   
-    
-    cv::Mat col = src_in.col(0);
-    cv::Mat row = src_in.row(0);
-    
-    
-    for (int i=0; i<abs(num_pixels_x); ++i)
-    {
-      col.col(0).copyTo(img_out.col(i));
-      
-    }
-    
-    
-  }
-  
-  if (num_pixels_x<0) //Move left
-  {   
-    
-    int w = src_in.size().width;
-    int h = src_in.size().height;
-    cv::Mat col = src_in.col(w-1);
-    cv::Mat row = src_in.row(h-1);
-    
-    for (int i=w-abs(num_pixels_x) ; i<w; ++i)
-    {
-      col.col(0).copyTo(img_out.col(i));
-      //row.row(0).copyTo(img_out.row(i));
-    } 
-    
-   
-  }
+//   if (num_pixels_x>0) //Move right
+//   {   
+//     
+//     cv::Mat col = src_in.col(0);
+//     cv::Mat row = src_in.row(0);
+//     
+//     
+//     for (int i=0; i<abs(num_pixels_x); ++i)
+//     {
+//       col.col(0).copyTo(img_out.col(i));
+//       
+//     }
+//     
+//     
+//   }
+//   
+//   if (num_pixels_x<0) //Move left
+//   {   
+//     
+//     int w = src_in.size().width;
+//     int h = src_in.size().height;
+//     cv::Mat col = src_in.col(w-1);
+//     cv::Mat row = src_in.row(h-1);
+//     
+//     for (int i=w-abs(num_pixels_x) ; i<w; ++i)
+//     {
+//       col.col(0).copyTo(img_out.col(i));
+//       //row.row(0).copyTo(img_out.row(i));
+//     } 
+//     
+//    
+//   }
   
   //cv::imshow("img_out_2", img_out);   
   //cv::waitKey();
@@ -445,32 +445,32 @@ opt_feat::Shift_Image_Vertical( cv::Mat src_in, int num_pixels_y)
   warpAffine( src_in, img_out, rot_mat, src_in.size() );
   //cv::imshow("img_out", img_out);
 
-  if (num_pixels_y>0) //Move right
-  {   
-    
-    cv::Mat col = src_in.col(0);
-    cv::Mat row = src_in.row(0);
-    
-    
-    for (int i=0; i<abs(num_pixels_y); ++i)
-    {
-      row.row(0).copyTo(img_out.row(i));
-    }
-  }
-  
-  if (num_pixels_y<0) //Move left
-  {   
-    
-    int w = src_in.size().width;
-    int h = src_in.size().height;
-    cv::Mat col = src_in.col(w-1);
-    cv::Mat row = src_in.row(h-1);
-    
-    for (int i=h-abs(num_pixels_y) ; i<h; ++i)
-    {
-      row.row(0).copyTo(img_out.row(i));
-    }
-  }
+//   if (num_pixels_y>0) //Move up
+//   {   
+//     
+//     cv::Mat col = src_in.col(0);
+//     cv::Mat row = src_in.row(0);
+//     
+//     
+//     for (int i=0; i<abs(num_pixels_y); ++i)
+//     {
+//       row.row(0).copyTo(img_out.row(i));
+//     }
+//   }
+//   
+//   if (num_pixels_y<0) //Move down
+//   {   
+//     
+//     int w = src_in.size().width;
+//     int h = src_in.size().height;
+//     cv::Mat col = src_in.col(w-1);
+//     cv::Mat row = src_in.row(h-1);
+//     
+//     for (int i=h-abs(num_pixels_y) ; i<h; ++i)
+//     {
+//       row.row(0).copyTo(img_out.row(i));
+//     }
+//   }
   
 
   //cv::imshow("img_out_2", img_out);   

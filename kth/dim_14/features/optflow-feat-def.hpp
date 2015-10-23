@@ -13,6 +13,10 @@ public:
   );
   
   inline void features_all_videos( field<string>all_people);
+  inline cv::Mat Scale_Image( cv::Mat src_in, float scale_factor);
+  inline cv::Mat Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y);
+  inline cv::Mat Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x );
+  inline cv::Mat Shift_Image_Vertical( cv::Mat src_in, int num_pixels_y);
   
   
   
@@ -28,8 +32,8 @@ public:
   const int dim; 
   const bool flag_shift;
   
-//   vector <vec> features_video_i; //All vectors per video_i are stored here
-//   vector <int> labels_video_i;
+  //   vector <vec> features_video_i; //All vectors per video_i are stored here
+  //   vector <int> labels_video_i;
   
   
   field<std::string> actions;
@@ -37,20 +41,20 @@ public:
   struct Struct_feat_lab{
     vector <vec> features_video_i; //All vectors per video_i are stored here
     vector <int> labels_video_i;
-
-};
-
+    
+  };
+  
   
 private:
-
+  
   
   
   inline void feature_video( std::string one_video, Struct_feat_lab &my_Struct_feat_lab );
-  inline cv::Mat Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y);
-  inline cv::Mat Scale_Image( cv::Mat src_in, float scale_factor);
-  inline cv::Mat Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x );
-  inline cv::Mat Shift_Image_Vertical( cv::Mat src_in, int num_pixels_y);
-
+  //	inline cv::Mat Scale_Image( cv::Mat src_in, float scale_factor);
+  //   inline cv::Mat Shift_Image( cv::Mat src_in, int num_pixels_x, int num_pixels_y);
+  //   inline cv::Mat Shift_Image_Horizontal( cv::Mat src_in, int num_pixels_x );
+  //   inline cv::Mat Shift_Image_Vertical( cv::Mat src_in, int num_pixels_y);
+  
   
   
   
