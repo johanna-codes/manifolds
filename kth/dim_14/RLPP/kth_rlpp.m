@@ -92,7 +92,7 @@ for pe_ts= 1: n_peo %%One run
     FTest_Proj=Projection_Model.Alpha'*Test_Kernel;
     
     %% Nearest Neighbour Clasfication
-    CRR=myNN(struct('X',FTest_Proj,'y',TestSet.y),struct('X',FTrain_Proj,'y',TrainSet.y));
+    CRR=myNN(struct('X',FTest_Proj,'y',TestSet.y),struct('X',FTrain_Proj,'y',TrainSet.y))
     
     
     disp('Press a Key');
