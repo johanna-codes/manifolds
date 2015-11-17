@@ -76,7 +76,7 @@ for pe_ts= 1: n_peo %%One run
     %Computing the kernels
     [Train_Kernel]=Compute_Riemannian_Kernel(TrainSet.X,TrainSet.X,R_Kernel_Sigma);
     % Generating adjacency graph
-    k_W = 10; %number of nearest neighbors
+    k_W = 3; %number of nearest neighbors
     W = Generate_Graph(struct('X',Train_Kernel,'y',TrainSet.y),k_W);
     
     %Learning the Riemannian locality preserving projection
@@ -92,7 +92,7 @@ for pe_ts= 1: n_peo %%One run
     FTest_Proj=Projection_Model.Alpha'*Test_Kernel;
     
     %% Nearest Neighbour Clasfication
-    CRR=myNN(struct('X',FTest_Proj,'y',TestSet.y),struct('X',FTrain_Proj,'y',TrainSet.y))
+    CRR = myNN(struct('X',FTest_Proj,'y',TestSet.y),struct('X',FTrain_Proj,'y',TrainSet.y))
     
     
     disp('Press a Key');
