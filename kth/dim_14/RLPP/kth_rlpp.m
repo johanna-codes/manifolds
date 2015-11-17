@@ -76,7 +76,7 @@ for pe_ts= 1: 1%n_peo %%One run
     %Computing the kernels
     [Train_Kernel]=Compute_Riemannian_Kernel(TrainSet.X,TrainSet.X,R_Kernel_Sigma);
     % Generating adjacency graph
-    k_W = 3; %number of nearest neighbors
+    k_W = 10; %number of nearest neighbors
     W = Generate_Graph(struct('X',Train_Kernel,'y',TrainSet.y),k_W);
     
     %Learning the Riemannian locality preserving projection
