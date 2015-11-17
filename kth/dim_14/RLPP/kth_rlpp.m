@@ -93,7 +93,7 @@ for pe_ts= 1: 1%n_peo %%One run
     
     %% Nearest Neighbour Clasfication
     CRR = myNN(struct('X',FTest_Proj,'y',TestSet.y),struct('X',FTrain_Proj,'y',TrainSet.y))
-    
+    acc = [acc CRR];
     
     %disp('Press a Key');
     %pause
