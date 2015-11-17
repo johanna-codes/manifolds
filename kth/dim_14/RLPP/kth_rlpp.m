@@ -80,7 +80,7 @@ for pe_ts= 1: n_peo %%One run
     W = Generate_Graph(struct('X',Train_Kernel,'y',TrainSet.y),k_W);
     
     %Learning the Riemannian locality preserving projection
-    RLPP_Sigma = 1e1;
+    RLPP_Sigma = 1e0;
     Projection_Model=RLPP(Train_Kernel,W,RLPP_Sigma);
     
     %% Projecting train and test data by the RLPP model
