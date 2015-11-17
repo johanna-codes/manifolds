@@ -31,7 +31,7 @@ load_sub_path =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/
 n_test = (n_peo-1)*n_actions;
 
 
-for pe_ts= 1: 1%n_peo %%One run
+for pe_ts= 1: n_peo %%One run
     X_train = zeros(dim,dim,n_test);
     labels_train = zeros(1,n_test);
     k =1;
