@@ -70,7 +70,7 @@ for pe_ts= 1: n_peo %%One run
     TestSet(1).y = labels_test;
     
     %% As per example in Code
-    R_Kernel_Sigma = 1e+0; %Gaussian parameter in Riemannian kernel, (equation (5) in paper).
+    R_Kernel_Sigma = 10e+0; %Gaussian parameter in Riemannian kernel, (equation (5) in paper).
     
     %% RLPP
     %Computing the kernels
