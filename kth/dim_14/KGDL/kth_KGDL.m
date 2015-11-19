@@ -24,7 +24,7 @@ n_actions = size(actions,1);
 n_peo =  size(all_people,1);
 
 
-SR_lambda_Vec = 0.01:0.01:1e-1*10; %sparse representation parameter
+SR_lambda_Vec = 1:1:10; %sparse representation parameter
 results = cell(length(SR_lambda_Vec),2);
 
 
