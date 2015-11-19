@@ -28,9 +28,9 @@ SR_lambda_Vec = 1:1:10; %sparse representation parameter
 results = cell(length(SR_lambda_Vec),2);
 
 
-for i=1:length(SR_lambda_Vec)
+%for i=1:length(SR_lambda_Vec)
     
-    SR_lambda = SR_lambda_Vec(i);   %sparse representation parameterc = 1;
+    %SR_lambda = SR_lambda_Vec(i);   %sparse representation parameterc = 1;
     acc = [];
     
     
@@ -80,28 +80,42 @@ for i=1:length(SR_lambda_Vec)
         tst.y = labels_test;
         
         %% As per example in Code
-        Solver_Flag = 1;  %1: SPAMS, 2: CVX
-        %SPAMS toolbox is available from http://spams-devel.gforge.inria.fr/
-        %CVX is available from http://cvxr.com/cvx/
+        SR_lambda = 1e-1;    %sparse representation parameter
+        nAtoms = 128;        %size of the dictionary
+        dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
+
         
+        fprintf('Learning the Grassmannian dictionary\n');
+        D = grassmann_dictionary_learning(trn.X,nAtoms,dict_options);
+        [gSC_alpha_trn,~,~] = gsc_func(trn.X,D,SR_lambda,Solver_Flag);
+        [gSC_alpha_tst,~,~] = gsc_func(tst.X,D,SR_lambda,Solver_Flag);
         
-        [gSC_alpha,gSC_qX,gSC_D] = gsc_func(tst.X,trn.X,SR_lambda,Solver_Flag);
-        %Classification-SRC
-        y_hat = Classify_SRC(gSC_D,trn.y,gSC_alpha,gSC_qX);
-        CRR = sum(double(y_hat == tst.y))/length(tst.y);
-        %fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
-        
+        % %Classification
+        %Ridge regression
+        nClasses = max(trn.y);
+        nPoints = length(trn.y);
+        L = zeros(nClasses,nPoints);
+        L(sub2ind([nClasses,nPoints], trn.y, 1:nPoints)) = 1;
+        zeta = 1e-1;    %regularization parameter for ridge regression
+        big_alpha = gSC_alpha_trn*gSC_alpha_trn' + zeta*eye(nAtoms);
+        big_v = L*gSC_alpha_trn';
+        W = big_v/big_alpha;
+        [~,y_hat] = max(W*gSC_alpha_tst);
+        CRR = sum(y_hat == tst.y)/length(y_hat);
+
+
+
         acc = [acc CRR];
         
         %disp('Press a Key');
         %pause
         
     end
-    fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*mean(acc));
+        fprintf('Correct recognition accuracy with a dictionary of size %d : %.1f%%.\n',nAtoms,100*mean(acc));
 
-    results{i,1} = SR_lambda;
-    results{i,2} = acc;
-end
+    %results{i,1} = SR_lambda;
+    %results{i,2} = acc;
+%end
 
 
 
