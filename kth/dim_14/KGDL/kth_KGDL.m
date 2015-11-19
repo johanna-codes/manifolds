@@ -97,7 +97,7 @@ for i=1:length(SR_lambda_Vec)
         %pause
         
     end
-    fprintf('Correct recognition accuracy with a labeled dictionary for SR_lambda %.3f% =  %.1f%%.\n',SR_lambda, 100*mean(acc));
+    fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*mean(acc));
 
     results{i,1} = SR_lambda;
     results{i,2} = acc;
