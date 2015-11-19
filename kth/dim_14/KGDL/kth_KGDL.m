@@ -25,7 +25,7 @@ n_peo =  size(all_people,1);
 
 
 SR_lambda_Vec = 0.01:0.01:1e-1*10; %sparse representation parameter
-results = cell(2,length(SR_lambda_Vec));
+results = cell(length(SR_lambda_Vec),2);
 
 
 for i=1:length(SR_lambda_Vec)
@@ -97,10 +97,10 @@ for i=1:length(SR_lambda_Vec)
         %pause
         
     end
-    fprintf('Correct recognition accuracy with a labeled dictionary for SR_lambda %.1f% =  %.1f%%.\n',SR_lambda, 100*mean(acc));
+    fprintf('Correct recognition accuracy with a labeled dictionary for SR_lambda %.3f% =  %.1f%%.\n',SR_lambda, 100*mean(acc));
 
-    results(1,i) = SR_lambda;
-    results(2,i) = acc;
+    results{i,1} = SR_lambda;
+    results{i,2} = acc;
 end
 
 
