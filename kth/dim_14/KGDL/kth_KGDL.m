@@ -80,7 +80,7 @@ for i=1:length(SR_lambda_Vec)
         tst.y = labels_test;
         
         %% As per example in Code
-        Solver_Flag = 2;  %1: SPAMS, 2: CVX
+        Solver_Flag = 1;  %1: SPAMS, 2: CVX
         %SPAMS toolbox is available from http://spams-devel.gforge.inria.fr/
         %CVX is available from http://cvxr.com/cvx/
         
