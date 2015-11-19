@@ -89,7 +89,7 @@ for i=1:length(SR_lambda_Vec)
         %Classification-SRC
         y_hat = Classify_SRC(gSC_D,trn.y,gSC_alpha,gSC_qX);
         CRR = sum(double(y_hat == tst.y))/length(tst.y);
-        fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
+        %fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
         
         acc = [acc CRR];
         
@@ -97,6 +97,8 @@ for i=1:length(SR_lambda_Vec)
         %pause
         
     end
+    fprintf('Correct recognition accuracy with a labeled dictionary for SR_lambda %.1f% =  %.1f%%.\n',SR_lambda, 100*mean(acc));
+
     results(1,i) = SR_lambda;
     results(2,i) = acc;
 end
