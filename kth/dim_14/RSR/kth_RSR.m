@@ -5,7 +5,7 @@ clc
 % Kernel Analysis over Riemannian Manifolds
 %for Visual Recognition of Actions, Pedestrians and Texture
 %WACV 2012
-addpath('/home/johanna/codes/Mehrtash/harandi_wacv_2012_matlab/WACV');% --> Wanda
+addpath('/home/johanna/codes/Mehrtash/harandi_eccv_2012_matlab/');% --> Wanda
 
 
 
