@@ -65,7 +65,7 @@ results = cell(length(SR_lambda_Vec),2);
             name_load_gp = strcat( load_sub_path, '/grass_pt_', all_people(pe_tr), '_', actions(act), '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
             hinfo = hdf5info( char(name_load_gp) );
             one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-            X_train(:,:,k) = one_video;    
+            X_test(:,:,j) = one_video;    
             labels_test(j) = act_ts;
             j = j+1;
         end
