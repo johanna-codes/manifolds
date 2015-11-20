@@ -41,7 +41,7 @@ results = cell(length(SR_lambda_Vec),2);
     
     
     for pe_ts= 1: n_peo %%One run
-        X_train = zeros(dim,dim,n_test);
+        X_train = zeros(dim,best_p,n_test);
         labels_train = zeros(1,n_test);
         k =1;
         for pe_tr=1: n_peo
