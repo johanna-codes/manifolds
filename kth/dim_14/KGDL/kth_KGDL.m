@@ -10,7 +10,7 @@ addpath('/home/johanna/codes/Mehrtash/harandi_iccv_2013/iccv_ext_func');% --> Wa
 
 path  = '~/codes/codes-git/manifolds/trunk/kth/dim_14/';
 dim = 14;
-
+best_p = 7; %For KTH. Taken from the experiments with the KTH.
 
 
 actions = importdata('actionNames.txt');
@@ -24,7 +24,7 @@ n_actions = size(actions,1);
 n_peo =  size(all_people,1);
 
 
-SR_lambda_Vec = 1:1:10; %sparse representation parameter
+%SR_lambda_Vec = 1:1:10; %sparse representation parameter
 results = cell(length(SR_lambda_Vec),2);
 
 
@@ -47,10 +47,10 @@ results = cell(length(SR_lambda_Vec),2);
         for pe_tr=1: n_peo
             if pe_tr~=pe_ts
                 for act=1: n_actions
-                    name_load_cov = strcat( load_sub_path, '/cov_', all_people(pe_tr), '_', actions(act), '_dim', int2str(dim), '.h5');
-                    hinfo = hdf5info( char(name_load_cov) );
+                    name_load_gp = strcat( load_sub_path, '/grass_pt_', all_people(pe_tr), '_', actions(act), '_dim', int2str(dim), '_p', num2str(p), '.h5');
+                    hinfo = hdf5info( char(name_load_gp) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-                    X_train(:,:,k) = one_video;
+                    X_train(:,:,k) = one_video;                    
                     labels_train(k) = act;
                     k=k+1;
                 end
@@ -62,12 +62,10 @@ results = cell(length(SR_lambda_Vec),2);
         labels_test = zeros(1,n_actions); %I test with one person and all his/hers actions
         X_test = zeros(dim,dim,n_actions);
         for act_ts = 1:n_actions
-            
-            name_load_cov = strcat( load_sub_path, '/cov_', all_people(pe_ts), '_', actions(act_ts), '_dim', int2str(dim), '.h5');
-            %char(name_load_cov)
-            hinfo = hdf5info( char(name_load_cov) );
+            name_load_gp = strcat( load_sub_path, '/grass_pt_', all_people(pe_tr), '_', actions(act), '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
+            hinfo = hdf5info( char(name_load_gp) );
             one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-            X_test(:,:,j) = one_video;
+            X_train(:,:,k) = one_video;    
             labels_test(j) = act_ts;
             j = j+1;
         end
