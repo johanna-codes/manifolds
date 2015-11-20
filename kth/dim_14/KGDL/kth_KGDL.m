@@ -34,8 +34,8 @@ results = cell(length(SR_lambda_Vec),2);
     acc = [];
     
     
-    load_sub_path =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) );
-    
+    load_sub_path =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim), '/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', int2str(shift) );
+
     %Joining testing data
     n_test = (n_peo-1)*n_actions;
     
@@ -47,7 +47,7 @@ results = cell(length(SR_lambda_Vec),2);
         for pe_tr=1: n_peo
             if pe_tr~=pe_ts
                 for act=1: n_actions
-                    name_load_gp = strcat( load_sub_path, '/grass_pt_', all_people(pe_tr), '_', actions(act), '_dim', int2str(dim), '_p', num2str(p), '.h5');
+                    name_load_gp = strcat( load_sub_path, '/grass_pt_', all_people(pe_tr), '_', actions(act), '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
                     hinfo = hdf5info( char(name_load_gp) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
                     X_train(:,:,k) = one_video;                    
