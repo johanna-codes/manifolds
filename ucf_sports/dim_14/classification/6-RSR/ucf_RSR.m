@@ -1,5 +1,6 @@
 clear all
 clc
+dbstop error;
 
 
 % Sparse Coding and Dictionary Learning for Symmetric
