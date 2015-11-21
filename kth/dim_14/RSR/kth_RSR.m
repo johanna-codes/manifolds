@@ -2,9 +2,10 @@ clear all
 clc
 
 
-% Kernel Analysis over Riemannian Manifolds
-%for Visual Recognition of Actions, Pedestrians and Texture
-%WACV 2012
+% Sparse Coding and Dictionary Learning for Symmetric
+%Positive Definite Matrices: A Kernel Approach
+%ECCV 2012
+
 addpath('/home/johanna/codes/Mehrtash/harandi_eccv_2012_matlab/');% --> Wanda
 
 
@@ -30,6 +31,9 @@ load_sub_path =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/
 %Joining testing data
 n_test = (n_peo-1)*n_actions;
 
+
+prompt = 'What is segment length? ';
+SR_Lambda_input = input(prompt);
 
 for pe_ts= 1: n_peo %%One run
     X_train = zeros(dim,dim,n_test);
@@ -85,7 +89,7 @@ for pe_ts= 1: n_peo %%One run
     KX = probeKernel./repmat(sqrt(sum(probeKernel.^2)),[size(probeKernel,1) 1]);
     L1 = size(probeKernel,2);
     if (strcmpi(SPARSE_SOLVER,'CVX'))
-        SR_Lambda = 5e-1;
+        SR_Lambda = SR_Lambda_input;
         A = KD;
         Number_Visual_Codes = size(A,2);
         scX = zeros(Number_Visual_Codes,L1);
