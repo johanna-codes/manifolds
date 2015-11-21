@@ -36,7 +36,7 @@ n_test = (n_peo-1)*n_actions;
 %SR_Lambda_input = input(prompt);
 SR_Lambda_input = 1e-1;
 
-prompt = 'Beta';
+prompt = 'Beta ';
 Beta = input(prompt);
 
 for pe_ts= 1: n_peo %%One run
