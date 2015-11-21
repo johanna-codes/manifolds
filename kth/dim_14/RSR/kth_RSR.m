@@ -42,7 +42,7 @@ vec_Beta = 1:10:100;
 all_means = zeros(length(vec_Beta),1);
 
 for b=1:length(vec_Beta)
-    Beta = vec_Beta(b);
+    Beta = vec_Beta(b)
     for pe_ts= 1: n_peo %%One run
         X_train = zeros(dim,dim,n_test);
         labels_train = zeros(1,n_test);
