@@ -38,7 +38,7 @@ SR_Lambda_input = 1e-1;
 
 %prompt = 'Beta ';
 %Beta = input(prompt);
-vec_Beta = 1:10:100;
+vec_Beta = 0.1:0.1:1;
 all_means = zeros(length(vec_Beta),1);
 
 for b=1:length(vec_Beta)
@@ -103,7 +103,7 @@ for b=1:length(vec_Beta)
             scX = zeros(Number_Visual_Codes,L1);
             for tmpC1=1:L1
                 if (mod(tmpC1,10) == 1)
-                    fprintf('Working on sample %d/%d\n',tmpC1,L1);
+                    %fprintf('Working on sample %d/%d\n',tmpC1,L1);
                 end
                 cvx_begin quiet
                 variable tmp_Sparse_X(Number_Visual_Codes);
