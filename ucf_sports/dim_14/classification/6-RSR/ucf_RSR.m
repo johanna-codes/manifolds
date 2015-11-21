@@ -74,9 +74,6 @@ for b=1:length(vec_Beta)
         end
      %Testing Set only has one video
       if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-          load_svm_model = strcat( './svm_models_LED_RBF/LED_RBF_run_', int2str(video_ts), '_delta', num2str(delta),'.mat');
-          load(load_svm_model); %loading model and X_train
-      
           labels_test = act_ts;
           
           name_load_cov = strcat( load_sub_path, '/cov_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5');
