@@ -38,7 +38,7 @@ SR_Lambda_input = 1e-1;
 
 %prompt = 'Beta ';
 %Beta = input(prompt);
-vec_Beta = 0.1:0.1:1;
+vec_Beta = -5:1:1;
 all_means = zeros(length(vec_Beta),1);
 
 for b=1:length(vec_Beta)
