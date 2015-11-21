@@ -32,8 +32,12 @@ load_sub_path =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/
 n_test = (n_peo-1)*n_actions;
 
 
-prompt = 'SR_Lambda? ';
-SR_Lambda_input = input(prompt);
+%prompt = 'SR_Lambda? ';
+%SR_Lambda_input = input(prompt);
+SR_Lambda_input = 1e-1;
+
+prompt = 'Beta';
+Beta = input(prompt);
 
 for pe_ts= 1: n_peo %%One run
     X_train = zeros(dim,dim,n_test);
@@ -74,7 +78,7 @@ for pe_ts= 1: n_peo %%One run
     TestSet(1).y = labels_test;
     
     %% As per example in Code
-    Beta = 1e1;
+    
     SPARSE_SOLVER = 'CVX'; %options are CVX and SPAMS
     
     %Generate Kernel
