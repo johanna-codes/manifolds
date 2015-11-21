@@ -130,4 +130,4 @@ for pe_ts= 1: n_peo %%One run
     %pause
     
 end
-
+mean(acc)*100
