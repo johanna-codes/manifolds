@@ -32,7 +32,7 @@ load_sub_path =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/
 n_test = (n_peo-1)*n_actions;
 
 
-prompt = 'What is segment length? ';
+prompt = 'SR_Lambda? ';
 SR_Lambda_input = input(prompt);
 
 for pe_ts= 1: n_peo %%One run
