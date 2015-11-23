@@ -100,7 +100,7 @@ Beta = 1e1;
             %% As per example in Code
             
             CRR = RSR(TrainSet,TestSet,Beta,SR_Lambda_input);
-            %fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
+            %fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR)
             
             acc = [acc CRR];
         end
