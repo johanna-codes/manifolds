@@ -88,16 +88,15 @@ for video_ts= 1: n_videos %One Run
         
         
         
-        TrainSet(1).X = X_train;
-        TrainSet(1).y = labels_train;
-        
-        TestSet(1).X = X_test;
-        TestSet(1).y = labels_test;
+        trn.X = X_train;
+        trn.y = labels_train;
+        tst.X = X_test;
+        tst.y = labels_test;
         
         %% As per example in Code
         
         
-        CRR = KGDL(TrainSet, TestSet, Solver_Flag, SR_lambda,nAtoms,dict_options);
+        CRR = KGDL(trn, tst, Solver_Flag, SR_lambda,nAtoms,dict_options);
         fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
         acc = [acc CRR];
         
