@@ -45,7 +45,7 @@ load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point
 
 
 for video_ts= 1: n_videos %One Run
-    X_train = zeros(dim,best_p,n_test);
+    X_train = zeros(dim,dim,n_test);
     labels_train = zeros(1,n_test);
     k =1;
     
@@ -55,6 +55,7 @@ for video_ts= 1: n_videos %One Run
     if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
         %ts = [action_name,'_',folder_n];
         %disp(ts);
+        %Joining all The Trainin Set in Matrix X_train
         for video_tr=1: n_videos
             if (video_tr~=video_ts)
                 action_name_tr = action_seq_names(video_tr,1);
@@ -73,22 +74,18 @@ for video_ts= 1: n_videos %One Run
                 end
             end
         end
-    end
-    %Testing Set only has one video
-    if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-        action_name = action_seq_names(video_ts,1);
-        folder_ns    = action_seq_names(video_ts,2);
+        
+        %Testing Set only has one video
+        action_name_ts = action_seq_names(video_ts,1);
+        folder_n_ts    = action_seq_names(video_ts,2);
         act_ts  =  str2double( action_seq_names(video_ts,3) );
-        X_test = zeros(dim,best_p,1);
         
         labels_test = act_ts;
-        disp('Testing with: ');
-        name_load_gp = strcat( load_sub_path, '/grass_pt_', action_name, '_', folder_n, '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
-        hinfo = hdf5info( char(name_load_gp) );
-        one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-        X_test(:,:,1) = one_video;
-        
-        
+        %disp('Testing with: ');
+        name_load_gp_ts = strcat( load_sub_path, '/grass_pt_', action_name_ts, '_', folder_n_ts, '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
+        hinfo_ts = hdf5info( char(name_load_gp_ts) );
+        one_video_ts = hdf5read(hinfo_ts.GroupHierarchy.Datasets(1));
+        X_test(:,:,1) = one_video_ts;
         
         
         trn.X = X_train;
@@ -102,11 +99,6 @@ for video_ts= 1: n_videos %One Run
         CRR = KGDL(trn, tst, Solver_Flag, SR_lambda,nAtoms,dict_options);
         fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
         acc = [acc CRR];
-        
-        
-        
-        
-        %acc = [acc CRR];
     end
 end
 
