@@ -26,23 +26,23 @@ n_test =  n_videos - 2; %Problem with Run-Side_001_dim14
 scale_factor = 1;
 shift = 0;
 
-prompt = 'best p?';
-best_p= input(prompt);
+%prompt = 'best p?';
+%best_p= input(prompt);
 %best_p = 2;
 
 
 Solver_Flag = 1;  %1: SPAMS, 2: CVX
 
-SR_lambda = 1e-1;    %sparse representation parameter
+%SR_lambda = 1e-1;    %sparse representation parameter
 nAtoms = 128;        %size of the dictionary
 dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
 
 
-
+SR_lambda_vec = 0.1:0.1:1;
 acc = [];
+all_means=zeros(length(SR_lambda_vec));
 
-
-
+for sr=1:length(SR_lambda_vec)
 load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
 
 
@@ -105,9 +105,12 @@ for video_ts= 1: n_videos %One Run
     end
 end
 
-fprintf('Cross Validation Accuracy: %.1f%%.\n',mean(acc)*100);
+all_means (sr) = mean(acc)*100;
+end
 
-[SR_lambda nAtoms dict_options.L best_p]
+%fprintf('Cross Validation Accuracy: %.1f%%.\n',mean(acc)*100);
+
+%[SR_lambda nAtoms dict_options.L best_p]
 
 
 
