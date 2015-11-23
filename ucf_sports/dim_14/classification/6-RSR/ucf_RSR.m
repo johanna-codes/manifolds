@@ -47,7 +47,7 @@ Beta = 1e1;
     
     for video_ts= 1: n_videos %One Run
         X_train = zeros(dim,dim,n_test);
-        labels_train = zeros(1,ntest);
+        labels_train = zeros(1,n_test);
         k =1;
         
         action_name = action_seq_names(video_ts,1);
