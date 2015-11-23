@@ -28,7 +28,7 @@ shift = 0;
 
 %prompt = 'best p?';
 %best_p= input(prompt);
-%best_p = 2;
+best_p = 2;
 
 
 Solver_Flag = 1;  %1: SPAMS, 2: CVX
