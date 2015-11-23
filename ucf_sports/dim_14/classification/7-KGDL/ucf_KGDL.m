@@ -39,7 +39,7 @@ acc = [];
 
 
 
-load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
 
 
 for video_ts= 1: n_videos %One Run
@@ -61,8 +61,8 @@ for video_ts= 1: n_videos %One Run
                 if (~(strcmp(action_name_tr, 'Run-Side') && strcmp(folder_n_tr,'001')))
                     %tr = [action_name_tr,'_',folder_n_tr];
                     %disp(tr);
-                    name_load_cov = strcat( load_sub_path, '/cov_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '.h5');
-                    hinfo = hdf5info( char(name_load_cov) );
+                    name_load_gp = strcat( load_sub_path, '/grass_pt_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '.h5');
+                    hinfo = hdf5info( char(name_load_gp) );
                     one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
                     %disp(one_video);
                     X_train(:,:,k) = one_video;
@@ -80,8 +80,8 @@ for video_ts= 1: n_videos %One Run
         
         labels_test = act_ts;
         disp('Testing with: ');
-        name_load_cov = strcat( load_sub_path, '/cov_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5')
-        hinfo = hdf5info( char(name_load_cov) );
+        name_load_gp = strcat( load_sub_path, '/grass_pt_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5')
+        hinfo = hdf5info( char(name_load_gp) );
         one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
         X_test(:,:,1) = one_video;
         
