@@ -43,69 +43,70 @@ acc = [];
 all_means=zeros(length(SR_lambda_vec));
 
 for sr=1:length(SR_lambda_vec)
-load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
-
-
-for video_ts= 1: n_videos %One Run
-    X_train = zeros(dim,best_p,n_test);
-    labels_train = zeros(1,n_test);
-    k =1;
+    SR_lambda = SR_lambda_vec(sr);
+    load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
     
-    action_name = action_seq_names(video_ts,1);
-    folder_n    = action_seq_names(video_ts,2);
     
-    if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-        %ts = [action_name,'_',folder_n];
-        %disp(ts);
-        %Joining all The Trainin Set in Matrix X_train
-        for video_tr=1: n_videos
-            if (video_tr~=video_ts)
-                action_name_tr = action_seq_names(video_tr,1);
-                folder_n_tr    = action_seq_names(video_tr,2);
-                act_tr  =  str2double( action_seq_names(video_tr,3) );
-                if (~(strcmp(action_name_tr, 'Run-Side') && strcmp(folder_n_tr,'001')))
-                    %tr = [action_name_tr,'_',folder_n_tr];
-                    %disp(tr);
-                    name_load_gp = strcat( load_sub_path, '/grass_pt_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
-                    hinfo = hdf5info( char(name_load_gp) );
-                    one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-                    %disp(one_video);
-                    X_train(:,:,k) = one_video;
-                    labels_train(k) = act_tr;
-                    k=k+1;
+    for video_ts= 1: n_videos %One Run
+        X_train = zeros(dim,best_p,n_test);
+        labels_train = zeros(1,n_test);
+        k =1;
+        
+        action_name = action_seq_names(video_ts,1);
+        folder_n    = action_seq_names(video_ts,2);
+        
+        if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
+            %ts = [action_name,'_',folder_n];
+            %disp(ts);
+            %Joining all The Trainin Set in Matrix X_train
+            for video_tr=1: n_videos
+                if (video_tr~=video_ts)
+                    action_name_tr = action_seq_names(video_tr,1);
+                    folder_n_tr    = action_seq_names(video_tr,2);
+                    act_tr  =  str2double( action_seq_names(video_tr,3) );
+                    if (~(strcmp(action_name_tr, 'Run-Side') && strcmp(folder_n_tr,'001')))
+                        %tr = [action_name_tr,'_',folder_n_tr];
+                        %disp(tr);
+                        name_load_gp = strcat( load_sub_path, '/grass_pt_', action_name_tr, '_', folder_n_tr, '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
+                        hinfo = hdf5info( char(name_load_gp) );
+                        one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
+                        %disp(one_video);
+                        X_train(:,:,k) = one_video;
+                        labels_train(k) = act_tr;
+                        k=k+1;
+                    end
                 end
             end
+            
+            %Testing Set only has one video
+            action_name_ts = action_seq_names(video_ts,1);
+            folder_n_ts    = action_seq_names(video_ts,2);
+            act_ts  =  str2double( action_seq_names(video_ts,3) );
+            X_test = zeros(dim,best_p,1);
+            
+            labels_test = act_ts;
+            %disp('Testing with: ');
+            name_load_gp_ts = strcat( load_sub_path, '/grass_pt_', action_name_ts, '_', folder_n_ts, '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
+            hinfo_ts = hdf5info( char(name_load_gp_ts) );
+            one_video_ts = hdf5read(hinfo_ts.GroupHierarchy.Datasets(1));
+            X_test(:,:,1) = one_video_ts;
+            
+            
+            trn.X = X_train;
+            trn.y = labels_train;
+            tst.X = X_test;
+            tst.y = labels_test;
+            
+            %% As per example in Code
+            
+            
+            CRR = KGDL(trn, tst, Solver_Flag, SR_lambda,nAtoms,dict_options);
+            fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
+            acc = [acc CRR];
         end
-        
-        %Testing Set only has one video
-        action_name_ts = action_seq_names(video_ts,1);
-        folder_n_ts    = action_seq_names(video_ts,2);
-        act_ts  =  str2double( action_seq_names(video_ts,3) );
-        X_test = zeros(dim,best_p,1);
-         
-        labels_test = act_ts;
-        %disp('Testing with: ');
-        name_load_gp_ts = strcat( load_sub_path, '/grass_pt_', action_name_ts, '_', folder_n_ts, '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
-        hinfo_ts = hdf5info( char(name_load_gp_ts) );
-        one_video_ts = hdf5read(hinfo_ts.GroupHierarchy.Datasets(1));
-        X_test(:,:,1) = one_video_ts;
-        
-        
-        trn.X = X_train;
-        trn.y = labels_train;
-        tst.X = X_test;
-        tst.y = labels_test;
-        
-        %% As per example in Code
-        
-        
-        CRR = KGDL(trn, tst, Solver_Flag, SR_lambda,nAtoms,dict_options);
-        fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
-        acc = [acc CRR];
     end
-end
-
-all_means (sr) = mean(acc)*100;
+    
+    all_means (sr) = mean(acc)*100;
 end
 
 %fprintf('Cross Validation Accuracy: %.1f%%.\n',mean(acc)*100);
