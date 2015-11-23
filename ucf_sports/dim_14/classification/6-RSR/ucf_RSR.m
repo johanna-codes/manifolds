@@ -34,13 +34,13 @@ SR_Lambda_input = 1e-1;
 %Beta = input(prompt);
 vec_Beta = 1:1:10;
 all_means = zeros(length(vec_Beta),1);
-acc = [];
+
 
 
 for b=1:length(vec_Beta)
     Beta = vec_Beta(b)
     load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
-    
+    acc = [];
     
     for video_ts= 1: n_videos %One Run
         X_train = zeros(dim,dim,n_test);
@@ -79,8 +79,8 @@ for b=1:length(vec_Beta)
             act_ts  =  str2double( action_seq_names(video_ts,3) );
             
             labels_test = act_ts;
-            disp('Testing with: ');
-            name_load_cov = strcat( load_sub_path, '/cov_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5')
+            %disp('Testing with: ');
+            %name_load_cov = strcat( load_sub_path, '/cov_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5')
             hinfo = hdf5info( char(name_load_cov) );
             one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
             X_test(:,:,1) = one_video;
@@ -97,12 +97,14 @@ for b=1:length(vec_Beta)
             %% As per example in Code
             
             CRR = RSR(TrainSet,TestSet,Beta,SR_Lambda_input);
-            fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
+            %fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
             
             acc = [acc CRR];
         end
     end
     
-    all_means(b) = CRR*100;
+    acc
+    size(acc)
+    all_means(b) =mean(acc)*100;
 end
 
