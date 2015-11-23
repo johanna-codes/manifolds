@@ -28,13 +28,13 @@ scale_factor = 1;
 shift = 0;
 
 
-%prompt = 'SR_Lambda? ';
-%SR_Lambda_input = input(prompt);
-SR_Lambda_input = 0.5;
+prompt = 'SR_Lambda? ';
+SR_Lambda_input = input(prompt);
+%SR_Lambda_input = 0.5;
 
-prompt = 'Beta ';
-Beta = input(prompt);
-%Beta = 1e1;
+%prompt = 'Beta ';
+%Beta = input(prompt);
+Beta = 20;
 
 %vec_Beta = 1:1:10;
 %all_means = zeros(length(vec_Beta),1);
