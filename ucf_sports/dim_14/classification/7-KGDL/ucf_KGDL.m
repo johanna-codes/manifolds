@@ -3,11 +3,12 @@ clc
 dbstop error;
 
 
-% Sparse Coding and Dictionary Learning for Symmetric
-%Positive Definite Matrices: A Kernel Approach
-%ECCV 2012
+% Dictionary Learning and Sparse Coding on
+% Grassmann Manifolds: An Extrinsic Solution
+% ICCV 2013
 
-addpath('/home/johanna/codes/Mehrtash/harandi_eccv_2012_matlab/');% --> Wanda
+addpath('/home/johanna/codes/Mehrtash/harandi_iccv_2013');% --> Wanda
+addpath('/home/johanna/codes/Mehrtash/harandi_iccv_2013/iccv_ext_func');% --> Wanda
 
 path  = '~/codes/codes-git/manifolds/trunk/ucf_sports/';
 dataset_path  = '~/codes/datasets_codes/my_ucf_sports_actions/';
