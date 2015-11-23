@@ -26,10 +26,10 @@ scale_factor = 1;
 shift = 0;
 
 
-%prompt = 'SR_Lambda? ';
-%SR_Lambda_input = input(prompt);
+prompt = 'SR_Lambda? ';
+SR_Lambda_input = input(prompt);
 %SR_Lambda_input = 1e-1;
-SR_Lambda_input = 1;
+%SR_Lambda_input = 1;
 
 %prompt = 'Beta ';
 %Beta = input(prompt);
