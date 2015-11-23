@@ -72,37 +72,37 @@ for b=1:length(vec_Beta)
                 end
             end
         end
-     %Testing Set only has one video
-      if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
-          action_name = action_seq_names(video_ts,1);
-          folder_ns    = action_seq_names(video_ts,2);
-          act_ts  =  str2double( action_seq_names(video_ts,3) );
-          
-          labels_test = act_ts;
-          disp('Testing with: ');
-          name_load_cov = strcat( load_sub_path, '/cov_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5')
-          hinfo = hdf5info( char(name_load_cov) );
-          one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-          X_test(:,:,1) = one_video;
-
-      end
-    
-    
-    TrainSet(1).X = X_train;
-    TrainSet(1).y = labels_train;
-    
-    TestSet(1).X = X_test;
-    TestSet(1).y = labels_test;
-    
-    %% As per example in Code
-    
-     CRR = RSR(TrainSet,TestSet,Beta,SR_Lambda_input);  
-     fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
-
-     acc = [acc CRR];
-    
+        %Testing Set only has one video
+        if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
+            action_name = action_seq_names(video_ts,1);
+            folder_ns    = action_seq_names(video_ts,2);
+            act_ts  =  str2double( action_seq_names(video_ts,3) );
+            
+            labels_test = act_ts;
+            disp('Testing with: ');
+            name_load_cov = strcat( load_sub_path, '/cov_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5')
+            hinfo = hdf5info( char(name_load_cov) );
+            one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
+            X_test(:,:,1) = one_video;
+            
+            
+            
+            
+            TrainSet(1).X = X_train;
+            TrainSet(1).y = labels_train;
+            
+            TestSet(1).X = X_test;
+            TestSet(1).y = labels_test;
+            
+            %% As per example in Code
+            
+            CRR = RSR(TrainSet,TestSet,Beta,SR_Lambda_input);
+            fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
+            
+            acc = [acc CRR];
+        end
     end
     
-     all_means(b) = CRR*100;  
+    all_means(b) = CRR*100;
 end
 
