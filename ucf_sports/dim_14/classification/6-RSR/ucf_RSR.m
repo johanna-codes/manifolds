@@ -105,6 +105,8 @@ Beta = 1e1;
             acc = [acc CRR];
         end
     end
+    SR_Lambda_input
+    Beta
     mean(acc)*100
     %acc
     %size(acc)
