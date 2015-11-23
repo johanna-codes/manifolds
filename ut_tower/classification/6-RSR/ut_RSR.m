@@ -51,7 +51,7 @@ for video_ts= 1: num_videos
     k =1;
     
     % Joining Training Data
-        for video_tr=1: n_videos
+        for video_tr=1: num_videos
             if (video_tr~=video_ts)
                 action_name_tr = action_seq_names(video_tr,1);
                 act_tr  =  str2double( action_seq_names(video_tr,2) );
