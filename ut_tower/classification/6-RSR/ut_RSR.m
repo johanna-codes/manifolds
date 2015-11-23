@@ -8,6 +8,8 @@ clear all
 clc
 dbstop error;
 
+addpath('/home/johanna/codes/Mehrtash/harandi_eccv_2012_matlab/');% --> Wanda
+
 
 %addpath('/media/johanna/HD1T/Toolbox/libsvm-3.20/matlab'); %--> Home
 addpath('/home/johanna/toolbox/libsvm-3.20/matlab');% --> Wanda
