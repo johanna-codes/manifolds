@@ -19,6 +19,7 @@ action_seq_names = list_video_sequences;
 
 dim =14;
 num_videos = 108; %From the dataset description (108).
+n_test =  num_videos - 1; 
 
 
 scale_factor = 1;
