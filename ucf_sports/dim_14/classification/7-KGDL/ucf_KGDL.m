@@ -46,7 +46,7 @@ load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point
 
 for video_ts= 1: n_videos %One Run
     X_train = zeros(dim,best_p,n_test);
-    labels_train = zeros(n_test,1);
+    labels_train = zeros(1,n_test);
     k =1;
     
     action_name = action_seq_names(video_ts,1);
