@@ -45,7 +45,7 @@ load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point
 
 
 for video_ts= 1: n_videos %One Run
-    X_train = zeros(dim,dim,n_test);
+    X_train = zeros(dim,best_p,n_test);
     labels_train = zeros(1,n_test);
     k =1;
     
@@ -79,7 +79,8 @@ for video_ts= 1: n_videos %One Run
         action_name_ts = action_seq_names(video_ts,1);
         folder_n_ts    = action_seq_names(video_ts,2);
         act_ts  =  str2double( action_seq_names(video_ts,3) );
-        
+        X_test = zeros(dim,best_p,1);
+         
         labels_test = act_ts;
         %disp('Testing with: ');
         name_load_gp_ts = strcat( load_sub_path, '/grass_pt_', action_name_ts, '_', folder_n_ts, '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
