@@ -83,9 +83,8 @@ results = cell(length(SR_lambda_Vec),2);
         SR_lambda = 1e-1;    %sparse representation parameter
         nAtoms = 128;        %size of the dictionary
         dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
-        
+     
         CRR = KGDL(trn, tst, Solver_Flag, SR_lambda,nAtoms,dict_options);
-
         acc = [acc CRR];
         
         %disp('Press a Key');
