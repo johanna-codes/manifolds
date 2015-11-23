@@ -74,16 +74,15 @@ Beta = 1e1;
                     end
                 end
             end
-        end
+        
         %Testing Set only has one video
-        if (~(strcmp(action_name,'Run-Side') && strcmp(folder_n,'001')))
             action_name = action_seq_names(video_ts,1);
             folder_ns    = action_seq_names(video_ts,2);
             act_ts  =  str2double( action_seq_names(video_ts,3) );
             
             labels_test = act_ts;
             %disp('Testing with: ');
-            %name_load_cov = strcat( load_sub_path, '/cov_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5')
+            name_load_cov = strcat( load_sub_path, '/cov_', action_name, '_', folder_n, '_dim', int2str(dim), '.h5');
             hinfo = hdf5info( char(name_load_cov) );
             one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
             X_test(:,:,1) = one_video;
