@@ -28,17 +28,20 @@ shift = 0;
 
 %prompt = 'SR_Lambda? ';
 %SR_Lambda_input = input(prompt);
-SR_Lambda_input = 1e-1;
+%SR_Lambda_input = 1e-1;
+SR_Lambda_input = 5e-1;
 
 %prompt = 'Beta ';
 %Beta = input(prompt);
-vec_Beta = 1:1:10;
-all_means = zeros(length(vec_Beta),1);
+Beta = 1e1;
+
+%vec_Beta = 1:1:10;
+%all_means = zeros(length(vec_Beta),1);
 
 
 
-for b=1:length(vec_Beta)
-    Beta = vec_Beta(b)
+%for b=1:length(vec_Beta)
+    %Beta = vec_Beta(b)
     load_sub_path =strcat(path, 'dim_', int2str(dim), '/cov_matrices/one-cov-mat/scale', int2str(scale_factor), '-shift', int2str(shift) );
     acc = [];
     
@@ -103,8 +106,8 @@ for b=1:length(vec_Beta)
         end
     end
     
-    acc
-    size(acc)
-    all_means(b) =mean(acc)*100;
-end
+    %acc
+    %size(acc)
+    %all_means(b) =mean(acc)*100;
+%end
 
