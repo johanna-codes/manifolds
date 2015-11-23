@@ -26,7 +26,9 @@ n_test =  n_videos - 2; %Problem with Run-Side_001_dim14
 scale_factor = 1;
 shift = 0;
 
-best_p = 2;
+prompt = 'best p?';
+best_p= input(prompt);
+%best_p = 2;
 
 
 Solver_Flag = 1;  %1: SPAMS, 2: CVX
@@ -104,6 +106,8 @@ for video_ts= 1: n_videos %One Run
 end
 
 fprintf('Cross Validation Accuracy: %.1f%%.\n',mean(acc)*100);
+
+[SR_lambda nAtoms dict_options.L best_p]
 
 
 
