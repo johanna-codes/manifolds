@@ -96,7 +96,7 @@ for video_ts= 1: n_videos %One Run
         %% As per example in Code
         
         
-        CRR = KGDL(trn, tst, Solver_Flag, SR_lambda,nAtoms,dict_options);
+        CRR = KGDL(TrainSet, TestSet, Solver_Flag, SR_lambda,nAtoms,dict_options);
         fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR);
         acc = [acc CRR];
         
