@@ -79,6 +79,7 @@ for video_ts= 1: n_videos %One Run
         action_name = action_seq_names(video_ts,1);
         folder_ns    = action_seq_names(video_ts,2);
         act_ts  =  str2double( action_seq_names(video_ts,3) );
+        X_test = zeros(dim,best_p,1);
         
         labels_test = act_ts;
         disp('Testing with: ');
