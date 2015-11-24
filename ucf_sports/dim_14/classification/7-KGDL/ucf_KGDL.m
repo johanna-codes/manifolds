@@ -44,7 +44,7 @@ acc = [];
 all_means=zeros(length(nAtoms_vec ),1);
 
 for sr=1:length(nAtoms_vec )
-    nAtoms = nAtoms_vec(i);
+    nAtoms = nAtoms_vec(sr);
     %SR_lambda = SR_lambda_vec(sr)
     load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
     
