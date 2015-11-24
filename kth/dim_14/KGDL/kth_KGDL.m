@@ -28,7 +28,7 @@ SR_lambda_Vec = 1:1:10; %sparse representation parameter
 results = cell(length(SR_lambda_Vec),2);
 
 
-%for i=1:length(SR_lambda_Vec)
+for i=1:length(SR_lambda_Vec)
     
     %SR_lambda = SR_lambda_Vec(i);   %sparse representation parameterc = 1;
     acc = [];
@@ -93,9 +93,9 @@ results = cell(length(SR_lambda_Vec),2);
     end
         fprintf('Correct recognition accuracy with a dictionary of size %d : %.1f%%.\n',nAtoms,100*mean(acc));
 
-    %results{i,1} = SR_lambda;
-    %results{i,2} = acc;
-%end
+    results{i,1} = SR_lambda;
+    results{i,2} = acc;
+end
 
 
 
