@@ -30,7 +30,7 @@ results = cell(length(SR_lambda_Vec),2);
 
 for i=1:length(SR_lambda_Vec)
     
-    %SR_lambda = SR_lambda_Vec(i);   %sparse representation parameterc = 1;
+    SR_lambda = SR_lambda_Vec(i);   %sparse representation parameterc = 1;
     acc = [];
     
     
