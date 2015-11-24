@@ -43,7 +43,7 @@ acc = [];
 all_means=zeros(length(SR_lambda_vec),1);
 
 for sr=1:length(SR_lambda_vec)
-    SR_lambda = SR_lambda_vec(sr);
+    SR_lambda = SR_lambda_vec(sr)
     load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
     
     
