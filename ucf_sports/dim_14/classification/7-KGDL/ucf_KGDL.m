@@ -33,17 +33,19 @@ best_p = 2;
 
 Solver_Flag = 1;  %1: SPAMS, 2: CVX
 
-%SR_lambda = 1e-1;    %sparse representation parameter
-nAtoms = 128;        %size of the dictionary
+SR_lambda = 1e-3;    %sparse representation parameter
+%nAtoms = 128;        %size of the dictionary
 dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
 
 
-SR_lambda_vec = 0.001:0.001:0.001*10;
+%SR_lambda_vec = 0.001:0.001:0.001*10;
+nAtoms_vec = [16 32 64 128 256];
 acc = [];
-all_means=zeros(length(SR_lambda_vec),1);
+all_means=zeros(length(nAtoms_vec ),1);
 
-for sr=1:length(SR_lambda_vec)
-    SR_lambda = SR_lambda_vec(sr)
+for sr=1:length(nAtoms_vec )
+    nAtoms = nAtoms_vec(i);
+    %SR_lambda = SR_lambda_vec(sr)
     load_sub_path =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift) );
     
     
