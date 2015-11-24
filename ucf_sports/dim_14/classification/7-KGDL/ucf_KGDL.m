@@ -33,13 +33,13 @@ best_p = 2;
 
 Solver_Flag = 1;  %1: SPAMS, 2: CVX
 
-SR_lambda = 1e-3;    %sparse representation parameter
+SR_lambda = 0.1;    %sparse representation parameter
 %nAtoms = 128;        %size of the dictionary
 dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
 
 
 %SR_lambda_vec = 0.001:0.001:0.001*10;
-nAtoms_vec = [16 32 64 128 256];
+nAtoms_vec = [128];
 acc = [];
 all_means=zeros(length(nAtoms_vec ),1);
 
