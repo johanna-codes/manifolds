@@ -38,7 +38,7 @@ nAtoms = 128;        %size of the dictionary
 dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
 
 
-SR_lambda_vec = [1e-2 1e-3 1e-4 1e-5];
+SR_lambda_vec = 0.001:0.001:0.001*10;
 acc = [];
 all_means=zeros(length(SR_lambda_vec),1);
 
