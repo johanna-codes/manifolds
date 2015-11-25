@@ -33,7 +33,7 @@ best_p = 2;
 Solver_Flag = 1;  %1: SPAMS, 2: CVX
 
 %SR_lambda = 1e-3;    %sparse representation parameter
-nAtoms = 128;        %size of the dictionary
+nAtoms = 64;        %size of the dictionary
 dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
 
 
