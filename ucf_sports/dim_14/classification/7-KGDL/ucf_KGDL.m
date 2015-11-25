@@ -39,7 +39,7 @@ dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
 
 
 %SR_lambda_vec = 0.001:0.001:0.001*10;
-nAtoms_vec = [32 64 96 128];
+nAtoms_vec = [128];
 acc = [];
 all_means=zeros(length(nAtoms_vec ),1);
 
