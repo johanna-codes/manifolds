@@ -52,7 +52,8 @@ for sr=1:length(nAtoms_vec )
     acc = [];
     
     for video_ts= 1: num_videos
-        X_train = zeros(dim,dim,n_test);
+        
+        X_train = zeros(dim,best_p,n_test);
         labels_train = zeros(1,n_test);
         k =1;
         
