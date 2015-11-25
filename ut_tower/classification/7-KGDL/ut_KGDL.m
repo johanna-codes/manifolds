@@ -10,9 +10,7 @@ dbstop error;
 addpath('/home/johanna/codes/Mehrtash/harandi_iccv_2013');% --> Wanda
 addpath('/home/johanna/codes/Mehrtash/harandi_iccv_2013/iccv_ext_func');% --> Wanda
 
-path  = '~/codes/codes-git/manifolds/trunk/ucf_sports/';
-dataset_path  = '~/codes/datasets_codes/my_ucf_sports_actions/';
-
+path  = '~/codes/codes-git/manifolds/trunk/ut_tower/'; % --> Wanda
 %home
 %path_dataset = '/media/johanna/HD1T/codes/datasets_codes/my_ucf_sports_actions/';
 
