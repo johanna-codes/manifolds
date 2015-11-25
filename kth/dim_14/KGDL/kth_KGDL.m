@@ -28,7 +28,7 @@ nAtoms = 128;        %size of the dictionary
 dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
      
 
-SR_lambda_Vec = 1:1:10; %sparse representation parameter
+SR_lambda_Vec = 0.1:0.1:1; %sparse representation parameter
 results = cell(length(SR_lambda_Vec),2);
 
 
