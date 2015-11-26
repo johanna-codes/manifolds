@@ -27,7 +27,7 @@ shift = 0;
 
 %prompt = 'best p?';
 %best_p= input(prompt);
-best_p = 2;
+best_p = 4;
 
 
 Solver_Flag = 1;  %1: SPAMS, 2: CVX
@@ -38,7 +38,7 @@ dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
 
 
 SR_lambda_vec = 0.1:0.1:1;
-nAtoms_vec = [128];
+%nAtoms_vec = [128];
 all_means=zeros(length(SR_lambda_vec ),1);
 
 
