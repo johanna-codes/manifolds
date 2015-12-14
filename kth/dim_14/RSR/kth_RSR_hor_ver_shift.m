@@ -20,7 +20,7 @@ shift_train = 0;
 n_actions = size(actions,1);
 n_peo =  size(all_people,1);
 sc = 1;
-acc = [];
+
 
 
 load_sub_path_train =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift_train) );
@@ -30,12 +30,14 @@ n_test = (n_peo-1)*n_actions;
 
 SR_Lambda_input = 1e-1;
 best_Beta = 1;
-vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
+Beta = best_Beta;
 
+%vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
+vec_shift = [0];
 all_means_shifts = zeros(length(vec_shift),1);
-
+ 
 for s=1:length(vec_shift) %% Change for Hor_ver Shift
-    Beta = best_Beta;
+    acc = [];
     for pe_ts= 1: n_peo %%One run
         X_train = zeros(dim,dim,n_test);
         labels_train = zeros(1,n_test);
@@ -94,3 +96,4 @@ for s=1:length(vec_shift) %% Change for Hor_ver Shift
     end
     all_means_shifts(s) = mean(acc)*100;
 end
+[ vec_shift' all_means_shifts ]
