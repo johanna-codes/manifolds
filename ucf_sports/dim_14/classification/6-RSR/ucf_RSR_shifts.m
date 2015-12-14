@@ -97,7 +97,7 @@ for s=1:length(vec_shift)
             
             %% As per example in Code
             
-            CRR = RSR(TrainSet,TestSet,Beta,SR_Lambda_input);
+            CRR = RSR(TrainSet,TestSet,best_Beta,SR_Lambda_input);
             %fprintf('Correct recognition accuracy with a labeled dictionary : %.1f%%.\n',100*CRR)
             
             acc = [acc CRR];
