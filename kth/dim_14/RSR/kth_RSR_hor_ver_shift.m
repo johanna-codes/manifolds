@@ -59,11 +59,13 @@ for s=1:length(vec_shift) %% Change for Hor_ver Shift
         
         %Joining testing data. Esto debe cambiar
         
-        
+
         shift_test = vec_shift(s);
         load_sub_path_test =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift_test) );
 
-        j=1;
+        sprintf('Shift = %d ', shift_test);
+        j=1;        
+        
         labels_test = zeros(1,n_actions); %I test with one person and all his/hers actions
         X_test = zeros(dim,dim,n_actions);
         for act_ts = 1:n_actions
