@@ -41,7 +41,7 @@ SR_Lambda_input = 1e-1;
 %Beta = input(prompt);
 %vec_Beta = 1:1:10;
 best_Beta = 1;
-all_means = zeros(length(vec_Beta),1);
+%all_means = zeros(length(vec_Beta),1);
 
 %for b=1:length(vec_Beta) %% Change for Hor_ver Shift
     Beta = best_Beta;
