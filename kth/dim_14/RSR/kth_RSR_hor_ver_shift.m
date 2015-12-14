@@ -32,8 +32,8 @@ SR_Lambda_input = 1e-1;
 best_Beta = 1;
 Beta = best_Beta;
 
-%vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
-vec_shift = [0];
+vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
+%vec_shift = [0];
 all_means_shifts = zeros(length(vec_shift),1);
  
 for s=1:length(vec_shift) %% Change for Hor_ver Shift
