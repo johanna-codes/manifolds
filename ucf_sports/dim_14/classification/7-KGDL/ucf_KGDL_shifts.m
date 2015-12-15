@@ -38,7 +38,8 @@ dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
 nAtoms = 128;
 
 load_sub_path_train =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift_train) );
-
+vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
+all_means_shifts = zeros(length(vec_shift),1);
 
 for s=1:length(vec_shift)
     
