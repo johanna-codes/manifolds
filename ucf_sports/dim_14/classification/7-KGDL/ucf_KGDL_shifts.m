@@ -40,7 +40,7 @@ nAtoms = 128;
 load_sub_path_train =strcat(path, 'dim_', int2str(dim), '/grass_points/one-grass-point/scale', num2str(scale_factor), '-shift', int2str(shift_train) );
 
 
-for s=1:length(nAtoms_vec )
+for s=1:length(vec_shift)
     
      shift_test = vec_shift(s);
      sprintf('Shift = %5.2f ', shift_test)
