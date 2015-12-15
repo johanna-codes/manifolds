@@ -1,0 +1,108 @@
+clear all
+clc
+
+
+% Dictionary Learning and Sparse Coding on
+% Grassmann Manifolds: An Extrinsic Solution
+% ICCV 2013
+addpath('/home/johanna/codes/Mehrtash/harandi_iccv_2013');% --> Wanda
+addpath('/home/johanna/codes/Mehrtash/harandi_iccv_2013/iccv_ext_func');% --> Wanda
+
+path  = '~/codes/codes-git/manifolds/trunk/kth/dim_14/';
+dim = 14;
+best_p = 7; %For KTH. Taken from the experiments with the KTH.
+
+
+actions = importdata('actionNames.txt');
+all_people = importdata('people_list.txt');
+scale_factor = 1;
+shift_train = 0;
+sc = 1;
+load_sub_path_train =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim), '/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', int2str(shift_train) );
+
+
+n_actions = size(actions,1);
+n_peo =  size(all_people,1);
+Solver_Flag = 1;  %1: SPAMS, 2: CVX
+%SR_lambda = 1e-1;    %sparse representation parameter
+nAtoms = 128;        %size of the dictionary
+dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
+SR_lambda = 0.2;
+
+vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
+all_means_shifts = zeros(length(vec_shift),1);
+
+
+
+
+
+for s=1:length(vec_shift)
+    
+    shift_test = vec_shift(s);
+    sprintf('Shift = %5.2f ', shift_test)
+
+
+    acc = [];
+    %Joining testing data
+    n_test = (n_peo-1)*n_actions;
+    
+    load_sub_path_test =strcat(path, 'grass_points/kth-grass-point-one-dim', int2str(dim), '/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', int2str(shift_test) );
+
+    
+    
+    for pe_ts= 1: n_peo %%One run
+        X_train = zeros(dim,best_p,n_test);
+        labels_train = zeros(1,n_test);
+        k =1;
+        for pe_tr=1: n_peo
+            if pe_tr~=pe_ts
+                for act=1: n_actions
+                    name_load_gp = strcat( load_sub_path_train, '/grass_pt_', all_people(pe_tr), '_', actions(act), '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
+                    hinfo = hdf5info( char(name_load_gp) );
+                    one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
+                    X_train(:,:,k) = one_video;                    
+                    labels_train(k) = act;
+                    k=k+1;
+                end
+            end
+        end
+        
+        %Joining testing data
+        j=1;
+        labels_test = zeros(1,n_actions); %I test with one person and all his/hers actions
+        X_test = zeros(dim,best_p,n_actions);
+        for act_ts = 1:n_actions
+            name_load_gp = strcat( load_sub_path_test, '/grass_pt_', all_people(pe_ts), '_', actions(act_ts), '_dim', int2str(dim), '_p', num2str(best_p), '.h5');
+            hinfo = hdf5info( char(name_load_gp) );
+            one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
+            X_test(:,:,j) = one_video;    
+            labels_test(j) = act_ts;
+            j = j+1;
+        end
+        
+        
+        
+        trn.X = X_train;
+        trn.y = labels_train;
+        tst.X = X_test;
+        tst.y = labels_test;
+        
+        %% As per example in Code
+        
+        CRR = KGDL(trn, tst, Solver_Flag, SR_lambda,nAtoms,dict_options);
+        acc = [acc CRR];
+        
+        %disp('Press a Key');
+        %pause
+        
+    end
+        %fprintf('Correct recognition accuracy with a dictionary of size %d : %.1f%%.\n',nAtoms,100*mean(acc));
+        all_means_shifts(s) = mean(acc)*100;
+
+end
+
+[ vec_shift' all_means_shifts ]
+
+
+
+

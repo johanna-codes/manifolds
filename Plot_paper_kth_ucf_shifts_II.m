@@ -112,18 +112,24 @@ set(gcf,'PaperPosition', myfiguresize);
 
 %% UT_Tower d_led, K_led_poly, GMM & FV
 figure()
-LED_ut          = [79.6296   77.7778   83.3333   78.7037   75.0000   73.1481   74.0741   79.6296   81.4815   78.7037   81.4815 ];
+LED_ut           = [79.6296   77.7778   83.3333   78.7037   75.0000   73.1481   74.0741   79.6296   81.4815   78.7037   81.4815 ];
 %PM_ut           = [61.1111   68.5185   67.5926   74.0741   80.5556   76.8519   75.0000   76.8519   78.7037   80.5556   74.0741 ];
-LED_Poly_ut     = [48.1481   62.0370   70.3704   76.8519   87.9630   87.9630   87.0370   85.1852   82.4074   75.9259   59.2593 ];
-Proj_rbf_ut     = [11.1111   12.9630   18.5185   35.1852   79.6296   79.6296   75.9259   50.0000   34.2593   29.6296   22.2222 ];
+LED_Poly_ut      = [48.1481   62.0370   70.3704   76.8519   87.9630   87.9630   87.0370   85.1852   82.4074   75.9259   59.2593 ];
+Proj_rbf_ut      = [11.1111   12.9630   18.5185   35.1852   79.6296   79.6296   75.9259   50.0000   34.2593   29.6296   22.2222 ];
+
+KSR_spd_ut       = [54.6296   66.6667   72.2222   77.7778   81.4815   81.4815   82.4074   77.7778   75.0000   70.3704   58.3333];
+
 %GMM_ut          = [60.1852   75.0000   86.1111   87.0370   90.7407   87.9630   87.9630   85.1852   82.4074   74.0741   61.1111 ];
-FV_ut           = [61.6822   76.6355   85.9813   90.6542   91.5888   92.5234   93.4579   89.7196   88.7850   78.5047   60.7477 ];
+FV_ut            = [61.6822   76.6355   85.9813   90.6542   91.5888   92.5234   93.4579   89.7196   88.7850   78.5047   60.7477 ];
 
 plot(vec_shift,LED_ut, '-kh', 'LineWidth', 3,'MarkerSize', 10);
 hold on
 %plot(vec_shift,PM_ut, '-cv', 'LineWidth', 3,'MarkerSize', 10);
 plot(vec_shift,LED_Poly_ut, '--o', 'color', [0 0.5 0],  'LineWidth', 3,'MarkerSize', 10);
 plot(vec_shift,Proj_rbf_ut,  '-s', 'color',[102/255 0/255 51/255],  'LineWidth', 3,'MarkerSize', 10);
+
+plot(vec_shift, KSR_spd_ut,  '--xb', 'LineWidth', 3,'MarkerSize', 10);
+
 %plot(vec_shift,GMM_ut, ':>', 'color', [1 0.5 0], 'LineWidth', 3,'MarkerSize', 10);
 plot(vec_shift,FV_ut, '-.m+', 'LineWidth', 3,'MarkerSize', 10);
 
@@ -131,7 +137,7 @@ title('UT-Tower','FontSize',20)
 xlim([-25 25])
 ylim([10 105])
 %l = legend('$d_{spd}$', '$d_{ls}$', '$K_{spd}^{poly}$', '$K_{ls}^{rbf}$', 'GMM','FV','Location','north', 'orientation', 'horizontal');
-l = legend('$d_{spd}$', '$K_{spd}^{poly}$', '$K_{ls}^{rbf}$', 'FV','Location','north', 'orientation', 'horizontal');
+l = legend('$d_{spd}$', '$K_{spd}^{poly}$', '$K_{ls}^{rbf}$', 'KSR$_{spd}$', 'FV','Location','north', 'orientation', 'horizontal');
 set(l,'Interpreter','Latex');
 ylabel('accuracy (%)','FontSize',20)
 xlabel('shift (%)','FontSize',20)
