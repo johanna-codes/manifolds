@@ -36,7 +36,6 @@ nAtoms = 64;        %size of the dictionary
 dict_options.L = 20; %number of non-zero elements in OMP for dictionary learning
 
 
-all_means=zeros(length(SR_lambda_vec ),1);
 SR_lambda = 0.2;
 
 load_sub_path_train =strcat(path, 'grass_points/one-grass-point/scale', int2str(scale_factor), '-shift', int2str(shift_train) );
