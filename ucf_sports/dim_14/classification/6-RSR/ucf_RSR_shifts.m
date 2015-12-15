@@ -107,3 +107,6 @@ for s=1:length(vec_shift)
     
 end
 
+[ vec_shift' all_means_shifts ]
+
+

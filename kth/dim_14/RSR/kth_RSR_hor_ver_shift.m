@@ -35,12 +35,12 @@ Beta = best_Beta;
 vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
 %vec_shift = [0];
 all_means_shifts = zeros(length(vec_shift),1);
- 
-for s=1:length(vec_shift) 
-     shift_test = vec_shift(s);
-     load_sub_path_test =strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift_test) );
 
-     sprintf('Shift = %5.2f ', shift_test)
+for s=1:length(vec_shift)
+    shift_test = vec_shift(s);
+    load_sub_path_test = strcat(path, 'cov_matrices/kth-one-cov-mat-dim', int2str(dim), '/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift_test) );
+    
+    sprintf('Shift = %5.2f ', shift_test)
     acc = [];
     for pe_ts= 1: n_peo %%One run
         X_train = zeros(dim,dim,n_test);
@@ -61,10 +61,10 @@ for s=1:length(vec_shift)
             end
         end
         
-        %Joining testing data.         
-
-       
-        j=1;        
+        %Joining testing data.
+        
+        
+        j=1;
         
         labels_test = zeros(1,n_actions); %I test with one person and all his/hers actions
         X_test = zeros(dim,dim,n_actions);
@@ -89,7 +89,7 @@ for s=1:length(vec_shift)
         
         %% As per example in Code. RSR
         CRR = RSR(TrainSet,TestSet,Beta,SR_Lambda_input);
-
+        
         acc = [acc CRR];
         
         %disp('Press a Key');

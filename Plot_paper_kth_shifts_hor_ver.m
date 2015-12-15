@@ -12,6 +12,7 @@ LED_Poly_kth =    [52.0000   55.3333   64.0000   82.6667   87.3333   92.0000   8
 Proj_rbf_kth =    [41.3333   48.6667   52.6667   66.0000   70.6667   76.0000   71.3333   66.6667   46.6667   47.3333   41.3333 ];
 GMM_kth =         [43.3333   56.6667   71.3333   84.6667   90.0000   86.6667   78.6667   78.6667   76.6667   68.6667   65.3333 ];
 FV_kth =          [53.3333   62.6667   78.0000   90.6667   94.6667   96.6667   95.3333   92.6667   88.0000   84.6667   80.0000 ];
+KSR_spd_kth =     [57.3333   62.0000   70.0000   81.3333   82.0000   80.0000   80.0000   71.3333   54.6667   54.6667   52.6667 ];
 
 %all = [LED; LED_Poly; GMM_all_acc; FV_all_acc ];
 plot(vec_shift,LED_kth, '-kh', 'LineWidth', 3,'MarkerSize', 10);
@@ -19,14 +20,20 @@ hold on
 plot(vec_shift,PM_kth, '-cv', 'LineWidth', 3,'MarkerSize', 10);
 plot(vec_shift,LED_Poly_kth,  '--o', 'color', [0 0.5 0] ,  'LineWidth', 3,'MarkerSize', 10);
 plot(vec_shift,Proj_rbf_kth,  '-s', 'color',[102/255 0/255 51/255],  'LineWidth', 3,'MarkerSize', 10);
+plot(vec_shift, KSR_spd_kth,  '--xb', 'LineWidth', 3,'MarkerSize', 10);
+
+
 plot(vec_shift,GMM_kth, ':>', 'color', [1 0.5 0], 'LineWidth', 3,'MarkerSize', 10);
 plot(vec_shift,FV_kth, '-.m+', 'LineWidth', 3,'MarkerSize', 10);
+
+
+
 
 title('KTH','FontSize',20)
 xlim([-25 25])
 ylim([30 110])
 %l = legend('$d_{spd}$','$d_{ls}$','$K_{spd}^{poly}$', '$K_{ls}^{rbf}$','FV','Location','north', 'orientation', 'horizontal');
-l = legend('$d_{spd}$','$d_{ls}$', '$K_{spd}^{poly}$', '$K_{ls}^{rbf}$', 'GMM','FV','Location','north', 'orientation', 'horizontal');
+l = legend('$d_{spd}$','$d_{ls}$', '$K_{spd}^{poly}$', '$K_{ls}^{rbf}$', 'KSR$_{spd}$', 'GMM','FV','Location','north', 'orientation', 'horizontal');
 set(l,'Interpreter','Latex');
 ylabel('accuracy (%)','FontSize',20)
 xlabel('both shifts (%)','FontSize',20)
@@ -48,7 +55,7 @@ set(gcf,'PaperPosition', myfiguresize);
 %home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/suplementary_material/images/experiments/both_shifts_kth','-depsc2','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/suplementary_material/v2/images/experiments/both_shifts_kth','-depsc2','-r300');
+%print('/home/johanna/latex-svn/wacv_2016_b/suplementary_material/v2/images/experiments/both_shifts_kth','-depsc2','-r300');
 
 
 %% KTH. Horizontal Shift
@@ -95,7 +102,7 @@ set(gcf,'PaperPosition', myfiguresize);
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/suplementary_material/images/experiments/hor_shift_kth','-depsc2','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/suplementary_material/v2/images/experiments/hor_shift_kth','-depsc2','-r300');
+%print('/home/johanna/latex-svn/wacv_2016_b/suplementary_material/v2/images/experiments/hor_shift_kth','-depsc2','-r300');
 
 
 %% KTH. Vertical Shift
@@ -143,6 +150,6 @@ set(gcf,'PaperPosition', myfiguresize);
 %Home
 %print('/media/johanna/HD1T/latex-svn/wacv_2016_b/suplementary_material/images/experiments/ver_shift_kth','-depsc2','-r300');
 %Nicta
-print('/home/johanna/latex-svn/wacv_2016_b/suplementary_material/v2/images/experiments/ver_shift_kth','-depsc2','-r300');
+%print('/home/johanna/latex-svn/wacv_2016_b/suplementary_material/v2/images/experiments/ver_shift_kth','-depsc2','-r300');
 
 
