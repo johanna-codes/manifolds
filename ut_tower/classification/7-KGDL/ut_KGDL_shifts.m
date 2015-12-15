@@ -82,7 +82,7 @@ for s=1:length(vec_shift )
         act_ts  =  str2double( action_seq_names(video_ts,2) );
         seqID_ts    = action_seq_names(video_ts,3);
         
-        name_load_gp_ts = strcat( load_sub_path, '/grass_pt_',  action_name_ts, '_seq', seqID_ts, '_p', int2str(best_p),  '.h5');
+        name_load_gp_ts = strcat( load_sub_path_test, '/grass_pt_',  action_name_ts, '_seq', seqID_ts, '_p', int2str(best_p),  '.h5');
         hinfo_ts = hdf5info( char(name_load_gp_ts) );
         one_video_ts = hdf5read(hinfo_ts.GroupHierarchy.Datasets(1));
         
