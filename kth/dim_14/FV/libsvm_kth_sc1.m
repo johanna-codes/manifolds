@@ -94,7 +94,7 @@ for i=1:length(vec_scale)
             %disp(show_you);
             real_labels(j) = act_ts;
             
-            name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng, '_NOmeans','.txt');
+            name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng, '_onlyCovs','.txt');
             one_FV = load( char( name_load_FV ) );
             X_test(:,1) = one_FV;
             
