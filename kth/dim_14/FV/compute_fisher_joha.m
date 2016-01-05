@@ -13,7 +13,8 @@ k = size (mu, 2);
 d = size (mu, 1);
 %V = zeros (k * ( 2*d +1) - 1, nimg, 'single'); %means and covs
 
-V = zeros (k * 2*d, nimg, 'single'); %means and covs
+V = zeros (k * d, nimg, 'single'); %only covs
+%V = zeros (k * 2*d, nimg, 'single'); %means and covs
 %V = zeros (k * d, nimg, 'single');%only means
 %V = zeros (k - 1, nimg, 'single');%only weights
 
@@ -21,6 +22,6 @@ for i = 1:nimg
   
   descs = single(S{i});
 
-  V(:, i) = yael_fisher (descs, w', mu, sigma, 'sigma', 'nonorm');
+  V(:, i) = yael_fisher (descs, w', mu, sigma, 'sigma', 'nonorm','nomu');
     
 end
