@@ -17,7 +17,7 @@ V = zeros (k * d, nimg, 'single'); %only covs
 %V = zeros (k * 2*d, nimg, 'single'); %means and covs
 %V = zeros (k * d, nimg, 'single');%only means
 %V = zeros (k - 1, nimg, 'single');%only weights
-sprintf('Without means')
+%sprintf('Without means')
 for i = 1:nimg
   
   descs = single(S{i});
