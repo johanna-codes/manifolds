@@ -57,7 +57,7 @@ for i=1:n_people
         end
         %to save
         
-        save_name = strcat('./FV_training/scale',num2str(scale_factor), '-shift',  int2str(shift),  '/FV_', people(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '_onlyCovs', '.txt');
+        save_name = strcat('./FV_training/scale',num2str(scale_factor), '-shift',  int2str(shift),  '/FV_', people(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '_onlyMeans', '.txt');
         sSave = char(save_name);
         %display(sSave);
         fid1=fopen(sSave,'wt');
