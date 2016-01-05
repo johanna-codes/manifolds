@@ -22,6 +22,6 @@ for i = 1:nimg
   
   descs = single(S{i});
 
-  V(:, i) = yael_fisher (descs, w', mu, sigma, 'sigma', 'nonorm','nomu');
+  V(:, i) = yael_fisher (descs, w', mu, sigma, 'sigma', 'nonorm','nomu'); %'nomu' = no menas
     
 end
