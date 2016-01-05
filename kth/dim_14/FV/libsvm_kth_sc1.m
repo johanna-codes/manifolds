@@ -67,11 +67,11 @@ dim_FV = 2*dim*Ncent;
 %vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
 vec_scale = [ 1 ];
 shift = 0;
- for i=1:length(vec_scale)
-     show_you = strcat('Getting FVs for ', num2str( vec_scale(i) ) );
-     disp(show_you);
-     FV_kth_all_videos(Ncent, dim, vec_scale(i), shift);
- end
+%  for i=1:length(vec_scale)
+%      show_you = strcat('Getting FVs for ', num2str( vec_scale(i) ) );
+%      disp(show_you);
+%      FV_kth_all_videos(Ncent, dim, vec_scale(i), shift);
+%  end
 
 all_acc_scales = zeros( length(vec_scale), 1);
 for i=1:length(vec_scale)
