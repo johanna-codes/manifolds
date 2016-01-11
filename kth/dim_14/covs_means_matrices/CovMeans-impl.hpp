@@ -204,7 +204,7 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     
     // end
 
-     eig_gen(D, V, CovMean);
+     eig_sym(D, V, CovMean);
      mat log_M = V*diagmat( log(D) )*V.t();
      
      #pragma omp critical
