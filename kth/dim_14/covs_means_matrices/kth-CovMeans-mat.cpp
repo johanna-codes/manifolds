@@ -49,8 +49,8 @@ main(int argc, char** argv)
    cout << arma_version::as_string() << endl;
 
    
-   //CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
-   //get_CovMeans.calculate_one_per_video( all_people, dim );
+   CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
+   get_CovMeans.calculate_one_per_video( all_people, dim );
    
  
   
