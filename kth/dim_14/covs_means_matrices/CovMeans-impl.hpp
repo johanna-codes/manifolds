@@ -202,7 +202,7 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     CovMean.print();
     getchar();
     
-    CovMean.submat(dim,0,dim-1,dim-1) = mean_i.t();
+    CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
     CovMean.print();
     getchar();
     
