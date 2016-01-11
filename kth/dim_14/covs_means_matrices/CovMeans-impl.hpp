@@ -45,7 +45,7 @@ CovMeans_mat_kth::calculate_one_per_video( field<string> in_all_people, int  in_
 	
 	 // Shifting both
 	load_folder << path <<"kth-features_dim" << dim <<  "_openMP/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
-	load_folder << path <<"kth-features_dim" << dim <<  "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+	//load_folder << path <<"kth-features_dim" << dim <<  "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
 	
 	
 //      If you want to use. You have to add the  flag_shift in this method. 
