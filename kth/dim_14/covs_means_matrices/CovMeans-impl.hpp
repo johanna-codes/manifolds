@@ -3,7 +3,7 @@ CovMeans_mat_kth::CovMeans_mat_kth( const std::string in_path,
 			  const std::string in_actionNames,  
 			  const float in_scale_factor, 
 			  const int in_shift,
-			  const int in_scene, //only for kth
+			  const int in_scene //only for kth
 
 )
 :path(in_path), actionNames(in_actionNames), scale_factor(in_scale_factor), shift(in_shift), total_scenes(in_scene)
