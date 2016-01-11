@@ -211,14 +211,16 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
      {
      cout << "saving " <<  all_people (pe) << endl;
      CovMean.print();
+     cout << endl;
+
      //log_M.print();
     
      
      V.print();
      cout << endl;
-     D.print();
+     D.t().print();
      cout << endl;
-     log(D).print();
+     log(D).t().print();
      getchar();
      
      
