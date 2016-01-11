@@ -184,12 +184,17 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
     CovMean(dim,dim) = 1;
     
+    CovMean.print("CovMean");
+    
+    
     float tmp_CovMean = det(CovMean);
     
     int new_dim = dim + 1; 
     tmp_CovMean = pow(tmp_CovMean, new_dim+1);
     CovMean = CovMean/tmp_CovMean;
     
+    CovMean.print("CovMean/tmp_CovMean");
+    getchar();
     
     
     // end
