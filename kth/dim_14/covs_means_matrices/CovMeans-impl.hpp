@@ -123,7 +123,7 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
   std::stringstream save_folder;
   
   //Shifting both
-  save_folder << "./kth-one-cov-mat-dim" << dim << "/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+  save_folder << "./CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
   
  
 //      If you want to use. You have to add the  flag_shift in this method. 
@@ -184,42 +184,23 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     
     
     
-    /// HACER AQUI:
+    /// Taken from A Novel Earth Mover’s Distance Methodology for Image Matching with Gaussian Mixture Models
+    // Eq. (4)
     
     mat CovMean = zeros(dim+1,dim+1);
     
-    CovMean.print();
-    cout << cov_i.n_rows<< " & " << cov_i.n_cols << endl;
-    cout << mean_i.n_rows<< " & " << mean_i.n_cols << endl;
+    //CovMean.print();
+    //cout << cov_i.n_rows<< " & " << cov_i.n_cols << endl;
+    //cout << mean_i.n_rows<< " & " << mean_i.n_cols << endl;
     
     
     
     CovMean.submat( 0, 0, dim-1, dim-1) = cov_i;    
-    CovMean.print();
-    getchar();
-
     CovMean.submat( 0, dim, dim-1, dim )  = mean_i;
-    CovMean.print();
-    getchar();
-    
     CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
-    CovMean.print();
-    getchar();
-    
     CovMean(dim,dim) = 1;
     
-    CovMean.print();
-    
-    getchar();
-    
-    
-    
-    
-    
-    
-
-    
-    
+    // end
 
      eig_sym(D, V, CovMean);
      mat log_M = V*diagmat( log(D) )*V.t();
