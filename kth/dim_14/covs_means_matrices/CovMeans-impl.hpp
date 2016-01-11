@@ -188,10 +188,9 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     
     
     float tmp_cov= det(cov_i);
-    //cout << "tmp_CovMean " << tmp_CovMean << endl;
     
-    tmp_CovMean = pow(tmp_CovMean, -1/(dim+1));
-    CovMean = CovMean*tmp_CovMean;
+    tmp_cov = pow(tmp_cov, -1/(dim+1));
+    CovMean = CovMean*tmp_cov;
     
     //CovMean.print("CovMean/tmp_CovMean");
     //getchar();
