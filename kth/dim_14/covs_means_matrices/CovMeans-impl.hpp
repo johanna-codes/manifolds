@@ -184,6 +184,16 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
     CovMean(dim,dim) = 1;
     
+    mat tmp_CovMean = det(CovMean);
+    
+    tmp_CovMean = pow(tmp_CovMean, dim + 1 + 1) ;
+    CovMean = CovMean\tmp_CovMean;
+    
+    
+    tmp_CovMean.clear();
+    
+    
+    
     // end
     
     //Following Mehrtash suggestions as per email dated June26th 2014
