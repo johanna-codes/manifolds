@@ -187,7 +187,7 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     //CovMean.print("CovMean");
     
     
-    float tmp_CovMean = det(CovMean);
+    float tmp_cov= det(cov_i);
     //cout << "tmp_CovMean " << tmp_CovMean << endl;
     
     int new_dim = dim + 1; 
