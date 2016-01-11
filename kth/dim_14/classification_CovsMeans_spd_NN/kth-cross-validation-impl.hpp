@@ -112,6 +112,7 @@ kth_cv_omp::logEucl_one_video(int pe_test, std::string load_sub_path, std::strin
   //wall_clock timer;
   //timer.tic();
   
+  cout << load_CovMeans << endl;
   mat logMtest_CovMeans;
   logMtest_CovMeans.load(load_CovMeans);
   
