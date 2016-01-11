@@ -35,13 +35,16 @@ int
 main(int argc, char** argv)
 {
   
-  
+     
+   int total_scenes = 1; //Only for Scenario 1.
+   int dim = 14;  
+   field<string> all_people;
+   all_people.load(peopleList);
+   
   
    float scale_factor = 1;
    int shift = 0;
-   
-   int total_scenes = 1; //Only for Scenario 1.
-   int dim = 14;  
+
    
    CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
    get_CovMeans.calculate_one_per_video( all_people, dim );
@@ -57,8 +60,7 @@ main(int argc, char** argv)
 //   vec vec_shift;
 //   //vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
 //   vec_shift << 0;
-//   int total_scenes = 1; //Only for Scenario 1.
-//   int dim = 14; 
+
 //   
   
   // Horizontal shift
@@ -67,9 +69,7 @@ main(int argc, char** argv)
 //   {
 //     int shift = vec_shift(i);
 //     cout << "Cov for Hor_shift " << shift << endl;
-//     
-//     field<string> all_people;
-//     all_people.load(peopleList);
+
 //     
 //     CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
 //     get_CovMeans.calculate_one_per_video( all_people, dim, flag_shift );
@@ -86,8 +86,7 @@ main(int argc, char** argv)
 //     int shift = vec_shift(i);
 //     cout << "Cov for Ver_shift " << shift << endl;
 //     
-//     field<string> all_people;
-//     all_people.load(peopleList);
+
 //     
 //     CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
 //     get_CovMeans.calculate_one_per_video( all_people, dim, flag_shift );
@@ -107,9 +106,6 @@ main(int argc, char** argv)
 //   vec_shift << -25 << -20 << -15 << -10 << -5 << 0 << 5 << 10 << 15 << 20 << 25 << endr;
 //   
 //   
-//   int total_scenes = 1; //Only for Scenario 1.
-//   int segment_length = 20; //Not used
-//   int dim = 14; 
 //   
 //   
 //   for (int i=0; i<vec_shift.n_elem; ++i)
@@ -117,8 +113,7 @@ main(int argc, char** argv)
 //     int shift = vec_shift(i);
 //     cout << "Cov for shift " << shift << endl;
 //     
-//     field<string> all_people;
-//     all_people.load(peopleList);
+
 //     
 //     CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes, segment_length);
 //     get_CovMeans.calculate_one_per_video( all_people, dim );
@@ -131,9 +126,6 @@ main(int argc, char** argv)
   //   vec scale_vec;
   //   scale_vec << 0.75 <<  0.80 << 0.85 << 0.90 << 0.95  << 1.05 << 1.10 << 1.15 << 1.20 << 1.25 << endr;
   //   
-  //   int total_scenes = 1; //Only for Scenario 1.
-  //   int segment_length = 20;
-  //   int dim = 14; 
   //   
   //   
   //   for (int i=0; i<scale_vec.n_elem; ++i)
@@ -141,8 +133,6 @@ main(int argc, char** argv)
     //     float scale_factor = scale_vec(i);
     //     cout << "Cov for scale_factor " << scale_factor << endl;
     //     
-    //     field<string> all_people;
-    //     all_people.load(peopleList);
     //     
     //     CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes, segment_length);
     //     get_CovMeans.calculate_one_per_video( all_people, dim );
