@@ -59,7 +59,7 @@ kth_cv_omp::logEucl()
     load_sub_path  << path << "covs_means_matrices/CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
     
   //omp_set_num_threads(8); //Use only 8 processors
-  #pragma omp parallel for 
+  //#pragma omp parallel for 
   for (int n = 0; n< n_test; ++n)
   {
     
@@ -86,7 +86,7 @@ kth_cv_omp::logEucl()
     est_labels(n)=est_label_video_i;
  
     
-    #pragma omp critical
+   // #pragma omp critical
     {
     if (est_label_video_i == act)
     {acc++;  }
@@ -143,6 +143,10 @@ kth_cv_omp::logEucl_one_video(int pe_test, std::string load_sub_path, std::strin
 	   mat logMtrain_CovMeans;
 	   logMtrain_CovMeans.load( load_CovMeans_tr.str() );
 	   dist = norm( logMtest_CovMeans - logMtrain_CovMeans, "fro");
+	   logMtest_CovMeans.print();
+	   logMtrain_CovMeans.print();
+	   
+	   getchar();
 	    
 	   cout << dist << endl;
 	    if (dist < tmp_dist)
