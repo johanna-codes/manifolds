@@ -143,10 +143,10 @@ kth_cv_omp::logEucl_one_video(int pe_test, std::string load_sub_path, std::strin
 	   mat logMtrain_CovMeans;
 	   logMtrain_CovMeans.load( load_CovMeans_tr.str() );
 	   dist = norm( logMtest_CovMeans - logMtrain_CovMeans, "fro");
-	   logMtest_CovMeans.print();
-	   logMtrain_CovMeans.print();
+	   //logMtest_CovMeans.print();
+	   //logMtrain_CovMeans.print();
 	   
-	   getchar();
+	   //getchar();
 	    
 	   cout << dist << endl;
 	    if (dist < tmp_dist)
