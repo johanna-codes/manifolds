@@ -5,7 +5,7 @@ public:
 		    const std::string in_actionNames,  
 		    const float in_scale_factor, 
 		    const int in_shift,
-		    const int in_scene,
+		    const int in_scene
                   );
     
 
