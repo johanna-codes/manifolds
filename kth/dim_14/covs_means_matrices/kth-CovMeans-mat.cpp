@@ -46,7 +46,7 @@ main(int argc, char** argv)
    int shift = 0;
 
    
-   cout << arma_version::as_string() << endl;
+   //cout << arma_version::as_string() << endl;
 
    
    CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);

@@ -207,6 +207,7 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
      
      #pragma omp critical
      {
+       cout << "saving " <<  all_people (pe) << endl;
      CovMean.save( save_CovMeans.str(), hdf5_binary ); 
      log_M.save( save_LogCovMeans.str(), hdf5_binary );
      }
