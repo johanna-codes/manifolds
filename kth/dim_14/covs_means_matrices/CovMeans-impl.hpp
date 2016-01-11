@@ -212,6 +212,9 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
      cout << "saving " <<  all_people (pe) << endl;
      CovMean.print();
      log_M.print();
+     
+     V.print();
+     D.print();
      CovMean.save( save_CovMeans.str(), hdf5_binary ); 
      log_M.save( save_LogCovMeans.str(), hdf5_binary );
      }
