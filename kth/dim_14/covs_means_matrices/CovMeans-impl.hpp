@@ -200,6 +200,8 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
     CovMean(dim,dim) = 1;
     
+    
+    
     // end
 
      eig_sym(D, V, CovMean);
@@ -207,7 +209,9 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
      
      #pragma omp critical
      {
-       cout << "saving " <<  all_people (pe) << endl;
+     cout << "saving " <<  all_people (pe) << endl;
+     CovMean.print();
+     log_M.print();
      CovMean.save( save_CovMeans.str(), hdf5_binary ); 
      log_M.save( save_LogCovMeans.str(), hdf5_binary );
      }
