@@ -178,8 +178,8 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     //cout << mean_i.n_rows<< " & " << mean_i.n_cols << endl;
     
     
-    
-    CovMean.submat( 0, 0, dim-1, dim-1) = cov_i;    
+    mat cov_i_2 = cov_i + mean_i*mean_i.t();
+    CovMean.submat( 0, 0, dim-1, dim-1) = cov_i_2;    
     CovMean.submat( 0, dim, dim-1, dim )  = mean_i;
     CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
     CovMean(dim,dim) = 1;
