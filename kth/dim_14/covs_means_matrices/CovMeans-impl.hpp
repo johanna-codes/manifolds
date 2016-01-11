@@ -164,23 +164,7 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     
 
     
-    //Following Mehrtash suggestions as per email dated June26th 2014
-    cov_i = 0.5*(cov_i + cov_i.t());
-    vec D;
-    mat V;
-    eig_sym(D, V, cov_i);
-    uvec q1 = find(D < THRESH);
     
-    if (q1.n_elem>0)
-    {
-      for (uword pos = 0; pos < q1.n_elem; ++pos)
-      {
-	D( q1(pos) ) = THRESH;
-      }
-      cov_i = V*diagmat(D)*V.t();  
-      
-    }  
-    //end suggestion
     
     
     
@@ -200,9 +184,27 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
     CovMean(dim,dim) = 1;
     
-    
-    
     // end
+    
+    //Following Mehrtash suggestions as per email dated June26th 2014
+    CovMean = 0.5*(CovMean + CovMean.t());
+    vec D;
+    mat V;
+    eig_sym(D, V, CovMean);
+    uvec q1 = find(D < THRESH);
+    
+    if (q1.n_elem>0)
+    {
+      for (uword pos = 0; pos < q1.n_elem; ++pos)
+      {
+	D( q1(pos) ) = THRESH;
+      }
+      CovMean = V*diagmat(D)*V.t();  
+      
+    }  
+    //end suggestions
+    
+    
 
      eig_sym(D, V, CovMean);
      mat log_M = V*diagmat( log(D) )*V.t();
@@ -210,17 +212,10 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
      #pragma omp critical
      {
      cout << "saving " <<  all_people (pe) << endl;
-     CovMean.print();
-     cout << endl;
-
-     //log_M.print();
-    
      
-     V.print();
-     cout << endl;
-     D.t().print();
-     cout << endl;
-     log(D).t().print();
+     CovMean.print();
+     cout << endl <<;
+     log_M.print();
      getchar();
      
      
