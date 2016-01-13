@@ -183,6 +183,9 @@ kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, c
     test_logM_Cov.load( load_logMCov.str() );
     test_Mean.load( load_Mean.str() );
     
+    cout << "Press a Key" << endl;
+    getchar();
+    
     
     for (int ng_tr=1;ng_tr<=Ng; ++ng_tr)
     {
