@@ -272,7 +272,7 @@ CovMeans_mat_kth::get_gmm_per_video( field<string> in_all_people, int  in_dim, i
     int pe   = atoi( parallel_names(k,2).c_str() );
     int act  = atoi( parallel_names(k,3).c_str() );
     
-    void(load_feat_video_i, load_labels_video_i, sc, pe, act, Ng );
+    gmm_one_video(load_feat_video_i, load_labels_video_i, sc, pe, act, Ng );
     //getchar();
   }
   
