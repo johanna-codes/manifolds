@@ -182,7 +182,10 @@ kth_cv_omp::GD_one_video(int pe_test, std::string load_sub_path, std::string loa
 	   cout << "tmp_dist_b" << endl;
 	   tmp_dist_b = norm( test_logM_Cov - train_logM_Cov, "fro");
     
+   	   cout << "dist" << endl;
 	   dist = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
+	   cout << "dist= " <<  dist << endl;
+	   
 	   
 	    if (dist < tmp_dist)
 	    {
