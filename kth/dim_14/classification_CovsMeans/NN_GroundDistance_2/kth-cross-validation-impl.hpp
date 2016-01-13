@@ -174,17 +174,17 @@ kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, c
     std::stringstream load_Mean;
     load_Mean << load_sub_path.str() << "/Means_" << ng_te << "out" << Ng << "_"  << all_people (pe_test) << "_" << actions(act_test) << ".h5";
     
-    cout << load_Cov.str() << endl;
-    cout << load_logMCov.str() << endl;
-    cout << load_Mean.str() << endl;
+//     cout << load_Cov.str() << endl;
+//     cout << load_logMCov.str() << endl;
+//     cout << load_Mean.str() << endl;
     
     
     test_Cov.load( load_Cov.str() );
     test_logM_Cov.load( load_logMCov.str() );
     test_Mean.load( load_Mean.str() );
     
-    cout << "Press a Key" << endl;
-    getchar();
+//     cout << "Press a Key" << endl;
+//     getchar();
     
     
     for (int ng_tr=1;ng_tr<=Ng; ++ng_tr)
@@ -204,12 +204,12 @@ kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, c
       train_Mean.load( load_Means_tr.str() );
       
       
-      cout << load_Covs_tr.str()  << endl;
-      cout << load_Means_tr.str() << endl;
-      cout << load_logM_Covs_tr.str() << endl;
-      
-      cout << "Press a Key" << endl;
-      getchar();
+//       cout << load_Covs_tr.str()  << endl;
+//       cout << load_Means_tr.str() << endl;
+//       cout << load_logM_Covs_tr.str() << endl;
+//       
+//       cout << "Press a Key" << endl;
+//       getchar();
       
       
       vec subs;
