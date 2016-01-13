@@ -236,7 +236,7 @@ kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, c
   }
   
   
-  dist = dist/(Ng*Ng);
+  //dist = dist/(Ng*Ng);
   return dist;
   
 }
