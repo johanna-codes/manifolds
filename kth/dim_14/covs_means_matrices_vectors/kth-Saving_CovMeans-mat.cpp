@@ -10,13 +10,13 @@
 using namespace std;
 using namespace arma;
 
-#include "CovMeans-def.hpp"
-#include "CovMeans-impl.hpp"
+#include "Saving_CovMeans-def.hpp"
+#include "Saving_CovMeans-impl.hpp"
 
 
-// This codes obtain the embedded SPD matrix.
+// This codes save the means and covariance matrices for one video.
 //Taken from A Novel Earth Mover’s Distance Methodology for Image Matching with Gaussian Mixture Models
-// Eq. (4)
+// WIth Cov and Means. Eq(8) is going to be used.
 
 //Home
 //const std::string path = "/media/johanna/HD1T/codes/datasets_codes/KTH/"; 
