@@ -35,10 +35,6 @@ class kth_cv_omp //KTH Cross validation
   private:
     inline uword GD_one_video( int pe_test, std::string load_sub_path, std::string load_cov, std::string load_logMCovs, std::string load_Means );
     inline uword GD_gmm(int pe_test, int act_test, const int Ng);
-    inline float dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, const int Ng);
-{
-    
-
-    
+    inline float dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, const int Ng);    
     
 };
