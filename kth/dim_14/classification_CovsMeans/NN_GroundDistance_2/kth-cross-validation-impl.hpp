@@ -130,7 +130,7 @@ kth_cv_omp::GD_one_video(int pe_test, std::string load_sub_path, std::string loa
   int n_actions = actions.n_rows;
   int n_peo =  all_people.n_rows;
   
-  double dist, tmp_dist_a, tmp_dist_b;
+  double dist, tmp_dist, tmp_dist_a, tmp_dist_b;
   tmp_dist = datum::inf;
   
   
