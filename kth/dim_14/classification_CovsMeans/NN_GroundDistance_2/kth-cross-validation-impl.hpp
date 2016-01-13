@@ -57,8 +57,6 @@ kth_cv_omp::Ground_Distance_GMM(const int Ng)
     }
   }
   
-  std::stringstream load_sub_path;
-  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
   
   //omp_set_num_threads(8); //Use only 8 processors
   // #pragma omp parallel for 
@@ -75,11 +73,7 @@ kth_cv_omp::Ground_Distance_GMM(const int Ng)
     
     //#pragma omp critical
     //cout<< "Processor " << tid <<" doing "<<  all_people (pe) << "_" << actions(act) << endl;
-    
-    
-    
-    /// Lo sgte. debe cambiar de acuerdo a Ng
-    
+   
     est_label_video_i = GD_gmm( pe_test, act_test, Ng );
     
     real_labels(n)=act_test;
@@ -152,6 +146,10 @@ inline
 float
 kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, const int Ng)
 {
+  
+  std::stringstream load_sub_path;
+  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+  
   
   float theta = 0.5; //See Experiments in original paper
   double tmp_dist_a, tmp_dist_b;
