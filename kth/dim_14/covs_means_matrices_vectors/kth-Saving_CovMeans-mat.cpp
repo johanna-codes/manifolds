@@ -40,7 +40,10 @@ main(int argc, char** argv)
      
    int total_scenes = 1; //Only for Scenario 1.
    int dim = 14;  
-   int Ng =2;
+   
+   vec vec_Ng;
+   vec_Ng << 4 << 8 << 16 << endr;
+   //int Ng =2;
    
    field<string> all_people;
    all_people.load(peopleList);
@@ -51,13 +54,17 @@ main(int argc, char** argv)
 
    
    //cout << arma_version::as_string() << endl;
-
-   
-   CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
-   //get_CovMeans.calculate_one_per_video( all_people, dim );
    
    
-   get_CovMeans.get_gmm_per_video( all_people, dim, Ng );
+   for (int i = 0; i< vec_Ng.n_elem; ++i)
+   {
+     
+     int Ng = vec_Ng(i);
+     CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
+     //get_CovMeans.calculate_one_per_video( all_people, dim );
+     get_CovMeans.get_gmm_per_video( all_people, dim, Ng );
+   
+   }
    
  
   
