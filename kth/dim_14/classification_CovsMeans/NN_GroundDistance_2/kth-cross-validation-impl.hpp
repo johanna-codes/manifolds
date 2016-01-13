@@ -110,13 +110,12 @@ uword
 kth_cv_omp::GD_gmm(int pe_test, int act_test, const int Ng)
 {
   
-  float theta = 0.5; //See Experiments in original paper
   
   
   int n_actions = actions.n_rows;
   int n_peo =  all_people.n_rows;
   
-  double dist, tmp_dist, tmp_dist_a, tmp_dist_b;
+  double dist, tmp_dist;
   tmp_dist = datum::inf;
   
   
@@ -154,7 +153,9 @@ float
 kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, const int Ng)
 {
   
-  
+  float theta = 0.5; //See Experiments in original paper
+  double tmp_dist_a, tmp_dist_b;
+
   mat test_Cov,  test_logM_Cov,  train_Cov,  train_logM_Cov;
   
   vec train_Mean, test_Mean;
