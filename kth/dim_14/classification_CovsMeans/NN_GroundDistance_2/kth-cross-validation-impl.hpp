@@ -147,6 +147,7 @@ float
 kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, const int Ng)
 {
   
+  int sc =1;
   std::stringstream load_sub_path;
   load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
   
