@@ -58,8 +58,10 @@ main(int argc, char** argv)
    
    for (int i = 0; i< vec_Ng.n_elem; ++i)
    {
-     
      int Ng = vec_Ng(i);
+     cout << Ng << endl;
+     
+     
      CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
      //get_CovMeans.calculate_one_per_video( all_people, dim );
      get_CovMeans.get_gmm_per_video( all_people, dim, Ng );
