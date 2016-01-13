@@ -340,41 +340,11 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
     
   }
   
-  
   cout <<"EM was repeated " << rep_em << endl;
-  
-  std::stringstream save_folder;
-  //Shifting both
-  save_folder << "./CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
-  
-  
-  
-  
-  std::stringstream tmp_ss5;
-  tmp_ss5 << "./GMM_models/run" << pe_ts << "_" << actions(act) <<  "_GMM_Ng" << N_cent << "_dim" <<dim << "_sc1" ; 
-  cout << "Saving GMM in " << tmp_ss5.str() << endl;
-  gmm_model.save( tmp_ss5.str() );
-  cout << endl;
-  
-  
-  ///
-  
-  
-  running_stat_vec<rowvec> stat_seg(true);
-  
-  for (int l=0; l<n_vec; ++l)
-  {
-    
-    vec sample = mat_features_video_i.col(l);
-    stat_seg (sample);
-    
-  }
-  
   
   mat dcov = gmm_model.dcovs;
   mat means = gmm_model.means;
-  
-  
+ 
   mat cov_i, logM_cov_i, V; 
   vec mean_i, D;
   
