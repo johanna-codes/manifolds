@@ -17,6 +17,8 @@ using namespace arma;
 #include "kth-cross-validation-impl.hpp"
 
 
+// This codes uses the embedded SPD matrices as per Eq. 4.
+//Taken from A Novel Earth Mover’s Distance Methodology for Image Matching with Gaussian Mixture Models
 
 
 //Home
