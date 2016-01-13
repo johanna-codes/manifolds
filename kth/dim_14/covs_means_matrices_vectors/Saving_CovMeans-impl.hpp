@@ -215,7 +215,7 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
 
 inline
 void
-CovMeans_mat_kth::get_gmm_per_video( field<string> in_all_people, int  in_dim, int Ng  )
+CovMeans_mat_kth::get_gmm_per_video( field<string> in_all_people, int  in_dim, const int Ng  )
 {
   all_people = in_all_people;
   dim = in_dim;
@@ -281,7 +281,7 @@ CovMeans_mat_kth::get_gmm_per_video( field<string> in_all_people, int  in_dim, i
 
 inline
 void
-CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load_labels_video_i, int sc, int pe, int act, int Ng )
+CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load_labels_video_i, int sc, int pe, int act, const int Ng )
 {
   
   mat mat_features_video_i;
@@ -352,7 +352,7 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
   save_folder << "./CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
   
   
-  for (int i=1; i<=Ng; ++Ng)
+  for (int i=1; i<=Ng; ++i)
   {
      
     cout << i << "out" << Ng << endl;
