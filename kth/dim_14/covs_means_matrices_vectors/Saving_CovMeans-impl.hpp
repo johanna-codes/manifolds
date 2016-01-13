@@ -310,7 +310,7 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
   int km_iter = 10;
   int em_iter  = 5;
   double var_floor = 1e-10;
-  bool print_mode = true;
+  bool print_mode = false;
   
   
   while (!status_em)
