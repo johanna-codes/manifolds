@@ -11,7 +11,9 @@ class kth_cv_omp //KTH Cross validation
 		const int in_scene, //only for kth
 		const int in_dim 
  		);
+    
     inline float Ground_Distance();
+    inline float Ground_Distance_GMM(const int Ng);
 
     
     
