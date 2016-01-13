@@ -57,8 +57,8 @@ main(int argc, char** argv)
     float acc_GD; //Ground Distance
     
     kth_cv_omp kth_CV_omp_GD(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-    //acc_GD = kth_CV_omp_GD.Ground_Distance();
-    acc_GD = kth_CV_omp_GD.Ground_Distance_GMM(Ng);
+    acc_GD = kth_CV_omp_GD.Ground_Distance();
+    //acc_GD = kth_CV_omp_GD.Ground_Distance_GMM(Ng);
     
 
 
