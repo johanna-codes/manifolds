@@ -155,6 +155,10 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     std::stringstream save_Covs;
     save_Covs << save_folder.str() << "/Cov_" <<  all_people (pe) << "_" << actions(act) <<  ".h5";
     
+    std::stringstream save_logMCovs;
+    save_logMCovs << save_folder.str() << "/logM_Cov_" <<  all_people (pe) << "_" << actions(act) <<  ".h5";
+    
+    
     std::stringstream save_Means;
     save_Means << save_folder.str() << "/Means_" <<  all_people (pe) << "_" << actions(act) <<  ".h5";
     
@@ -184,10 +188,18 @@ CovMeans_mat_kth::one_video_one_cov( std::string load_feat_video_i, std::string 
     }  
     //end suggestions
     
+    
+     eig_sym(D, V, cov_i);
+     mat logM_cov_i = V*diagmat( log(D) )*V.t();
+     
+     
+    
      #pragma omp critical
      {
      cout << "saving " <<  all_people (pe) << endl;
+     
      cov_i.save(  save_Covs.str(), hdf5_binary ); 
+     logM_cov_i.save( save_logMCovs.str(), hdf5_binary ); 
      mean_i.save( save_Means.str(), hdf5_binary ); 
      }
 
