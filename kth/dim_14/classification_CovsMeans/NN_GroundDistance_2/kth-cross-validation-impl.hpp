@@ -165,7 +165,7 @@ kth_cv_omp::GD_one_video(int pe_test, std::string load_sub_path, std::string loa
 	   mat train_logM_Cov;
 	   vec train_Mean;
 	   
-	   train_Cov.load( load_Covs_tr.str() ;
+	   train_Cov.load( load_Covs_tr.str() ) ;
 	   train_logM_Cov.load( load_logM_Covs_tr.str() );
 	   train_Mean.load( load_Means_tr.str() );
 	   
