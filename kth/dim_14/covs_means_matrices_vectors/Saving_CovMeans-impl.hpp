@@ -348,6 +348,9 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
   mat cov_i, logM_cov_i, V; 
   vec mean_i, D;
   
+  std::stringstream save_folder;
+  save_folder << "./CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+  
   
   for (int i=1; i<=Ng; ++Ng)
   {
