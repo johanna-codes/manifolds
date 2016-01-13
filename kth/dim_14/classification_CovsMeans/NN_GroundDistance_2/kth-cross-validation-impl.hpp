@@ -156,7 +156,7 @@ kth_cv_omp::GD_one_video(int pe_test, std::string load_sub_path, std::string loa
 	 std::stringstream load_logM_Covs_tr;
 	 load_logM_Covs_tr << load_sub_path << "/logM_Cov_" << all_people (pe_tr) << "_" << actions(act) << ".h5";
 	 
-	 td::stringstream load_Means_tr;
+	 std::stringstream load_Means_tr;
 	 load_Means_tr << load_sub_path << "/Means_" << all_people (pe_tr) << "_" << actions(act) << ".h5";
 
     
