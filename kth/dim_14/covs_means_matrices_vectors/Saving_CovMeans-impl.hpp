@@ -355,6 +355,7 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
   for (int i=1; i<=Ng; ++Ng)
   {
      
+    cout << i << "out" << Ng << endl;
     cov_i = diagmat( dcov.col(i-1) );
     cov_i = mehrtash_suggestion(cov_i);
     
