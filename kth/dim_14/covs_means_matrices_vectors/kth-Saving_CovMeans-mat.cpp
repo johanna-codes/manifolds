@@ -54,7 +54,10 @@ main(int argc, char** argv)
 
    
    CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
-   get_CovMeans.calculate_one_per_video( all_people, dim, Ng );
+   //get_CovMeans.calculate_one_per_video( all_people, dim );
+   
+   
+   get_CovMeans.get_gmm_per_video( all_people, dim, Ng );
    
  
   
