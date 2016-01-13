@@ -47,6 +47,7 @@ main(int argc, char** argv)
   
     int total_scenes = 1; //Only for Scenario 1.
     int dim = 14; 
+    int Ng =2;
     
     field<string> all_people;
     all_people.load(peopleList);
@@ -56,7 +57,8 @@ main(int argc, char** argv)
     float acc_GD; //Ground Distance
     
     kth_cv_omp kth_CV_omp_GD(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-    acc_GD = kth_CV_omp_GD.Ground_Distance();
+    //acc_GD = kth_CV_omp_GD.Ground_Distance();
+    acc_GD = kth_CV_omp_GD.Ground_Distance_GMM(Ng);
     
 
 
