@@ -192,7 +192,6 @@ kth_cv_omp::GD_one_video(int pe_test, std::string load_sub_path, std::string loa
 	      tmp_dist = dist;
 	      est_lab = act;
 	    }
-	    getchar();
 	  
 	}
       }
