@@ -59,7 +59,7 @@ kth_cv_omp::Ground_Distance()
     load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
     
   //omp_set_num_threads(8); //Use only 8 processors
-  #pragma omp parallel for 
+ // #pragma omp parallel for 
   for (int n = 0; n< n_test; ++n)
   {
     
@@ -93,7 +93,7 @@ kth_cv_omp::Ground_Distance()
     est_labels(n)=est_label_video_i;
  
     
-    #pragma omp critical
+    //#pragma omp critical
     {
     if (est_label_video_i == act)
     {acc++;  }
