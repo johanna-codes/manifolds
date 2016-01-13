@@ -204,6 +204,14 @@ kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, c
       train_Mean.load( load_Means_tr.str() );
       
       
+      cout << load_Covs_tr.str()  << endl;
+      cout << load_Means_tr.str() << endl;
+      cout << load_logM_Covs_tr.str() << endl;
+      
+      cout << "Press a Key" << endl;
+      getchar();
+      
+      
       vec subs;
       mat sum;
       
