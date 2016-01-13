@@ -82,13 +82,13 @@ kth_cv_omp::Ground_Distance_GMM(const int Ng)
     
     est_label_video_i = GD_gmm( pe_test, act_test, Ng );
     
-    real_labels(n)=act;
+    real_labels(n)=act_test;
     est_labels(n)=est_label_video_i;
     
     
     //#pragma omp critical
     {
-      if (est_label_video_i == act)
+      if (est_label_video_i == act_test)
       {acc++;  }
     }
     
