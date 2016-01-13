@@ -170,7 +170,8 @@ kth_cv_omp::GD_one_video(int pe_test, std::string load_sub_path, std::string loa
 	   train_logM_Cov.load( load_logM_Covs_tr.str() );
 	   train_Mean.load( load_Means_tr.str() );
 	   
-	   double subs, sum;
+	   vec subs;
+	   mat sum;
 	   
 	   subs = ( test_Mean - train_Mean );
 	   sum = inv( test_Cov ) + inv( train_Cov );
