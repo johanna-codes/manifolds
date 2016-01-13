@@ -191,13 +191,13 @@ kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, c
     {
       
       std::stringstream load_Covs_tr;
-      load_Covs_tr << load_sub_path.str() << "/Cov_" << ng_tr << "out" << Ng << all_people (pe_train) << "_" << actions(act_train) << ".h5";
+      load_Covs_tr << load_sub_path.str() << "/Cov_" << ng_tr << "out" << Ng << "_" << all_people (pe_train) << "_" << actions(act_train) << ".h5";
       
       std::stringstream load_logM_Covs_tr;
-      load_logM_Covs_tr << load_sub_path.str() << "/logM_Cov_" << ng_tr << "out" << Ng << all_people (pe_train) << "_" << actions(act_train) << ".h5";
+      load_logM_Covs_tr << load_sub_path.str() << "/logM_Cov_" << ng_tr << "out" << Ng << "_"  << all_people (pe_train) << "_" << actions(act_train) << ".h5";
       
       std::stringstream load_Means_tr;
-      load_Means_tr << load_sub_path.str() << "/Means_" << ng_tr << "out" << Ng << all_people (pe_train) << "_" << actions(act_train) << ".h5";
+      load_Means_tr << load_sub_path.str() << "/Means_" << ng_tr << "out" << Ng << "_" << all_people (pe_train) << "_" << actions(act_train) << ".h5";
       
       train_Cov.load( load_Covs_tr.str() ) ;
       train_logM_Cov.load( load_logM_Covs_tr.str() );
