@@ -328,7 +328,7 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
     }
     
     
-    status_em = gmm_model.learn(features_action_i, Ng, eucl_dist, keep_existing, 0, em_iter, var_floor, print_mode);   
+    status_em = gmm_model.learn(mat_features_video_i, Ng, eucl_dist, keep_existing, 0, em_iter, var_floor, print_mode);   
     rep_em++;
     
     if (rep_em==9)
