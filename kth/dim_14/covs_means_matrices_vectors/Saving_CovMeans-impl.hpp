@@ -284,11 +284,11 @@ void
 CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load_labels_video_i, int sc, int pe, int act, const int Ng )
 {
   
+  cout <<  all_people (pe) << "_" << actions(act)  << endl;
   mat mat_features_video_i;
   mat_features_video_i.load( load_feat_video_i, hdf5_binary );
   int n_vec = mat_features_video_i.n_cols;
   
-  //Esto debe cambiar
   
   bool is_finite = mat_features_video_i.is_finite();
   
@@ -355,7 +355,7 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
   for (int i=1; i<=Ng; ++i)
   {
      
-    cout << i << "out" << Ng << endl;
+    //cout << i << " out " << Ng << endl;
     cov_i = diagmat( dcov.col(i-1) );
     cov_i = mehrtash_suggestion(cov_i);
     
