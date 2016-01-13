@@ -40,6 +40,8 @@ main(int argc, char** argv)
      
    int total_scenes = 1; //Only for Scenario 1.
    int dim = 14;  
+   int Ng =2;
+   
    field<string> all_people;
    all_people.load(peopleList);
    
@@ -52,7 +54,7 @@ main(int argc, char** argv)
 
    
    CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
-   get_CovMeans.calculate_one_per_video( all_people, dim );
+   get_CovMeans.calculate_one_per_video( all_people, dim, Ng );
    
  
   
