@@ -170,7 +170,7 @@ kth_cv_omp::GD_one_video(int pe_test, std::string load_sub_path, std::string loa
 	   train_Mean.load( load_Means_tr.str() );
 	   
 	   
-	   tmp_dist_a =sqrt ( ( test_Mean - train_Mean ).t()*( inv( test_Cov ) + inv( train_Cov ) )*( test_Mean - train_Mean ) );
+	   tmp_dist_a =sqrt( as_scalar( ( test_Mean - train_Mean ).t()*( inv( test_Cov ) + inv( train_Cov ) )*( test_Mean - train_Mean ) ) );
 	   tmp_dist_b = norm( test_logM_Cov - train_logM_Cov, "fro");
     
 	   dist = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
