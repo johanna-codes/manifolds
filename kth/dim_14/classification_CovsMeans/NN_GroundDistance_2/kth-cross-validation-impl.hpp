@@ -141,7 +141,8 @@ kth_cv_omp::GD_one_video(int pe_test, std::string load_sub_path, std::string loa
     if (pe_tr!= pe_test)
     {	     
       
-      //cout << " " << all_people (pe_tr);
+      cout << " " << all_people (pe_tr);
+      getchar();
       
       
       for (int sc = 1; sc<=total_scenes; ++sc) //scene
