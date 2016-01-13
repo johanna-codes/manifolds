@@ -387,7 +387,7 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
 
 inline
 mat
-CovMeans_mat_kth::mehrtash_suggestion(mat cov_i);
+CovMeans_mat_kth::mehrtash_suggestion(mat cov_i)
 {
   //Following Mehrtash suggestions as per email dated June26th 2014
   mat new_covi;
