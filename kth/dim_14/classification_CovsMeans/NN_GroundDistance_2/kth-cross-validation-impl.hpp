@@ -89,6 +89,7 @@ kth_cv_omp::Ground_Distance_GMM(const int Ng)
   }
   
   est_labels.t().print();
+  cout << endl;
   real_labels.t().print();
   //   real_labels.save("./results_onesegment/Log_Eucl_real_labels.dat", raw_ascii);
   //   est_labels.save("./results_onesegment/Log_Eucl_est_labels.dat", raw_ascii);
