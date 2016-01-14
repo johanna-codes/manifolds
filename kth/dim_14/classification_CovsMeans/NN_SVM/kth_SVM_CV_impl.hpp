@@ -371,13 +371,14 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	//cout << "dist" << endl;
 	if(GD_type==1){ 
 	  
- 	  cout << "Aqui  test_logM_CovMeans" << endl;
+ 	  //cout << "Aqui  test_logM_CovMeans" << endl;
 
 	  mat test_logM_CovMeans = get_emb_LogCov (test_Cov, test_Mean);
 	  
-	  cout << "Aqui  train_logM_CovMeans" << endl;
+	  //cout << "Aqui  train_logM_CovMeans" << endl;
 	  mat train_logM_CovMeans = get_emb_LogCov (train_Cov, train_Mean);   
-	  cout <<  norm( test_logM_CovMeans - train_logM_CovMeans, "fro") << endl;
+	  
+	  //cout <<  norm( test_logM_CovMeans - train_logM_CovMeans, "fro") << endl;
 	  dist(k) = norm( test_logM_CovMeans - train_logM_CovMeans, "fro");
 
 	}
@@ -414,7 +415,7 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 
 
 inline
-vec
+mat
 kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
 {
   cout << "DIM " << dim << endl;
@@ -425,8 +426,6 @@ kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
   CovMean.submat( 0, dim, dim-1, dim )  = mean_i;
   CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
   CovMean(dim,dim) = 1;
-  
-  cout << "Aqui 1 " << endl;
   
   CovMean = 0.5*(CovMean + CovMean.t());
   vec D;
@@ -449,7 +448,7 @@ kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
   eig_sym(D, V, CovMean);
   mat log_M = V*diagmat( log(D) )*V.t();
   
-  cout << "Aqui 2 " << endl;
+  
   
   
   
