@@ -380,10 +380,10 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	
 	//cout << "dist" << endl;
 	switch(GD_type){
-	  case "GD_1"  :
+	  case 'GD_1'  :
 	    cout << "No implemented yet" << endl;
 	    break; //optional
-	  case "GD_2"  :
+	  case 'GD_2'  :
 	    dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
 	    break; //optional
 	    // you can have any number of case statements.
