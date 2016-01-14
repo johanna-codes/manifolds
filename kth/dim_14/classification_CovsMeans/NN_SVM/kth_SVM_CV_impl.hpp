@@ -19,8 +19,11 @@ inline
 void
 kth_cv_distNN_svm::train( int tr_scale, int tr_shift )
 {
+  cout << "Distances"<< endl;
   distances(tr_scale, tr_shift);
+  cout << "Training" << endl;
   svm_train(); 
+  cout << "End Training" << endl;
   
 }
 
@@ -284,10 +287,10 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
     load_Means << load_sub_path.str() << "/Means_" << all_people (pe) << "_" << actions(act) << ".h5";
     
     
-    cout << "Distance Between " <<  all_people (pe) << "_" <<  actions(act) << "& "; 
+    //cout << "Distance Between " <<  all_people (pe) << "_" <<  actions(act) << "& "; 
 
     dist_video_i = dist_one_video( pe, load_sub_path.str(), load_Covs.str(),load_logMCovs.str(), load_Means.str() );
-     getchar();
+    //getchar();
     //dist_video_i = dist_video_i/norm(dist_video_i,2);
 
     //save dist_video_i person, action  
@@ -337,7 +340,7 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
     if (pe_tr!= pe_test)
     {	     
       
-      cout <<  all_people (pe_tr) << " ";
+      //cout <<  all_people (pe_tr) << " ";
       
       for (int act=0; act<n_actions; ++act)
       {
