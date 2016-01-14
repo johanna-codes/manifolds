@@ -8,7 +8,7 @@ class kth_cv_distNN_svm //KTH Cross validation
 		const field<std::string> in_all_people,
 		const int in_scene, //only for kth
 		const int in_dim,
-		const char in_GD_type
+		const int in_GD_type
  		);   
     
     inline void train(int tr_scale, int tr_shift);
@@ -24,7 +24,7 @@ class kth_cv_distNN_svm //KTH Cross validation
 
     const int total_scenes;
     const int dim;
-    const char GD_type;
+    const int GD_type;
 
     
     field<std::string> actions;

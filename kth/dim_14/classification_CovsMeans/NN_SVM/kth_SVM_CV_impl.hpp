@@ -6,7 +6,7 @@ kth_cv_distNN_svm::kth_cv_distNN_svm(const std::string in_path,
 				     const field<std::string> in_all_people,
 				     const int in_scene, //only for kth
 				     const int in_dim,
-				     const char in_GD_type
+				     const int in_GD_type
 ):path(in_path), actionNames(in_actionNames), all_people (in_all_people), total_scenes(in_scene), dim(in_dim), GD_type(in_GD_type)
 {
   actions.load( actionNames );  
@@ -380,15 +380,15 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	
 	//cout << "dist" << endl;
 	switch(GD_type){
-	  case 'GD_1'  :
+	  case 1  :
 	    cout << "No implemented yet" << endl;
 	    break; //optional
-	  case 'GD_2'  :
+	  case 2  :
 	    dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
 	    break; //optional
 	    // you can have any number of case statements.
 	  default : //Optional
-       cout << "Options are GD_1 or GD_2";
+       cout << "Options are  1 or 2 ";
        getchar();
 	}
 

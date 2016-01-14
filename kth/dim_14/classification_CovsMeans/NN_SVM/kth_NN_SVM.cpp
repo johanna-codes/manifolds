@@ -55,7 +55,7 @@ main(int argc, char** argv)
     int scale_factor = 1;
     int shift = 0;
     float acc_GD; //Ground Distance
-    char GD_type = 'GD_1'; // or "GD_1"
+    int GD_type = 1; // 1 for GD_1. 2 for GD_2
     
     kth_cv_distNN_svm NN_SVM_GD_2(path, actionNames, all_people,  total_scenes,  dim, GD_type );
     NN_SVM_GD_2.train( scale_factor, shift );
