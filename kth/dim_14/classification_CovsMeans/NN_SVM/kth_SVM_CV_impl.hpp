@@ -6,7 +6,7 @@ kth_cv_distNN_svm::kth_cv_distNN_svm(const std::string in_path,
 				     const field<std::string> in_all_people,
 				     const int in_scene, //only for kth
 				     const int in_dim,
-				     const std::string in_GD_type
+				     const char in_GD_type
 ):path(in_path), actionNames(in_actionNames), all_people (in_all_people), total_scenes(in_scene), dim(in_dim), GD_type(in_GD_type)
 {
   actions.load( actionNames );  
