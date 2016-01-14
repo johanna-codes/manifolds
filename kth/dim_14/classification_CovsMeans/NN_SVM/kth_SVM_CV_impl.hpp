@@ -373,6 +373,7 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	  
 	  mat test_logM_CovMeans = get_emb_LogCov (test_Cov, test_Mean);
 	  mat train_logM_CovMeans = get_emb_LogCov (train_Cov, train_Mean);   
+	  cout <<  norm( test_logM_CovMeans - train_logM_CovMeans, "fro") << endl;
 	  dist(k) = norm( test_logM_CovMeans - train_logM_CovMeans, "fro");
 	  cout << "Aqui 3 " << endl;
 
