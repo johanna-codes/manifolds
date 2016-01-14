@@ -179,6 +179,7 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
       
       
       test_dist = dist_one_video( pe_ts, load_sub_path.str(), load_Covs_ts.str(), load_logM_Covs_ts.str(), load_Means_ts.str() );	
+      test_dist = test_dist/norm(dist_video_i,2);
       
       
       
