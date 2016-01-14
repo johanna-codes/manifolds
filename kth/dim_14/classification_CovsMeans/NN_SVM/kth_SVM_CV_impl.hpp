@@ -374,29 +374,31 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	  mat test_logM_CovMeans = get_emb_LogCov (test_Cov, test_Mean);
 	  mat train_logM_CovMeans = get_emb_LogCov (train_Cov, train_Mean);   
 	  dist(k) = norm( test_logM_CovMeans - train_logM_CovMeans, "fro");
+	  cout << "Aqui 3 " << endl;
+
 	}
 	
-	  else if(GD_type==2){
-	    vec subs;
-	    mat sum;
-	    
-	    subs = ( test_Mean - train_Mean );
-	    sum = inv( test_Cov ) + inv( train_Cov );
-	    
-	    //cout << "tmp_dist_a" << endl;
-	    tmp_dist_a =sqrt( as_scalar( subs.t()*sum*subs ) );
-	    //cout << "tmp_dist_b" << endl;
-	    tmp_dist_b = norm( test_logM_Cov - train_logM_Cov, "fro");
-	    dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
-	  }
-	  else{
-	    cout << "Options are 1 or 2" << endl;
-	    getchar();
-	    
-	  }
-
+	else if(GD_type==2){
+	  vec subs;
+	  mat sum;
+	  
+	  subs = ( test_Mean - train_Mean );
+	  sum = inv( test_Cov ) + inv( train_Cov );
+	  
+	  //cout << "tmp_dist_a" << endl;
+	  tmp_dist_a =sqrt( as_scalar( subs.t()*sum*subs ) );
+	  //cout << "tmp_dist_b" << endl;
+	  tmp_dist_b = norm( test_logM_Cov - train_logM_Cov, "fro");
+	  dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
+	}
+	else{
+	  cout << "Options are 1 or 2" << endl;
+	  getchar();
+	  
+	}
+	
 	++k;
-
+	
       }
     }
   }
@@ -411,7 +413,7 @@ inline
 vec
 kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
 {
- cout << "DIM " << dim << endl;
+  cout << "DIM " << dim << endl;
   double THRESH = 0.000001;
   mat CovMean = zeros(dim+1,dim+1);
   mat cov_i_2 = cov_i + mean_i*mean_i.t();
@@ -444,10 +446,10 @@ kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
   mat log_M = V*diagmat( log(D) )*V.t();
   
   cout << "Aqui 2 " << endl;
-
-    
-    
-    
+  
+  
+  
+  
   
   return log_M;
 }
