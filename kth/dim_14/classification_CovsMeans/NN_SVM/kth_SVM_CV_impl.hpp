@@ -420,6 +420,8 @@ kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
   CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
   CovMean(dim,dim) = 1;
   
+  cout << "Aqui 1 " << endl;
+  
   CovMean = 0.5*(CovMean + CovMean.t());
   vec D;
   mat V;
