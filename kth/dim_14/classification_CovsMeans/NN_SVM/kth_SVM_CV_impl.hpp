@@ -442,6 +442,9 @@ kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
   
   eig_sym(D, V, CovMean);
   mat log_M = V*diagmat( log(D) )*V.t();
+  
+  cout << "Aqui 2 " << endl;
+
     
     
     
