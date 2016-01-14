@@ -333,6 +333,7 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
     {	     
       
       cout <<  all_people (pe_tr) << " ";
+      getchar();
       for (int act=0; act<n_actions; ++act)
       {
 	
