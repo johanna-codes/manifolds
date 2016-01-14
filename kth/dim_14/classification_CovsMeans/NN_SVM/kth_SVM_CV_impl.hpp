@@ -179,7 +179,7 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
       
       
       test_dist = dist_one_video( pe_ts, load_sub_path.str(), load_Covs_ts.str(), load_logM_Covs_ts.str(), load_Means_ts.str() );	
-      test_dist = test_dist/norm(test_dist,2);
+      //test_dist = test_dist/norm(test_dist,2);
       
       
       
@@ -293,7 +293,7 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
     
     dist_video_i = dist_one_video( pe, load_sub_path.str(), load_Covs.str(),load_logMCovs.str(), load_Means.str() );
     //getchar();
-    dist_video_i = dist_video_i/norm(dist_video_i,2);
+    //dist_video_i = dist_video_i/norm(dist_video_i,2);
     
     //save dist_video_i person, action  
     std::stringstream save_vec_dist;
