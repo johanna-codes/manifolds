@@ -36,6 +36,7 @@ class kth_cv_distNN_svm //KTH Cross validation
     inline void distances(int scale_factor, int shift);
     inline void svm_train();
     inline vec dist_one_video(int pe_test, std::string load_sub_path, std::string load_Covs, std::string load_logMCovs, std::string load_Means);
+    inline vec get_emb_LogCov(mat cov_i, vec mean_i);
     
        
 };

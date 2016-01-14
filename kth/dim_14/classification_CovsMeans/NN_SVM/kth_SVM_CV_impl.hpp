@@ -366,27 +366,33 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	train_logM_Cov.load( load_logM_Covs_tr.str() );
 	train_Mean.load( load_Means_tr.str() );
 	
-	vec subs;
-	mat sum;
 	
-	subs = ( test_Mean - train_Mean );
-	sum = inv( test_Cov ) + inv( train_Cov );
-	
-	//cout << "tmp_dist_a" << endl;
-	tmp_dist_a =sqrt( as_scalar( subs.t()*sum*subs ) );
-	
-	//cout << "tmp_dist_b" << endl;
-	tmp_dist_b = norm( test_logM_Cov - train_logM_Cov, "fro");
 	
 	//cout << "dist" << endl;
 	switch(GD_type){
-	  case 1  :
-	    cout << "No implemented yet" << endl;
+	  case 1  : //Using Embedding SPD
+   
+	    
+	   mat test_logM_CovMeans = get_emb_LogCov (test_Cov, test_Mean);
+	   mat train_logM_CovMeans = get_emb_LogCov (train_Cov, train_Mean);   
+	   dist = norm( test_logM_CovMeans - train_logM_CovMeans, "fro");
+    
 	    break; //optional
+	  
 	  case 2  :
+	    vec subs;
+	    mat sum;
+	    
+	    subs = ( test_Mean - train_Mean );
+	    sum = inv( test_Cov ) + inv( train_Cov );
+	    
+	    //cout << "tmp_dist_a" << endl;
+	    tmp_dist_a =sqrt( as_scalar( subs.t()*sum*subs ) );
+	    //cout << "tmp_dist_b" << endl;
+	    tmp_dist_b = norm( test_logM_Cov - train_logM_Cov, "fro");
 	    dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
 	    break; //optional
-	    // you can have any number of case statements.
+	  
 	  default : //Optional
        cout << "Options are  1 or 2 ";
        getchar();
@@ -403,4 +409,43 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
   
 }
 
+
+inline
+vec
+kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
+{
+ 
+  mat CovMean = zeros(dim+1,dim+1);
+  mat cov_i_2 = cov_i + mean_i*mean_i.t();
+  CovMean.submat( 0, 0, dim-1, dim-1) = cov_i_2;    
+  CovMean.submat( 0, dim, dim-1, dim )  = mean_i;
+  CovMean.submat(dim,0,dim,dim-1) = mean_i.t();
+  CovMean(dim,dim) = 1;
+  
+  CovMean = 0.5*(CovMean + CovMean.t());
+  vec D;
+  mat V;
+  eig_sym(D, V, CovMean);
+  uvec q1 = find(D < THRESH);
+  
+  if (q1.n_elem>0)
+  {
+    for (uword pos = 0; pos < q1.n_elem; ++pos)
+    {
+      D( q1(pos) ) = THRESH;
+      
+    }
+    
+    CovMean = V*diagmat(D)*V.t();  
+    
+  }
+  
+  eig_sym(D, V, CovMean);
+  mat log_M = V*diagmat( log(D) )*V.t();
+    
+    
+    
+  
+  return log_M;
+}
 
