@@ -390,9 +390,10 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	    dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
 	  }
 	  else{
+	    cout << "Options are 1 or 2" << endl;
 	    getchar();
 	    
-	}
+	  }
 
 	++k;
 
@@ -410,7 +411,7 @@ inline
 vec
 kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
 {
- //cout << "DIM " << dim << endl;
+ cout << "DIM " << dim << endl;
   double THRESH = 0.000001;
   mat CovMean = zeros(dim+1,dim+1);
   mat cov_i_2 = cov_i + mean_i*mean_i.t();
