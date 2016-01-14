@@ -137,7 +137,7 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
   int j =0;
   
   std::stringstream load_sub_path;
-  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale2 << "-shift"<< shift2 ;
+  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << ts_scale << "-shift"<< ts_shift ;
 
 
   
