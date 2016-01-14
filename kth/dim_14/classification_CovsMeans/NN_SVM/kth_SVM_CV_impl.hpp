@@ -371,11 +371,14 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	//cout << "dist" << endl;
 	if(GD_type==1){ 
 	  
+ 	  cout << "Aqui  test_logM_CovMeans" << endl;
+
 	  mat test_logM_CovMeans = get_emb_LogCov (test_Cov, test_Mean);
+	  
+	  cout << "Aqui  train_logM_CovMeans" << endl;
 	  mat train_logM_CovMeans = get_emb_LogCov (train_Cov, train_Mean);   
 	  cout <<  norm( test_logM_CovMeans - train_logM_CovMeans, "fro") << endl;
 	  dist(k) = norm( test_logM_CovMeans - train_logM_CovMeans, "fro");
-	  cout << "Aqui 3 " << endl;
 
 	}
 	
