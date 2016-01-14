@@ -263,7 +263,7 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
   load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale2 << "-shift"<< shift2 ;
   
   //omp_set_num_threads(8); //Use only 8 processors
-  #pragma omp parallel for 
+  //#pragma omp parallel for 
   for (int n = 0; n< n_test; ++n)
   {
     int pe  = peo_act (n,0);
@@ -291,7 +291,7 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
     save_vec_dist << "./GD_2/dist_vector_" << all_people (pe) << "_" << actions(act) << ".h5" ;
     
     
-    #pragma omp critical
+    //#pragma omp critical
     dist_video_i.save(save_vec_dist.str(), hdf5_binary);
     
   }
@@ -325,11 +325,14 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
   
   int k=0;
   
+  cout << "Distance Between " <<  all_people (pe_test) << "& "; 
+  
   for (int pe_tr = 0; pe_tr< n_peo; ++pe_tr)
   {
     if (pe_tr!= pe_test)
     {	     
       
+      cout <<  all_people (pe_tr) << " ";
       for (int act=0; act<n_actions; ++act)
       {
 	
