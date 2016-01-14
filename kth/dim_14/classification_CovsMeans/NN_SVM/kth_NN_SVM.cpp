@@ -58,13 +58,9 @@ main(int argc, char** argv)
     std::string GD_type = "GD_1"; // or "GD_1"
     
     kth_cv_distNN_svm NN_SVM_GD_2(path, actionNames, all_people,  total_scenes,  dim, GD_type );
-    
-
-		
-		
-    //acc_GD = kth_CV_omp_GD.Ground_Distance();
-    //NN_SVM_GD_2.train( scale_factor, shift );
+    NN_SVM_GD_2.train( scale_factor, shift );
     NN_SVM_GD_2.test( scale_factor, shift );
+    
     
     
 
