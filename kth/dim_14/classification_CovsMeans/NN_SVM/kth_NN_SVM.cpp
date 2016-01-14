@@ -62,7 +62,7 @@ main(int argc, char** argv)
 		
 		
     //acc_GD = kth_CV_omp_GD.Ground_Distance();
-    NN_SVM_GD_2.train( scale_factor, shift );
+    //NN_SVM_GD_2.train( scale_factor, shift );
     NN_SVM_GD_2.test( scale_factor, shift );
     
     

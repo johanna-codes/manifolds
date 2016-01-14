@@ -160,14 +160,14 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
 	 vec test_dist;
 	 
 	 std::stringstream load_Covs_ts;
-	 load_Covs_ts << load_sub_path << "/Cov_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
+	 load_Covs_ts << load_sub_path.str() << "/Cov_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
 	 
 	 
 	 std::stringstream load_logM_Covs_ts;
-	 load_logM_Covs_ts << load_sub_path << "/logM_Cov_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
+	 load_logM_Covs_ts << load_sub_path.str() << "/logM_Cov_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
 	  
 	 std::stringstream load_Means_ts;
-	 load_Means_ts << load_sub_path << "/Means_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
+	 load_Means_ts << load_sub_path.str() << "/Means_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
 	  
 	  
 	  
