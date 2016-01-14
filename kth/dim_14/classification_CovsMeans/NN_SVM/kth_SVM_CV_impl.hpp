@@ -293,7 +293,7 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
     
     //#pragma omp critical
     
-    cout << "Distance Between " <<  all_people (pe_test) << "_" <<  actions(act) << "& "; 
+    cout << "Distance Between " <<  all_people (pe) << "_" <<  actions(act) << "& "; 
 
     dist_video_i.save(save_vec_dist.str(), hdf5_binary);
     
