@@ -292,6 +292,9 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
     
     
     //#pragma omp critical
+    
+    cout << "Distance Between " <<  all_people (pe_test) << "_" <<  actions(act) << "& "; 
+
     dist_video_i.save(save_vec_dist.str(), hdf5_binary);
     
   }
@@ -325,7 +328,6 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
   
   int k=0;
   
-  cout << "Distance Between " <<  all_people (pe_test) << "& "; 
   
   for (int pe_tr = 0; pe_tr< n_peo; ++pe_tr)
   {
