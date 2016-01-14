@@ -13,8 +13,8 @@ using namespace std;
 using namespace arma;
 
 
-#include "kth-cross-validation-def.hpp"
-#include "kth-cross-validation-impl.hpp"
+#include "kth_SVM_CV_def.hpp"
+#include "kth_SVM_CV_impl.hpp"
 
 
 
@@ -56,9 +56,11 @@ main(int argc, char** argv)
     int shift = 0;
     float acc_GD; //Ground Distance
     
-    kth_cv_omp kth_CV_omp_GD(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+    kth_cv_distNN_svm NN_SVM_GD_2(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
     //acc_GD = kth_CV_omp_GD.Ground_Distance();
-    acc_GD = kth_CV_omp_GD.Ground_Distance_GMM(Ng);
+    NN_SVM_GD_2.train( scale_factor, shift );
+    NN_SVM_GD_2.test( scale_factor, shift );
+    
     
 
 

@@ -241,6 +241,8 @@ kth_cv_omp::dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, c
   
 }
 
+
+
 /// One Covariance and one mean per video 
 
 // Ground Distance (GD) Based on Product of Lie Groups

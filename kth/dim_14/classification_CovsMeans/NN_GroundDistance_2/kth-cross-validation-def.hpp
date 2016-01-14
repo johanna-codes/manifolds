@@ -12,11 +12,9 @@ class kth_cv_omp //KTH Cross validation
 		const int in_dim 
  		);
     
-    inline float Ground_Distance();
+    inline float Ground_Distance(); //One Covariance Matrix and one Mean per video
     inline float Ground_Distance_GMM(const int Ng);
 
-    
-    
     const std::string path;
     const std::string actionNames;
     field<std::string> all_people;
