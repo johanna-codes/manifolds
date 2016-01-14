@@ -410,7 +410,7 @@ inline
 vec
 kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
 {
- cout << "DIM " << dim << endl;
+ //cout << "DIM " << dim << endl;
   double THRESH = 0.000001;
   mat CovMean = zeros(dim+1,dim+1);
   mat cov_i_2 = cov_i + mean_i*mean_i.t();
