@@ -369,17 +369,14 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	
 	
 	//cout << "dist" << endl;
-	switch(GD_type){
-	  case 1  : //Using Embedding SPD
-   
-	    
-	   mat test_logM_CovMeans = get_emb_LogCov (test_Cov, test_Mean);
-	   mat train_logM_CovMeans = get_emb_LogCov (train_Cov, train_Mean);   
-	   dist = norm( test_logM_CovMeans - train_logM_CovMeans, "fro");
-    
-	    break; //optional
+	if(GD_type==1){
 	  
-	  case 2  :
+	  mat test_logM_CovMeans = get_emb_LogCov (test_Cov, test_Mean);
+	  mat train_logM_CovMeans = get_emb_LogCov (train_Cov, train_Mean);   
+	  dist = norm( test_logM_CovMeans - train_logM_CovMeans, "fro");
+	}
+	
+	  else if(GD_type==2){
 	    vec subs;
 	    mat sum;
 	    
@@ -391,11 +388,10 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	    //cout << "tmp_dist_b" << endl;
 	    tmp_dist_b = norm( test_logM_Cov - train_logM_Cov, "fro");
 	    dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
-	    break; //optional
-	  
-	  default : //Optional
-       cout << "Options are  1 or 2 ";
-       getchar();
+	  }
+	  else{
+	    getchar();
+	    
 	}
 
 	++k;
