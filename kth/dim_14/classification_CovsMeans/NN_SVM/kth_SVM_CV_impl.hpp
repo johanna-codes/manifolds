@@ -2,11 +2,12 @@
 
 inline
 kth_cv_distNN_svm::kth_cv_distNN_svm(const std::string in_path,
-		       const std::string in_actionNames,  
-		       const field<std::string> in_all_people,
-		       const int in_scene, //only for kth
-		       const int in_dim 
-):path(in_path), actionNames(in_actionNames), all_people (in_all_people), total_scenes(in_scene), dim(in_dim)
+				     const std::string in_actionNames,  
+				     const field<std::string> in_all_people,
+				     const int in_scene, //only for kth
+				     const int in_dim,
+				     const std::string in_GD_type
+):path(in_path), actionNames(in_actionNames), all_people (in_all_people), total_scenes(in_scene), dim(in_dim), GD_type(in_GD_type)
 {
   actions.load( actionNames );  
   
@@ -58,13 +59,13 @@ kth_cv_distNN_svm::svm_train()
 	
 	for (int act=0; act<n_actions; act++)
 	{
-
-	    std::stringstream load_vec_dist;
-	    load_vec_dist << "./GD_2/dist_vector_" << all_people (pe_tr) << "_" << actions(act) << ".h5" ;
-	    dist_vector.load( load_vec_dist.str() );
-	    training_data.col(k) = dist_vector;
-	    lab(k) = act;
-	    ++k;
+	  
+	  std::stringstream load_vec_dist;
+	  load_vec_dist << "./GD_2/dist_vector_" << all_people (pe_tr) << "_" << actions(act) << ".h5" ;
+	  dist_vector.load( load_vec_dist.str() );
+	  training_data.col(k) = dist_vector;
+	  lab(k) = act;
+	  ++k;
 	}
     }
     
@@ -75,39 +76,39 @@ kth_cv_distNN_svm::svm_train()
     float fl_labels[n_test] ;
     
     
-      for (uword m=0; m<n_test; ++m)
+    for (uword m=0; m<n_test; ++m)
+    {
+      for (uword d=0; d<n_dim; ++d)
       {
-	for (uword d=0; d<n_dim; ++d)
-	{
-	  cvMatTraining.at<float>(m,d) = training_data(d,m); 
-	  //cout << " OpenCV: " << cvMatTraining.at<float>(m,d) << " - Arma: " <<training_data(d,m); 
-	  
-	}
-	
-	fl_labels[m] = lab(m);
-	//cout <<" OpenCVLabel: " <<  fl_labels[m] << " ArmaLabel: " << labels(m) << endl;
+	cvMatTraining.at<float>(m,d) = training_data(d,m); 
+	//cout << " OpenCV: " << cvMatTraining.at<float>(m,d) << " - Arma: " <<training_data(d,m); 
 	
       }
       
-      cv::Mat cvMatLabels(n_test, 1, CV_32FC1,fl_labels );
+      fl_labels[m] = lab(m);
+      //cout <<" OpenCVLabel: " <<  fl_labels[m] << " ArmaLabel: " << labels(m) << endl;
       
-      //cout << "Setting parameters" << endl;
-      CvSVMParams params;
-      params.svm_type    = CvSVM::C_SVC;
-      params.kernel_type = CvSVM::LINEAR; 
-      //params.gamma = 1;
-      params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER,  (int)1e7, 1e-6);
-      //params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 100, 1e-6);
-      
-      // Train the SVM
-      //cout << "Training" << endl;
-      CvSVM SVM;
-      SVM.train( cvMatTraining , cvMatLabels, cv::Mat(), cv::Mat(), params);
-
-      
-      std::stringstream save_svm_model;
-      save_svm_model << "./svm_models/GD_2_svm_run_" << pe_ts+1;
-      SVM.save( save_svm_model.str().c_str() );
+    }
+    
+    cv::Mat cvMatLabels(n_test, 1, CV_32FC1,fl_labels );
+    
+    //cout << "Setting parameters" << endl;
+    CvSVMParams params;
+    params.svm_type    = CvSVM::C_SVC;
+    params.kernel_type = CvSVM::LINEAR; 
+    //params.gamma = 1;
+    params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER,  (int)1e7, 1e-6);
+    //params.term_crit   = cvTermCriteria(CV_TERMCRIT_ITER, 100, 1e-6);
+    
+    // Train the SVM
+    //cout << "Training" << endl;
+    CvSVM SVM;
+    SVM.train( cvMatTraining , cvMatLabels, cv::Mat(), cv::Mat(), params);
+    
+    
+    std::stringstream save_svm_model;
+    save_svm_model << "./svm_models/GD_2_svm_run_" << pe_ts+1;
+    SVM.save( save_svm_model.str().c_str() );
   }
 }
 
@@ -141,8 +142,8 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
   
   std::stringstream load_sub_path;
   load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << ts_scale << "-shift"<< ts_shift ;
-
-
+  
+  
   
   
   
@@ -150,77 +151,77 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
   {
     
     CvSVM SVM;
-
+    
     std::stringstream load_svm_model;
     load_svm_model << "./svm_models/GD_2_svm_run_" << pe_ts+1;
     SVM.load( load_svm_model.str().c_str() );
     
     for (int act_ts =0; act_ts<n_actions; ++act_ts)
     {
-	 vec test_dist;
-	 
-	 std::stringstream load_Covs_ts;
-	 load_Covs_ts << load_sub_path.str() << "/Cov_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
-	 
-	 
-	 std::stringstream load_logM_Covs_ts;
-	 load_logM_Covs_ts << load_sub_path.str() << "/logM_Cov_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
-	  
-	 std::stringstream load_Means_ts;
-	 load_Means_ts << load_sub_path.str() << "/Means_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
-	  
-	  
-	  
-	  
-	 
-	 std::stringstream load_cov;
-	 load_cov << load_sub_path.str() << "/LogMcov_" << all_people (pe_ts) << "_" << actions(act_ts) << "_dim" << dim  << ".h5";
-
-
-	 test_dist = dist_one_video( pe_ts, load_sub_path.str(), load_Covs_ts.str(), load_logM_Covs_ts.str(), load_Means_ts.str() );	
-	 
-	 
-	 
-	 cv::Mat cvMatTesting_onevideo(1, n_dim, CV_32FC1);
-	 
-	 for (uword d=0; d<n_dim; ++d)
-	 {
-	   cvMatTesting_onevideo.at<float>(0,d) = test_dist(d); 
-	   
-	}
-   
-	float response = SVM.predict(cvMatTesting_onevideo, true);
+      vec test_dist;
+      
+      std::stringstream load_Covs_ts;
+      load_Covs_ts << load_sub_path.str() << "/Cov_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
+      
+      
+      std::stringstream load_logM_Covs_ts;
+      load_logM_Covs_ts << load_sub_path.str() << "/logM_Cov_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
+      
+      std::stringstream load_Means_ts;
+      load_Means_ts << load_sub_path.str() << "/Means_" << all_people (pe_ts) << "_" << actions(act_ts) << ".h5";
+      
+      
+      
+      
+      
+      std::stringstream load_cov;
+      load_cov << load_sub_path.str() << "/LogMcov_" << all_people (pe_ts) << "_" << actions(act_ts) << "_dim" << dim  << ".h5";
+      
+      
+      test_dist = dist_one_video( pe_ts, load_sub_path.str(), load_Covs_ts.str(), load_logM_Covs_ts.str(), load_Means_ts.str() );	
+      
+      
+      
+      cv::Mat cvMatTesting_onevideo(1, n_dim, CV_32FC1);
+      
+      for (uword d=0; d<n_dim; ++d)
+      {
+	cvMatTesting_onevideo.at<float>(0,d) = test_dist(d); 
 	
-	std::stringstream test_video_name;
-	test_video_name << all_people(pe_ts) << "_" << actions(act_ts);
-	
-	
-	//cout << "response " << response << endl;
-	real_labels(j) = act_ts;
-	est_labels(j) = response;
-	test_video_list(j) = test_video_name.str();
-	j++;
-	
-	if (response == act_ts)  {
-	  acc++;
-	  
-	}
-
       }
       
-//       std::stringstream main_save;
-//       main_save << "./svm_results_2/LogEucl_scale" <<  ts_scale << "-shift"<< ts_shift;
-//       
-//       
-//       std::stringstream save1, save2,save3;
-//       
-//       save1 << main_save.str() << "_real_labels.dat";
-//       save2 << main_save.str() << "_est_labels.dat";
-//       save3 << main_save.str() << "_test_video_list.dat";
-//       
-//       real_labels.save(save1.str(), raw_ascii);
-//       est_labels.save( save2.str(), raw_ascii);
-//       test_video_list.save(save3.str(), raw_ascii); 
+      float response = SVM.predict(cvMatTesting_onevideo, true);
+      
+      std::stringstream test_video_name;
+      test_video_name << all_people(pe_ts) << "_" << actions(act_ts);
+      
+      
+      //cout << "response " << response << endl;
+      real_labels(j) = act_ts;
+      est_labels(j) = response;
+      test_video_list(j) = test_video_name.str();
+      j++;
+      
+      if (response == act_ts)  {
+	acc++;
+	
+      }
+      
+    }
+    
+    //       std::stringstream main_save;
+    //       main_save << "./svm_results_2/LogEucl_scale" <<  ts_scale << "-shift"<< ts_shift;
+    //       
+    //       
+    //       std::stringstream save1, save2,save3;
+    //       
+    //       save1 << main_save.str() << "_real_labels.dat";
+    //       save2 << main_save.str() << "_est_labels.dat";
+    //       save3 << main_save.str() << "_test_video_list.dat";
+    //       
+    //       real_labels.save(save1.str(), raw_ascii);
+    //       est_labels.save( save2.str(), raw_ascii);
+    //       test_video_list.save(save3.str(), raw_ascii); 
     
   }
   cout << "Performance for GD_2 = : " << acc*100/(n_peo*n_actions) << " %" << endl;
@@ -288,11 +289,11 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
     
     
     //cout << "Distance Between " <<  all_people (pe) << "_" <<  actions(act) << "& "; 
-
+    
     dist_video_i = dist_one_video( pe, load_sub_path.str(), load_Covs.str(),load_logMCovs.str(), load_Means.str() );
     //getchar();
     //dist_video_i = dist_video_i/norm(dist_video_i,2);
-
+    
     //save dist_video_i person, action  
     std::stringstream save_vec_dist;
     save_vec_dist << "./GD_2/dist_vector_" << all_people (pe) << "_" << actions(act) << ".h5" ;
@@ -300,7 +301,7 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
     
     //#pragma omp critical
     
-
+    
     dist_video_i.save(save_vec_dist.str(), hdf5_binary);
     
   }
@@ -325,7 +326,7 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
   int n_actions = actions.n_rows;
   int n_peo =  all_people.n_rows;
   
- 
+  
   double  tmp_dist_a, tmp_dist_b;
   vec dist;
   int num_dist = (n_peo-1)*n_actions;
@@ -354,33 +355,44 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 	
 	std::stringstream load_Means_tr;
 	load_Means_tr << load_sub_path << "/Means_" << all_people (pe_tr) << "_" << actions(act) << ".h5";
-	  
-	  
-	  
-	  mat train_Cov;
-	  mat train_logM_Cov;
-	  vec train_Mean;
-	  
-	  train_Cov.load( load_Covs_tr.str() ) ;
-	  train_logM_Cov.load( load_logM_Covs_tr.str() );
-	  train_Mean.load( load_Means_tr.str() );
-	  
-	  vec subs;
-	  mat sum;
-	  
-	  subs = ( test_Mean - train_Mean );
-	  sum = inv( test_Cov ) + inv( train_Cov );
-	  
-	  //cout << "tmp_dist_a" << endl;
-	  tmp_dist_a =sqrt( as_scalar( subs.t()*sum*subs ) );
-	  
-	  //cout << "tmp_dist_b" << endl;
-	  tmp_dist_b = norm( test_logM_Cov - train_logM_Cov, "fro");
-	  
-	  //cout << "dist" << endl;
-	  dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
-	  ++k;
 	
+	
+	
+	mat train_Cov;
+	mat train_logM_Cov;
+	vec train_Mean;
+	
+	train_Cov.load( load_Covs_tr.str() ) ;
+	train_logM_Cov.load( load_logM_Covs_tr.str() );
+	train_Mean.load( load_Means_tr.str() );
+	
+	vec subs;
+	mat sum;
+	
+	subs = ( test_Mean - train_Mean );
+	sum = inv( test_Cov ) + inv( train_Cov );
+	
+	//cout << "tmp_dist_a" << endl;
+	tmp_dist_a =sqrt( as_scalar( subs.t()*sum*subs ) );
+	
+	//cout << "tmp_dist_b" << endl;
+	tmp_dist_b = norm( test_logM_Cov - train_logM_Cov, "fro");
+	
+	//cout << "dist" << endl;
+	switch(GD_type){
+	  case "GD_1"  :
+	    cout << "No implemented yet" << endl;
+	    break; //optional
+	  case "GD_2"  :
+	    dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
+	    break; //optional
+	    // you can have any number of case statements.
+	  default : //Optional
+       cout << "Options are GD_1 or GD_2";
+       getchar();
+	}
+
+	++k;
 
       }
     }
