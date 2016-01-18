@@ -75,7 +75,7 @@ main(int argc, char** argv)
     acc_vec.zeros(vec_Ng.n_elem + 1);
     acc_vec(0) = acc_GD;
     
-    for (int i=0; i < acc_GD; ++i)
+    for (int i=0; i < vec_Ng.n_elem; ++i)
     
     {
     
@@ -86,7 +86,7 @@ main(int argc, char** argv)
       acc_GD = NN_SVM_GD_GMM.test_gmm( scale_factor, shift, Ng );
       acc_vec (i+1) = acc_GD;
       
-      acc_vec.t().print("Without Normalisation");
+      acc_vec.t().print("With Power Normalisation");
     
     }
     
