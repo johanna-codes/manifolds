@@ -431,7 +431,7 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
       
       vec test_dist;
       
-      test_dist = dist_one_video_gmm( pe_ts, act_ts, Ng  );	
+      test_dist = dist_one_video_gmm( load_sub_path, pe_ts, act_ts, Ng  );	
       
       
       
