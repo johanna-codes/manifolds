@@ -483,8 +483,7 @@ kth_cv_distNN_svm::svm_train_gmm()
   
  
   
-  //int n_test = n_peo*n_actions*total_scenes - 1; // - person13_handclapping_d3
-  int n_test = (n_peo-1)*n_actions*total_scenes; // - person13_handclapping_d3
+  int n_test = (n_peo-1)*n_actions*total_scenes; 
   int n_dim = n_test;
   int sc = 1; // = total scenes
   fvec dist_vector;
