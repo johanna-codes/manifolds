@@ -505,7 +505,7 @@ kth_cv_distNN_svm::svm_train_gmm()
 	{
 	  
 	  std::stringstream load_vec_dist;
-	  load_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
+	  load_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe_tr) << "_" << actions(act) << "_Ng" << ".h5" ;
 	  dist_vector.load( load_vec_dist.str() );
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act;
