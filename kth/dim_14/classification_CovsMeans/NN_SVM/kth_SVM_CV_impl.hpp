@@ -547,6 +547,8 @@ kth_cv_distNN_svm::svm_train_gmm(int Ng)
 }
 
 */
+
+/*
 inline
 void
 kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
@@ -763,3 +765,4 @@ kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
 }
 
 
+*/
