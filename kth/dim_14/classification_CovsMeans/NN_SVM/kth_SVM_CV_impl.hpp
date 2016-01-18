@@ -70,7 +70,7 @@ kth_cv_distNN_svm::svm_train()
 	  
 	  //dist_vector = dist_vector/norm(dist_vector,2); //l2 normalisation
 	  
-	  dist_vector = sign(dist_vector)%sqrt(abs(dist_vector)); //Power Normalisation
+	  //dist_vector = sign(dist_vector)%sqrt(abs(dist_vector)); //Power Normalisation
 	  
 	  
 	  
@@ -186,7 +186,7 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
       
       //test_dist = test_dist/norm(test_dist,2); //l2 normalisation
       
-      test_dist = sign(test_dist)%sqrt(abs(test_dist)); //Power Normalisation
+      //test_dist = sign(test_dist)%sqrt(abs(test_dist)); //Power Normalisation
       
       
       
@@ -468,7 +468,7 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int in_Ng)
       
       //test_dist = test_dist/norm(test_dist,2); //l2 normalisation
       
-      test_dist = sign(test_dist)%sqrt(abs(test_dist)); //Power Normalisation
+      //test_dist = sign(test_dist)%sqrt(abs(test_dist)); //Power Normalisation
       
 
       
@@ -538,7 +538,7 @@ kth_cv_distNN_svm::svm_train_gmm()
 	  
 	  //dist_vector = dist_vector/norm(dist_vector,2); //l2 normalisation
 	  
-	  dist_vector = sign(dist_vector)%sqrt(abs(dist_vector)); //Power Normalisation
+	  //dist_vector = sign(dist_vector)%sqrt(abs(dist_vector)); //Power Normalisation
 
 
 	  training_data.col(k) = dist_vector;
