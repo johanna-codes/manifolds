@@ -201,8 +201,6 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
 }
 
 
-///
-
 inline
 void
 kth_cv_distNN_svm::distances(int scale_factor, int shift)
@@ -583,6 +581,8 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
   std::stringstream load_sub_path;
   load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale2 << "-shift"<< shift2 ;
   
+ 
+  
   //omp_set_num_threads(8); //Use only 8 processors
   //#pragma omp parallel for 
   for (int n = 0; n< n_test; ++n)
@@ -593,7 +593,7 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
     int tid=omp_get_thread_num();
     vec dist_video_i;
     
-    dist_video_i = dist_one_video_gmm( pe, act, Ng );
+    dist_video_i = dist_one_video_gmm( load_sub_path, pe, act, Ng );
 
     std::stringstream save_vec_dist;
     save_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
@@ -606,7 +606,7 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
 
 inline
 vec 
-kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test,  int Ng)
+kth_cv_distNN_svm::dist_one_video_gmm(std::stringstream load_sub_path, int pe_test, int act_test,  int Ng)
 {
 
   vec dist;
@@ -627,7 +627,7 @@ kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test,  int Ng)
 
 	if(GD_type==1){ 
 	  
-	  dist(k) = dist_te_tr_GD1(pe_test, pe_tr, act_test, act_train,  Ng);
+	  dist(k) = dist_te_tr_GD1( load_sub_path, pe_test, pe_tr, act_test, act_train,  Ng);
 
 	}
 	
@@ -657,12 +657,11 @@ kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test,  int Ng)
 
 inline
 float
-kth_cv_distNN_svm::dist_te_tr_GD1(int pe_test, int pe_train, int act_test, int act_train, const int Ng)
+kth_cv_distNN_svm::dist_te_tr_GD1(std::stringstream load_sub_path, int pe_test, int pe_train, int act_test, int act_train, const int Ng)
 {
   
   int sc =1;
-  std::stringstream load_sub_path;
-  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+  
   
   
   float theta = 0.5; //See Experiments in original paper
