@@ -636,7 +636,7 @@ kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test )
 	if(GD_type==1){ 
 	  
 	  //cout << "Completamente Implementado "<< endl;
-	  dist(k) = dist_te_tr_GD1( pe_test, pe_tr, act_test, act_train,  Ng);
+	  dist(k) = dist_te_tr_GD1( pe_test, pe_tr, act_test, act_train);
 
 	}
 	
@@ -668,7 +668,7 @@ kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test )
 
 inline
 float
-kth_cv_distNN_svm::dist_te_tr_GD1(int pe_test, int pe_train, int act_test, int act_train, const int Ng)
+kth_cv_distNN_svm::dist_te_tr_GD1(int pe_test, int pe_train, int act_test, int act_train)
 {
   
   int sc =1;
