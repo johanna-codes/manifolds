@@ -595,7 +595,7 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
     int tid=omp_get_thread_num();
     vec dist_video_i;
     
-    //dist_video_i = dist_one_video_gmm( load_sub_path, pe, act, Ng );
+    dist_video_i = dist_one_video_gmm( load_sub_path, pe, act, Ng );
 
     std::stringstream save_vec_dist;
     save_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
