@@ -68,7 +68,7 @@ kth_cv_distNN_svm::svm_train()
 	  dist_vector.load( load_vec_dist.str() );
 	  
 	  
-	  //dist_vector = dist_vector/norm(dist_vector,2); //l2 normalisation
+	  dist_vector = dist_vector/norm(dist_vector,2); //l2 normalisation
 	  
 	  //dist_vector = sign(dist_vector)%sqrt(abs(dist_vector)); //Power Normalisation
 	  
@@ -184,7 +184,7 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
       
       test_dist = dist_one_video( pe_ts, load_sub_path.str(), load_Covs_ts.str(), load_logM_Covs_ts.str(), load_Means_ts.str() );	
       
-      //test_dist = test_dist/norm(test_dist,2); //l2 normalisation
+      test_dist = test_dist/norm(test_dist,2); //l2 normalisation
       
       //test_dist = sign(test_dist)%sqrt(abs(test_dist)); //Power Normalisation
       
@@ -470,7 +470,7 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int in_Ng)
       
       test_dist = dist_one_video_gmm( pe_ts, act_ts );	
       
-      //test_dist = test_dist/norm(test_dist,2); //l2 normalisation
+      test_dist = test_dist/norm(test_dist,2); //l2 normalisation
       
       //test_dist = sign(test_dist)%sqrt(abs(test_dist)); //Power Normalisation
       
@@ -545,7 +545,7 @@ kth_cv_distNN_svm::svm_train_gmm()
 	  load_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe_tr) << "_" << actions(act) << "_Ng" << ".h5" ;
 	  dist_vector.load( load_vec_dist.str() );
 	  
-	  //dist_vector = dist_vector/norm(dist_vector,2); //l2 normalisation
+	  dist_vector = dist_vector/norm(dist_vector,2); //l2 normalisation
 	  
 	  //dist_vector = sign(dist_vector)%sqrt(abs(dist_vector)); //Power Normalisation
 

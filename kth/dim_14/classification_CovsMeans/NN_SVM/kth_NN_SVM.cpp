@@ -69,7 +69,7 @@ main(int argc, char** argv)
     
      
     vec vec_Ng;
-    vec_Ng  << 2 << 4 << 8 << 16 << endr;
+    vec_Ng  << 2 << 4 << endr;
     
     vec acc_vec;
     acc_vec.zeros(vec_Ng.n_elem + 1);
@@ -86,7 +86,7 @@ main(int argc, char** argv)
       acc_GD = NN_SVM_GD_GMM.test_gmm( scale_factor, shift, Ng );
       acc_vec (i+1) = acc_GD;
       
-      acc_vec.print("Without Normalisation");
+      acc_vec.t().print("Without Normalisation");
     
     }
     
