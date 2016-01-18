@@ -478,7 +478,7 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
 
 inline
 void
-kth_cv_distNN_svm::svm_train_gmm(int Ng)
+kth_cv_distNN_svm::svm_train_gmm()
 {
   
  
