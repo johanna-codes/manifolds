@@ -403,7 +403,7 @@ kth_cv_distNN_svm::train_gmm( int tr_scale, int tr_shift, int in_Ng )
 
 inline
 void
-kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
+kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int in_Ng)
 {
   
 
@@ -428,6 +428,7 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
   ///For testing. Scales and shifts may change
   scale = ts_scale;
   shift = ts_shift;
+  Ng = in_Ng;
   
   //std::stringstream load_sub_path;
   //load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << ts_scale << "-shift"<< ts_shift ;
