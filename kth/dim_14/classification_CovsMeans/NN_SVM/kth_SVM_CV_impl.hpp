@@ -556,7 +556,7 @@ kth_cv_distNN_svm::svm_train_gmm()
   }
 }
 
-*/
+
 
 
 inline
