@@ -434,6 +434,7 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
     
     std::stringstream load_svm_model;
     load_svm_model << "./svm_models/GD_svm_run_" << pe_ts+1;
+    cout << load_svm_model.str() << endl;
     SVM.load( load_svm_model.str().c_str() );
     
     for (int act_ts =0; act_ts<n_actions; ++act_ts)
