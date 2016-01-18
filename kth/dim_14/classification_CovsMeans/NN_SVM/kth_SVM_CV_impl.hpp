@@ -593,34 +593,20 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
     int tid=omp_get_thread_num();
     vec dist_video_i;
     
-    
-   
     dist_video_i = dist_one_video_gmm( pe, act, Ng );
-    //getchar();
-    //dist_video_i = dist_video_i/norm(dist_video_i,2);
-    
-    //save dist_video_i person, action  
+
     std::stringstream save_vec_dist;
     save_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
     
-    
     //#pragma omp critical
-    
-    
     dist_video_i.save(save_vec_dist.str(), hdf5_binary);
-    
   }
-  
 }
-
-
-
-
 
 
 inline
 vec 
-dist_one_video_gmm(int pe_test, int act_test,  int Ng)
+kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test,  int Ng)
 {
 
   
