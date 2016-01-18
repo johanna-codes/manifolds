@@ -629,7 +629,7 @@ kth_cv_distNN_svm::dist_one_video_gmm(std::stringstream load_sub_path, int pe_te
 
 	if(GD_type==1){ 
 	  
-	  dist(k) = dist_te_tr_GD1( load_sub_path, pe_test, pe_tr, act_test, act_train,  Ng);
+	  //dist(k) = dist_te_tr_GD1( load_sub_path, pe_test, pe_tr, act_test, act_train,  Ng);
 
 	}
 	
@@ -655,7 +655,7 @@ kth_cv_distNN_svm::dist_one_video_gmm(std::stringstream load_sub_path, int pe_te
 }
 
 
-
+/*
 
 inline
 float
@@ -718,7 +718,7 @@ kth_cv_distNN_svm::dist_te_tr_GD1(std::stringstream load_sub_path, int pe_test, 
 }
 
 
-
+*/
 
 
 inline
