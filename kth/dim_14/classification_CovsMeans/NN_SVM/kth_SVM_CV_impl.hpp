@@ -66,6 +66,7 @@ kth_cv_distNN_svm::svm_train()
 	  std::stringstream load_vec_dist;
 	  load_vec_dist << "./GD/dist_vector_" << all_people (pe_tr) << "_" << actions(act) << ".h5" ;
 	  dist_vector.load( load_vec_dist.str() );
+	  dist_vector = dist_vector/norm(dist_vector,2); //l2 normalisation
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act;
 	  ++k;
@@ -173,7 +174,8 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
       
       
       test_dist = dist_one_video( pe_ts, load_sub_path.str(), load_Covs_ts.str(), load_logM_Covs_ts.str(), load_Means_ts.str() );	
-      //test_dist = test_dist/norm(test_dist,2);
+      
+      test_dist = test_dist/norm(test_dist,2); //l2 normalisation
       
       
       
@@ -453,6 +455,9 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int in_Ng)
       
       test_dist = dist_one_video_gmm( pe_ts, act_ts );	
       
+      test_dist = test_dist/norm(test_dist,2); //l2 normalisation
+
+      
       
       
       cv::Mat cvMatTesting_onevideo(1, n_dim, CV_32FC1);
@@ -516,6 +521,9 @@ kth_cv_distNN_svm::svm_train_gmm()
 	  std::stringstream load_vec_dist;
 	  load_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe_tr) << "_" << actions(act) << "_Ng" << ".h5" ;
 	  dist_vector.load( load_vec_dist.str() );
+	  
+	  dist_vector = dist_vector/norm(dist_vector,2); //l2 normalisation
+
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act;
 	  ++k;

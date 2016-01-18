@@ -47,7 +47,7 @@ main(int argc, char** argv)
   
     int total_scenes = 1; //Only for Scenario 1.
     int dim = 14; 
-    int Ng = 16;
+    int Ng = 2;
     
     field<string> all_people;
     all_people.load(peopleList);
@@ -60,9 +60,12 @@ main(int argc, char** argv)
     // 3. for GD_1 + GMM +SVM.
     int GD_type = 1; 
     
-//     kth_cv_distNN_svm NN_SVM_GD(path, actionNames, all_people,  total_scenes,  dim, GD_type );
-//     NN_SVM_GD.train( scale_factor, shift );
-//     NN_SVM_GD.test( scale_factor, shift );
+    
+    cout << "One Cov + One Mean per Video" << endl;
+    
+     kth_cv_distNN_svm NN_SVM_GD(path, actionNames, all_people,  total_scenes,  dim, GD_type );
+     NN_SVM_GD.train( scale_factor, shift );
+     NN_SVM_GD.test( scale_factor, shift );
     
     
     cout << "Ng: " << Ng << endl;
