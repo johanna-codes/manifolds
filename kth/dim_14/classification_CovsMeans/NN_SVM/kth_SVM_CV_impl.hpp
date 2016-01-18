@@ -372,7 +372,7 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 
 
 
-/*
+
 ///  GMM + SVM
 
 inline
@@ -380,15 +380,15 @@ void
 kth_cv_distNN_svm::train_gmm( int tr_scale, int tr_shift, int Ng )
 {
   cout << "Distances"<< endl;
-  distances_gmm(tr_scale, tr_shift, Ng);
+  //distances_gmm(tr_scale, tr_shift, Ng);
   cout << "Training" << endl;
-  svm_train_gmm(Ng); 
+  //svm_train_gmm(Ng); 
   cout << "End Training" << endl;
   
 }
 
 
-
+/*
 
 inline
 void
