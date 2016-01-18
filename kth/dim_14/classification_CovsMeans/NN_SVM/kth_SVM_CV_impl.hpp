@@ -388,8 +388,8 @@ kth_cv_distNN_svm::train_gmm( int tr_scale, int tr_shift, int in_Ng )
   
   Ng = in_Ng;
   
-  //cout << "Distances"<< endl;
-  //distances_gmm();
+  cout << "Distances"<< endl;
+  distances_gmm();
   
   cout << "Training" << endl;
   svm_train_gmm(); 
