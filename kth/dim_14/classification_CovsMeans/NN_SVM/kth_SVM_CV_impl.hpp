@@ -564,11 +564,6 @@ void
 kth_cv_distNN_svm::distances_gmm()
 {
 
-  
-  int scale2 = scale_factor;
-  int shift2 = shift;
-  
-  
   //int n_test = n_peo*n_actions*total_scenes - 1; // - person13_handclapping_d3
   int n_test = n_peo*n_actions*total_scenes; // - person13_handclapping_d3
   
