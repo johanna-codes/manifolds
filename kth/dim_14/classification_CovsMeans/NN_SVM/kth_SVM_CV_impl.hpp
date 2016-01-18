@@ -529,7 +529,7 @@ kth_cv_distNN_svm::svm_train_gmm(int Ng)
 	{
 	  
 	  std::stringstream load_vec_dist;
-	  load_vec_dist << "./GD/dist_vector_" << ng_te << "out" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
+	  load_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
 	  dist_vector.load( load_vec_dist.str() );
 	  training_data.col(k) = dist_vector;
 	  lab(k) = act;
@@ -635,7 +635,7 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
     
     //save dist_video_i person, action  
     std::stringstream save_vec_dist;
-    save_vec_dist << "./GD/dist_vector_" << ng_te << "out" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
+    save_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
     
     
     //#pragma omp critical
@@ -759,7 +759,9 @@ kth_cv_distNN_svm::dist_te_tr_GD1(int pe_test, int pe_train, int act_test, int a
        mat test_logM_CovMeans = get_emb_LogCov (test_Cov, test_Mean);
        mat train_logM_CovMeans = get_emb_LogCov (train_Cov, train_Mean);   
        
-       dist = norm( test_logM_CovMeans - train_logM_CovMeans, "fro");
+       float  tmp_dist = norm( test_logM_CovMeans - train_logM_CovMeans, "fro");
+       
+       dist+= tmp_dist;
       
     }
   }
