@@ -237,7 +237,7 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
     int pe  = peo_act (n,0);
     int act = peo_act (n,1);
     
-    int tid=omp_get_thread_num();
+    //int tid=omp_get_thread_num();
     vec dist_video_i;
     
     
