@@ -407,6 +407,7 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
 {
   
 
+  
   int n_test = (n_peo-1)*n_actions*total_scenes; 
   int n_dim = n_test;
   int sc = 1; // = total scenes
@@ -423,8 +424,13 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
   
   int j =0;
   
-  std::stringstream load_sub_path;
-  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << ts_scale << "-shift"<< ts_shift ;
+  
+  ///For testing. Scales and shifts may change
+  scale = ts_scale;
+  shift = ts_shift;
+  
+  //std::stringstream load_sub_path;
+  //load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << ts_scale << "-shift"<< ts_shift ;
   
   
   for (int pe_ts=0; pe_ts<n_peo; ++pe_ts)
