@@ -47,7 +47,7 @@ main(int argc, char** argv)
   
     int total_scenes = 1; //Only for Scenario 1.
     int dim = 14; 
-    int Ng = 2;
+    int Ng = 4;
     
     field<string> all_people;
     all_people.load(peopleList);
