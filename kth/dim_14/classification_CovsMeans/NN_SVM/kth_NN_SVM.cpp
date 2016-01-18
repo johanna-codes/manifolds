@@ -58,7 +58,7 @@ main(int argc, char** argv)
     // 1. for GD_1 + SVM. 
     // 2 for GD_2 + SVM
     // 3. for GD_1 + GMM +SVM.
-    int GD_type = 1; 
+    int GD_type = 3; 
     
 //     kth_cv_distNN_svm NN_SVM_GD(path, actionNames, all_people,  total_scenes,  dim, GD_type );
 //     NN_SVM_GD.train( scale_factor, shift );
