@@ -636,16 +636,11 @@ dist_one_video_gmm(int pe_test, int act_test,  int Ng)
     if (pe_tr!= pe_test)
     {	     
       
-      //cout <<  all_people (pe_tr) << " ";
-      
       for (int act_train=0; act_train<n_actions; ++act_train)
       {
-	
-	
-	
+
 	if(GD_type==1){ 
 	  
-
 	  dist(k) = dist_te_tr_GD1(pe_test, pe_tr, act_test, act_train,  Ng);
 
 	}
