@@ -28,6 +28,10 @@ class kth_cv_distNN_svm //KTH Cross validation
     const int total_scenes;
     const int dim;
     const int GD_type;
+    
+    int n_actions;
+    int n_peo;
+  
 
     
     field<std::string> actions;

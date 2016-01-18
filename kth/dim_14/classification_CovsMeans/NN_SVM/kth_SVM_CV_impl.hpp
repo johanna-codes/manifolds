@@ -10,6 +10,8 @@ kth_cv_distNN_svm::kth_cv_distNN_svm(const std::string in_path,
 ):path(in_path), actionNames(in_actionNames), all_people (in_all_people), total_scenes(in_scene), dim(in_dim), GD_type(in_GD_type)
 {
   actions.load( actionNames );  
+  n_actions = actions.n_rows;
+  n_peo =  all_people.n_rows;
   
   
 }
@@ -33,13 +35,8 @@ void
 kth_cv_distNN_svm::svm_train()
 {
   
-  
-  int n_actions = actions.n_rows;
-  int n_peo =  all_people.n_rows;
-  
-  
-  //int n_test = n_peo*n_actions*total_scenes - 1; // - person13_handclapping_d3
-  int n_test = (n_peo-1)*n_actions*total_scenes; // - person13_handclapping_d3
+
+  int n_test = (n_peo-1)*n_actions*total_scenes;
   int n_dim = n_test;
   int sc = 1; // = total scenes
   fvec dist_vector;
@@ -119,10 +116,6 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
 {
   
   
-  int n_actions = actions.n_rows;
-  int n_peo =  all_people.n_rows;
-  
-  
   int n_test = (n_peo-1)*n_actions*total_scenes; 
   int n_dim = n_test;
   int sc = 1; // = total scenes
@@ -141,11 +134,7 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
   
   std::stringstream load_sub_path;
   load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << ts_scale << "-shift"<< ts_shift ;
-  
-  
-  
-  
-  
+
   for (int pe_ts=0; pe_ts<n_peo; ++pe_ts)
   {
     
@@ -219,19 +208,13 @@ void
 kth_cv_distNN_svm::distances(int scale_factor, int shift)
 {
   
-  int n_actions = actions.n_rows;
-  int n_peo =  all_people.n_rows;
-  
   int scale2 = scale_factor;
   int shift2 = shift;
-  
   
   //int n_test = n_peo*n_actions*total_scenes - 1; // - person13_handclapping_d3
   int n_test = n_peo*n_actions*total_scenes; // - person13_handclapping_d3
   
-  
-  
-  
+
   int k=0;
   int sc = 1; // = total scenes
   
@@ -270,22 +253,15 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
     
     std::stringstream load_Means;
     load_Means << load_sub_path.str() << "/Means_" << all_people (pe) << "_" << actions(act) << ".h5";
-    
-    
-    //cout << "Distance Between " <<  all_people (pe) << "_" <<  actions(act) << "& "; 
-    
+
     dist_video_i = dist_one_video( pe, load_sub_path.str(), load_Covs.str(),load_logMCovs.str(), load_Means.str() );
-    //getchar();
-    //dist_video_i = dist_video_i/norm(dist_video_i,2);
+
     
-    //save dist_video_i person, action  
     std::stringstream save_vec_dist;
     save_vec_dist << "./GD/dist_vector_" << all_people (pe) << "_" << actions(act) << ".h5" ;
     
     
     //#pragma omp critical
-    
-    
     dist_video_i.save(save_vec_dist.str(), hdf5_binary);
     
   }
@@ -422,11 +398,7 @@ void
 kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
 {
   
-  
-  int n_actions = actions.n_rows;
-  int n_peo =  all_people.n_rows;
-  
-  
+
   int n_test = (n_peo-1)*n_actions*total_scenes; 
   int n_dim = n_test;
   int sc = 1; // = total scenes
@@ -501,10 +473,7 @@ void
 kth_cv_distNN_svm::svm_train_gmm(int Ng)
 {
   
-  
-  int n_actions = actions.n_rows;
-  int n_peo =  all_people.n_rows;
-  
+ 
   
   //int n_test = n_peo*n_actions*total_scenes - 1; // - person13_handclapping_d3
   int n_test = (n_peo-1)*n_actions*total_scenes; // - person13_handclapping_d3
@@ -585,9 +554,7 @@ inline
 void
 kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
 {
-  
-  int n_actions = actions.n_rows;
-  int n_peo =  all_people.n_rows;
+
   
   int scale2 = scale_factor;
   int shift2 = shift;
@@ -656,9 +623,7 @@ inline
 vec 
 dist_one_video_gmm(int pe_test, int act_test,  int Ng)
 {
-    
-  int n_actions = actions.n_rows;
-  int n_peo =  all_people.n_rows;
+
   
   int num_dist = (n_peo-1)*n_actions;
   dist.zeros(num_dist);
