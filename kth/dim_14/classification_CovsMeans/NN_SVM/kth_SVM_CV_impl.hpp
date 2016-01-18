@@ -372,7 +372,7 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 
 
 
-
+/*
 ///  GMM + SVM
 
 inline
@@ -762,3 +762,6 @@ kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)
   return log_M;
 }
 
+
+
+*/

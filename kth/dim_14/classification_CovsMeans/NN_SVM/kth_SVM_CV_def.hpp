@@ -47,8 +47,8 @@ class kth_cv_distNN_svm //KTH Cross validation
     
     inline void svm_train_gmm(int Ng);
     inline void distances_gmm(int scale_factor, int shift, int Ng);
-    inline vec dist_one_video_gmm(std::stringstream load_sub_path, int pe_test, int act_test,  int Ng);
-    inline float dist_te_tr_GD1(std::stringstream load_sub_path, int pe_test, int pe_train, int act_test, int act_train, const int Ng);
+    //inline vec dist_one_video_gmm(std::stringstream load_sub_path, int pe_test, int act_test,  int Ng);
+    //inline float dist_te_tr_GD1(std::stringstream load_sub_path, int pe_test, int pe_train, int act_test, int act_train, const int Ng);
 
     inline mat get_emb_LogCov(mat cov_i, vec mean_i);
     
