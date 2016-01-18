@@ -12,11 +12,11 @@ class kth_cv_distNN_svm //KTH Cross validation
  		);   
     
     inline void train(int tr_scale, int tr_shift);
-    inline void test(int ts_scale, int ts_shift);
+    inline float test(int ts_scale, int ts_shift);
     
     
     inline void train_gmm(int tr_scale, int tr_shift, int in_Ng);
-    inline void test_gmm(int ts_scale, int ts_shift, int in_Ng);
+    inline float test_gmm(int ts_scale, int ts_shift, int in_Ng);
 
     
     

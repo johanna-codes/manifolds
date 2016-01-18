@@ -127,7 +127,7 @@ kth_cv_distNN_svm::svm_train()
 
 
 inline
-void
+float
 kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
 {
   
@@ -216,7 +216,11 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
     }
   }
 
-  cout << "Performance for GD " << GD_type << " :"  << acc*100/(n_peo*n_actions) << " %" << endl;
+  
+  float acc_perfom = acc*100/(n_peo*n_actions);
+  cout << "Performance for GD " << GD_type << " :"  << acc_perfom  << " %" << endl;
+  
+  return acc_perfom;
 }
 
 
@@ -415,7 +419,7 @@ kth_cv_distNN_svm::train_gmm( int tr_scale, int tr_shift, int in_Ng )
 
 
 inline
-void
+float
 kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int in_Ng)
 {
   
@@ -500,7 +504,12 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int in_Ng)
     }
   }
 
+  
+  
+  float acc_perfom = acc*100/(n_peo*n_actions);
   cout << "Performance for GD + GMM " << GD_type << " + GMM + SVM :"  << acc*100/(n_peo*n_actions) << " %" << endl;
+  
+  return acc_perfom;
 }
 
 

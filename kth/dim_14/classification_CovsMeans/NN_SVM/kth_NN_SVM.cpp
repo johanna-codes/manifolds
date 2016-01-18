@@ -47,7 +47,7 @@ main(int argc, char** argv)
   
     int total_scenes = 1; //Only for Scenario 1.
     int dim = 14; 
-    int Ng = 4;
+    
     
     field<string> all_people;
     all_people.load(peopleList);
@@ -57,21 +57,38 @@ main(int argc, char** argv)
     float acc_GD; //Ground Distance
     // 1. for GD_1 + SVM. 
     // 2 for GD_2 + SVM
-    // 3. for GD_1 + GMM +SVM.
     int GD_type = 1; 
     
     
-    //cout << "One Cov + One Mean per Video" << endl;
+    cout << "One Cov + One Mean per Video" << endl;
+    float acc_GD;
     
-     //kth_cv_distNN_svm NN_SVM_GD(path, actionNames, all_people,  total_scenes,  dim, GD_type );
-     //NN_SVM_GD.train( scale_factor, shift );
-     //NN_SVM_GD.test( scale_factor, shift );
+    kth_cv_distNN_svm NN_SVM_GD(path, actionNames, all_people,  total_scenes,  dim, GD_type );
+    NN_SVM_GD.train( scale_factor, shift );
+    acc_GD = NN_SVM_GD.test( scale_factor, shift );
     
+    
+     
+    vec vec_Ng;
+    acc_vec  << 2 << 4 << 8 << 16 << endr;
+    
+    vec acc_vec;
+    acc_vec.zeros(vec_Ng.n_elem + 1);
+    acc_vec(0) = acc_GD;
+    
+    for (int i=0; i < acc_GD; ++i)
+    
+    {
+    int Ng = 4;
     
     cout << "Ng: " << Ng << endl;
     kth_cv_distNN_svm NN_SVM_GD_GMM(path, actionNames, all_people,  total_scenes,  dim, GD_type );
     NN_SVM_GD_GMM.train_gmm( scale_factor, shift, Ng );
-    NN_SVM_GD_GMM.test_gmm( scale_factor, shift, Ng );
+    acc_GD = NN_SVM_GD_GMM.test_gmm( scale_factor, shift, Ng );
+    
+    acc_vec (i+1) = acc_GD;
+    
+    }
     
     
     
