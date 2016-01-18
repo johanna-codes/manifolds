@@ -711,7 +711,7 @@ dist_one_video_gmm(int pe_test, int act_test,  int Ng)
 
 
 inline
-vec
+float
 kth_cv_distNN_svm::dist_te_tr_GD1(int pe_test, int pe_train, int act_test, int act_train, const int Ng)
 {
   
