@@ -65,6 +65,7 @@ main(int argc, char** argv)
 //     NN_SVM_GD.test( scale_factor, shift );
     
     
+    cout << "Ng: " << Ng << endl;
     kth_cv_distNN_svm NN_SVM_GD_GMM(path, actionNames, all_people,  total_scenes,  dim, GD_type );
     NN_SVM_GD_GMM.train_gmm( scale_factor, shift, Ng );
     NN_SVM_GD_GMM.test_gmm( scale_factor, shift, Ng );
