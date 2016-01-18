@@ -388,8 +388,8 @@ kth_cv_distNN_svm::train_gmm( int tr_scale, int tr_shift, int in_Ng )
   
   Ng = in_Ng;
   
-  cout << "Distances"<< endl;
-  distances_gmm();
+  //cout << "Distances"<< endl;
+  //distances_gmm();
   
   cout << "Training" << endl;
   svm_train_gmm(); 
@@ -440,8 +440,9 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int in_Ng)
     CvSVM SVM;
     
     std::stringstream load_svm_model;
-    load_svm_model << "./svm_models/GD_svm_run_" << pe_ts+1;
+    load_svm_model << "./svm_models/GD_gmm_svm_run_" << pe_ts+1 << "_Ng" << Ng;
     cout << load_svm_model.str() << endl;
+
     SVM.load( load_svm_model.str().c_str() );
     
     for (int act_ts =0; act_ts<n_actions; ++act_ts)
@@ -559,7 +560,7 @@ kth_cv_distNN_svm::svm_train_gmm()
     
     
     std::stringstream save_svm_model;
-    save_svm_model << "./svm_models/GD_gmm_svm_run_" << pe_ts+1;
+    save_svm_model << "./svm_models/GD_gmm_svm_run_" << pe_ts+1 << "_Ng" << Ng;
     SVM.save( save_svm_model.str().c_str() );
   }
 }
