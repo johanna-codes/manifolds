@@ -629,12 +629,15 @@ kth_cv_distNN_svm::dist_one_video_gmm(std::stringstream load_sub_path, int pe_te
 
 	if(GD_type==1){ 
 	  
+	  cout << "Completamente Implementado "<< endl;
 	  //dist(k) = dist_te_tr_GD1( load_sub_path, pe_test, pe_tr, act_test, act_train,  Ng);
 
 	}
 	
 	else if(GD_type==2){
 	 
+	  cout << "Aun no Implementado "<< endl;
+	  
 	  //dist(k) = (1-theta)*tmp_dist_a + theta*tmp_dist_b;
 	}
 	else{
