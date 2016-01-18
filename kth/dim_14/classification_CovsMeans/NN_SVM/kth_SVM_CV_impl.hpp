@@ -407,9 +407,9 @@ void
 kth_cv_distNN_svm::train_gmm( int tr_scale, int tr_shift, int Ng )
 {
   cout << "Distances"<< endl;
-  distances_gmm(tr_scale, tr_shift);
+  distances_gmm(tr_scale, tr_shift, Ng);
   cout << "Training" << endl;
-  svm_train_gmm(); 
+  svm_train_gmm(Ng); 
   cout << "End Training" << endl;
   
 }
@@ -498,7 +498,7 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
 
 inline
 void
-kth_cv_distNN_svm::svm_train_gmm()
+kth_cv_distNN_svm::svm_train_gmm(int Ng)
 {
   
   
