@@ -605,7 +605,7 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
   }
 }
 
-/*
+
 
 inline
 vec 
@@ -659,7 +659,7 @@ kth_cv_distNN_svm::dist_one_video_gmm(std::stringstream load_sub_path, int pe_te
 }
 
 
-
+/*
 
 inline
 float
