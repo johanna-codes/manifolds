@@ -442,7 +442,7 @@ kth_cv_distNN_svm::test_gmm(int ts_scale, int ts_shift, int Ng)
       
       vec test_dist;
       
-      test_dist = dist_one_video_gmm( load_sub_path, pe_ts, act_ts, Ng  );	
+      test_dist = dist_one_video_gmm( pe_ts, act_ts );	
       
       
       
@@ -601,7 +601,7 @@ kth_cv_distNN_svm::distances_gmm()
     int tid=omp_get_thread_num();
     vec dist_video_i;
     
-    dist_video_i = dist_one_video_gmm( pe, act, Ng );
+    dist_video_i = dist_one_video_gmm( pe, act );
 
     std::stringstream save_vec_dist;
     save_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
@@ -615,7 +615,7 @@ kth_cv_distNN_svm::distances_gmm()
 
 inline
 vec 
-kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test,  int Ng)
+kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test )
 {
 
   vec dist;
