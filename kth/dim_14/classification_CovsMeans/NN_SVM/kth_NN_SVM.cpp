@@ -70,7 +70,7 @@ main(int argc, char** argv)
     
      
     vec vec_Ng;
-    acc_vec  << 2 << 4 << 8 << 16 << endr;
+    vec_Ng  << 2 << 4 << 8 << 16 << endr;
     
     vec acc_vec;
     acc_vec.zeros(vec_Ng.n_elem + 1);
