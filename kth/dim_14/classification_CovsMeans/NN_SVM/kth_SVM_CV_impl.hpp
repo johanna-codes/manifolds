@@ -22,11 +22,17 @@ inline
 void
 kth_cv_distNN_svm::train( int tr_scale, int tr_shift )
 {
+  
+  scale = tr_scale;
+  shift = tr_shift;
+  
   cout << "Distances"<< endl;
-  distances(tr_scale, tr_shift);
+  distances( );
   cout << "Training" << endl;
-  svm_train(); 
+  svm_train( ); 
   cout << "End Training" << endl;
+  
+
   
 }
 
@@ -203,11 +209,9 @@ kth_cv_distNN_svm::test(int ts_scale, int ts_shift)
 
 inline
 void
-kth_cv_distNN_svm::distances(int scale_factor, int shift)
+kth_cv_distNN_svm::distances()
 {
   
-  int scale2 = scale_factor;
-  int shift2 = shift;
   
   int n_test = n_peo*n_actions*total_scenes; 
   
@@ -228,7 +232,7 @@ kth_cv_distNN_svm::distances(int scale_factor, int shift)
   }
   
   std::stringstream load_sub_path;
-  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale2 << "-shift"<< shift2 ;
+  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale << "-shift"<< shift ;
   
   //omp_set_num_threads(8); //Use only 8 processors
   //#pragma omp parallel for 
@@ -377,18 +381,25 @@ kth_cv_distNN_svm::dist_one_video(int pe_test, std::string load_sub_path, std::s
 
 inline
 void
-kth_cv_distNN_svm::train_gmm( int tr_scale, int tr_shift, int Ng )
+kth_cv_distNN_svm::train_gmm( int tr_scale, int tr_shift, int in_Ng )
 {
+  scale = tr_scale;
+  shift = tr_shift;
+  
+  Ng = in_Ng;
+  
   cout << "Distances"<< endl;
-  distances_gmm(tr_scale, tr_shift, Ng);
+  distances_gmm();
+  
   cout << "Training" << endl;
-  //svm_train_gmm(Ng); 
+  svm_train_gmm(); 
+  
   cout << "End Training" << endl;
   
 }
 
 
-/*
+
 
 inline
 void
@@ -551,7 +562,7 @@ kth_cv_distNN_svm::svm_train_gmm(int Ng)
 
 inline
 void
-kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
+kth_cv_distNN_svm::distances_gmm()
 {
 
   
@@ -579,14 +590,9 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
       k++;
     }
   }
+
   
-  std::stringstream load_sub_path;
-  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale2 << "-shift"<< shift2 ;
   
- 
-  
-  //omp_set_num_threads(8); //Use only 8 processors
-  //#pragma omp parallel for 
   for (int n = 0; n< n_test; ++n)
   {
     int pe  = peo_act (n,0);
@@ -595,7 +601,7 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
     int tid=omp_get_thread_num();
     vec dist_video_i;
     
-    dist_video_i = dist_one_video_gmm( load_sub_path, pe, act, Ng );
+    dist_video_i = dist_one_video_gmm( pe, act, Ng );
 
     std::stringstream save_vec_dist;
     save_vec_dist << "./GD/dist_vector_Ng" << Ng << "_"  << all_people (pe) << "_" << actions(act) << "_Ng" << ".h5" ;
@@ -609,7 +615,7 @@ kth_cv_distNN_svm::distances_gmm(int scale_factor, int shift, int Ng)
 
 inline
 vec 
-kth_cv_distNN_svm::dist_one_video_gmm(std::stringstream load_sub_path, int pe_test, int act_test,  int Ng)
+kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test,  int Ng)
 {
 
   vec dist;
@@ -630,8 +636,8 @@ kth_cv_distNN_svm::dist_one_video_gmm(std::stringstream load_sub_path, int pe_te
 
 	if(GD_type==1){ 
 	  
-	  cout << "Completamente Implementado "<< endl;
-	  //dist(k) = dist_te_tr_GD1( load_sub_path, pe_test, pe_tr, act_test, act_train,  Ng);
+	  //cout << "Completamente Implementado "<< endl;
+	  dist(k) = dist_te_tr_GD1( pe_test, pe_tr, act_test, act_train,  Ng);
 
 	}
 	
@@ -659,14 +665,18 @@ kth_cv_distNN_svm::dist_one_video_gmm(std::stringstream load_sub_path, int pe_te
 }
 
 
-/*
+
 
 inline
 float
-kth_cv_distNN_svm::dist_te_tr_GD1(std::stringstream load_sub_path, int pe_test, int pe_train, int act_test, int act_train, const int Ng)
+kth_cv_distNN_svm::dist_te_tr_GD1(int pe_test, int pe_train, int act_test, int act_train, const int Ng)
 {
   
   int sc =1;
+  
+  
+  std::stringstream load_sub_path;
+  load_sub_path  << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale << "-shift"<< shift;
   
   
   
@@ -722,7 +732,7 @@ kth_cv_distNN_svm::dist_te_tr_GD1(std::stringstream load_sub_path, int pe_test, 
 }
 
 
-*/
+
 
 
 inline
