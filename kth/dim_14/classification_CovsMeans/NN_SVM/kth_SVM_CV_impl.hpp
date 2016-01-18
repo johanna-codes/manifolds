@@ -609,7 +609,7 @@ vec
 kth_cv_distNN_svm::dist_one_video_gmm(int pe_test, int act_test,  int Ng)
 {
 
-  
+  vec dist;
   int num_dist = (n_peo-1)*n_actions;
   dist.zeros(num_dist);
   
