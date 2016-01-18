@@ -79,14 +79,15 @@ main(int argc, char** argv)
     for (int i=0; i < acc_GD; ++i)
     
     {
-    int Ng = 4;
     
-    cout << "Ng: " << Ng << endl;
-    kth_cv_distNN_svm NN_SVM_GD_GMM(path, actionNames, all_people,  total_scenes,  dim, GD_type );
-    NN_SVM_GD_GMM.train_gmm( scale_factor, shift, Ng );
-    acc_GD = NN_SVM_GD_GMM.test_gmm( scale_factor, shift, Ng );
-    
-    acc_vec (i+1) = acc_GD;
+      int Ng = vec_Ng(i);
+      cout << "Ng: " << Ng << endl;
+      kth_cv_distNN_svm NN_SVM_GD_GMM(path, actionNames, all_people,  total_scenes,  dim, GD_type );
+      NN_SVM_GD_GMM.train_gmm( scale_factor, shift, Ng );
+      acc_GD = NN_SVM_GD_GMM.test_gmm( scale_factor, shift, Ng );
+      acc_vec (i+1) = acc_GD;
+      
+      acc_vec.print("Without Normalisation");
     
     }
     
