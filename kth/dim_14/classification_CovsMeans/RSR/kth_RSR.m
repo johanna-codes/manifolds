@@ -118,6 +118,7 @@ for b=1:length(vec_Beta)
         
     end
     all_means(b) = mean(acc)*100;
+    all_means'
 end
 
 
