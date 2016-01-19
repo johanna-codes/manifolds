@@ -64,7 +64,7 @@ for b=1:length(vec_Beta)
                     one_video_cov = hdf5read(hinfo_cov.GroupHierarchy.Datasets(1));
                     
                     hinfo_mean = hdf5info( char(name_load_mean) );
-                    one_video_mean = hdf5read(hinfo_means.GroupHierarchy.Datasets(1));
+                    one_video_mean = hdf5read(hinfo_mean.GroupHierarchy.Datasets(1));
                     
                     
                     EmbCovMean = get_emb_LogCov(one_video_cov, one_video_mean);
@@ -89,7 +89,7 @@ for b=1:length(vec_Beta)
             one_video_cov = hdf5read(hinfo_cov.GroupHierarchy.Datasets(1));
             
             hinfo_mean = hdf5info( char(name_load_mean) );
-            one_video_mean = hdf5read(hinfo_means.GroupHierarchy.Datasets(1));
+            one_video_mean = hdf5read(hinfo_mean.GroupHierarchy.Datasets(1));
             
             
              EmbCovMean_test = get_emb_LogCov(one_video_cov, one_video_mean);
