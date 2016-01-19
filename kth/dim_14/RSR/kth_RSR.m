@@ -39,10 +39,14 @@ SR_Lambda_input = 1e-1;
 
 %prompt = 'Beta ';
 %Beta = input(prompt);
-vec_Beta = 1:1:10;
+%vec_Beta = 1:1:10;
+vec_Beta = 0.1:0.1:10;
+
+
 all_means = zeros(length(vec_Beta),1);
 
 for b=1:length(vec_Beta)
+    disp('Only Covs. As per mlsda paper');
     Beta = vec_Beta(b)
     for pe_ts= 1: n_peo %%One run
         X_train = zeros(dim,dim,n_test);
@@ -96,4 +100,5 @@ for b=1:length(vec_Beta)
         
     end
     all_means(b) = mean(acc)*100;
+    all_means'
 end
