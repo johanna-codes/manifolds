@@ -772,6 +772,7 @@ kth_cv_distNN_svm::dist_te_tr_GD1(int pe_test, int pe_train, int act_test, int a
 
 
 
+//Embedded Log Covariance Matrix + Matrix Logarithm
 inline
 mat
 kth_cv_distNN_svm::get_emb_LogCov(mat cov_i, vec mean_i)

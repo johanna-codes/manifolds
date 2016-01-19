@@ -59,8 +59,8 @@ for b=1:length(vec_Beta)
         for pe_tr=1: n_peo
             if pe_tr~=pe_ts
                 for act=1: n_actions
-                    name_load_cov =  strcat( load_sub_path, '/Cov_', all_people(pe_tr), '_', actions(act), '_dim', int2str(dim), '.h5');
-                    name_load_mean = strcat( load_sub_path, '/Means_', all_people(pe_tr), '_', actions(act), '_dim', int2str(dim), '.h5');
+                    name_load_cov =  strcat( load_sub_path, '/Cov_', all_people(pe_tr), '_', actions(act),  '.h5');
+                    name_load_mean = strcat( load_sub_path, '/Means_', all_people(pe_tr), '_', actions(act),'.h5');
 
                     
                     hinfo_cov = hdf5info( char(name_load_cov) );
