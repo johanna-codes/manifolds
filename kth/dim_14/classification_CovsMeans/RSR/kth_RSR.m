@@ -38,7 +38,7 @@ n_test = (n_peo-1)*n_actions;
 
 %prompt = 'SR_Lambda? ';
 %SR_Lambda_input = input(prompt);
-SR_Lambda_input = 1e-2;
+SR_Lambda_input = 1e-1;
 
 %SR_Lambda_input = 0.01:0.01:0.1;
 %prompt = 'Beta ';
