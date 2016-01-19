@@ -1,13 +1,10 @@
 clear all
 clc
-
-
 % Sparse Coding and Dictionary Learning for Symmetric
 %Positive Definite Matrices: A Kernel Approach
 %ECCV 2012
 
-
-%Taken from A Novel Earth Mover’s Distance Methodology for Image Matching with Gaussian Mixture Models
+%E,bedding Cov and Means. Taken from A Novel Earth Mover’s Distance Methodology for Image Matching with Gaussian Mixture Models
 
 
 dbstop error;
