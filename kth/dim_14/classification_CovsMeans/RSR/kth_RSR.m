@@ -85,8 +85,8 @@ for b=1:length(vec_Beta)
         X_test = zeros(dim + 1,dim + 1,n_actions);
         for act_ts = 1:n_actions
             
-            name_load_cov =  strcat( load_sub_path, '/Cov_', all_people(pe_ts), '_', actions(act_ts), '_dim', int2str(dim), '.h5');
-            name_load_mean = strcat( load_sub_path, '/Means_', all_people(pe_ts), '_', actions(act_ts), '_dim', int2str(dim), '.h5');
+            name_load_cov =  strcat( load_sub_path, '/Cov_', all_people(pe_ts), '_', actions(act_ts),  '.h5');
+            name_load_mean = strcat( load_sub_path, '/Means_', all_people(pe_ts), '_', actions(act_ts),  '.h5');
             
             hinfo_cov = hdf5info( char(name_load_cov) );
             one_video_cov = hdf5read(hinfo_cov.GroupHierarchy.Datasets(1));
