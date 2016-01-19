@@ -35,7 +35,6 @@ load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(s
 %Joining testing data
 n_test = (n_peo-1)*n_actions;
 
-
 %prompt = 'SR_Lambda? ';
 %SR_Lambda_input = input(prompt);
 SR_Lambda_input = 1e-1;
