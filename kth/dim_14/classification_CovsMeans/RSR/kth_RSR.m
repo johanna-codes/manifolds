@@ -40,9 +40,10 @@ n_test = (n_peo-1)*n_actions;
 %SR_Lambda_input = input(prompt);
 SR_Lambda_input = 1e-1;
 
+%SR_Lambda_input = 0.01:0.01:0.1;
 %prompt = 'Beta ';
 %Beta = input(prompt);
-vec_Beta = 1:1:10;
+vec_Beta = 0.1:0.1:10;
 all_means = zeros(length(vec_Beta),1);
 
 for b=1:length(vec_Beta)
