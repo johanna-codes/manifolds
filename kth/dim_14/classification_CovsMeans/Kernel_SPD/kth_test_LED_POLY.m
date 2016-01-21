@@ -35,6 +35,7 @@ j=1;
           X_test(:,:,1) = one_video;
           
           K_test = compute_poly_kernel_svm(X_test,X_train, LED_POLY_KERNEL,gamma,n);
+          size (K_test)
           [predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
           est_labels(j) = predict_label;
           j=j+1;
