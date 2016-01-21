@@ -81,7 +81,7 @@ main(int argc, char** argv)
    
    for (int i = 0; i< scale_vec.n_elem; ++i)
    {
-     int scale_factor = scale_vec(i);
+     float scale_factor = scale_vec(i);
      cout << "scale_factor= " << scale_factor << endl;
      
      CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
