@@ -17,7 +17,7 @@ acc = [];
 
 n_test = (n_peo-1)*n_actions;
 
-load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', int2str(shift) )
 
 
 
