@@ -17,7 +17,7 @@ real_labels = zeros(n_peo*n_actions);
 est_labels  = zeros(n_peo*n_actions);
   
 
-load_sub_path =strcat(path, 'covs_means_matrices/CovMeans/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) )
+load_sub_path =strcat(path, 'covs_means_matrices/CovMeans/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', num2str(shift) )
 
 j=1;
   for pe_ts= 1: n_peo
@@ -48,7 +48,7 @@ j=1;
 
       end
       
-     save_labels = strcat('./svm_results_LED_POLY/LED-POLY_scale', num2str(scale_factor), '-shift', int2str(shift),'-n',num2str(n),'.mat' );     
+     save_labels = strcat('./svm_results_LED_POLY/LED-POLY_scale', num2str(scale_factor), '-shift', num2str(shift),'-n',num2str(n),'.mat' );     
      save(save_labels, 'est_labels', 'real_labels', 'n');
   
   end
