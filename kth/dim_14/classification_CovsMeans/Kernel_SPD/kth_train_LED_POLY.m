@@ -17,7 +17,10 @@ acc = [];
 
 n_test = (n_peo-1)*n_actions;
 
-load_sub_path =strcat(path, 'covs_means_matrices/CovMeans/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) );
+
+
+
 for pe_ts= 1: n_peo
     X_train = zeros(dim,dim,n_test);
     labels_train = zeros(n_test,1);
@@ -25,14 +28,23 @@ for pe_ts= 1: n_peo
     for pe_tr=1: n_peo
         if pe_tr~=pe_ts
             for act=1: n_actions
-                name_load_cov = strcat( load_sub_path, '/CovMeans_', all_people(pe_tr), '_', actions(act), '.h5');
-                %disp(name_display);
-                hinfo = hdf5info( char(name_load_cov) );
-                one_video = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-                size(one_video);
-                X_train(:,:,k) = one_video;
+                
+                name_load_cov =  strcat( load_sub_path, '/Cov_', all_people(pe_tr), '_', actions(act),  '.h5');
+                name_load_mean = strcat( load_sub_path, '/Means_', all_people(pe_tr), '_', actions(act),'.h5');
+                
+                
+                hinfo_cov = hdf5info( char(name_load_cov) );
+                one_video_cov = hdf5read(hinfo_cov.GroupHierarchy.Datasets(1));
+                
+                hinfo_mean = hdf5info( char(name_load_mean) );
+                one_video_mean = hdf5read(hinfo_mean.GroupHierarchy.Datasets(1));
+                
+                
+                EmbCovMean = get_emb_LogCov(one_video_cov, one_video_mean);
+                
+                X_train(:,:,k) = EmbCovMean;
                 labels_train(k) = act;
-                k=k+1;               
+                k=k+1;
             end
         end
     end
