@@ -9,25 +9,24 @@ path  = '~/codes/codes-git/manifolds/trunk/kth/dim_14/';
 dim = 14 + 1;
 
 
+display('Testing svm + Kernel LED-POLY');
+ 
+vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
+all_acc_scales = zeros( length(vec_scale), 1); 
 
 
-
- display('Testing svm + Kernel LED-POLY');
- n=1:dim;
- test_acc = zeros(length(n),1);
- scale = 1;
+ %scale = 1;
  shift = 0;
+ 
+ best_n = 12;
 
- for i=1:length(n)
-        in_n = n(i);
-        X=sprintf('n = %d, ', in_n);
-        disp(X);
-        acc = kth_test_LED_POLY(path,scale, shift, dim, in_n);
-        test_acc(i) = acc;
-        test_acc'
+ for i=1:length(vec_scale)
+     scale = vec_scale(i);
+     in_n = n(i);
+     X=sprintf('n = %d, ', in_n);
+     disp(X);
+     acc = kth_test_LED_POLY(path,scale, shift, dim, in_n);
+     all_acc_scales(i) = acc;
+     all_acc_scales'
  end
-
-save_results =strcat( 'LED_POLY_all_n_performance.mat');
-save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
-
 
