@@ -25,7 +25,7 @@ all_acc_scales = zeros( length(vec_scale), 1);
      
      X=sprintf('scale = %d, ', scale);
      disp(X);
-     acc = kth_test_LED_POLY(path,scale, shift, dim, in_n);
+     acc = kth_test_LED_POLY(path,scale, shift, dim, best_n);
      all_acc_scales(i) = acc;
      all_acc_scales'
  end
