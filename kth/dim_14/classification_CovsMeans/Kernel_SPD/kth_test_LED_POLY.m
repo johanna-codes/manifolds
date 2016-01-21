@@ -17,7 +17,7 @@ real_labels = zeros(n_peo*n_actions);
 est_labels  = zeros(n_peo*n_actions);
   
 
-load_sub_path =strcat(path, 'covs_means_matrices/CovMeans/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) );
+load_sub_path =strcat(path, 'covs_means_matrices/CovMeans/sc', int2str(sc), '/scale', int2str(scale_factor), '-shift', int2str(shift) )
 
 j=1;
   for pe_ts= 1: n_peo
