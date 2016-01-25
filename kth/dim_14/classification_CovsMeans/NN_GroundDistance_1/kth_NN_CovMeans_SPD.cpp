@@ -64,7 +64,7 @@ main(int argc, char** argv)
     vec_Ng << 2 << 4 << 8 << 16 << endr;
     
     
-    for (int i=0: i<vec_Ng.n_elem; ++i)
+    for (int i=0; i<vec_Ng.n_elem; ++i)
     {
       int Ng = vec_Ng(i);
       kth_cv_omp kth_CV_omp_CovMeans(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
