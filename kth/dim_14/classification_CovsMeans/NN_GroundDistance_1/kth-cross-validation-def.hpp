@@ -11,7 +11,8 @@ class kth_cv_omp //KTH Cross validation
 		const int in_scene, //only for kth
 		const int in_dim 
  		);
-    inline float logEucl();
+    inline float logEucl(); //Ground Distance 1
+    inline float logEucl_GMM( const int Ng );//Ground Distance 1 with GMM
 
     
     
@@ -32,6 +33,9 @@ class kth_cv_omp //KTH Cross validation
     
   private:
     inline uword logEucl_one_video( int pe_test, std::string load_sub_path, std::string load_cov);
+    inline uword GD_gmm(int pe_test, int act_test, const int Ng);//Ground Distance 1
+    inline float dist_te_tr(int pe_test, int pe_train, int act_test, int act_train, const int Ng);    
+    inline mat get_emb_LogCov(mat cov_i, vec mean_i);
     
 
     

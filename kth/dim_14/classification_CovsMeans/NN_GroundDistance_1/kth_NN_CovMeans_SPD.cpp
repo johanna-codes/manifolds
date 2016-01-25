@@ -54,12 +54,27 @@ main(int argc, char** argv)
     int shift = 0;
     float acc_LogEuclidean;
     
-    kth_cv_omp kth_CV_omp_CovMeans(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
-    acc_LogEuclidean = kth_CV_omp_CovMeans.logEucl();
+    
+    //Only one Covariance & Mean per Video
+    //kth_cv_omp kth_CV_omp_CovMeans(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+    //acc_LogEuclidean = kth_CV_omp_CovMeans.logEucl(); // Ground Distance 1
+    
+    
+    vec vec_Ng;
+    vec_Ng << 2 << 4 << 8 << 16 << endr;
+    
+    
+    for (int i=0: i<vec_Ng.n_elem; ++i)
+    {
+      int Ng = vec_Ng(i);
+      kth_cv_omp kth_CV_omp_CovMeans(path, actionNames, all_people, scale_factor, shift, total_scenes,  dim);
+      acc_LogEuclidean = kth_CV_omp_CovMeans.logEucl_GMM( Ng );//Ground Distance 1 with GMM
+      
+      cout << "Ng: " << Ng << ". Accuracy: " << acc_LogEuclidean << endl;
+      
+    }
     
 
-
-    
     return 0;
     
 }

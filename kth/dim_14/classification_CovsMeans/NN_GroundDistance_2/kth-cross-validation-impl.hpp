@@ -30,8 +30,8 @@ kth_cv_omp::Ground_Distance_GMM(const int Ng)
   float acc;
   acc = 0;
   
-  //int n_test = n_peo*n_actions*total_scenes - 1; // - person13_handclapping_d3
-  int n_test = n_peo*n_actions*total_scenes; // - person13_handclapping_d3
+
+  int n_test = n_peo*n_actions*total_scenes;
   
   vec real_labels;
   vec est_labels;
