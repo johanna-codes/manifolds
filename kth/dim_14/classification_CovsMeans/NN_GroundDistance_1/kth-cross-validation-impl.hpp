@@ -234,9 +234,9 @@ kth_cv_omp::logEucl_GMM( const int Ng )//Ground Distance 1 with GMM
     
   }
   
-  est_labels.t().print();
-  cout << endl;
-  real_labels.t().print();
+  //est_labels.t().print();
+  //cout << endl;
+  //real_labels.t().print();
   //   real_labels.save("./results_onesegment/Log_Eucl_real_labels.dat", raw_ascii);
   //   est_labels.save("./results_onesegment/Log_Eucl_est_labels.dat", raw_ascii);
   //   test_video_list.save("./results_onesegment/Log_Eucl_test_video_list.dat", raw_ascii);
