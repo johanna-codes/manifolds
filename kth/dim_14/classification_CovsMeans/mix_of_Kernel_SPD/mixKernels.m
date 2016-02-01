@@ -21,12 +21,12 @@ vec_alpha = 0.1:0.1:1;
 % 
 % display('Training svm + Kernel LED-POLY + Kernel means');
 % 
-%  for i=1:length(vec_alpha)
-%           alpha = vec_alpha(i);
-%           X=sprintf('n = %5.2f ', alpha);
-%           disp(X);
-%           kth_train(alpha);
-%  end
+  for i=1:length(vec_alpha)
+           alpha = vec_alpha(i);
+           X=sprintf('n = %5.2f ', alpha);
+           disp(X);
+           kth_train(alpha);
+  end
 
  
   display('Testing svm + Kernel LED-POLY');
