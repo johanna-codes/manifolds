@@ -22,7 +22,7 @@ for i=1:length(vec_alpha)
          alpha = vec_alpha(i);
          X=sprintf('n = %5.2f ', alpha);
          disp(X);
-         acc = kth_train(path, dim, best_n, aplha);
+         acc = kth_train(path, dim, best_n, alpha);
 end
 
  
