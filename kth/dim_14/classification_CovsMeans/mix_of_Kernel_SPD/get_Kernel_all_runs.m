@@ -57,6 +57,9 @@ for pe_ts= 1: n_peo
     K_train_covs = compute_poly_kernel_svm(X_train_covs,X_train_covs, LED_POLY_KERNEL, gamma, best_n);
     K_train_means = compute_dot_rpoduct_kernel(X_train_means,X_train_means);
     
+    K_train_covs  = normalise_kernel(K_train_covs);
+    K_train_means = normalise_kernel(K_train_means);
+    
     size(K_train_covs)
     size(K_train_means)
     pause
