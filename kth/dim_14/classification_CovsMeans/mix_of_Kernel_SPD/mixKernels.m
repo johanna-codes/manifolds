@@ -31,7 +31,7 @@ vec_alpha = 0.1:0.1:1;
   scale = 1;
   shift = 0;
  
-  for i=1:length(n)
+  for i=1:length(vec_alpha)
          alpha = vec_alpha(i);
          X=sprintf('n = %5.2f, ', lpha);
          disp(X);
