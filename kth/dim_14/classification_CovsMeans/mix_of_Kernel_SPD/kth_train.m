@@ -66,7 +66,7 @@ for pe_ts= 1: n_peo
     
     
     %acc = [acc accuracy(1)];
-    save_svm_model =strcat( './svm_models_mixKernels/mixKernels_svm_run_',num2str(pe_ts),  '.mat')
-    save(save_svm_model, 'model', 'X_train');
+    save_svm_model =strcat( './svm_models_mixKernels/mixKernels_svm_run',num2str(pe_ts), '_alpha', num2str(alpha), '.mat')
+    save(save_svm_model, 'model', 'X_train_covs', 'X_train_means');
 end
 
