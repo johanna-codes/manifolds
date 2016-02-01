@@ -19,7 +19,7 @@ for pe_ts= 1: n_peo
     
     model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
     
-    save_svm_model =strcat( './svm_models_mixKernels/mixKernels_svm_run',num2str(pe_ts), '_alpha', num2str(alpha), '.mat')
+    save_svm_model =strcat( './svm_models_mixKernels/mixKernels_svm_run',num2str(pe_ts), '_alpha', num2str(alpha), '.mat');
     save(save_svm_model, 'model', 'X_train_covs', 'X_train_means', 'alpha');
 end
 
