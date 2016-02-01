@@ -38,7 +38,7 @@ vec_alpha = 0.1:0.1:1;
          acc = kth_test(path,scale, shift, dim, best_n, alpha);
          test_acc(i) = acc;
          test_acc'
-         pause
+         %pause
   end
  
 % save_results =strcat( 'LED_POLY_all_n_performance.mat');
