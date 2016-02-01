@@ -17,7 +17,7 @@ acc = [];
 
 n_test = (n_peo-1)*n_actions;
 
-load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', int2str(shift) )
+load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', int2str(shift) );
 
 
 
@@ -53,7 +53,7 @@ for pe_ts= 1: n_peo
     
     %disp(strcat('Doing for n= ', num2str(n)));
     K_train_covs = compute_poly_kernel_svm(X_train_covs,X_train_covs, LED_POLY_KERNEL, gamma, best_n);
-    K_train_means = compute_dot_rpoduct_kernel(K_train_means,K_train_means);
+    K_train_means = compute_dot_rpoduct_kernel(X_train_means,X_train_means);
     
     K_train = K_train_covs + alpha*K_train_means;
     %disp('SVM');
