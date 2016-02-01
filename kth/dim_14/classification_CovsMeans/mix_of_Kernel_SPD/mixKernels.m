@@ -17,10 +17,10 @@ vec_alpha = 0.1:0.1:1;
 
 %% Kernel LED-Poly
 
-% display('Training svm + Kernel LED-POLY');
- get_Kernel_all_runs(path,dim, best_n)
+get_Kernel_all_runs(path,dim, best_n)
 
- 
+display('Training svm + Kernel LED-POLY + Kernel means');
+
  for i=1:length(vec_alpha)
           alpha = vec_alpha(i);
           X=sprintf('n = %5.2f ', alpha);

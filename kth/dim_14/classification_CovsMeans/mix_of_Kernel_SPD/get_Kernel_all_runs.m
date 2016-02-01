@@ -22,6 +22,8 @@ load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(s
 
 
 for pe_ts= 1: n_peo
+    X=sprintf('people = %d ', pe_ts);
+    disp(X);
     X_train_covs = zeros(dim,dim,n_test);    
     X_train_means = zeros(dim,1,n_test);
 
