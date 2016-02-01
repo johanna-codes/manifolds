@@ -1,7 +1,7 @@
 function acc = kth_train(path,dim, best_n, alpha)
 
 gamma = 1/best_n;
-LED_POLY_KERNEL = @(X,Y,gamma,n)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^best_n );
+LED_POLY_KERNEL = @(X,Y,gamma,best_n)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^best_n );
 
 
 actions = importdata('actionNames.txt');
