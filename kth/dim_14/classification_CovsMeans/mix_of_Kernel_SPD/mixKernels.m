@@ -1,6 +1,9 @@
 %Kernel Learning for Extrinsic Classification of Manifold Features"
-clear all
+clear all0
 clc
+dbstop error;
+
+
 %addpath('/media/johanna/HD1T/Toolbox/libsvm-3.20/matlab'); --> Home
 addpath('/home/johanna/toolbox/libsvm-3.20/matlab');% --> Wanda
 
