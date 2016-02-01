@@ -15,31 +15,32 @@ vec_alpha = 0.1:0.1:1;
 %% Kernel LED-Poly
 
 % display('Training svm + Kernel LED-POLY');
-% 
-% 
-% for i=1:length(vec_alpha)
-%          alpha = vec_alpha(i);
-%          X=sprintf('n = %5.2f ', alpha);
-%          disp(X);
-%          acc = kth_train(path, dim, best_n, alpha);
-% end
+ get_Kernel_all_runs(path,dim, best_n)
 
  
-  display('Testing svm + Kernel LED-POLY');
-  
-  test_acc = zeros(length(vec_alpha),1);
-  scale = 1;
-  shift = 0;
+ for i=1:length(vec_alpha)
+          alpha = vec_alpha(i);
+          X=sprintf('n = %5.2f ', alpha);
+          disp(X);
+          kth_train(alpha);
+ end
+
  
-  for i=1:length(vec_alpha)
-         alpha = vec_alpha(i);
-         X=sprintf('n = %5.2f, ', alpha);
-         disp(X);
-         acc = kth_test(path,scale, shift, dim, best_n, alpha);
-         test_acc(i) = acc;
-         test_acc'
-         %pause
-  end
+%   display('Testing svm + Kernel LED-POLY');
+%   
+%   test_acc = zeros(length(vec_alpha),1);
+%   scale = 1;
+%   shift = 0;
+%  
+%   for i=1:length(vec_alpha)
+%          alpha = vec_alpha(i);
+%          X=sprintf('n = %5.2f, ', alpha);
+%          disp(X);
+%          acc = kth_test(path,scale, shift, dim, best_n, alpha);
+%          test_acc(i) = acc;
+%          test_acc'
+%          %pause
+%   end
  
 % save_results =strcat( 'LED_POLY_all_n_performance.mat');
 % save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
