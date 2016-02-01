@@ -11,16 +11,15 @@ addpath('/home/johanna/toolbox/libsvm-3.20/matlab');% --> Wanda
 path  = '~/codes/codes-git/manifolds/trunk/kth/dim_14/';
 dim = 14;
 best_n = 12; 
-vec_alpha = 0.1:0.1:1;
+%vec_alpha = 0.1:0.1:1;
 
-
+vec_alpha = 0;
 
 %% Kernel LED-Poly
 
- get_Kernel_all_runs(path,dim, best_n)
-% 
-% display('Training svm + Kernel LED-POLY + Kernel means');
-% 
+ get_Kernel_all_runs(path,dim, best_n); 
+ display('Training svm + Kernel LED-POLY + Kernel means');
+ 
   for i=1:length(vec_alpha)
            alpha = vec_alpha(i);
            X=sprintf('n = %5.2f ', alpha);
