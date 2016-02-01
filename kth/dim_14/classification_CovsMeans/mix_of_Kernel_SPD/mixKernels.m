@@ -33,7 +33,7 @@ vec_alpha = 0.1:0.1:1;
  
   for i=1:length(vec_alpha)
          alpha = vec_alpha(i);
-         X=sprintf('n = %5.2f, ', lpha);
+         X=sprintf('n = %5.2f, ', alpha);
          disp(X);
          acc = kth_test(path,scale, shift, dim, best_n, alpha);
          test_acc(i) = acc;
