@@ -66,7 +66,7 @@ for pe_ts= 1: n_peo
     
     
     %acc = [acc accuracy(1)];
-    save_svm_model =strcat( './svm_models_LED_POLY/LED-POLY_svm_run_',num2str(pe_ts), '_n', num2str(n), '.mat')
+    save_svm_model =strcat( './svm_models_mixKernels/mixKernels_svm_run_',num2str(pe_ts),  '.mat')
     save(save_svm_model, 'model', 'X_train');
 end
 
