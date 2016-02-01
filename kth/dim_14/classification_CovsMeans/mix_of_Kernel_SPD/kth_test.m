@@ -1,7 +1,7 @@
-function acc = kth_test_LED_POLY(path,scale_factor, shift, dim, n)
+function acc = kth_test(path,scale_factor, shift, dim, best_n, alpha)
 
-gamma = 1/n;
-LED_POLY_KERNEL = @(X,Y,gamma,n)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^n );
+gamma = 1/best_n;
+LED_POLY_KERNEL = @(X,Y,gamma,best_n)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^best_n );
 
 
 actions = importdata('actionNames.txt');
@@ -22,8 +22,8 @@ load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(s
 j=1;
 for pe_ts= 1: n_peo
     
-    load_svm_model =strcat( './svm_models_LED_POLY/LED-POLY_svm_run_',num2str(pe_ts), '_n', num2str(n),  '.mat');
-    load(load_svm_model); %loading model and X_train
+    load_svm_model =strcat( './svm_models_mixKernels/mixKernels_svm_run',num2str(pe_ts), '_alpha', num2str(alpha), '.mat');
+    load(load_svm_model); %loading model, X_train_covs and X_train_means'
     
     for act_ts = 1:n_actions
         
@@ -39,17 +39,16 @@ for pe_ts= 1: n_peo
         hinfo_mean = hdf5info( char(name_load_mean) );
         one_video_mean = hdf5read(hinfo_mean.GroupHierarchy.Datasets(1));
         
-        EmbCovMean = get_emb_LogCov(one_video_cov, one_video_mean);
+       
+        X_test_covs(:,:,1) = one_video_cov;
+        X_test_means(:,:,1) = one_video_mean;
         
+        K_test_covs =   compute_poly_kernel_svm(X_test_covs,X_train_covs, LED_POLY_KERNEL, gamma, best_n);
+        K_test_means = compute_dot_rpoduct_kernel(X_test_means,X_train_means);
         
+        K_test= K_test_covs + alpha*K_test_means;
+
         
-        
-        X_test(:,:,1) = EmbCovMean;
-        
-        %size(X_test)
-        %size(X_train)
-        K_test = compute_poly_kernel_svm(X_test,X_train, LED_POLY_KERNEL,gamma,n);
-        %size (K_test)
         [predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
         est_labels(j) = predict_label;
         j=j+1;
@@ -60,8 +59,8 @@ for pe_ts= 1: n_peo
         
     end
     
-    save_labels = strcat('./svm_results_LED_POLY/LED-POLY_scale', num2str(scale_factor), '-shift', num2str(shift),'-n',num2str(n),'.mat' );
-    save(save_labels, 'est_labels', 'real_labels', 'n');
+    %save_labels = strcat('./svm_results/mixKernels_scale', num2str(scale_factor), '-shift', num2str(shift),'-alpha',num2str(alpha),'.mat' );
+    %save(save_labels, 'est_labels', 'real_labels', 'alpha');
     
 end
 %[acc n_peo n_actions]
