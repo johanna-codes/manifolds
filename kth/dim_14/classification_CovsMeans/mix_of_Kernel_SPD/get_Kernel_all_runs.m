@@ -59,6 +59,7 @@ for pe_ts= 1: n_peo
     
     size(K_train_covs)
     size(K_train_means)
+    pause
     save_K_train = strcat( './Kernel_data/Kernel_run',num2str(pe_ts), '.mat');
     save(save_K_train, 'X_train_covs', 'X_train_means', 'K_train_covs', 'K_train_means', 'labels_train');
 end

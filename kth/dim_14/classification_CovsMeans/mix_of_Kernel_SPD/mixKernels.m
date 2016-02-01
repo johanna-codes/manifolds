@@ -17,7 +17,7 @@ vec_alpha = 0.1:0.1:1;
 
 %% Kernel LED-Poly
 
-% get_Kernel_all_runs(path,dim, best_n)
+ get_Kernel_all_runs(path,dim, best_n)
 % 
 % display('Training svm + Kernel LED-POLY + Kernel means');
 % 
