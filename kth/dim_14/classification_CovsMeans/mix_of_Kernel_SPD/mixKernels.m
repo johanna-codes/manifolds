@@ -16,7 +16,7 @@ vec_alpha = 0:0.1:1;
 
 
 %see normalise_kernel for options
-nor_type = 2; 
+nor_type = 0; 
 
 
 %% Kernel LED-Poly
