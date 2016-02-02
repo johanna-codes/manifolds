@@ -57,6 +57,8 @@ for pe_ts= 1: n_peo
         [predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
         est_labels(j,1) = predict_label;
         j=j+1;
+        predict_label
+        act_ts
         
         if predict_label == act_ts
             acc = acc+1;
@@ -69,7 +71,6 @@ for pe_ts= 1: n_peo
     
 end
 %[acc n_peo n_actions]
-est_labels
 acc = acc*100/(n_peo*n_actions);
 
 
