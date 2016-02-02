@@ -11,8 +11,9 @@ addpath('/home/johanna/toolbox/libsvm-3.20/matlab');% --> Wanda
 path  = '~/codes/codes-git/manifolds/trunk/kth/dim_14/';
 dim = 14;
 best_n = 12; 
-vec_alpha = 0:0.1:1;
-%vec_alpha = 0;
+%vec_alpha = 0:0.1:1;
+%K= beta*K_covs + alpha*K_means;
+vec_alpha = 1;
 beta = 0;
 
 %see normalise_kernel for options
