@@ -69,5 +69,7 @@ for pe_ts= 1: n_peo
     
 end
 %[acc n_peo n_actions]
+est_labels
 acc = acc*100/(n_peo*n_actions);
+
 
