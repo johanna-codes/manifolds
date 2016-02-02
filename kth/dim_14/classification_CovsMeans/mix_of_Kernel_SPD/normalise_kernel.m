@@ -38,6 +38,7 @@ end
 if (type ==1)
 D = diag(1./sqrt(diag(K)));
 Kc = D * K * D;
+Kc = Kc';
 end
 
 %% Normalisation 2: 
