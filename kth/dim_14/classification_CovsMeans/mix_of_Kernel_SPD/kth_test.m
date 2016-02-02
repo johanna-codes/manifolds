@@ -13,8 +13,8 @@ n_peo =  size(all_people,1);
 sc = 1;
 
 acc = 0;
-real_labels = zeros(n_peo*n_actions);
-est_labels  = zeros(n_peo*n_actions);
+real_labels = zeros(n_peo*n_actions,1);
+est_labels  = zeros(n_peo*n_actions,1);
 
 load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', num2str(shift) );
 %load_sub_path =strcat(path, 'covs_means_matrices/CovMeans/sc', int2str(sc), '/scale', num2str(scale_factor), '-shift', num2str(shift) )
@@ -27,7 +27,7 @@ for pe_ts= 1: n_peo
     
     for act_ts = 1:n_actions
         
-        real_labels(j) = act_ts;
+        real_labels(j,1) = act_ts;
         
         name_load_cov =  strcat( load_sub_path, '/Cov_', all_people(pe_ts), '_', actions(act_ts),  '.h5');
         name_load_mean = strcat( load_sub_path, '/Means_', all_people(pe_ts), '_', actions(act_ts),'.h5');
@@ -55,7 +55,7 @@ for pe_ts= 1: n_peo
 
         
         [predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
-        est_labels(j) = predict_label;
+        est_labels(j,1) = predict_label;
         j=j+1;
         
         if predict_label == act_ts
