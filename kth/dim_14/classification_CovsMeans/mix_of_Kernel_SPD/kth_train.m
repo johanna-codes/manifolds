@@ -1,4 +1,4 @@
-function kth_train(alpha, betha, nor_type)
+function kth_train(alpha, beta, nor_type)
 
 
 actions = importdata('actionNames.txt');
