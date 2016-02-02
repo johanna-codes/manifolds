@@ -29,5 +29,5 @@ D = diag( sum(K,2) );
 D = sqrt(D);
 %D_inv  = inv(D_sqrt);
 
-Kc = D\K/D_inv;
+Kc = D\K/D;
 
