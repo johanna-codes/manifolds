@@ -1,4 +1,4 @@
-function acc = kth_test(path,scale_factor, shift, dim, best_n, alpha)
+function acc = kth_test(path,scale_factor, shift, dim, best_n, alpha, nor_type)
 
 gamma = 1/best_n;
 LED_POLY_KERNEL = @(X,Y,gamma,best_n)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^best_n );
@@ -45,6 +45,11 @@ for pe_ts= 1: n_peo
         
         K_test_covs =   compute_poly_kernel_svm(X_test_covs,X_train_covs, LED_POLY_KERNEL, gamma, best_n);
         K_test_means = compute_dot_rpoduct_kernel(X_test_means,X_train_means);
+        
+        
+        %Normalising Kernels
+        K_test_covs  = normalise_kernel(K_test_covs, nor_type);
+        K_test_means = normalise_kernel(K_test_means, nor_type);
         
         K_test= K_test_covs + alpha*K_test_means;
 

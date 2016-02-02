@@ -1,4 +1,12 @@
-function Kc = normalise_kernel(K)
+function Kc = normalise_kernel(K, type)
+
+%default normalisation type 
+%type = 0;
+
+if nargin < 2
+  type = 0;
+end
+
 
 %function Kc = normalise(K)
 %
@@ -18,16 +26,27 @@ function Kc = normalise_kernel(K)
 % output uses the same variable K
 % D is a diagonal matrix storing the inverse of the norms
 
-%Normalisation 1
-%D = diag(1./sqrt(diag(K)));
-%Kc = D * K * D;
+%% Without normalisation
+if (type == 0)
+Kc = K;
+end
 
-%Normalisation 2: 
+
+%% Normalisation 1
+% http://cs.du.edu/~mitchell/mario_books/Kernel_Methods_for_Pattern_Analysis_-_John_Shawe-Taylor_&_Nello_Christianini.pdf
+%page113
+if (type ==1)
+D = diag(1./sqrt(diag(K)));
+Kc = D * K * D;
+end
+
+%% Normalisation 2: 
 %CLUSTERING ON GRASSMANN MANIFOLDS VIA KERNEL EMBEDDING
 %WITH APPLICATION TO ACTION ANALYSIS
+if (type ==2)
+
 D = diag( sum(K,2) );
 D = sqrt(D);
-%D_inv  = inv(D_sqrt);
-
 Kc = D\K/D;
+end
 

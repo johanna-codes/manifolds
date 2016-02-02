@@ -1,4 +1,4 @@
-function kth_train(alpha)
+function kth_train(alpha, nor_type)
 
 
 actions = importdata('actionNames.txt');
@@ -13,6 +13,10 @@ for pe_ts= 1: n_peo
     
     load_K_train = strcat( './Kernel_data/Kernel_run',num2str(pe_ts), '.mat');
     load(load_K_train); % Loading 'X_train_covs', 'X_train_means', 'K_train_covs', 'K_train_means', 'labels_train
+    
+    %Normalising Kernels
+    K_train_covs  = normalise_kernel(K_train_covs, nor_type);
+    K_train_means = normalise_kernel(K_train_means, nor_type);
     
     %K_train_covs
     %K_train_means
