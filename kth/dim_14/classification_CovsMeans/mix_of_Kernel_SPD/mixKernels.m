@@ -13,7 +13,7 @@ dim = 14;
 best_n = 12; 
 vec_alpha = 0:0.1:1;
 %vec_alpha = 0;
-
+beta = 0;
 
 %see normalise_kernel for options
 nor_type = 0; 
@@ -29,7 +29,7 @@ nor_type = 0;
             alpha = vec_alpha(i);
             X=sprintf('n = %5.2f ', alpha);
             disp(X);
-            kth_train(alpha, nor_type);
+            kth_train(alpha, beta, nor_type);
    end
  
   
@@ -43,7 +43,7 @@ nor_type = 0;
           alpha = vec_alpha(i);
           X=sprintf('alpha = %5.2f, ', alpha);
           disp(X);
-          acc = kth_test(path,scale, shift, dim, best_n, alpha, nor_type);
+          acc = kth_test(path,scale, shift, dim, best_n, alpha,beta, nor_type);
           test_acc(i) = acc;
           test_acc'
           %pause

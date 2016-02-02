@@ -1,4 +1,4 @@
-function acc = kth_test(path,scale_factor, shift, dim, best_n, alpha, nor_type)
+function acc = kth_test(path,scale_factor, shift, dim, best_n, alpha, beta, nor_type)
 
 gamma = 1/best_n;
 LED_POLY_KERNEL = @(X,Y,gamma,best_n)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^best_n );
@@ -51,7 +51,7 @@ for pe_ts= 1: n_peo
         K_test_covs  = normalise_kernel(K_test_covs, nor_type);
         K_test_means = normalise_kernel(K_test_means, nor_type);
         
-        K_test= K_test_covs + alpha*K_test_means;
+        K_test= beta*K_test_covs + alpha*K_test_means;
 
         
         [predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);

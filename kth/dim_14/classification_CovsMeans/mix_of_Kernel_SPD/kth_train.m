@@ -1,4 +1,4 @@
-function kth_train(alpha, nor_type)
+function kth_train(alpha, betha, nor_type)
 
 
 actions = importdata('actionNames.txt');
@@ -20,7 +20,7 @@ for pe_ts= 1: n_peo
     
     %K_train_covs
     %K_train_means
-    K_train = K_train_covs + alpha*K_train_means;
+    K_train = beta*K_train_covs + alpha*K_train_means;
     
     model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
     
