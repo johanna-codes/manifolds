@@ -58,7 +58,8 @@ for pe_ts= 1: n_peo
         est_labels(j,1) = predict_label;
         j=j+1;
         
-        %[predict_label  act_ts]
+        [predict_label  act_ts]
+        pause
         
         if predict_label == act_ts
             acc = acc+1;
