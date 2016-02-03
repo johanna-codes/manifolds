@@ -3,7 +3,7 @@ function label = my_output_svm_multiclass_kth (dec_values)
 
 A = [1 1 1 1 1 2 2 2 2 3 3 3 4 4 5];
 B = [2 3 4 5 6 3 4 5 6 4 5 6  5 6 6];
-sig_dec = sign(dec_values) 
+sig_dec = sign(dec_values); 
 hist = zeros(6,1); 
 
 for i=1:length(sig_dec)
