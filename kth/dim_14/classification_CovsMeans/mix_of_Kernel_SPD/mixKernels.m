@@ -15,8 +15,8 @@ dim = 14;
 best_n = 12; 
 %vec_alpha = 0:0.1:1;
 %K= beta*K_covs + alpha*K_means;
-vec_alpha = 1;
-beta = 0; 
+vec_alpha = 0;
+beta = 1; 
 
 %see normalise_kernel for options
 nor_type = 0; 
