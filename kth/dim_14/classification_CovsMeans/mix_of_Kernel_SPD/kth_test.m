@@ -70,11 +70,10 @@ for pe_ts= 1: n_peo
             pause
         end
         
-        if my_label == predict_label
-            [my_label predict_label]
-        
-        end
-        
+%         if my_label == predict_label
+%             [my_label predict_label]
+%         end
+%         
     end
     
     %save_labels = strcat('./svm_results/mixKernels_scale', num2str(scale_factor), '-shift', num2str(shift),'-alpha',num2str(alpha),'.mat' );
