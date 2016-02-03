@@ -68,7 +68,7 @@ for pe_ts= 1: n_peo
         [predict_label, accuracy, dec_values_1] = svmpredict([act_ts],[[1:size(K_test_covs,1)]' K_test_covs], model_1);
         
         %Prediction for Model 1. Kernel with means
-        [predict_label, accuracy, dec_values_2] = svmpredict([act_ts],[[1:size(K_test_means,1)]' K_test_means], model);
+        [predict_label, accuracy, dec_values_2] = svmpredict([act_ts],[[1:size(K_test_means,1)]' K_test_means], model_2);
 
         comb_dec_values_2 = sign(dec_values_1 ./ sum(dec_values_1) + dec_values_2 ./ sum(dec_values_2));
         
