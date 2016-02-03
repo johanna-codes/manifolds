@@ -15,16 +15,17 @@ for pe_ts= 1: n_peo
     load(load_K_train); % Loading 'X_train_covs', 'X_train_means', 'K_train_covs', 'K_train_means', 'labels_train
     
     %Normalising Kernels
-    K_train_covs  = normalise_kernel(K_train_covs, nor_type);
-    K_train_means = normalise_kernel(K_train_means, nor_type);
+    %K_train_covs  = normalise_kernel(K_train_covs, nor_type);
+    %K_train_means = normalise_kernel(K_train_means, nor_type);
     
     %K_train_covs
     %K_train_means
-    K_train = beta*K_train_covs + alpha*K_train_means;
+    %K_train = beta*K_train_covs + alpha*K_train_means;
     
-    model = svmtrain(labels_train, [[1:size(K_train,1)]' K_train], '-t 4 -q ');
-    
+    model_1 = svmtrain(labels_train, [[1:size(K_train_covs,1 )]' K_train_covs], '-t 4 -q ');
+    model_2 = svmtrain(labels_train, [[1:size(K_train_means,1)]' K_train_means], '-t 4 -q ');
+
     save_svm_model =strcat( './svm_models_mixKernels/mixKernels_svm_run',num2str(pe_ts), '_alpha', num2str(alpha), '.mat');
-    save(save_svm_model, 'model', 'X_train_covs', 'X_train_means', 'alpha');
+    save(save_svm_model, 'model_1', 'model_2', 'X_train_covs', 'X_train_means', 'alpha');
 end
 

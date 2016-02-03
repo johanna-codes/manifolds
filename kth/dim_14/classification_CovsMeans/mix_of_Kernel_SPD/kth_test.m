@@ -23,7 +23,7 @@ j=1;
 for pe_ts= 1: n_peo
     
     load_svm_model =strcat( './svm_models_mixKernels/mixKernels_svm_run',num2str(pe_ts), '_alpha', num2str(alpha), '.mat');
-    load(load_svm_model); %loading model, X_train_covs and X_train_means'
+    load(load_svm_model); %loading model_1, model_2, X_train_covs and X_train_means'
     
     for act_ts = 1:n_actions
         
@@ -48,27 +48,43 @@ for pe_ts= 1: n_peo
         
         
         %Normalising Kernels
-        K_test_covs  = normalise_kernel(K_test_covs, nor_type);
-        K_test_means = normalise_kernel(K_test_means, nor_type);
+        %K_test_covs  = normalise_kernel(K_test_covs, nor_type);
+        %K_test_means = normalise_kernel(K_test_means, nor_type);
         
-        K_test= beta*K_test_covs + alpha*K_test_means;
-
+        %K_test= beta*K_test_covs + alpha*K_test_means;
+        %[predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
         
-        [predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
-        est_labels(j,1) = predict_label;
-        j=j+1;
-        
-        my_label = my_output_svm_multiclass_kth (dec_values) ;
+        %K_test= beta*K_test_covs + alpha*K_test_means;
+        %[predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
+        %est_labels(j,1) = predict_label;
         %[predict_label  act_ts];
         
-        if predict_label == act_ts
-            acc = acc+1;
+        %if predict_label == act_ts
+        %    acc = acc+1;
+        %end
+        
+        
+        %Prediction for Model 1. Kernel with SPD matrices
+        [predict_label, accuracy, dec_values_1] = svmpredict([act_ts],[[1:size(K_test_covs,1)]' K_test_covs], model_1);
+        
+        %Prediction for Model 1. Kernel with means
+        [predict_label, accuracy, dec_values_2] = svmpredict([act_ts],[[1:size(K_test_means,1)]' K_test_means], model);
+
+        comb_dec_values_2 = sign(dec_values_1 ./ sum(dec_values_1) + dec_values_2 ./ sum(dec_values_2));
+        
+        my_predicted_label = my_output_svm_multiclass_kth (comb_dec_values_2) ;
+        j=j+1;
+        
+        if my_predicted_label == act_ts
+                acc = acc+1;
         end
         
-        if my_label ~= predict_label
-            disp(' It is different. What have you done wrong')
-            pause
-        end
+        
+        
+%         if my_label ~= predict_label
+%             disp(' It is different. What have you done wrong')
+%             pause
+%         end
         
 %         if my_label == predict_label
 %             [my_label predict_label]
