@@ -58,7 +58,7 @@ for pe_ts= 1: n_peo
         est_labels(j,1) = predict_label;
         j=j+1;
         
-        my_label = my_output_svm_multiclass_kth (dec_values) 
+        my_label = my_output_svm_multiclass_kth (dec_values) ;
         %[predict_label  act_ts];
         
         if predict_label == act_ts
