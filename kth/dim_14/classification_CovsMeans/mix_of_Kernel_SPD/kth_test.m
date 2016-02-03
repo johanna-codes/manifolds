@@ -58,11 +58,21 @@ for pe_ts= 1: n_peo
         est_labels(j,1) = predict_label;
         j=j+1;
         
-        [predict_label  act_ts]
-        pause
+        my_label = my_output_svm_multiclass_kth (dec_values) 
+        %[predict_label  act_ts];
         
         if predict_label == act_ts
             acc = acc+1;
+        end
+        
+        if my_label ~= predict_label
+            disp(' It is different. What have you done wrong')
+            pause
+        end
+        
+        if my_label == predict_label
+            [my_label predict_label]
+        
         end
         
     end
