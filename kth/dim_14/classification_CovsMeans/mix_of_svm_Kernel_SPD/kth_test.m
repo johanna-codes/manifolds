@@ -63,7 +63,7 @@ for pe_ts= 1: n_peo
         comb_dec_values = [dec_values_1 dec_values_2];
         new_features = comb_dec_values;
         
-        [predict_label, accuracy, new_dec_values] = svmpredict([act_ts],[[1:size(new_features,1)]' new_features], linear_model);
+        [predict_label, accuracy, new_dec_values] = svmpredict([act_ts],[new_features], linear_model);
 
         
         j=j+1;
