@@ -22,7 +22,7 @@ load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(s
 j=1;
 for pe_ts= 1: n_peo
     
-    load_svm_models =strcat( './svm_models_output1/svm1_2_run',num2str(pe_ts), '_alpha', num2str(alpha), '.mat');
+    load_svm_models =strcat( './svm_models_output1/svm1_2_run',num2str(pe_ts),  '.mat');
     load(load_svm_models); %loading model_1, model_2, X_train_covs and X_train_means'
     
     load_linear_svm_model = strcat( './svm_models_output2/linear_svm_run',num2str(pe_ts),  '.mat');
@@ -84,9 +84,7 @@ for pe_ts= 1: n_peo
 %         end
 %         
     end
-    
-    %save_labels = strcat('./svm_results/mixKernels_scale', num2str(scale_factor), '-shift', num2str(shift),'-alpha',num2str(alpha),'.mat' );
-    %save(save_labels, 'est_labels', 'real_labels', 'alpha');
+
     
 end
 %[acc n_peo n_actions]
