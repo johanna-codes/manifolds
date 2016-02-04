@@ -69,7 +69,7 @@ for pe_ts= 1: n_peo
     end
     
     linear_model = svmtrain(labels_train, [[1:size(new_features,1 )]' new_features], '-t 0 -q');
-    pause
+    %pause
     save_svm_model =strcat( './svm_models_output2/linear_svm_run',num2str(pe_ts),  '.mat');
     save(save_svm_model, 'linear_model');
 
