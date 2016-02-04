@@ -68,8 +68,8 @@ for pe_ts= 1: n_peo
     end
     
     %param = ['-q -v 3 -c ', num2str(2^log2c), ' -g ', num2str(2^log2g)];
-    param = ['-t 0 -q -c',  num2str(c)];
-    pause
+    param = ['-t 0 -q -c ',  num2str(c)];
+    %pause
     
     linear_model = svmtrain(labels_train, [new_features], param);
     %pause

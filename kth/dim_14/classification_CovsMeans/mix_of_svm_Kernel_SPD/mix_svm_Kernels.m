@@ -33,7 +33,6 @@ best_n = 12;
  
 vec_costs = [0.01 0.1 1 10 100]; 
 all_acc = zeros(length(vec_costs),1);
-display('Tes');
 scale = 1;
 shift = 0;
 
