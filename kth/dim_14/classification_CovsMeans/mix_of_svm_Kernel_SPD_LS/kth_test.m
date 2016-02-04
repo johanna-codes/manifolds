@@ -1,4 +1,4 @@
-function acc = kth_test(path,scale_factor, shift, best_n, best_delta, best_p)
+function acc = kth_test(path,scale_factor, shift, best_n, best_delta, best_p, dim)
 
 gamma_spd = 1/best_n;
 LED_POLY_KERNEL = @(X,Y,gamma_spd,best_n)( ( gamma_spd*( trace(logm(X)'*logm(Y)) ) )^best_n );
