@@ -26,7 +26,6 @@ for pe_ts= 1: n_peo
     disp(X);
     
     new_features = zeros(n_test,30);    %30 = 15*2.  15 es la salida del svm 
-
     
     load_svm_model =strcat( './svm_models_output1/svm1_2_run',num2str(pe_ts), '.mat');
     load(load_svm_model); %loading  'model_1', 'model_2', 'X_train_covs', 'X_train_means'
