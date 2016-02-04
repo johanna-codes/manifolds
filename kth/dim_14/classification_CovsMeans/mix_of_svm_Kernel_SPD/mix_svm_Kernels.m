@@ -29,7 +29,7 @@ best_n = 12;
 
  %display('Training svm + Kernel LED-POLY + Kernel means');
  %kth_train_1;
- %kth_train_2(path, best_n);
+ kth_train_2(path, best_n);
  
  display('Testing svm + Kernel LED-POLY');
  scale = 1;
