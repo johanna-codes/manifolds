@@ -22,8 +22,13 @@ load_sub_path =strcat(path, 'covs_means_matrices_vectors/CovMeans/sc', int2str(s
 j=1;
 for pe_ts= 1: n_peo
     
-    load_svm_model =strcat( './svm_models_mixKernels/mixKernels_svm_run',num2str(pe_ts), '_alpha', num2str(alpha), '.mat');
-    load(load_svm_model); %loading model_1, model_2, X_train_covs and X_train_means'
+    load_svm_models =strcat( './svm_models_output1/svm1_2_run',num2str(pe_ts), '_alpha', num2str(alpha), '.mat');
+    load(load_svm_models); %loading model_1, model_2, X_train_covs and X_train_means'
+    
+    load_linear_svm_model = strcat( './svm_models_output2/linear_svm_run',num2str(pe_ts),  '.mat');
+    load(load_linear_svm_model); %linear_model
+    
+    
     
     for act_ts = 1:n_actions
         
@@ -46,23 +51,7 @@ for pe_ts= 1: n_peo
         K_test_covs =   compute_poly_kernel_svm(X_test_covs,X_train_covs, LED_POLY_KERNEL, gamma, best_n);
         K_test_means = compute_dot_rpoduct_kernel(X_test_means,X_train_means);
         
-        
-        %Normalising Kernels
-        %K_test_covs  = normalise_kernel(K_test_covs, nor_type);
-        %K_test_means = normalise_kernel(K_test_means, nor_type);
-        
-        %K_test= beta*K_test_covs + alpha*K_test_means;
-        %[predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
-        
-        %K_test= beta*K_test_covs + alpha*K_test_means;
-        %[predict_label, accuracy, dec_values] = svmpredict([act_ts],[[1:size(K_test,1)]' K_test], model);
-        %est_labels(j,1) = predict_label;
-        %[predict_label  act_ts];
-        
-        %if predict_label == act_ts
-        %    acc = acc+1;
-        %end
-        
+
         
         %Prediction for Model 1. Kernel with SPD matrices
         [predict_label, accuracy, dec_values_1] = svmpredict([act_ts],[[1:size(K_test_covs,1)]' K_test_covs], model_1);
@@ -70,9 +59,13 @@ for pe_ts= 1: n_peo
         %Prediction for Model 1. Kernel with means
         [predict_label, accuracy, dec_values_2] = svmpredict([act_ts],[[1:size(K_test_means,1)]' K_test_means], model_2);
 
-        comb_dec_values_2 = sign(dec_values_1 ./ sum(dec_values_1) + dec_values_2 ./ sum(dec_values_2));
         
-        my_predicted_label = my_output_svm_multiclass_kth (comb_dec_values_2) ;
+        comb_dec_values = [dec_values_1 dec_values_2];
+        new_features = comb_dec_values;
+        
+        [predict_label, accuracy, new_dec_values] = svmpredict([act_ts],[[1:size(new_features,1)]' new_features], linear_model);
+
+        
         j=j+1;
         
         if my_predicted_label == act_ts

@@ -25,16 +25,16 @@ best_n = 12;
 
 %% Kernel LED-Poly
 
- get_Kernel_all_runs(path,dim, best_n); 
+ %get_Kernel_all_runs(path,dim, best_n); 
 
  display('Training svm + Kernel LED-POLY + Kernel means');
  kth_train_1;
- kth_train_2;
+ kth_train_2(path, best_n);
  
  display('Testing svm + Kernel LED-POLY');
  scale = 1;
  shift = 0;
- acc = kth_test(path,scale, shift, dim, best_n)
+ acc = kth_test(path,scale, shift, best_n)
  
 % save_results =strcat( 'LED_POLY_all_n_performance.mat');
 % save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
