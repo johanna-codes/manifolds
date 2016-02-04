@@ -56,8 +56,8 @@ for pe_ts= 1: n_peo
                 K_train_means = compute_dot_rpoduct_kernel(X_train_means_1,X_train_means);
                 
                 
-                [predict_label, accuracy, dec_values_1] = svmpredict([act_ts],[[1:size(K_train_covs,1)]' K_train_covs], model_1);
-                [predict_label, accuracy, dec_values_2] = svmpredict([act_ts],[[1:size(K_train_means,1)]' K_train_means], model_2);
+                [predict_label, accuracy, dec_values_1] = svmpredict([act],[[1:size(K_train_covs,1)]' K_train_covs], model_1);
+                [predict_label, accuracy, dec_values_2] = svmpredict([act],[[1:size(K_train_means,1)]' K_train_means], model_2);
                 
                 comb_dec_values = [dec_values_1 dec_values_2];
                 new_features(k,:) = comb_dec_values;
