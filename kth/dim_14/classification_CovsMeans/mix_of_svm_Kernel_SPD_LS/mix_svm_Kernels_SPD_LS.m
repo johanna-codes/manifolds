@@ -36,8 +36,7 @@ best_p = 7; % For LS Kernels
 
  %display('Training svm + Kernel LED-POLY + Kernel means');
  %kth_train_1;
- 
- 
+  
 vec_costs = [0.01 0.1 1 10 100]; 
 all_acc = zeros(length(vec_costs),1);
 scale = 1;
