@@ -1,4 +1,4 @@
-function acc = kth_train_2 (path, best_n)
+function acc = kth_train_2 (path, best_n, c)
 
 gamma = 1/best_n;
 LED_POLY_KERNEL = @(X,Y,gamma,best_n)( ( gamma*( trace(logm(X)'*logm(Y)) ) )^best_n );
@@ -67,7 +67,10 @@ for pe_ts= 1: n_peo
         end
     end
     
-    linear_model = svmtrain(labels_train, [new_features], '-t 0 -q');
+    %param = ['-q -v 3 -c ', num2str(2^log2c), ' -g ', num2str(2^log2g)];
+    param = ['-t 0 -q -c',  num2str(c)];
+    
+    linear_model = svmtrain(labels_train, [new_features], param);
     %pause
     save_svm_model =strcat( './svm_models_output2/linear_svm_run',num2str(pe_ts),  '.mat');
     save(save_svm_model, 'linear_model');

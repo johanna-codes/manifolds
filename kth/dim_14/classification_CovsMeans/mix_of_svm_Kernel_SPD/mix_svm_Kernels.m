@@ -29,12 +29,22 @@ best_n = 12;
 
  %display('Training svm + Kernel LED-POLY + Kernel means');
  %kth_train_1;
- kth_train_2(path, best_n);
  
- display('Testing svm + Kernel LED-POLY');
- scale = 1;
- shift = 0;
- acc = kth_test(path,scale, shift, best_n)
+ 
+ vec_costs = [0.01 0.1 1 10 100]; 
+ all_acc = zeros(length(vec_costs),1);
+display('Tes');
+scale = 1;
+shift = 0;
+
+ for c = 1:length(vec_costs)
+     cost = vec_costs(c);
+     display('Training Linear SVM with svm_features');
+     kth_train_2(path, best_n);
+     acc = kth_test(path,scale, shift, best_n);
+     all_acc(c) = acc
+ 
+ end
  
 % save_results =strcat( 'LED_POLY_all_n_performance.mat');
 % save(save_results, 'test_acc', 'n', 'dim', 'scale', 'shift');
