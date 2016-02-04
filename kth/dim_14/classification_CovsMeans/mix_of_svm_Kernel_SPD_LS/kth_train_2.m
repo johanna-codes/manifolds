@@ -1,4 +1,4 @@
-function acc = kth_train_2 (path, best_n, c,best_delta, best_p)
+function acc = kth_train_2 (path, best_n, c, best_delta, best_p)
 
 gamma_spd = 1/best_n;
 LED_POLY_KERNEL = @(X,Y,gamma_spd,best_n)( ( gamma_spd*( trace(logm(X)'*logm(Y)) ) )^best_n );

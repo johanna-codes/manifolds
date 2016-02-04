@@ -28,14 +28,14 @@ best_p = 7; % For LS Kernels
 
 %% Kernel LED-Poly
 
- display('get_SPD_Kernel_all_runs');
- get_SPD_Kernel_all_runs(path,dim, best_n);  
+ %display('get_SPD_Kernel_all_runs');
+ %get_SPD_Kernel_all_runs(path,dim, best_n);  
  
- display('get_LS_Kernel_all_runs');
- get_LS_Kernel_all_runs(path,dim, best_delta, best_p);
+ %display('get_LS_Kernel_all_runs');
+ %get_LS_Kernel_all_runs(path,dim, best_delta, best_p);
 
- display('Training svm + Kernel LED-POLY + Kernel means');
- kth_train_1;
+ %display('Training svm + Kernel LED-POLY + Kernel means');
+ %kth_train_1;
  
  
 vec_costs = [0.01 0.1 1 10 100]; 
@@ -48,7 +48,7 @@ shift = 0;
      X = sprintf('Training Linear SVM with svm_features c = %5.2f ', cost);
      disp(X);  
      kth_train_2(path, best_n, cost);
-     acc = kth_test(path,scale, shift, best_n);
+     acc = kth_test(path,scale, shift, best_n, cost, best_delta, best_p);
      all_acc(c) = acc; 
      all_acc'
  end
