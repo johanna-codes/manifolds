@@ -68,7 +68,7 @@ for pe_ts= 1: n_peo
         
         j=j+1;
         
-        if my_predicted_label == act_ts
+        if predict_label == act_ts
                 acc = acc+1;
         end
         
