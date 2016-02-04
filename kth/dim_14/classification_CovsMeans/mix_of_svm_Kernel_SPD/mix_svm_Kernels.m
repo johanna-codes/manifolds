@@ -27,9 +27,9 @@ best_n = 12;
 
  %get_Kernel_all_runs(path,dim, best_n); 
 
- display('Training svm + Kernel LED-POLY + Kernel means');
- kth_train_1;
- kth_train_2(path, best_n);
+ %display('Training svm + Kernel LED-POLY + Kernel means');
+ %kth_train_1;
+ %kth_train_2(path, best_n);
  
  display('Testing svm + Kernel LED-POLY');
  scale = 1;
