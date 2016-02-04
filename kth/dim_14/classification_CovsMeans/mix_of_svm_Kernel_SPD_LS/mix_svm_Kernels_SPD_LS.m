@@ -46,7 +46,7 @@ shift = 0;
      cost = vec_costs(c);
      X = sprintf('Training Linear SVM with svm_features c = %5.2f ', cost);
      disp(X);  
-     kth_train_2(path, best_n, cost);
+     kth_train_2(path, best_n, cost, best_delta, best_p);
      acc = kth_test(path,scale, shift, best_n, cost, best_delta, best_p);
      all_acc(c) = acc; 
      all_acc'
