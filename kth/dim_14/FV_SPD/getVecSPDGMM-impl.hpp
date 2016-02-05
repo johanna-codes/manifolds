@@ -81,7 +81,7 @@ getVecSPD_GMM::get_SVD( field<string> in_all_people)
 	      }
 	      
 	    }
-	    vec_spd.t().print(vec_spd);
+	    vec_spd.t().print("vec_spd");
 	    
 	    
 	    
