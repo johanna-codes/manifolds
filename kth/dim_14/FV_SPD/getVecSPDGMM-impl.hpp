@@ -42,7 +42,17 @@ getVecSPD_GMM::get_SVD( field<string> in_all_people)
       
       mat cov_i;
       cov_i.load( load_Covs.str(), hdf5_binary ); 
-      cov_i.print("Cov1");
+      //cov_i.print("Cov1");
+      
+      
+      mat mycov;
+      
+      mycov << 9  << 13 << 3 << 6 << endr
+	    << 13 << 11 << 7 << 6 << endr
+	    << 3  << 7  << 4 << 7 << endr
+	    << 6  << 6  << 7 << 10 << endr;
+	    
+	    mycov.print();
       getchar();
       
     }
