@@ -101,5 +101,5 @@ getVecSPD_GMM::get_vec( mat cov, int dim_spdvec )
   
   //vec_spd.t().print("vec_spd");
   
-  return vec_spd
+  return vec_spd;
 }
