@@ -12,7 +12,7 @@ public:
 
 
     inline void get_all_vec( field<string> all_people);
-    inline void get_GMM( field<string> in_all_people);
+    inline void get_GMM( field<string> in_all_people, int N_cent);
 
 
 
