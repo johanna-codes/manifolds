@@ -21,7 +21,7 @@ const std::string actionNames;
 const float scale_factor;
 const int shift;
 const int total_scenes;
-int dim;
+
 
 field<std::string> actions;
 field<string> all_people;

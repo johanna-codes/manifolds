@@ -19,10 +19,9 @@ getVecSPD_GMM::getVecSPD_GMM( const std::string in_path,
 
 inline
 void
-getVecSPD_GMM::get_SVD( field<string> in_all_people, int  in_dim  )
+getVecSPD_GMM::get_SVD( field<string> in_all_people)
 {
   all_people = in_all_people;
-  dim = in_dim;
   int n_actions = actions.n_rows;
   int n_peo =  all_people.n_rows;
   
