@@ -5,7 +5,8 @@ public:
 		    const std::string in_actionNames,  
 		    const float in_scale_factor, 
 		    const int in_shift,
-		    const int in_scene
+		    const int in_scene,
+		    const int in_dim
                   );
     
 
@@ -21,6 +22,7 @@ const std::string actionNames;
 const float scale_factor;
 const int shift;
 const int total_scenes;
+const int dim;
 
 
 field<std::string> actions;
