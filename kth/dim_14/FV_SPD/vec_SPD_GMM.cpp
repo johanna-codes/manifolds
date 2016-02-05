@@ -42,7 +42,7 @@ main(int argc, char** argv)
    int dim =14;
    vec vec_Ng;
    vec_Ng << 4 << 8 << 16 << endr;
-   //int Ng =2;
+   int Ng =2;
    
    field<string> all_people;
    all_people.load(peopleList);
@@ -52,7 +52,7 @@ main(int argc, char** argv)
    
    getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
    get_vecs.get_all_vec( all_people );
-   get_vecs.get_GMM( all_people );
+   get_vecs.get_GMM( all_people, Ng );
   
   
 
