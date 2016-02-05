@@ -19,13 +19,6 @@ best_p = 7; % For LS Kernels
 
 
 
-%Quitar normalizaciones y alpha y beta
-%Entrenar cada modelo y luego crear otro vector por cada muestra
-%en training y enternar con svm
-
-%Luego probar con Test
-
-
 %% Kernel LED-Poly
 
  %display('get_SPD_Kernel_all_runs');
@@ -46,7 +39,7 @@ shift = 0;
      cost = vec_costs(c);
      X = sprintf('Training Linear SVM with svm_features c = %5.2f ', cost);
      disp(X);  
-     kth_train_2(path, best_n, cost, best_delta, best_p, dim);
+     %kth_train_2(path, best_n, cost, best_delta, best_p, dim);
      acc = kth_test(path,scale, shift, best_n, best_delta, best_p, dim);
      all_acc(c) = acc; 
      all_acc'

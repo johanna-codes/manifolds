@@ -50,14 +50,14 @@ for pe_ts= 1: n_peo
         one_video_ls = hdf5read(hinfo_ls.GroupHierarchy.Datasets(1));
         X_test_ls_1(:,:,1) = one_video_ls;
         K_test_ls = compute_projRGB_kernel_svm(X_test_ls_1,X_train_ls, PROJECTION_RBF_KERNEL, gamma_ls);
+        
         %Prediction for Model 1. LS Kernel
         [predict_label, accuracy, dec_values_2] = svmpredict([act_ts],[[1:size(K_test_ls,1)]' K_test_ls], model_2);
 
         
-        comb_dec_values = [dec_values_1 dec_values_2];
-        new_features = comb_dec_values;
-        
-        [predict_label, accuracy, new_dec_values] = svmpredict([act_ts],[new_features], linear_model);
+        %comb_dec_values = [dec_values_1 dec_values_2];
+        %new_features = comb_dec_values;
+        %[predict_label, accuracy, new_dec_values] = svmpredict([act_ts],[new_features], linear_model);
 
         
         j=j+1;
