@@ -44,6 +44,7 @@ getVecSPD_GMM::get_SVD( field<string> in_all_people)
       cov_i.load( load_Covs.str(), hdf5_binary ); 
       //cov_i.print("Cov1");
       
+      int dim  = cov_i.n_cols*(cov_i.n_cols+1)/2;
       
       mat mycov;
       
@@ -57,7 +58,31 @@ getVecSPD_GMM::get_SVD( field<string> in_all_people)
 	    mycov.print();
 	    mat U = trimatu( mycov );
 	    
+	    vec vec_spd;
+	    vec_spd.zeros(10);
+	    int k =0;
+	    float sr2 = sqrt(2);
 	    U.print("Upper mycov");
+	    
+	    for (int i=0; i<4; ++i)
+	    {
+	      for (int j=i; i<4; ++i)
+	      {
+		if (i==j)
+		{
+		  vec_spd(k) = mycov(i,j);
+		  
+		}
+		else
+		{
+		  vec_spd(k) = sr2*mycov(i,j);
+		  
+		}
+	      }
+	      
+	    }
+	    vec_spd.t().print(vec_spd);
+	    
 	    
 	    
       getchar();
