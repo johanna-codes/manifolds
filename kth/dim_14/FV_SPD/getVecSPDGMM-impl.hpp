@@ -54,6 +54,9 @@ getVecSPD_GMM::get_all_vec( field<string> in_all_people)
       save_spd_vec << "./vec_spd/sc" << sc << "/scale" << scale_factor << "-shift"<< shift << "/vecSPD_" <<all_people (pe) << "_" << actions(act) <<  ".h5";
       
       
+      vecSPD_cov.save(save_spd_vec.str());
+      
+      
       
       
 //       mat mycov;      
