@@ -10,7 +10,7 @@ public:
     
 
 
-    inline void get_SVD( field<string> all_people, int dim );
+    inline void get_SVD( field<string> all_people);
     //inline void get_gmm_per_video( field<string> all_people, int dim, const int Ng );
 
 
