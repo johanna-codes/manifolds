@@ -50,8 +50,8 @@ main(int argc, char** argv)
    float scale = 1;
    int shift = 0;
    
-   getVecSPD_GMM get_SVD( path, actionNames,  scale, shift, total_scenes );
-   get_SVD.get_SVD(all_people);
+   getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes );
+   get_vecs.get_all_vec(all_people);
   
   
 

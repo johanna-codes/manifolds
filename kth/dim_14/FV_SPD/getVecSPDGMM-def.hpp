@@ -10,7 +10,7 @@ public:
     
 
 
-    inline void get_SVD( field<string> all_people);
+    inline void get_all_vec( field<string> all_people);
     //inline void get_gmm_per_video( field<string> all_people, int dim, const int Ng );
 
 
@@ -28,6 +28,7 @@ field<string> all_people;
 
 
   private: 
+    inline vec get_vec( mat cov, int dim_spdvec );
     //inline void gmm_one_video( std::string load_feat_video_i, std::string load_labels_video_i, int sc, int pe, int act, const int Ng );
 
 };
