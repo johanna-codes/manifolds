@@ -35,7 +35,7 @@ getVecSPD_GMM::get_SVD( field<string> in_all_people)
       
       
       std::ostringstream load_folder;
-      load_folder << path << "./covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+      load_folder << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
       
       std::stringstream load_Covs;
       load_Covs << load_folder.str() << "/Cov_" <<  all_people (pe) << "_" << actions(act) <<  ".h5";
