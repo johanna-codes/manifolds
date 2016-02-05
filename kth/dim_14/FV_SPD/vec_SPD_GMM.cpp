@@ -10,8 +10,8 @@
 using namespace std;
 using namespace arma;
 
-#include "Saving_CovMeans-def.hpp"
-#include "Saving_CovMeans-impl.hpp"
+#include "getVecSPDGMM-def.hpp"
+#include "getVecSPDGMM-impl.hpp"
 
 
 // This codes save the means and covariance matrices for one video.
