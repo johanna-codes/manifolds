@@ -51,8 +51,15 @@ getVecSPD_GMM::get_SVD( field<string> in_all_people)
 	    << 13 << 11 << 7 << 6 << endr
 	    << 3  << 7  << 4 << 7 << endr
 	    << 6  << 6  << 7 << 10 << endr;
+
+
 	    
 	    mycov.print();
+	    mat U = trimatu( mycov );
+	    
+	    U.print("Upper mycov");
+	    
+	    
       getchar();
       
     }
