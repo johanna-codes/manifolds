@@ -66,7 +66,7 @@ getVecSPD_GMM::get_SVD( field<string> in_all_people)
 	    
 	    for (int i=0; i<4; ++i)
 	    {
-	      for (int j=i; i<4; ++i)
+	      for (int j=i; j<4; ++j)
 	      {
 		if (i==j)
 		{
