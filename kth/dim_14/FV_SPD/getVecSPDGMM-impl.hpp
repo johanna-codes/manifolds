@@ -78,8 +78,9 @@ getVecSPD_GMM::get_SVD( field<string> in_all_people)
 		  vec_spd(k) = sr2*mycov(i,j);
 		  
 		}
+		 k++;  
 	      }
-	    k++;  
+	   
 	    }
 	    
 	    vec_spd.t().print("vec_spd");
