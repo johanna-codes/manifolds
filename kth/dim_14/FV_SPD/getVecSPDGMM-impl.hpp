@@ -41,8 +41,8 @@ getVecSPD_GMM::get_SVD( field<string> in_all_people)
       load_Covs << load_folder.str() << "/Cov_" <<  all_people (pe) << "_" << actions(act) <<  ".h5";
       
       mat cov_i;
-      cov_1.load( load_Covs.str(), hdf5_binary ); 
-      cov_1.print("Cov1");
+      cov_i.load( load_Covs.str(), hdf5_binary ); 
+      cov_i.print("Cov1");
       getchar();
       
     }
