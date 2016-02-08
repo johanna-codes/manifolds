@@ -58,7 +58,7 @@ main(int argc, char** argv)
    
    
    //For One Covariance per Video
-   for (int i=0; i<vec_Ng.n_elem; ++i)
+//   for (int i=0; i<vec_Ng.n_elem; ++i)
 //    {
 //      int Ng = vec_Ng(i);
 //      getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
