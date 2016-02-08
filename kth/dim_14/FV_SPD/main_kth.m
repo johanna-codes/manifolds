@@ -8,6 +8,8 @@ clc
 dim = 14;
 Ncent = 2;
 
+dim_spdvec  = dim*( dim + 1 )/2;
+
 Ng = int2str(Ncent);
 
 actions = importdata('actionNames.txt');
@@ -21,13 +23,13 @@ sc = int2str(1);
 n_test = (n_peo-1)*n_actions;
 
 
-dim_FV = 2*dim*Ncent;
+dim_FV = 2*dim_spdvec*Ncent;
 
 
 %% Get FV. Run Just once
  scale_factor = 1;
  shift =0;
- FV_kth_all_videos(Ncent, dim, scale_factor, shift);
+ FV_kth_all_videos(Ncent, dim_spdvec, scale_factor, shift);
 
 
 
