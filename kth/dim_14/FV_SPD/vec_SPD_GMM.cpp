@@ -70,17 +70,30 @@ main(int argc, char** argv)
   
   
   
+   //Several Covs per videos
    vec vec_num_SPD; // For # of SPD matrices per video
    vec_num_SPD << 2 << 4 << 8 << 16 << endr;
   
-   for (int i=0; i<vec_num_SPD.n_elem; ++i)
+//    for (int i=0; i<vec_num_SPD.n_elem; ++i)
+//    {
+//      int num_SPD = vec_num_SPD(i);
+//      getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
+//      get_vecs.get_vecs_video( all_people, num_SPD);
+//    
+//    }
+  
+  for (int i=0; i<vec_Ng.n_elem; ++i)
+  {
+    int Ng = vec_Ng(i);
+    for (int i=0; i<vec_num_SPD.n_elem; ++i)
    {
      int num_SPD = vec_num_SPD(i);
      getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
-     get_vecs.get_vecs_video( all_people, num_SPD);
+     get_vecs.get_GMM_all_vecs( all_people, Ng, num_SPD );
    
    }
-  
+   
+  }
   
 
     
