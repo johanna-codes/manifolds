@@ -35,7 +35,7 @@ for i=1:n_people
         
         S = char(name_feat);
         data_onevideo = hdf5info(S);
-        one_video(k,:) = hdf5read(data_onevideo.GroupHierarchy.Datasets(1));        
+        one_video(:,k) = hdf5read(data_onevideo.GroupHierarchy.Datasets(1));        
         end
         
         one_video= {one_video};
