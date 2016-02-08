@@ -11,8 +11,12 @@ public:
     
 
 
-    inline void get_all_vec( field<string> all_people);
+    inline void get_one_vec_video( field<string> all_people);
     inline void get_GMM( field<string> in_all_people, int N_cent);
+
+    
+    inline void get_vecs_video( field<string> in_all_people, int num_SPD);
+
 
 
 

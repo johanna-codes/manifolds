@@ -40,9 +40,13 @@ main(int argc, char** argv)
      
    int total_scenes = 1; //Only for Scenario 1.
    int dim =14;
-   vec vec_Ng;
-   //vec_Ng << 2 << 4 << 8 << 16 << endr;
-   vec_Ng << 32 << 64<< endr;
+   
+   
+   vec vec_Ng; // For GMM
+   vec_Ng << 2 << 4 << 8 << 16 << endr;
+   
+   
+
    
    //int Ng =2;
    
@@ -52,14 +56,30 @@ main(int argc, char** argv)
    float scale = 1;
    int shift = 0;
    
+   
+   //For One Covariance per Video
    for (int i=0; i<vec_Ng.n_elem; ++i)
+//    {
+//      int Ng = vec_Ng(i);
+//      getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
+//      get_vecs.get_one_vec_video( all_people );
+//      get_vecs.get_GMM( all_people, Ng );
+//      
+//   }
+  
+  
+  
+  
+   vec vec_num_SPD; // For # of SPD matrices per video
+   vec_num_SPD << 2 << 4 << 8 << 16 << endr;
+  
+   for (int i=0; i<vec_num_SPD.n_elem; ++i)
    {
-     int Ng = vec_Ng(i);
+     int num_SPD = vec_num_SPD(i);
      getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
-     //get_vecs.get_all_vec( all_people );
-     get_vecs.get_GMM( all_people, Ng );
-     
-  }
+     get_vecs.get_vecs_video( all_people, num_SPD);
+   
+   }
   
   
 

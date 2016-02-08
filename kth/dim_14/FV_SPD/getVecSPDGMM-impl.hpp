@@ -20,7 +20,7 @@ getVecSPD_GMM::getVecSPD_GMM( const std::string in_path,
 
 inline
 void
-getVecSPD_GMM::get_all_vec( field<string> in_all_people)
+getVecSPD_GMM::get_one_vec_video( field<string> in_all_people)
 {
   all_people = in_all_people;
   int n_actions = actions.n_rows;
@@ -54,12 +54,9 @@ getVecSPD_GMM::get_all_vec( field<string> in_all_people)
       std::ostringstream save_spd_vec;
       save_spd_vec << "./vec_spd/sc" << sc << "/scale" << scale_factor << "-shift"<< shift << "/vecSPD_" <<all_people (pe) << "_" << actions(act) <<  ".h5";
       
-      
       vecSPD_cov.save(save_spd_vec.str(), hdf5_binary);
       
-      
-      
-      
+
 //       mat mycov;      
 //       mycov << 9  << 13 << 3 << 6 << endr
 //       << 13 << 11 << 7 << 6 << endr
@@ -190,13 +187,79 @@ getVecSPD_GMM::get_GMM( field<string> in_all_people, int N_cent)
   means.save( ss_means.str(), raw_ascii );
   covs.save(ss_covs.str(), raw_ascii);
   
+
+}
+
+
+
+///****************************************************************************************
+///****************************************************************************************
+//More tha one covariance matrix per video
+
+inline
+void
+getVecSPD_GMM::get_vecs_video( field<string> in_all_people, int num_SPD)
+{
+  all_people = in_all_people;
+  int n_actions = actions.n_rows;
+  int n_peo =  all_people.n_rows;
+  
+  int sc = total_scenes; //Solo estoy usando 1 
   
   
-  
+  for (int pe = 0; pe< n_peo; ++pe)
+  {
+    for (int act=0; act<n_actions; ++act)
+    {
+     
+      for (int k=0; k<num_SPD; ++k)
+      {
+	
+      
+      
+      std::ostringstream load_folder;
+      load_folder << path << "covs_means_matrices_vectors/CovMeans/sc" << sc << "/scale" << scale_factor << "-shift"<< shift ;
+      
+      std::stringstream load_Covs;
+      load_Covs << load_folder.str() << "/Cov_"<< k << "_out_" << num_SPD << "_" <<  all_people (pe) << "_" << actions(act) <<  ".h5";
+      
+      mat cov_i;
+      cov_i.load( load_Covs.str(), hdf5_binary ); 
+      //cov_i.print("Cov1");
+      
+      int dim_spdvec  = dim*( dim + 1 )/2;
+      
+      vec vecSPD_cov ;
+      vecSPD_cov = get_vec (cov_i, dim_spdvec);
+      
+      
+      std::ostringstream save_spd_vec;
+      save_spd_vec << "./vec_spd/sc" << sc << "/scale" << scale_factor << "-shift"<< shift << "/vecSPD_" << k << "_out_" << num_SPD << "_" <<all_people (pe) << "_" << actions(act) <<  ".h5";
+      
+      vecSPD_cov.save(save_spd_vec.str(), hdf5_binary);
+      
+
+//       mat mycov;      
+//       mycov << 9  << 13 << 3 << 6 << endr
+//       << 13 << 11 << 7 << 6 << endr
+//       << 3  << 7  << 4 << 7 << endr
+//       << 6  << 6  << 7 << 10 << endr;
+//       mycov.print();
+//	mat U = trimatu( mycov );
+//	getchar();
+    }
+      
+    }
+  }
   
   
 }
 
+
+
+
+
+/// Vectorise
 inline
 vec
 getVecSPD_GMM::get_vec( mat cov, int dim_spdvec )
