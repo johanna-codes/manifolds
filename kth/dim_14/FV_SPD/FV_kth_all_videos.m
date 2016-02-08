@@ -10,9 +10,9 @@ Ng = int2str(Ncent);
 dim = int2str(DIM);
 
 
-w  =    load(strcat('./universal_GMM/weights_Ng', Ng));
-mu =    load(strcat('./universal_GMM/means_Ng'  , Ng));
-sigma = load(strcat('./universal_GMM/covs_Ng'   , Ng));
+w  =    load(strcat('./universal_GMM/weights_Ng', Ng, '.dat'));
+mu =    load(strcat('./universal_GMM/means_Ng'  , Ng, '.dat'));
+sigma = load(strcat('./universal_GMM/covs_Ng'   , Ng, '.dat'));
 
 
 sc = int2str(1); %Using only scenario 1
