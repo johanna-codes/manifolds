@@ -16,6 +16,7 @@ public:
 
     
     inline void get_vecs_video( field<string> in_all_people, int num_SPD);
+    inline void get_GMM_all_vecs( field<string> all_people, int N_cent, int num_SPD );
 
 
 
