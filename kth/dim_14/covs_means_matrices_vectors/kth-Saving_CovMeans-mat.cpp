@@ -56,8 +56,8 @@ main(int argc, char** argv)
    
    
 //    // Ideal (Clean) Data
-//   float scale_factor = 1;
-//   int shift = 0;
+   float scale_factor = 1;
+   int shift = 0;
 //    for (int i = 0; i< vec_Ng.n_elem; ++i)
 //    {
 //      int Ng = vec_Ng(i);
