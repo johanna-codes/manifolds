@@ -49,7 +49,7 @@ for i=1:n_people
         % replace NaN vectors with a large value that is far from everything else
         % For normalized vectors in high dimension, vector (0, ..., 0) is *close* to
         % many vectors.
-        %vn(find(isnan(vn))) = 123;
+        vn(find(isnan(vn))) = 123;
         
         if ( length( find( isnan(vn) ) )> 0 )
             disp('Que hago??????');
