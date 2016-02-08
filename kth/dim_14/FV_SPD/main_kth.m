@@ -57,7 +57,7 @@ for pe_ts= 1: n_peo
     
     %size(X_train);
     data_train = X_train';
-    model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
+    model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1 -q' ]);
     save_svm_model =strcat( './svm_models/run_person', int2str(pe_ts), '.mat')
     save(save_svm_model, 'model');
     
@@ -100,7 +100,7 @@ for i=1:length(vec_scale)
             one_FV = load( char( name_load_FV ) );
             X_test(:,1) = one_FV;
             
-            [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_test', model, ['-b 1']);
+            [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_test', model, ['-b 1 ']);
             %predicted_label
             est_labels(j) = predicted_label;
             j=j+1;
@@ -111,8 +111,8 @@ for i=1:length(vec_scale)
             
         end
         
-        save_labels = strcat('./svm_results/scale', num2str(scale_factor), '-shift', int2str(shift),'.mat' );
-        save(save_labels, 'est_labels', 'real_labels');
+        %save_labels = strcat('./svm_results/scale', num2str(scale_factor), '-shift', int2str(shift),'.mat' );
+        %save(save_labels, 'est_labels', 'real_labels');
         
     end
     %[acc n_peo n_actions]
