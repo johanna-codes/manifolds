@@ -81,8 +81,8 @@ for i=1:length(vec_scale)
     shift = 0;
     load_sub_path =strcat('./FV_training/scale', num2str(scale_factor), '-shift',  int2str(shift));
     acc = 0;
-    real_labels = zeros(n_peo*n_actions);
-    est_labels  = zeros(n_peo*n_actions);
+    real_labels = zeros(n_peo*n_actions,1);
+    est_labels  = zeros(n_peo*n_actions,1);
     
     j=1;
     for pe_ts= 1: n_peo
