@@ -9,7 +9,7 @@ dim = 14;
 
 %prompt = 'Number of Gaussians? ';
 %Ncent = input(prompt)
-Ncent = 2;
+Ncent = 4;
 
 prompt = 'Number of SPD per video? ';
 numSPD = input(prompt)
