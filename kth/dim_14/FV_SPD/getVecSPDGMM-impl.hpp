@@ -282,6 +282,7 @@ get_GMM_all_vecs( field<string> in_all_people, int N_cent, int num_SPD )
 	
 	std::ostringstream load_spd_vec;
 	load_spd_vec << "./vec_spd/sc" << sc << "/scale" << scale_factor << "-shift"<< shift << "/vecSPD_" << l << "_out_" << num_SPD << "_" <<all_people (pe) << "_" << actions(act) <<  ".h5";
+	vec vecSPD_cov;
 	vecSPD_cov.load(load_spd_vec.str(), hdf5_binary);
 	all_vectors.col(k)=vecSPD_cov;
 	k++;
