@@ -120,7 +120,7 @@ for i=1:length(vec_scale)
     all_acc_scales(i) = acc;
 end
 
-[vec_scale' all_acc_scales]
+[vec_scale' all_acc_scales];
 
 %% Testing - Shifts
 % vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
