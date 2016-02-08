@@ -7,12 +7,13 @@ clc
 
 dim = 14;
 
-prompt = 'Number of Gaussians? ';
-Ncent = input(prompt)
+%prompt = 'Number of Gaussians? ';
+%Ncent = input(prompt)
+Ncent = 2;
 
 prompt = 'Number of SPD per video? ';
 numSPD = input(prompt)
-%Ncent = 2;
+
 
 dim_spdvec  = dim*( dim + 1 )/2;
 
