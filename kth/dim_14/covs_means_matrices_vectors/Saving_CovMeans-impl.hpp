@@ -340,7 +340,7 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
     
   }
   
-  cout <<"EM was repeated " << rep_em << endl << endl;
+  //cout <<"EM was repeated " << rep_em << endl << endl;
   
   mat dcov = gmm_model.dcovs;
   mat means = gmm_model.means; 
