@@ -212,7 +212,7 @@ getVecSPD_GMM::get_vecs_video( field<string> in_all_people, int num_SPD)
     for (int act=0; act<n_actions; ++act)
     {
      
-      for (int k=0; k<num_SPD; ++k)
+      for (int k=1; k<=num_SPD; ++k)
       {
 	
       
