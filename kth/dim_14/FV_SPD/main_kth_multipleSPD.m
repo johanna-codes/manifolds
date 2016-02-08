@@ -52,7 +52,7 @@ for pe_ts= 1: n_peo
             for act=1: n_actions
                 %show_you = strcat(all_people(pe_tr),  '_', actions(act));
                 %disp(show_you);
-                name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_tr),'_',actions(act),'_sc', sc, '_Ng', Ng,  '_numSPD_', numSPD, '.txt');
+                name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_tr),'_',actions(act),'_sc', sc, '_Ng', Ng,  '_numSPD_', num2str(numSPD), '.txt');
                 one_FV = load( char( name_load_FV ) );
                 X_train(:,k) = one_FV;
                 labels_train(k) = act;
@@ -102,7 +102,7 @@ for i=1:length(vec_scale)
             %disp(show_you);
             real_labels(j) = act_ts;
             
-            name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng,  '_numSPD_', numSPD, '.txt');
+            name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng,  '_numSPD_', num2str(numSPD), '.txt');
             one_FV = load( char( name_load_FV ) );
             X_test(:,1) = one_FV;
             

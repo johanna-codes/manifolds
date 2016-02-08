@@ -9,9 +9,9 @@ Ng = int2str(Ncent);
 dim = int2str(dim_spdvec);
 
 
-w  =    load(strcat('./universal_GMM/weights_Ng', Ng, '_numSPD_', numSPD, '.dat'));
-mu =    load(strcat('./universal_GMM/means_Ng'  , Ng, '_numSPD_', numSPD, '.dat'));
-sigma = load(strcat('./universal_GMM/covs_Ng'   , Ng, '_numSPD_', numSPD, '.dat'));
+w  =    load(strcat('./universal_GMM/weights_Ng', Ng, '_numSPD_', num2str(numSPD), '.dat'));
+mu =    load(strcat('./universal_GMM/means_Ng'  , Ng, '_numSPD_', num2str(numSPD), '.dat'));
+sigma = load(strcat('./universal_GMM/covs_Ng'   , Ng, '_numSPD_', num2str(numSPD), '.dat'));
 
 
 sc = int2str(1); %Using only scenario 1
@@ -60,7 +60,7 @@ for i=1:n_people
         end
         %to save
         
-        save_name = strcat('./FV_training_mulSPD/scale',num2str(scale_factor), '-shift',  int2str(shift),  '/FV_', people(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng,  '_numSPD_', numSPD, '.txt');
+        save_name = strcat('./FV_training_mulSPD/scale',num2str(scale_factor), '-shift',  int2str(shift),  '/FV_', people(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng,  '_numSPD_', num2str(numSPD), '.txt');
         sSave = char(save_name);
         %display(sSave);
         fid1=fopen(sSave,'wt');
