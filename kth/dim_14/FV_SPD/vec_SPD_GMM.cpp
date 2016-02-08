@@ -41,8 +41,8 @@ main(int argc, char** argv)
    int total_scenes = 1; //Only for Scenario 1.
    int dim =14;
    vec vec_Ng;
-   vec_Ng << 4 << 8 << 16 << endr;
-   int Ng =2;
+   vec_Ng << 2 << 4 << 8 << 16 << endr;
+   //int Ng =2;
    
    field<string> all_people;
    all_people.load(peopleList);
@@ -50,9 +50,14 @@ main(int argc, char** argv)
    float scale = 1;
    int shift = 0;
    
-   getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
-   get_vecs.get_all_vec( all_people );
-   get_vecs.get_GMM( all_people, Ng );
+   for (int i=0; i<vec_Ng.n_elem; ++i)
+   {
+     int Ng = vec_Ng(i);
+     getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
+     //get_vecs.get_all_vec( all_people );
+     get_vecs.get_GMM( all_people, Ng );
+     
+  }
   
   
 
