@@ -366,13 +366,13 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
     
     
     std::stringstream save_Covs;
-    save_Covs << save_folder.str() << "/Cov_"<< i << "out" << Ng << "_" <<  all_people (pe) << "_" << actions(act) <<  ".h5";
+    save_Covs << save_folder.str() << "/Cov_"<< i << "_out_" << Ng << "_" <<  all_people (pe) << "_" << actions(act) <<  ".h5";
     
     std::stringstream save_logMCovs;
-    save_logMCovs << save_folder.str() << "/logM_Cov_" << i << "out" << Ng << "_"  <<  all_people (pe) << "_" << actions(act) <<  ".h5";
+    save_logMCovs << save_folder.str() << "/logM_Cov_" << i << "_out_" << Ng << "_"  <<  all_people (pe) << "_" << actions(act) <<  ".h5";
     
     std::stringstream save_Means;
-    save_Means << save_folder.str() << "/Means_" << i << "out" << Ng << "_"  <<  all_people (pe) << "_" << actions(act) <<  ".h5";
+    save_Means << save_folder.str() << "/Means_" << i << "_out_" << Ng << "_"  <<  all_people (pe) << "_" << actions(act) <<  ".h5";
     
     cov_i.save(  save_Covs.str(), hdf5_binary ); 
     logM_cov_i.save( save_logMCovs.str(), hdf5_binary ); 
