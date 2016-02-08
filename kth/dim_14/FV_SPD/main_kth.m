@@ -6,7 +6,10 @@ close all
 clc
 
 dim = 14;
-Ncent = 2;
+
+prompt = 'Number of Gaussians? ';
+Ncent = input(prompt)
+%Ncent = 2;
 
 dim_spdvec  = dim*( dim + 1 )/2;
 
