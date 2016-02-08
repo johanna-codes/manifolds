@@ -258,7 +258,7 @@ getVecSPD_GMM::get_vecs_video( field<string> in_all_people, int num_SPD)
 inline
 void
 getVecSPD_GMM::
-get_GMM_all_vecs( field<string> all_people, int N_cent, int num_SPD )
+get_GMM_all_vecs( field<string> in_all_people, int N_cent, int num_SPD )
 {
   
  all_people = in_all_people;
