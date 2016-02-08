@@ -42,7 +42,7 @@ main(int argc, char** argv)
    int dim = 14;  
    
    vec vec_Ng;
-   vec_Ng << 4 << 8 << 16 << endr;
+   vec_Ng << 2 << 4 << 8 << 16 << endr;
    //int Ng =2;
    
    field<string> all_people;
@@ -58,17 +58,17 @@ main(int argc, char** argv)
 //    // Ideal (Clean) Data
    float scale_factor = 1;
    int shift = 0;
-//    for (int i = 0; i< vec_Ng.n_elem; ++i)
-//    {
-//      int Ng = vec_Ng(i);
-//      cout << Ng << endl;
-//      
+    for (int i = 0; i< vec_Ng.n_elem; ++i)
+    {
+      int Ng = vec_Ng(i);
+      cout << Ng << endl;
+      
       CovMeans_mat_kth get_CovMeans(path, actionNames, scale_factor, shift, total_scenes);
-      get_CovMeans.calculate_one_per_video( all_people, dim );
-//      get_CovMeans.get_gmm_per_video( all_people, dim, Ng );
-//    
-//    }
-//   
+      //get_CovMeans.calculate_one_per_video( all_people, dim );
+      get_CovMeans.get_gmm_per_video( all_people, dim, Ng );
+    
+    }
+   
    
    
    //  
