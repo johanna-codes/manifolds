@@ -41,10 +41,12 @@ n_test = (n_peo-1)*n_actions;
 scale_factor = 1;
 shift =0;
 
-
-for i=1:length(vec_numSPD)
-    numSPD = vec_numSPD(i);
-    FV_kth_all_videos_mltipleSPD(Ncent, numSPD, dim_spdvec, scale_factor, shift);
+for i=1:length(vec_Ncent)
+    Ncent = vec_Ncent(i);
+    for j=1:length(vec_numSPD)
+        numSPD = vec_numSPD(j);
+        FV_kth_all_videos_mltipleSPD(Ncent, numSPD, dim_spdvec, scale_factor, shift);
+    end
 end
 
 
