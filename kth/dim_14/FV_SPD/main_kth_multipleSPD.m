@@ -9,11 +9,14 @@ dim = 14;
 
 %prompt = 'Number of Gaussians? ';
 %Ncent = input(prompt)
-Ncent = 16;
+%Ncent = 16;
 
-prompt = 'Number of SPD per video? ';
-numSPD = input(prompt)
+%prompt = 'Number of SPD per video? ';
+%numSPD = input(prompt)
 
+
+vec_Ncent  = [ 2 4 8 16 32 60 128 256];
+vec_numSPD = [ 2 4 8 16 32 60 128 256];
 
 dim_spdvec  = dim*( dim + 1 )/2;
 
@@ -34,9 +37,14 @@ dim_FV = 2*dim_spdvec*Ncent;
 
 
 %% Get FV. Run Just once
- scale_factor = 1;
- shift =0;
- FV_kth_all_videos_mltipleSPD(Ncent, numSPD, dim_spdvec, scale_factor, shift);
+scale_factor = 1;
+shift =0;
+
+
+for i=1:length(vec_numSPD)
+    numSPD = vec_numSPD(i);
+    FV_kth_all_videos_mltipleSPD(Ncent, numSPD, dim_spdvec, scale_factor, shift);
+end
 
 
 
@@ -74,60 +82,59 @@ end
 
 
 %vec_scale = [0.75 0.80 0.85 0.90 0.95 1 1.05 1.10  1.15 1.20 1.25];
- vec_scale = [ 1 ];
-% shift = 0;
-%   for i=1:length(vec_scale)
-%       show_you = strcat('Getting FVs for ', num2str( vec_scale(i) ) );
-%       disp(show_you);
-%       FV_kth_all_videos(Ncent, dim, vec_scale(i), shift);
-%   end
 
-all_acc_scales = zeros( length(vec_scale), 1);
-for i=1:length(vec_scale)
-    scale_factor = vec_scale(i)
-    shift = 0;
-    load_sub_path =strcat('./FV_training_mulSPD/scale', num2str(scale_factor), '-shift',  int2str(shift));
-    acc = 0;
-    real_labels = zeros(n_peo*n_actions,1);
-    est_labels  = zeros(n_peo*n_actions,1);
-    
-    j=1;
-    for pe_ts= 1: n_peo
+scale_factor = 1;
+shift = 0;
+
+all_acc_Ncent_NumSPD= zeros(  length(vec_Ncent), length(vec_numSPD) );
+
+for i=1:length(vec_Ncent)
+    Ncent = vec_Ncent(i);
+    for j=1:length(vec_numSPD)
+        numSPD = vec_numSPD(j);
         
-        load_svm_model = strcat( './svm_models/run_person', int2str(pe_ts), '.mat');
-        load(load_svm_model); %loading model and X_train
+        load_sub_path =strcat('./FV_training_mulSPD/scale', num2str(scale_factor), '-shift',  int2str(shift));
+        acc = 0;
+        real_labels = zeros(n_peo*n_actions,1);
+        est_labels  = zeros(n_peo*n_actions,1);
         
-        for act_ts = 1:n_actions
+        j=1;
+        for pe_ts= 1: n_peo
             
-            %show_you = strcat(all_people(pe_ts),  '_', actions(act_ts));
-            %disp(show_you);
-            real_labels(j) = act_ts;
+            load_svm_model = strcat( './svm_models/run_person', int2str(pe_ts), '.mat');
+            load(load_svm_model); %loading model and X_train
             
-            name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng,  '_numSPD_', num2str(numSPD), '.txt');
-            one_FV = load( char( name_load_FV ) );
-            X_test(:,1) = one_FV;
-            
-            [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_test', model, ['-b 1 ']);
-            %predicted_label
-            est_labels(j) = predicted_label;
-            j=j+1;
-            
-            if predicted_label == act_ts
-                acc = acc+1;
+            for act_ts = 1:n_actions
+                
+                %show_you = strcat(all_people(pe_ts),  '_', actions(act_ts));
+                %disp(show_you);
+                real_labels(j) = act_ts;
+                
+                name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng,  '_numSPD_', num2str(numSPD), '.txt');
+                one_FV = load( char( name_load_FV ) );
+                X_test(:,1) = one_FV;
+                
+                [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_test', model, ['-b 1 ']);
+                %predicted_label
+                est_labels(j) = predicted_label;
+                j=j+1;
+                
+                if predicted_label == act_ts
+                    acc = acc+1;
+                end
+                
             end
             
+            %save_labels = strcat('./svm_results/scale', num2str(scale_factor), '-shift', int2str(shift),'.mat' );
+            %save(save_labels, 'est_labels', 'real_labels');
+            
         end
-        
-        %save_labels = strcat('./svm_results/scale', num2str(scale_factor), '-shift', int2str(shift),'.mat' );
-        %save(save_labels, 'est_labels', 'real_labels');
-        
+        %[acc n_peo n_actions]
+        acc = acc*100/(n_peo*n_actions)
+        all_acc_Ncent_NumSPD(i,j) = acc
     end
-    %[acc n_peo n_actions]
-    acc = acc*100/(n_peo*n_actions)
-    all_acc_scales(i) = acc;
 end
 
-[vec_scale' all_acc_scales];
 
 %% Testing - Shifts
 % vec_shift = [ -25, -20, -15, -10, -5,  0, 5, 10, 15, 20, 25 ];
@@ -148,43 +155,43 @@ end
 %     acc = 0;
 %     real_labels = zeros(n_peo*n_actions);
 %     est_labels  = zeros(n_peo*n_actions);
-%     
+%
 %     j=1;
 %     for pe_ts= 1: n_peo
-%         
+%
 %         load_svm_model = strcat( './svm_models/run_person', int2str(pe_ts), '.mat');
 %         load(load_svm_model); %loading model and X_train
-%         
+%
 %         for act_ts = 1:n_actions
-%             
+%
 %             %show_you = strcat(all_people(pe_ts),  '_', actions(act_ts));
 %             %disp(show_you);
 %             real_labels(j) = act_ts;
-%             
+%
 %             name_load_FV = strcat( load_sub_path, '/FV_', all_people(pe_ts),'_',actions(act_ts), '_sc', sc, '_Ng', Ng, '.txt');
 %             one_FV = load( char( name_load_FV ) );
 %             X_test(:,1) = one_FV;
-%             
+%
 %             [predicted_label, accuracy, prob_estimates] = svmpredict([act_ts], X_test', model, ['-b 1']);
 %             %predicted_label
 %             est_labels(j) = predicted_label;
 %             j=j+1;
-%             
+%
 %             if predicted_label == act_ts
 %                 acc = acc+1;
 %             end
-%             
+%
 %         end
-%         
+%
 %         save_labels = strcat('./svm_results/scale', int2str(scale_factor), '-shift', int2str(shift),'.mat' );
 %         save(save_labels, 'est_labels', 'real_labels');
-%         
+%
 %     end
 %     %[acc n_peo n_actions]
 %     acc = acc*100/(n_peo*n_actions)
 %     all_acc_shifts(i) = acc;
 % end
-% 
+%
 % [vec_shift' all_acc_shifts]
 
 
