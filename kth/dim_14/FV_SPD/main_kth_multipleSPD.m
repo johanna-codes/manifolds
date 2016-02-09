@@ -41,7 +41,7 @@ n_test = (n_peo-1)*n_actions;
  scale_factor = 1;
 shift =0;
 
-for i=1:length(vec_Ncent)
+for i=5:length(vec_Ncent)
     Ncent = vec_Ncent(i);
     for j=1:length(vec_numSPD)
         numSPD = vec_numSPD(j);
@@ -64,9 +64,8 @@ for i=1:length(vec_Ncent)
         numSPD = vec_numSPD(j);
         Ng = int2str(Ncent);
         dim_FV = 2*dim_spdvec*Ncent;
+        fprintf('Training with Ng: %d - numSPD %d \n',Ncent, numSPD);
 
-
-        
         for pe_ts= 1: n_peo
             X_train = zeros(dim_FV,n_test);
             labels_train = zeros(n_test,1);
@@ -107,7 +106,8 @@ for i=1:length(vec_Ncent)
     Ncent = vec_Ncent(i);
     for j=1:length(vec_numSPD)
         numSPD = vec_numSPD(j);
-        
+        fprintf('Testing with Ng: %d - numSPD %d \n',Ncent, numSPD);
+
         load_sub_path =strcat('./FV_training_mulSPD/scale', num2str(scale_factor), '-shift',  int2str(shift));
         acc = 0;
         real_labels = zeros(n_peo*n_actions,1);
