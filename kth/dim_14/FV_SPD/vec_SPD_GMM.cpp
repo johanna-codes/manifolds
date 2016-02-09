@@ -72,8 +72,7 @@ main(int argc, char** argv)
   
    //Several Covs per videos
    vec vec_num_SPD; // For # of SPD matrices per video
-   //vec_num_SPD << 2 << 4 << 8 << 16 << endr;
-   vec_num_SPD << 32 << 64 << 128 << 256 << endr;
+   vec_num_SPD << 2 << 4 << 8 << 16 <<  32 << 64 << 128 << 256 << endr;
    
    
     for (int i=0; i<vec_num_SPD.n_elem; ++i)
