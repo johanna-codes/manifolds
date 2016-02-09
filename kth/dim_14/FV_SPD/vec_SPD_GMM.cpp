@@ -89,9 +89,9 @@ main(int argc, char** argv)
     int Ng = vec_Ng(i);
     for (int i=0; i<vec_num_SPD.n_elem; ++i)
     {
-      
-      cout << "Ng: " << Ng << " - num_SPD: " << num_SPD << endl;
       int num_SPD = vec_num_SPD(i);
+      cout << "Ng: " << Ng << " - num_SPD: " << num_SPD << endl;
+      
       getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
       get_vecs.get_GMM_all_vecs( all_people, Ng, num_SPD );   
    }
