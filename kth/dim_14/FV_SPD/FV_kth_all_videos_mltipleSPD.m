@@ -51,15 +51,16 @@ for i=1:n_people
         % replace NaN vectors with a large value that is far from everything else
         % For normalized vectors in high dimension, vector (0, ..., 0) is *close* to
         % many vectors.
-        %vn(find(isnan(vn))) = 123;
+        %
         
-        if ( length( find( isnan(vn) ) )> 0 )
-            disp('Que hago??????');
-            return
+        %if ( length( find( isnan(vn) ) )> 0 )
+        %    disp('Que hago??????');
+            %return
             
-        end
-        %to save
+        %end
+        vn(find(isnan(vn))) = 123;
         
+        %to save
         save_name = strcat('./FV_training_mulSPD/scale',num2str(scale_factor), '-shift',  int2str(shift),  '/FV_', people(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng,  '_numSPD_', num2str(numSPD), '.txt');
         sSave = char(save_name);
         %display(sSave);
