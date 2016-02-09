@@ -38,18 +38,18 @@ n_test = (n_peo-1)*n_actions;
 
 
 %% Get FV. Run Just once
-% scale_factor = 1;
-% shift =0;
-% 
-% for i=1:length(vec_Ncent)
-%     Ncent = vec_Ncent(i);
-%     for j=1:length(vec_numSPD)
-%         numSPD = vec_numSPD(j);
-%         fprintf('Ng: %d - numSPD %d \n',Ncent, numSPD);
-% 
-%         FV_kth_all_videos_mltipleSPD(Ncent, numSPD, dim_spdvec, scale_factor, shift);
-%     end
-% end
+ scale_factor = 1;
+shift =0;
+
+for i=1:length(vec_Ncent)
+    Ncent = vec_Ncent(i);
+    for j=1:length(vec_numSPD)
+        numSPD = vec_numSPD(j);
+        fprintf('Ng: %d - numSPD %d \n',Ncent, numSPD);
+
+        FV_kth_all_videos_mltipleSPD(Ncent, numSPD, dim_spdvec, scale_factor, shift);
+    end
+end
 
 
 
