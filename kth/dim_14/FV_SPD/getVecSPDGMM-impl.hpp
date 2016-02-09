@@ -194,7 +194,7 @@ getVecSPD_GMM::get_GMM( field<string> in_all_people, int N_cent)
 
 ///****************************************************************************************
 ///****************************************************************************************
-//More tha one covariance matrix per video
+//More than one covariance matrix per video
 
 inline
 void
@@ -355,7 +355,6 @@ get_GMM_all_vecs( field<string> in_all_people, int N_cent, int num_SPD )
   weights = gmm_model.hefts.t();	
   
   
-  ///CAMBIAR NOMBRES
   //Saving statistics
   std::stringstream ss_weigths;
   ss_weigths << "./universal_GMM/weights_Ng" << N_cent << "_numSPD_" << num_SPD <<  ".dat"; 

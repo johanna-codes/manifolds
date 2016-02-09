@@ -284,10 +284,12 @@ void
 CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load_labels_video_i, int sc, int pe, int act, const int Ng )
 {
   
-  cout <<  all_people (pe) << "_" << actions(act)  << endl;
+  cout <<  all_people (pe) << "_" << actions(act)  << " ";
   mat mat_features_video_i;
   mat_features_video_i.load( load_feat_video_i, hdf5_binary );
   int n_vec = mat_features_video_i.n_cols;
+  
+  cout << "Number of Vectors: " << n_vec << endl;
   
   
   bool is_finite = mat_features_video_i.is_finite();
