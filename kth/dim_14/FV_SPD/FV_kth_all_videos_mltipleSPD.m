@@ -55,6 +55,7 @@ for i=1:n_people
         
         if ( length( find( isnan(vn) ) )> 0 )
             disp('Que hago??????');
+            pause
             
         end
         %to save
