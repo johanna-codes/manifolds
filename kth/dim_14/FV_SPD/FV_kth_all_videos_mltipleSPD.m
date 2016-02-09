@@ -2,7 +2,6 @@ function FV_kth_all_videos_mltipleSPD(Ncent, numSPD, dim_spdvec, scale_factor, s
 %%Calcular FV for all videos
 
 
-fprintf('Ng %d \n',Ncent);
 
 
 Ng = int2str(Ncent);

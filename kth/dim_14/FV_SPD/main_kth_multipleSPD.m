@@ -18,8 +18,8 @@ dim = 14;
 %numSPD = input(prompt)
 
 
-vec_Ncent  = [ 2 4 8 16 32 60 128 256];
-vec_numSPD = [ 2 4 8 16 32 60 128 256];
+vec_Ncent  = [ 2 4 8 16 32 64 128 256];
+vec_numSPD = [ 2 4 8 16 32 64 128 256];
 
 dim_spdvec  = dim*( dim + 1 )/2;
 
@@ -45,6 +45,8 @@ for i=1:length(vec_Ncent)
     Ncent = vec_Ncent(i);
     for j=1:length(vec_numSPD)
         numSPD = vec_numSPD(j);
+        fprintf('Ng: %d - numSPD %d \n',Ncent, numSPD);
+
         FV_kth_all_videos_mltipleSPD(Ncent, numSPD, dim_spdvec, scale_factor, shift);
     end
 end
