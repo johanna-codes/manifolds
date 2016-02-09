@@ -41,7 +41,7 @@ n_test = (n_peo-1)*n_actions;
 %  scale_factor = 1;
 % shift =0;
 % 
-% for i=5:length(vec_Ncent)
+% for i=1:length(vec_Ncent)
 %     Ncent = vec_Ncent(i);
 %     for j=1:length(vec_numSPD)
 %         numSPD = vec_numSPD(j);
@@ -104,6 +104,7 @@ all_acc_Ncent_NumSPD= zeros(  length(vec_Ncent), length(vec_numSPD) );
 
 for i=1:length(vec_Ncent)
     Ncent = vec_Ncent(i);
+    Ng = int2str(Ncent);
     for m=1:length(vec_numSPD)
         numSPD = vec_numSPD(m);
         fprintf('Testing with Ng: %d - numSPD %d \n',Ncent, numSPD);
