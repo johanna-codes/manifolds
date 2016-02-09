@@ -42,7 +42,8 @@ main(int argc, char** argv)
    int dim = 14;  
    
    vec vec_Ng;
-   vec_Ng << 2 << 4 << 8 << 16 << endr;
+   //vec_Ng << 2 << 4 << 8 << 16 << endr;
+   vec_Ng << 32 << 64 << 128 << 256 << endr;
    //int Ng =2;
    
    field<string> all_people;

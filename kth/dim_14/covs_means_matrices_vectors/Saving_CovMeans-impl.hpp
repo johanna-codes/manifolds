@@ -226,7 +226,7 @@ CovMeans_mat_kth::get_gmm_per_video( field<string> in_all_people, int  in_dim, c
   
   field <std::string> parallel_names(n_peo*n_actions,4); 
   int sc = total_scenes; //Solo estoy usando 1 
-  int k =0;
+  int k = 0;
   
   
   for (int pe = 0; pe< n_peo; ++pe)
@@ -289,7 +289,7 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
   mat_features_video_i.load( load_feat_video_i, hdf5_binary );
   int n_vec = mat_features_video_i.n_cols;
   
-  cout << " " << n_vec;
+  //cout << " " << n_vec;
   
   
   bool is_finite = mat_features_video_i.is_finite();
