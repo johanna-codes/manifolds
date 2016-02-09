@@ -36,8 +36,6 @@ sc = int2str(1);
 n_test = (n_peo-1)*n_actions;
 
 
-dim_FV = 2*dim_spdvec*Ncent;
-
 
 %% Get FV. Run Just once
 scale_factor = 1;
@@ -61,7 +59,9 @@ for i=1:length(vec_Ncent)
     for j=1:length(vec_numSPD)
         numSPD = vec_numSPD(j);
         Ng = int2str(Ncent);
-        
+        dim_FV = 2*dim_spdvec*Ncent;
+
+
         
         for pe_ts= 1: n_peo
             X_train = zeros(dim_FV,n_test);
