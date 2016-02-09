@@ -138,7 +138,7 @@ for i=1:length(vec_Ncent)
                 if predicted_label == act_ts
                     acc = acc+1;
                 end
-                
+                clear X_test
             end
             
             %save_labels = strcat('./svm_results/scale', num2str(scale_factor), '-shift', int2str(shift),'.mat' );
