@@ -377,7 +377,7 @@ CovMeans_mat_kth::gmm_one_video( std::string load_feat_video_i, std::string load
     save_Means << save_folder.str() << "/Means_" << i << "_out_" << Ng << "_"  <<  all_people (pe) << "_" << actions(act) <<  ".h5";
     
     
-    cout << save_Covs.str() << endl;
+    //cout << save_Covs.str() << endl;
     cov_i.save(  save_Covs.str(), hdf5_binary ); 
     logM_cov_i.save( save_logMCovs.str(), hdf5_binary ); 
     mean_i.save( save_Means.str(), hdf5_binary ); 
