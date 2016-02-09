@@ -79,6 +79,8 @@ main(int argc, char** argv)
     for (int i=0; i<vec_num_SPD.n_elem; ++i)
     {
       int num_SPD = vec_num_SPD(i);
+       int num_SPD = vec_num_SPD(i);
+      cout << "num_SPD: " << num_SPD << endl;
       getVecSPD_GMM get_vecs( path, actionNames,  scale, shift, total_scenes, dim );
       get_vecs.get_vecs_video( all_people, num_SPD);
     
